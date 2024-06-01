@@ -11,7 +11,7 @@
         },
         {
             "name": "IMGUI_VERSION_NUM",
-            "content": "19073",
+            "content": "19071",
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
@@ -3137,15 +3137,8 @@
             }
         },
         {
-            "name": "ImGuiDir",
-            "original_fully_qualified_name": "ImGuiDir",
-            "storage_type": {
-                "declaration": "int",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "int"
-                }
-            },
+            "name": "ImGuiDir_",
+            "original_fully_qualified_name": "ImGuiDir_",
             "is_flags_enum": false,
             "elements": [
                 {
@@ -3217,8 +3210,7 @@
             "comments": {
                 "preceding": [
                     "// A cardinal direction"
-                ],
-                "attached": "// Forward declared enum type ImGuiDir"
+                ]
             },
             "is_internal": false,
             "source_location": {
@@ -3227,15 +3219,8 @@
             }
         },
         {
-            "name": "ImGuiSortDirection",
-            "original_fully_qualified_name": "ImGuiSortDirection",
-            "storage_type": {
-                "declaration": "ImU8",
-                "description": {
-                    "kind": "User",
-                    "name": "ImU8"
-                }
-            },
+            "name": "ImGuiSortDirection_",
+            "original_fully_qualified_name": "ImGuiSortDirection_",
             "is_flags_enum": false,
             "elements": [
                 {
@@ -3281,8 +3266,7 @@
             "comments": {
                 "preceding": [
                     "// A sorting direction"
-                ],
-                "attached": "// Forward declared enum type ImGuiSortDirection"
+                ]
             },
             "is_internal": false,
             "source_location": {
@@ -9733,163 +9717,7 @@
     ],
     "typedefs": [
         {
-            "name": "ImGuiID",
-            "type": {
-                "declaration": "unsigned int",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "unsigned_int"
-                }
-            },
-            "comments": {
-                "preceding": [
-                    "// Scalar data types"
-                ],
-                "attached": "// A unique ID used by widgets (typically the result of hashing a stack of string)"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImS8",
-            "type": {
-                "declaration": "signed char",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "char"
-                }
-            },
-            "comments": {
-                "attached": "// 8-bit signed integer"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImU8",
-            "type": {
-                "declaration": "unsigned char",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "unsigned_char"
-                }
-            },
-            "comments": {
-                "attached": "// 8-bit unsigned integer"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImS16",
-            "type": {
-                "declaration": "signed short",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "short"
-                }
-            },
-            "comments": {
-                "attached": "// 16-bit signed integer"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImU16",
-            "type": {
-                "declaration": "unsigned short",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "unsigned_short"
-                }
-            },
-            "comments": {
-                "attached": "// 16-bit unsigned integer"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImS32",
-            "type": {
-                "declaration": "signed int",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "int"
-                }
-            },
-            "comments": {
-                "attached": "// 32-bit signed integer == int"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImU32",
-            "type": {
-                "declaration": "unsigned int",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "unsigned_int"
-                }
-            },
-            "comments": {
-                "attached": "// 32-bit unsigned integer (often used to store packed colors)"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImS64",
-            "type": {
-                "declaration": "signed long long",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "long_long"
-                }
-            },
-            "comments": {
-                "attached": "// 64-bit signed integer"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImU64",
-            "type": {
-                "declaration": "unsigned long long",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "unsigned_long_long"
-                }
-            },
-            "comments": {
-                "attached": "// 64-bit unsigned integer"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImGuiDir",
+            "name": "ImGuiKey",
             "type": {
                 "declaration": "int",
                 "description": {
@@ -9906,23 +9734,6 @@
                     "//   - In Visual Studio w/ Visual Assist installed: ALT+G (\"VAssistX.GoToImplementation\") can also follow symbols inside comments.",
                     "//   - In VS Code, CLion, etc.: CTRL+click can follow symbols inside comments."
                 ],
-                "attached": "// -> enum ImGuiDir              // Enum: A cardinal direction (Left, Right, Up, Down)"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImGuiKey",
-            "type": {
-                "declaration": "int",
-                "description": {
-                    "kind": "Builtin",
-                    "builtin_type": "int"
-                }
-            },
-            "comments": {
                 "attached": "// -> enum ImGuiKey              // Enum: A key identifier (ImGuiKey_XXX or ImGuiMod_XXX value)"
             },
             "is_internal": false,
@@ -9941,23 +9752,6 @@
             },
             "comments": {
                 "attached": "// -> enum ImGuiMouseSource      // Enum; A mouse input source identifier (Mouse, TouchScreen, Pen)"
-            },
-            "is_internal": false,
-            "source_location": {
-                "filename": "imgui.h"
-            }
-        },
-        {
-            "name": "ImGuiSortDirection",
-            "type": {
-                "declaration": "ImU8",
-                "description": {
-                    "kind": "User",
-                    "name": "ImU8"
-                }
-            },
-            "comments": {
-                "attached": "// -> enum ImGuiSortDirection    // Enum: A sorting direction (ascending or descending)"
             },
             "is_internal": false,
             "source_location": {
@@ -10016,6 +9810,23 @@
             }
         },
         {
+            "name": "ImGuiDir",
+            "type": {
+                "declaration": "int",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "int"
+                }
+            },
+            "comments": {
+                "attached": "// -> enum ImGuiDir_             // Enum: A cardinal direction"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
             "name": "ImGuiMouseButton",
             "type": {
                 "declaration": "int",
@@ -10043,6 +9854,23 @@
             },
             "comments": {
                 "attached": "// -> enum ImGuiMouseCursor_     // Enum: A mouse cursor shape"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
+            "name": "ImGuiSortDirection",
+            "type": {
+                "declaration": "int",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "int"
+                }
+            },
+            "comments": {
+                "attached": "// -> enum ImGuiSortDirection_   // Enum: A sorting direction (ascending or descending)"
             },
             "is_internal": false,
             "source_location": {
@@ -10576,6 +10404,162 @@
                     "expression": "ImDrawIdx"
                 }
             ],
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
+            "name": "ImGuiID",
+            "type": {
+                "declaration": "unsigned int",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "unsigned_int"
+                }
+            },
+            "comments": {
+                "preceding": [
+                    "// Scalar data types"
+                ],
+                "attached": "// A unique ID used by widgets (typically the result of hashing a stack of string)"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
+            "name": "ImS8",
+            "type": {
+                "declaration": "signed char",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "char"
+                }
+            },
+            "comments": {
+                "attached": "// 8-bit signed integer"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
+            "name": "ImU8",
+            "type": {
+                "declaration": "unsigned char",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "unsigned_char"
+                }
+            },
+            "comments": {
+                "attached": "// 8-bit unsigned integer"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
+            "name": "ImS16",
+            "type": {
+                "declaration": "signed short",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "short"
+                }
+            },
+            "comments": {
+                "attached": "// 16-bit signed integer"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
+            "name": "ImU16",
+            "type": {
+                "declaration": "unsigned short",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "unsigned_short"
+                }
+            },
+            "comments": {
+                "attached": "// 16-bit unsigned integer"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
+            "name": "ImS32",
+            "type": {
+                "declaration": "signed int",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "int"
+                }
+            },
+            "comments": {
+                "attached": "// 32-bit signed integer == int"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
+            "name": "ImU32",
+            "type": {
+                "declaration": "unsigned int",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "unsigned_int"
+                }
+            },
+            "comments": {
+                "attached": "// 32-bit unsigned integer (often used to store packed colors)"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
+            "name": "ImS64",
+            "type": {
+                "declaration": "signed long long",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "long_long"
+                }
+            },
+            "comments": {
+                "attached": "// 64-bit signed integer"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h"
+            }
+        },
+        {
+            "name": "ImU64",
+            "type": {
+                "declaration": "unsigned long long",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "unsigned_long_long"
+                }
+            },
+            "comments": {
+                "attached": "// 64-bit unsigned integer"
+            },
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h"
@@ -11141,7 +11125,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 162
+                "line": 151
             }
         },
         {
@@ -11158,7 +11142,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 167
+                "line": 156
             }
         },
         {
@@ -11175,7 +11159,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 172
+                "line": 161
             }
         },
         {
@@ -11475,6 +11459,7 @@
                 {
                     "name": "SortDirection",
                     "is_array": false,
+                    "width": "8",
                     "is_anonymous": false,
                     "type": {
                         "declaration": "ImGuiSortDirection",
@@ -13532,7 +13517,7 @@
                         }
                     },
                     "comments": {
-                        "attached": "// Apply to regular windows: amount which we enforce to keep visible when moving near edges of your screen."
+                        "attached": "// Window position are clamped to be visible within the display area or monitors by at least this amount. Only applies to regular windows."
                     },
                     "is_internal": false,
                     "source_location": {
@@ -13552,7 +13537,7 @@
                         }
                     },
                     "comments": {
-                        "attached": "// Apply to every windows, menus, popups, tooltips: amount where we avoid displaying contents. Adjust if you cannot see the edges of your screen (e.g. on a TV where scaling has not been configured)."
+                        "attached": "// If you cannot see the edges of your screen (e.g. on a TV) increase the safe area padding. Apply to popups/tooltips as well regular windows. NB: Prefer configuring your TV sets correctly!"
                     },
                     "is_internal": false,
                     "source_location": {
@@ -13572,7 +13557,7 @@
                         }
                     },
                     "comments": {
-                        "attached": "// Scale software rendered mouse cursor (when io.MouseDrawCursor is enabled). We apply per-monitor DPI scaling over this scale. May be removed later."
+                        "attached": "// Scale software rendered mouse cursor (when io.MouseDrawCursor is enabled). May be removed later."
                     },
                     "is_internal": false,
                     "source_location": {

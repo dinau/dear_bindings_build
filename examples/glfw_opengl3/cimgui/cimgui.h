@@ -32,7 +32,7 @@
 // Library Version
 // (Integer encoded as XYYZZ for use in #if preprocessor conditionals, e.g. '#if IMGUI_VERSION_NUM >= 12345')
 #define IMGUI_VERSION       "1.90.8 WIP"
-#define IMGUI_VERSION_NUM   19073
+#define IMGUI_VERSION_NUM   19071
 #define IMGUI_HAS_TABLE
 
 /*
@@ -172,17 +172,6 @@ typedef struct ImGuiTextFilter_ImGuiTextRange_t ImGuiTextFilter_ImGuiTextRange;
 typedef struct ImGuiStorage_ImGuiStoragePair_t ImGuiStorage_ImGuiStoragePair;
 typedef struct ImDrawCmdHeader_t ImDrawCmdHeader;
 typedef struct ImFontAtlasCustomRect_t ImFontAtlasCustomRect;
-// Scalar data types
-typedef unsigned int ImGuiID;      // A unique ID used by widgets (typically the result of hashing a stack of string)
-typedef signed char ImS8;          // 8-bit signed integer
-typedef unsigned char ImU8;        // 8-bit unsigned integer
-typedef signed short ImS16;        // 16-bit signed integer
-typedef unsigned short ImU16;      // 16-bit unsigned integer
-typedef signed int ImS32;          // 32-bit signed integer == int
-typedef unsigned int ImU32;        // 32-bit unsigned integer (often used to store packed colors)
-typedef signed long long ImS64;    // 64-bit signed integer
-typedef unsigned long long ImU64;  // 64-bit unsigned integer
-
 // Forward declarations
 typedef struct ImDrawChannel_t ImDrawChannel;                            // Temporary storage to output draw commands out of order, used by ImDrawListSplitter and ImDrawList::ChannelsSplit()
 typedef struct ImDrawCmd_t ImDrawCmd;                                    // A single draw command within a parent ImDrawList (generally maps to 1 GPU draw call, unless it is a callback)
@@ -220,17 +209,17 @@ typedef struct ImGuiViewport_t ImGuiViewport;                            // A Pl
 //   - In Visual Studio: CTRL+comma ("Edit.GoToAll") can follow symbols inside comments, whereas CTRL+F12 ("Edit.GoToImplementation") cannot.
 //   - In Visual Studio w/ Visual Assist installed: ALT+G ("VAssistX.GoToImplementation") can also follow symbols inside comments.
 //   - In VS Code, CLion, etc.: CTRL+click can follow symbols inside comments.
-typedef int ImGuiDir;             // -> enum ImGuiDir              // Enum: A cardinal direction (Left, Right, Up, Down)
-typedef int ImGuiKey;             // -> enum ImGuiKey              // Enum: A key identifier (ImGuiKey_XXX or ImGuiMod_XXX value)
-typedef int ImGuiMouseSource;     // -> enum ImGuiMouseSource      // Enum; A mouse input source identifier (Mouse, TouchScreen, Pen)
-typedef ImU8 ImGuiSortDirection;  // -> enum ImGuiSortDirection    // Enum: A sorting direction (ascending or descending)
-typedef int ImGuiCol;             // -> enum ImGuiCol_             // Enum: A color identifier for styling
-typedef int ImGuiCond;            // -> enum ImGuiCond_            // Enum: A condition for many Set*() functions
-typedef int ImGuiDataType;        // -> enum ImGuiDataType_        // Enum: A primary data type
-typedef int ImGuiMouseButton;     // -> enum ImGuiMouseButton_     // Enum: A mouse button identifier (0=left, 1=right, 2=middle)
-typedef int ImGuiMouseCursor;     // -> enum ImGuiMouseCursor_     // Enum: A mouse cursor shape
-typedef int ImGuiStyleVar;        // -> enum ImGuiStyleVar_        // Enum: A variable identifier for styling
-typedef int ImGuiTableBgTarget;   // -> enum ImGuiTableBgTarget_   // Enum: A color target for TableSetBgColor()
+typedef int ImGuiKey;            // -> enum ImGuiKey              // Enum: A key identifier (ImGuiKey_XXX or ImGuiMod_XXX value)
+typedef int ImGuiMouseSource;    // -> enum ImGuiMouseSource      // Enum; A mouse input source identifier (Mouse, TouchScreen, Pen)
+typedef int ImGuiCol;            // -> enum ImGuiCol_             // Enum: A color identifier for styling
+typedef int ImGuiCond;           // -> enum ImGuiCond_            // Enum: A condition for many Set*() functions
+typedef int ImGuiDataType;       // -> enum ImGuiDataType_        // Enum: A primary data type
+typedef int ImGuiDir;            // -> enum ImGuiDir_             // Enum: A cardinal direction
+typedef int ImGuiMouseButton;    // -> enum ImGuiMouseButton_     // Enum: A mouse button identifier (0=left, 1=right, 2=middle)
+typedef int ImGuiMouseCursor;    // -> enum ImGuiMouseCursor_     // Enum: A mouse cursor shape
+typedef int ImGuiSortDirection;  // -> enum ImGuiSortDirection_   // Enum: A sorting direction (ascending or descending)
+typedef int ImGuiStyleVar;       // -> enum ImGuiStyleVar_        // Enum: A variable identifier for styling
+typedef int ImGuiTableBgTarget;  // -> enum ImGuiTableBgTarget_   // Enum: A color target for TableSetBgColor()
 
 // Flags (declared as int to allow using as flags without overhead, and to not pollute the top of this file)
 // - Tip: Use your programming IDE navigation facilities on the names in the _central column_ below to find the actual flags/enum lists!
@@ -276,6 +265,17 @@ typedef void* ImTextureID;  // Default: store a pointer or an integer fitting in
 #ifndef ImDrawIdx
 typedef unsigned short ImDrawIdx;  // Default: 16-bit (for maximum compatibility with renderer backends)
 #endif // #ifndef ImDrawIdx
+// Scalar data types
+typedef unsigned int ImGuiID;      // A unique ID used by widgets (typically the result of hashing a stack of string)
+typedef signed char ImS8;          // 8-bit signed integer
+typedef unsigned char ImU8;        // 8-bit unsigned integer
+typedef signed short ImS16;        // 16-bit signed integer
+typedef unsigned short ImU16;      // 16-bit unsigned integer
+typedef signed int ImS32;          // 32-bit signed integer == int
+typedef unsigned int ImU32;        // 32-bit unsigned integer (often used to store packed colors)
+typedef signed long long ImS64;    // 64-bit signed integer
+typedef unsigned long long ImU64;  // 64-bit unsigned integer
+
 // Character types
 // (we generally use UTF-8 encoded string in the API. This is storage specifically for a decoded character used for keyboard input and display)
 typedef unsigned int ImWchar32;                                           // A single decoded U32 character/code point. We encode them as multi bytes UTF-8 when used in strings.
@@ -1393,7 +1393,7 @@ typedef enum
 } ImGuiDataType_;
 
 // A cardinal direction
-enum                      // Forward declared enum type ImGuiDir
+typedef enum
 {
     ImGuiDir_None  = -1,
     ImGuiDir_Left  = 0,
@@ -1401,15 +1401,15 @@ enum                      // Forward declared enum type ImGuiDir
     ImGuiDir_Up    = 2,
     ImGuiDir_Down  = 3,
     ImGuiDir_COUNT,
-};
+} ImGuiDir_;
 
 // A sorting direction
-enum                                                                    // Forward declared enum type ImGuiSortDirection
+typedef enum
 {
     ImGuiSortDirection_None       = 0,
-    ImGuiSortDirection_Ascending  = 1,                                      // Ascending = 0->9, A->Z etc.
-    ImGuiSortDirection_Descending = 2,                                      // Descending = 9->0, Z->A etc.
-};
+    ImGuiSortDirection_Ascending  = 1,  // Ascending = 0->9, A->Z etc.
+    ImGuiSortDirection_Descending = 2,  // Descending = 9->0, Z->A etc.
+} ImGuiSortDirection_;
 
 // Since 1.90, defining IMGUI_DISABLE_OBSOLETE_FUNCTIONS automatically defines IMGUI_DISABLE_OBSOLETE_KEYIO as well.
 #if defined(IMGUI_DISABLE_OBSOLETE_FUNCTIONS)&&!defined(IMGUI_DISABLE_OBSOLETE_KEYIO)
@@ -2087,10 +2087,10 @@ typedef struct ImGuiTableSortSpecs_t
 // Sorting specification for one column of a table (sizeof == 12 bytes)
 typedef struct ImGuiTableColumnSortSpecs_t
 {
-    ImGuiID            ColumnUserID;   // User id of the column (if specified by a TableSetupColumn() call)
-    ImS16              ColumnIndex;    // Index of the column
-    ImS16              SortOrder;      // Index within parent ImGuiTableSortSpecs (always stored in order starting from 0, tables sorted on a single criteria will always have a 0 here)
-    ImGuiSortDirection SortDirection;  // ImGuiSortDirection_Ascending or ImGuiSortDirection_Descending
+    ImGuiID            ColumnUserID;       // User id of the column (if specified by a TableSetupColumn() call)
+    ImS16              ColumnIndex;        // Index of the column
+    ImS16              SortOrder;          // Index within parent ImGuiTableSortSpecs (always stored in order starting from 0, tables sorted on a single criteria will always have a 0 here)
+    ImGuiSortDirection SortDirection : 8;  // ImGuiSortDirection_Ascending or ImGuiSortDirection_Descending
 } ImGuiTableColumnSortSpecs;
 
 //-----------------------------------------------------------------------------
@@ -2340,9 +2340,9 @@ typedef struct ImGuiStyle_t
     float             SeparatorTextBorderSize;      // Thickkness of border in SeparatorText()
     ImVec2            SeparatorTextAlign;           // Alignment of text within the separator. Defaults to (0.0f, 0.5f) (left aligned, center).
     ImVec2            SeparatorTextPadding;         // Horizontal offset of text from each edge of the separator + spacing on other axis. Generally small values. .y is recommended to be == FramePadding.y.
-    ImVec2            DisplayWindowPadding;         // Apply to regular windows: amount which we enforce to keep visible when moving near edges of your screen.
-    ImVec2            DisplaySafeAreaPadding;       // Apply to every windows, menus, popups, tooltips: amount where we avoid displaying contents. Adjust if you cannot see the edges of your screen (e.g. on a TV where scaling has not been configured).
-    float             MouseCursorScale;             // Scale software rendered mouse cursor (when io.MouseDrawCursor is enabled). We apply per-monitor DPI scaling over this scale. May be removed later.
+    ImVec2            DisplayWindowPadding;         // Window position are clamped to be visible within the display area or monitors by at least this amount. Only applies to regular windows.
+    ImVec2            DisplaySafeAreaPadding;       // If you cannot see the edges of your screen (e.g. on a TV) increase the safe area padding. Apply to popups/tooltips as well regular windows. NB: Prefer configuring your TV sets correctly!
+    float             MouseCursorScale;             // Scale software rendered mouse cursor (when io.MouseDrawCursor is enabled). May be removed later.
     bool              AntiAliasedLines;             // Enable anti-aliased lines/borders. Disable if you are really tight on CPU/GPU. Latched at the beginning of the frame (copied to ImDrawList).
     bool              AntiAliasedLinesUseTex;       // Enable anti-aliased lines/borders using textures where possible. Require backend to render with bilinear filtering (NOT point/nearest filtering). Latched at the beginning of the frame (copied to ImDrawList).
     bool              AntiAliasedFill;              // Enable anti-aliased edges around filled shapes (rounded rectangles, circles, etc.). Disable if you are really tight on CPU/GPU. Latched at the beginning of the frame (copied to ImDrawList).
