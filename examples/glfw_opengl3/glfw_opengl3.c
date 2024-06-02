@@ -5,6 +5,9 @@
 #include "cimgui_impl_glfw.h"
 #include "cimgui_impl_opengl3.h"
 
+#include "setupFonts.h"
+
+
 GLFWwindow *window;
 
 int main(int argc, char *argv[]) {
@@ -21,7 +24,7 @@ int main(int argc, char *argv[]) {
   // just an extra window hint for resize
   glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
-  window = glfwCreateWindow(1024, 768, "ImGui window", NULL, NULL);
+  window = glfwCreateWindow(1024, 800, "ImGui window", NULL, NULL);
   if (!window) {
     printf("Failed to create window! Terminating!\n");
     glfwTerminate();
@@ -53,12 +56,11 @@ int main(int argc, char *argv[]) {
 
   bool showDemoWindow = true;
   bool showAnotherWindow = false;
-  ImVec4 clearColor = {.x = 0.25f
-                      ,.y = 0.55f
-                      ,.z = 0.90f
-                      ,.w = 1.00f};
+  ImVec4 clearColor = {.x = 0.25f ,.y = 0.55f ,.z = 0.90f ,.w = 1.00f};
 
   ImGui_StyleColorsClassic(NULL);
+
+  setupFonts();
 
   // main event loop
   bool quit = false;
@@ -75,10 +77,10 @@ int main(int argc, char *argv[]) {
       static float f = 0.0f;
       static int counter = 0;
       static char sBuf[200];
-      if(ImGui_Begin("ImGui: Dear_Bindings", NULL, 0)){
-        ImGui_Text("GLFW v"); ImGui_SameLine();
+     if(ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)){
+        ImGui_Text(ICON_FA_COMMENT" " "GLFW v"); ImGui_SameLine();
         ImGui_Text(glfwGetVersionString());
-        ImGui_Text("OpenGL v"); ImGui_SameLine();
+        ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();
         ImGui_Text((char *)glGetString(GL_VERSION));
         ImGui_InputTextWithHint("InputText","Input text here",sBuf,sizeof(sBuf),0);
         ImGui_Text("Input result:"); ImGui_SameLine(); ImGui_Text(sBuf);
@@ -93,6 +95,18 @@ int main(int argc, char *argv[]) {
         ImGui_Text("counter = %d", counter);
         ImGui_Text("Application average %.3f ms/frame (%.1f FPS)",
                1000.0f / ImGui_GetIO()->Framerate, ImGui_GetIO()->Framerate);
+        //
+        ImGui_SeparatorText(ICON_FA_WRENCH" Icon font test ");
+        ImGui_Text(ICON_FA_TRASH_CAN  " Trash");
+        ImGui_Text(ICON_FA_MAGNIFYING_GLASS_PLUS
+                   " " ICON_FA_POWER_OFF
+                   " " ICON_FA_MICROPHONE
+                   " " ICON_FA_MICROCHIP
+                   " " ICON_FA_VOLUME_HIGH
+                   " " ICON_FA_SCISSORS
+                   " " ICON_FA_SCREWDRIVER_WRENCH
+                   " " ICON_FA_BLOG);
+
         ImGui_End();
       }
     }

@@ -4,6 +4,7 @@
 - [dear_bindings_build](#dear_bindings_build)
   - [Prerequisite](#prerequisite)
   - [Build and run](#build-and-run)
+  - [Examples screen shot](#examples-screen-shot)
   - [Regenarate ImGui bindings](#regenarate-imgui-bindings)
   - [Compiling with Clang, Zig cc](#compiling-with-clang-zig-cc)
   - [My tools version](#my-tools-version)
@@ -17,15 +18,15 @@ ImGui: Simple [dear_bindings](https://github.com/dearimgui/dear_bindings) build 
 Now highly work in progress.
 
 
-ImGui version 1.90.8 WIP (2024/05)
+ImGui version **1.90.8 WIP** (2024/05)
 
 ## Prerequisite
 
 ---
 
 - Windows10 OS
-- GCC or Clang or **'Zig cc'** compiler
-- Pyhton
+- GCC (or Clang or **'Zig cc'** compiler)
+- Pyhton3
 - MSys/MinGW basic commands (make, rm, cp ...)
 
 ## Build and run
@@ -37,7 +38,7 @@ ImGui version 1.90.8 WIP (2024/05)
    ```sh
    git clone --recurse-submodules https://github.com/dinau/dear_bindings_build
    ```
-1. Go to example folder.
+1. Go to examples folder.
 
    ```sh
    cd dear_bindings_build/examples/glfw_opengl3
@@ -52,6 +53,13 @@ ImGui version 1.90.8 WIP (2024/05)
    ./glfw_opengl3.exe  # Run application
    ```
 
+## Examples screen shot 
+
+---
+
+- [glfw_opengl3](examples/glfw_opengl3)  
+![alt](img/glfw_opengl3.png)
+
 ## Regenarate ImGui bindings
 
 ---
@@ -61,7 +69,7 @@ pwd
 glfw_opengl3
 make cleanall
 make gen
-make
+make run
 ```
 
 Artifacts are generated into **./cimgui** folder.

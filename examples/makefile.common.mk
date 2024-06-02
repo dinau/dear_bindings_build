@@ -31,17 +31,22 @@ else
   GLFW_DIR = $(LIB_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN64
 endif
 
-IMGUI_ROOT = $(LIB_DIR)/imgui
+IMGUI_ROOT  = $(LIB_DIR)/imgui
 CIMGUI_ROOT = cimgui
-VPATH = .;$(CIMGUI_ROOT);$(IMGUI_ROOT);$(IMGUI_ROOT)/backends
+UTILS_DIR   = ../utils
+FONT_HEADER_DIR = $(UTILS_DIR)/fonticon
+
+#
+VPATH = .;$(CIMGUI_ROOT);$(IMGUI_ROOT);$(IMGUI_ROOT)/backends;$(UTILS_DIR)
 # cpp sources
-# cpp sources current folder
 SRCS_CPP += $(wildcard *.cpp)
+SRCS_CPP += $(notdir $(wildcard $(UTILS_DIR)/*.cpp))
 # CImGui / ImGui sources
 SRCS_CPP += $(notdir $(wildcard $(CIMGUI_ROOT)/*.cpp))
 SRCS_CPP += $(notdir $(wildcard $(IMGUI_ROOT)/*.cpp))
-# c sources current folder
+# c sources
 SRCS_C   += $(wildcard *.c)
+SRCS_C   += $(notdir $(wildcard $(UTILS_DIR)/*.c))
 
 # Add backend driver in imgui
 SRCS_CPP += imgui_impl_opengl3.cpp
@@ -62,6 +67,7 @@ else
 STRIP = strip $(TARGET)$(EXE)
 endif
 CFLAGS += -I$(CIMGUI_ROOT) -I$(IMGUI_ROOT) -I. -I$(IMGUI_ROOT)/backends
+CFLAGS += -I$(UTILS_DIR)   -I$(FONT_HEADER_DIR)
 # CImGui flags
 #CFLAGS += -DCIMGUI_IMPL_API="extern \"C\""
 CFLAGS += -DCIMGUI_USE_GLFW
