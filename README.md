@@ -38,7 +38,7 @@ ImGui version **1.90.8 WIP** (2024/05)
    ```sh
    git clone --recurse-submodules https://github.com/dinau/dear_bindings_build
    ```
-1. Go to examples folder.
+1. Go to one of the examples folder.
 
    ```sh
    cd dear_bindings_build/examples/glfw_opengl3
@@ -47,20 +47,22 @@ ImGui version **1.90.8 WIP** (2024/05)
 1. Build and Run 
 
    ```sh
-   pwd 
-   glfw_opengl3
    make
    ./glfw_opengl3.exe  # Run application
    ```
 
-## Examples screen shot 
+## Examples screen shots 
 
 ---
 
 - [glfw_opengl3](examples/glfw_opengl3)  
 ![alt](img/glfw_opengl3.png)
 
+- [glfw_opengl3_jp](examples/glfw_opengl3_jp)  
+![alt](img/glfw_opengl3_jp.png)
+
 ## Regenarate ImGui bindings
+
 
 ---
 

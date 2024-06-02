@@ -1,8 +1,0 @@
-﻿.idea
-.vscode
-__pycache__
-TestCode
-venv
-Test.h
-*.o
-*.exe
