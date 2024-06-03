@@ -13,9 +13,9 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # dear_bindings_build
-ImGui: Simple [dear_bindings](https://github.com/dearimgui/dear_bindings) build project
 
-Now highly work in progress.
+This project aims to simply build ImGui examples using [Dear_Bindings](https://github.com/dearimgui/dear_bindings)  
+and now highly work in progress.
 
 
 ImGui version **1.90.8 WIP** (2024/05)
@@ -38,7 +38,7 @@ ImGui version **1.90.8 WIP** (2024/05)
    ```sh
    git clone --recurse-submodules https://github.com/dinau/dear_bindings_build
    ```
-1. Go to one of the examples folder.
+1. Go to one of the examples folder,
 
    ```sh
    cd dear_bindings_build/examples/glfw_opengl3
@@ -47,8 +47,8 @@ ImGui version **1.90.8 WIP** (2024/05)
 1. Build and Run 
 
    ```sh
-   make
-   ./glfw_opengl3.exe  # Run application
+   make                # or 'make run'
+   ./glfw_opengl3.exe  # run application
    ```
 
 ## Examples screen shots 
@@ -60,6 +60,9 @@ ImGui version **1.90.8 WIP** (2024/05)
 
 - [glfw_opengl3_jp](examples/glfw_opengl3_jp)  
 ![alt](img/glfw_opengl3_jp.png)
+
+- [sdl2_opengl3_jp](examples/sdl2_opengl3_jp)  
+![alt](img/sdl2_opengl3.png)
 
 ## Regenarate ImGui bindings
 
@@ -76,7 +79,7 @@ make run
 
 Artifacts are generated into **./cimgui** folder.
 
-## Compiling with Clang, Zig cc 
+## Build with Clang, Zig cc 
 
 ---
 
@@ -99,17 +102,15 @@ make TC=clang    # or TC=zig
 - make: GNU Make 4.2.1
 - Python 3.12.3
 - zig: 0.12.0 (zig cc: clang version 17.0.6)
+- SDL2 ver.2.30.3
 
-## Similar porject
+## Similar project
 
 ---
 
-[Imguin](https://github.com/dinau/imguin)
-
+- **Nim** language  
+[Imguin](https://github.com/dinau/imguin), [Nimgl_test](https://github.com/dinau/nimgl_test), [Nim_implot](https://github.com/dinau/nim_implot)
+- **Lua** lanugage  
 [LuaJITImGui](https://github.com/dinau/luajitimgui)
-
-[nimgl_test](https://github.com/dinau/nimgl_test)
-
-[nim_implot](https://github.com/dinau/nim_implot)
-
+- **Python** language  
 [DearPyGui for 32bit WindowsOS Binary](https://github.com/dinau/DearPyGui32/tree/win32)

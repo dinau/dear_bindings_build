@@ -1,9 +1,8 @@
 TARGET = $(notdir $(CURDIR))
 
 # Link selection: true or false
-STATIC_CIMGUI = true
-STATIC_GLFW = true
-GLFW_VER = 3.3.9
+#STATIC_CIMGUI = true
+CFLAGS += -static
 
 EXE = .exe
 BUILD_DIR = .build
@@ -25,12 +24,6 @@ CC = zig cc
 CXX = zig c++
 endif
 
-ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-  GLFW_DIR = $(LIB_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN32
-else
-  GLFW_DIR = $(LIB_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN64
-endif
-
 IMGUI_ROOT  = $(LIB_DIR)/imgui
 CIMGUI_ROOT = cimgui
 UTILS_DIR   = ../utils
@@ -48,17 +41,15 @@ SRCS_CPP += $(notdir $(wildcard $(IMGUI_ROOT)/*.cpp))
 SRCS_C   += $(wildcard *.c)
 SRCS_C   += $(notdir $(wildcard $(UTILS_DIR)/*.c))
 
-# Add backend driver in imgui
-SRCS_CPP += imgui_impl_opengl3.cpp
-SRCS_CPP += imgui_impl_glfw.cpp
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS_C:.c=.o) $(SRCS_CPP:.cpp=.o))
 OBJSA := $(filter-out $(BUILD_DIR)/$(TARGET).o, $(OBJS))
 #
 ifeq ($(STATIC_CIMGUI),true)
-CFLAGS += -static
+#CFLAGS += -static
 else
-CFLAGS += -shared
+#CFLAGS += -shared
 endif
+#
 CFLAGS += -O2
 ifeq ($(CC),gcc)
 CFLAGS +=  -Wl,-s
@@ -66,30 +57,16 @@ CFLAGS += -ffunction-sections -fdata-sections -Wl,--gc-sections
 else
 STRIP = strip $(TARGET)$(EXE)
 endif
+#
 CFLAGS += -I$(CIMGUI_ROOT) -I$(IMGUI_ROOT) -I. -I$(IMGUI_ROOT)/backends
 CFLAGS += -I$(UTILS_DIR)   -I$(FONT_HEADER_DIR)
 # CImGui flags
 #CFLAGS += -DCIMGUI_IMPL_API="extern \"C\""
-CFLAGS += -DCIMGUI_USE_GLFW
-CFLAGS += -DCIMGUI_USE_OPENGL3
 CFLAGS += -DCIMGUI_DEFINE_ENUMS_AND_STRUCTS
 # ImGui flags
 CFLAGS += -DIMGUI_DISABLE_OBSOLETE_FUNCTIONS=1
 CFLAGS += -DImDrawIdx="unsigned int"
 CFLAGS += -DIMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS
-
-# GLFW settings
-#CFLAGS += $(shell pkg-config --cflags glfw3)
-CFLAGS += -I$(GLFW_DIR)/include
-LIBS   += -L.
-LIBS   += -L$(GLFW_DIR)/lib-mingw-w64
-# GLFW Static lib
-ifeq ($(STATIC_GLFW),true)
-LIBS += -lglfw3
-else
-# GLFW dll lib
-LIBS += -lglfw3dll
-endif
 
 # LIBS
 LIBS += -lgdi32 -limm32 -lopengl32
@@ -104,19 +81,20 @@ all: $(BUILD_DIR) $(TARGET)$(EXE)
 lib: libcimgui.a
 #dll: $(BUILD_DIR) cimgui.dll
 
-$(TARGET)$(EXE): libcimgui.a $(BUILD_DIR)/$(TARGET).o Makefile
-	@$(CXX) $(CXXFLAGS) -o $@ $(BUILD_DIR)/$(TARGET).o -lcimgui $(LIBS)
+MAKE_DEPS += ../makefile.common.mk Makefile
+$(TARGET)$(EXE): libcimgui.a $(BUILD_DIR)/$(TARGET).o $(MAKE_DEPS)
+	@$(CXX) $(CXXFLAGS) -o $@ $(BUILD_DIR)/$(TARGET).o -lcimgui $(LIBS) $(LDFLAGS)
 	@-$(STRIP)
 
-libcimgui.a: $(OBJSA)
+libcimgui.a: $(OBJSA) $(MAKE_DEPS)
 	echo $(AR): $@
 	@$(AR) -rc $@ $^
 
-$(BUILD_DIR)/%.o: %.cpp $(DEPS_IMGUI)
+$(BUILD_DIR)/%.o: %.cpp $(DEPS_IMGUI) $(MAKE_DEPS)
 	@echo $(CXX): $(notdir $<)
 	@$(CXX) -c -o $@ $(CXXFLAGS) $<
 #
-$(BUILD_DIR)/%.o: %.c $(DEPS_CIMGUI)
+$(BUILD_DIR)/%.o: %.c $(DEPS_CIMGUI) $(MAKE_DEPS)
 	@echo $(CC) : $(notdir $<)
 	@$(CC) -c -o $@ $(CFLAGS) $<
 #

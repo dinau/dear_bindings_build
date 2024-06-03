@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
       static float f = 0.0f;
       static int counter = 0;
       static char sBuf[200];
-     if(ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)){
+      if(ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)){
         ImGui_Text(ICON_FA_COMMENT" " "GLFW v"); ImGui_SameLine();
         ImGui_Text(glfwGetVersionString());
         ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();
@@ -94,19 +94,18 @@ int main(int argc, char *argv[]) {
         ImGui_SameLine();
         ImGui_Text("counter = %d", counter);
         ImGui_Text("Application average %.3f ms/frame (%.1f FPS)",
-               1000.0f / ImGui_GetIO()->Framerate, ImGui_GetIO()->Framerate);
+            1000.0f / ImGui_GetIO()->Framerate, ImGui_GetIO()->Framerate);
         //
         ImGui_SeparatorText(ICON_FA_WRENCH" Icon font test ");
         ImGui_Text(ICON_FA_TRASH_CAN  " Trash");
         ImGui_Text(ICON_FA_MAGNIFYING_GLASS_PLUS
-                   " " ICON_FA_POWER_OFF
-                   " " ICON_FA_MICROPHONE
-                   " " ICON_FA_MICROCHIP
-                   " " ICON_FA_VOLUME_HIGH
-                   " " ICON_FA_SCISSORS
-                   " " ICON_FA_SCREWDRIVER_WRENCH
-                   " " ICON_FA_BLOG);
-
+            " " ICON_FA_POWER_OFF
+            " " ICON_FA_MICROPHONE
+            " " ICON_FA_MICROCHIP
+            " " ICON_FA_VOLUME_HIGH
+            " " ICON_FA_SCISSORS
+            " " ICON_FA_SCREWDRIVER_WRENCH
+            " " ICON_FA_BLOG);
         ImGui_End();
       }
     }

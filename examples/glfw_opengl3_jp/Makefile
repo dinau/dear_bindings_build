@@ -1,1 +1,4 @@
+include ../glfw_opengl3.mk
 include ../makefile.common.mk
+
+gen: $(CIMGUI_ROOT) gencimgui impl_opengl3 impl_glfw
