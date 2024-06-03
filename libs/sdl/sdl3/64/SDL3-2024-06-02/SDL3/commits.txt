@@ -1,0 +1,6 @@
+SDL commit 49b6c24722e3c193f1093c728791ad5692766818 
+SDL_image commit 900435c69669b8e60b7d565d5519b597f6c321eb 
+SDL_mixer commit 9c5ccc06a8701eb593628e4772fa8c32909e301f 
+SDL_ttf commit ca898d188568ae4b6acd01c5a40f864d7a77c9ab 
+SDL_rtf commit 1c2b13b7431640221ffaa52b1fda8875e6fd8bc3 
+SDL_net commit 635c365de6c331730901bf88ee1b66f716fd1dfc 

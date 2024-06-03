@@ -1,4 +1,3 @@
-STATIC_GLFW = true
 GLFW_VER = 3.3.9
 #
 ifeq ($(PROCESSOR_ARCHITECTURE),x86)

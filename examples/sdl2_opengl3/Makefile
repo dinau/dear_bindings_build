@@ -1,7 +1,7 @@
 # true:  Static link, use libSDL2.a
 # false: Dynamic link, use SDL2.dll
-STATIC_SDL2 = false
-
+STATIC_SDL2 = true
+include ../arc.mk
 include ../sdl2_opengl3.mk
 
 LDFLAGS += -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32

@@ -30,7 +30,7 @@ UTILS_DIR   = ../utils
 FONT_HEADER_DIR = $(UTILS_DIR)/fonticon
 
 #
-VPATH = .;$(CIMGUI_ROOT);$(IMGUI_ROOT);$(IMGUI_ROOT)/backends;$(UTILS_DIR)
+VPATH = .:$(CIMGUI_ROOT):$(IMGUI_ROOT):$(IMGUI_ROOT)/backends:$(UTILS_DIR)
 # cpp sources
 SRCS_CPP += $(wildcard *.cpp)
 SRCS_CPP += $(notdir $(wildcard $(UTILS_DIR)/*.cpp))
@@ -77,8 +77,10 @@ DEPS_CIMGUI = $(CIMGUI_ROOT)/cimgui.h
 CXXFLAGS += $(CFLAGS)
 CXXFLAGS += -fno-exceptions -fno-rtti
 
-all: $(BUILD_DIR) $(TARGET)$(EXE)
+all: $(BUILD_DIR) $(TARGET)$(EXE) afterbuild
 lib: libcimgui.a
+afterbuild:
+	-$(AFTER_BUILD)
 #dll: $(BUILD_DIR) cimgui.dll
 
 MAKE_DEPS += ../makefile.common.mk Makefile
@@ -87,7 +89,7 @@ $(TARGET)$(EXE): libcimgui.a $(BUILD_DIR)/$(TARGET).o $(MAKE_DEPS)
 	@-$(STRIP)
 
 libcimgui.a: $(OBJSA) $(MAKE_DEPS)
-	echo $(AR): $@
+	@echo $(AR) : $@
 	@$(AR) -rc $@ $^
 
 $(BUILD_DIR)/%.o: %.cpp $(DEPS_IMGUI) $(MAKE_DEPS)

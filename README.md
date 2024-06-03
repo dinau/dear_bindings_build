@@ -6,21 +6,21 @@
   - [Build and run](#build-and-run)
   - [Examples screen shots](#examples-screen-shots)
   - [Regenarate ImGui bindings](#regenarate-imgui-bindings)
-  - [Compiling with Clang, Zig cc](#compiling-with-clang-zig-cc)
+  - [Build with Clang, Zig cc](#build-with-clang-zig-cc)
   - [My tools version](#my-tools-version)
-  - [Similar porject](#similar-porject)
+  - [Similar project](#similar-project)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # dear_bindings_build
 
-This project aims to simply build ImGui examples using [Dear_Bindings](https://github.com/dearimgui/dear_bindings)  
-and now highly work in progress.
+This project aims to simply build ImGui examples with **C language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings)  
+.
 
 
 ImGui version **1.90.8 WIP** (2024/05)
 
-## Prerequisite
+## Prerequisites
 
 ---
 
@@ -55,17 +55,17 @@ ImGui version **1.90.8 WIP** (2024/05)
 
 ---
 
-- [glfw_opengl3](examples/glfw_opengl3)  
+- OpenGL3 backend  
+[glfw_opengl3](examples/glfw_opengl3)  
+[sdl2_opengl3](examples/sdl2_opengl3)  
+[sdl3_opengl3](examples/sdl3_opengl3)  
 ![alt](img/glfw_opengl3.png)
 
 - [glfw_opengl3_jp](examples/glfw_opengl3_jp)  
 ![alt](img/glfw_opengl3_jp.png)
 
-- [sdl2_opengl3_jp](examples/sdl2_opengl3_jp)  
-![alt](img/sdl2_opengl3.png)
 
 ## Regenarate ImGui bindings
-
 
 ---
 
@@ -99,10 +99,11 @@ make TC=clang    # or TC=zig
 - ~~cmake version 3.28.0-rc2~~
 - gcc.exe (Rev2, Built by MSYS2 project) 13.2.0
 - git version 2.41.0.windows.3
-- make: GNU Make 4.2.1
+- make: GNU Make 4.3
 - Python 3.12.3
 - zig: 0.12.0 (zig cc: clang version 17.0.6)
 - SDL2 ver.2.30.3
+- SDL3 2024-06-02
 
 ## Similar project
 

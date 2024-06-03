@@ -1,3 +1,5 @@
+STATIC_GLFW = true
+include ../arc.mk
 include ../glfw_opengl3.mk
 include ../makefile.common.mk
 

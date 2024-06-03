@@ -100,14 +100,13 @@ int main(int argc, char *argv[]){
     {
       static float f = 0.0f;
       static int counter = 0;
-      #define VER_N  15
       static char sBuf[200];
-      static char sVer[VER_N];
+      static char sVer[15];
       if(ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)){
         SDL_version ver;
         SDL_GetVersion(&ver);
         ImGui_Text(ICON_FA_COMMENT" " "SDL2 v"); ImGui_SameLine();
-        snprintf(sVer,VER_N,"%d,%d.%d",ver.major,ver.minor,ver.patch);
+        snprintf(sVer,sizeof(sVer),"%d.%d.%d",ver.major,ver.minor,ver.patch);
         ImGui_Text(sVer);
         //
         ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();

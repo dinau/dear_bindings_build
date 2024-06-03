@@ -12,10 +12,13 @@ OPT_BK += --imconfig-path $(IMGUI_ROOT)/imconfig.h
 
 impl_opengl3: $(CIMGUI_ROOT)
 	@python $(BIND_CMD) --backend $(OPT_BK) -o cimgui/cimgui_impl_opengl3 \
-		          $(IMGUI_ROOT)/backends/imgui_impl_opengl3.h
+		                          $(IMGUI_ROOT)/backends/imgui_impl_opengl3.h
 impl_glfw: $(CIMGUI_ROOT)
 	@python $(BIND_CMD) --backend $(OPT_BK) -o cimgui/cimgui_impl_glfw \
-		          $(IMGUI_ROOT)/backends/imgui_impl_glfw.h
+		                          $(IMGUI_ROOT)/backends/imgui_impl_glfw.h
 impl_sdl2: $(CIMGUI_ROOT)
-	@python $(BIND_CMD) --backend $(OPT_BK) -o cimgui/cimgui_impl_sdl2 \
-		          $(IMGUI_ROOT)/backends/imgui_impl_sdl2.h
+	python $(BIND_CMD) --backend $(OPT_BK) -o cimgui/cimgui_impl_sdl2 \
+		                          $(IMGUI_ROOT)/backends/imgui_impl_sdl2.h
+impl_sdl3: $(CIMGUI_ROOT)
+	python $(BIND_CMD) --backend $(OPT_BK) -o cimgui/cimgui_impl_sdl3 \
+		                          $(IMGUI_ROOT)/backends/imgui_impl_sdl3.h
