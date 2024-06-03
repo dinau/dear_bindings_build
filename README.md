@@ -4,7 +4,7 @@
 - [dear_bindings_build](#dear_bindings_build)
   - [Prerequisite](#prerequisite)
   - [Build and run](#build-and-run)
-  - [Examples screen shot](#examples-screen-shot)
+  - [Examples screen shots](#examples-screen-shots)
   - [Regenarate ImGui bindings](#regenarate-imgui-bindings)
   - [Compiling with Clang, Zig cc](#compiling-with-clang-zig-cc)
   - [My tools version](#my-tools-version)

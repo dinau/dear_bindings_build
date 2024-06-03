@@ -131,7 +131,6 @@ $(CIMGUI_ROOT):
 run: all
 	./$(TARGET)
 #
-gen: $(CIMGUI_ROOT) gencimgui impl_opengl3 impl_glfw
 #
 clean:
 	-rm $(TARGET)$(EXE)
