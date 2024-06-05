@@ -1,20 +1,13 @@
-#include "cimgui.h"
 #include <float.h>
 #include <stdio.h>
+
+#include "cimgui.h"
+#include "utils.h"
 #include "setupFonts.h"
 
 const char* IconFontPath = "../utils/fonticon/fa6/fa-solid-900.ttf";
 const char* JpFontPath   = "c:/Windows/Fonts/meiryo.ttc";
 
-/*-------------
- * existFile()
- * -----------*/
-bool existFile(const char* path){
-  FILE* fp = fopen(path,"r");
-  if(fp == NULL) return false;
-  fclose(fp);
-  return true;
-}
 
 /*------------
  * point2px()
@@ -44,7 +37,7 @@ void setupFonts(void){
   ImFontAtlas_AddFontDefault(pio->Fonts,NULL);
   ImFontAtlas_AddFontFromFileTTF(pio->Fonts, IconFontPath, point2px(10), &config
                                 ,ranges_icon_fonts );
-  if (false == existFile(JpFontPath)){
+  if (false == existsFile(JpFontPath)){
     printf("Error!: Not found JpFontPath: [%s] in %s\n",JpFontPath,__FILE__);
     return;
   }

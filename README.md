@@ -1,8 +1,8 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [dear_bindings_build](#dear_bindings_build)
-  - [Prerequisite](#prerequisite)
+- [Dear_Bindings_Build](#dear_bindings_build)
+  - [Prerequisites](#prerequisites)
   - [Build and run](#build-and-run)
   - [Examples screen shots](#examples-screen-shots)
   - [Regenarate ImGui bindings](#regenarate-imgui-bindings)
@@ -12,11 +12,9 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# dear_bindings_build
+# Dear_Bindings_Build
 
-This project aims to simply build ImGui examples with **C language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings)  
-.
-
+This project aims to simply build ImGui examples with **C language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings).
 
 ImGui version **1.90.8 WIP** (2024/05)
 
@@ -64,6 +62,8 @@ ImGui version **1.90.8 WIP** (2024/05)
 - [glfw_opengl3_jp](examples/glfw_opengl3_jp)  
 ![alt](img/glfw_opengl3_jp.png)
 
+- [glfw_opengl3_image_load](examples/glfw_opengl3_image_load)  
+![alt](img/glfw_opengl3_image_load.png)
 
 ## Regenarate ImGui bindings
 
