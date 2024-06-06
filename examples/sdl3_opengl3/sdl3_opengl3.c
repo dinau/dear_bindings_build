@@ -1,3 +1,12 @@
+// Dear ImGui: standalone example application for SDL2 + OpenGL
+// (SDL is a cross-platform general purpose library for handling windows, inputs, OpenGL/Vulkan/Metal graphics context creation, etc.)
+
+// Learn about Dear ImGui:
+// - FAQ                  https://dearimgui.com/faq
+// - Getting Started      https://dearimgui.com/getting-started
+// - Documentation        https://dearimgui.com/docs (same as your local docs/ folder).
+// - Introduction, links and more at the top of imgui.cpp
+
 #include "cimgui.h"
 #include "cimgui_impl_sdl3.h"
 #include "cimgui_impl_opengl3.h"
@@ -13,7 +22,8 @@ const int MainWinWidth = 1024;
 const int MainWinHeight = 800;
 
 // Main code
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
+  (void)argc; (void) argv;
   // Setup SDL
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMEPAD) != 0) {
     printf("Error: SDL_Init(): %s\n", SDL_GetError());
@@ -42,19 +52,18 @@ int main(int argc, char *argv[]){
   SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
-  SDL_GL_SetSwapInterval(1); // Enable vsync
-                             //SDL_ShowWindow(window);
-
-                             // Setup Dear ImGui context
-                             //IMGUI_CHECKVERSION();
+  SDL_GL_SetSwapInterval(1);  // Enable vsync
+  // SDL_ShowWindow(window);
+  // Setup Dear ImGui context
+  // IMGUI_CHECKVERSION();
   ImGui_CreateContext(NULL);
   ImGuiIO* io = ImGui_GetIO(); (void)io;
   io->ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
   io->ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
   // Setup Dear ImGui style
-  //ImGui_StyleColorsDark(NULL);
-  //ImGui_StyleColorsLight(NULL);
+  // ImGui_StyleColorsDark(NULL);
+  // ImGui_StyleColorsLight(NULL);
   ImGui_StyleColorsClassic(NULL);
 
   // Setup Platform/Renderer backends
@@ -85,25 +94,23 @@ int main(int argc, char *argv[]){
     cImGui_ImplSDL3_NewFrame();
     ImGui_NewFrame();
 
-    if (showDemoWindow)
+    if (showDemoWindow) {
       ImGui_ShowDemoWindow(&showDemoWindow);
+    }
     //
     // show a simple window that we created ourselves.
     {
       static float f = 0.0f;
       static int counter = 0;
       static char sBuf[200];
-      //static char sVer[15];
-      if(ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)){
-        //SDL_version ver;
-        //SDL_GetVersion(&ver);
+      if (ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)) {
         ImGui_Text(ICON_FA_COMMENT" " "SDL3 v"); ImGui_SameLine();
-        ImGui_Text(SDL_GetRevision());
+        ImGui_Text("%s", SDL_GetRevision());
         //
         ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();
-        ImGui_Text((char *)glGetString(GL_VERSION));
+        ImGui_Text("%s", (char *)glGetString(GL_VERSION));
         ImGui_InputTextWithHint("InputText","Input text here",sBuf,sizeof(sBuf),0);
-        ImGui_Text("Input result:"); ImGui_SameLine(); ImGui_Text(sBuf);
+        ImGui_Text("Input result:"); ImGui_SameLine(); ImGui_Text("%s", sBuf);
         ImGui_Checkbox("Demo window", &showDemoWindow);
         ImGui_Checkbox("Another window", &showAnotherWindow);
 
@@ -131,7 +138,7 @@ int main(int argc, char *argv[]){
       }
     }
     if (showAnotherWindow) {
-      ImGui_Begin("Another Window", &showAnotherWindow,0);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
+      ImGui_Begin("Another Window", &showAnotherWindow, 0);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
       ImGui_Text("Hello from another window!");
       if (ImGui_Button("Close Me"))
         showAnotherWindow = false;

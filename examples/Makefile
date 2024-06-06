@@ -1,18 +1,25 @@
-.PHONY: clean gen cleanall
-
 all:
-	@nim make.nims
+	$(MAKE) -C ..
 
 gen:
-	@nim make.nims $@
+	$(MAKE) -C .. $@
 
-clean: cleanall
-	@nim make.nims $@
 
-cleanall:
-	@nim make.nims $@
-
-cleanlib:
-	@nim make.nims $@
-
-#MAKEFLAGS += --no-print-directory
+#.PHONY: clean gen cleanall
+#
+#all:
+#	@nim make.nims
+#
+#gen:
+#	@nim make.nims $@
+#
+#clean:
+#	@nim make.nims $@
+#
+#cleanall:
+#	@nim make.nims $@
+#
+#cleanlib:
+#	@nim make.nims $@
+#
+##MAKEFLAGS += --no-print-directory

@@ -12,9 +12,10 @@
 #include "stb_image.h"
 
 GLFWwindow *window;
-uint8_t* pIconData; // == 0,  Memory pointer for icon.
+uint8_t* pIconData;  // == 0,  Memory pointer for icon.
 
 int main(int argc, char *argv[]) {
+  (void)argc; (void) argv;
   if (!glfwInit()) return -1;
 
   // Decide GL+GLSL versions
@@ -78,7 +79,7 @@ int main(int argc, char *argv[]) {
   LoadTextureFromFile(ImageName, &textureId, &textureWidth, &textureHeight);
 
   // main event loop
-  bool quit = false;
+  // bool quit = false;
   while (!glfwWindowShouldClose(window)) {
     glfwPollEvents();
     // start imgui frame
@@ -94,11 +95,11 @@ int main(int argc, char *argv[]) {
       static char sBuf[200];
       if (ImGui_Begin(ICON_FA_THUMBS_UP " " "ImGui: Dear_Bindings", NULL, 0)) {
         ImGui_Text(ICON_FA_COMMENT" " "GLFW v"); ImGui_SameLine();
-        ImGui_Text(glfwGetVersionString());
+        ImGui_Text("%s", glfwGetVersionString());
         ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();
-        ImGui_Text((char *)glGetString(GL_VERSION));
+        ImGui_Text("%s", (char *)glGetString(GL_VERSION));
         ImGui_InputTextWithHint("InputText", "Input text here", sBuf, sizeof(sBuf), 0);
-        ImGui_Text("Input result:"); ImGui_SameLine(); ImGui_Text(sBuf);
+        ImGui_Text("Input result:"); ImGui_SameLine(); ImGui_Text("%s", sBuf);
         ImGui_Checkbox("Demo window", &showDemoWindow);
         ImGui_Checkbox("Another window", &showAnotherWindow);
 

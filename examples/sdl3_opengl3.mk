@@ -3,8 +3,8 @@ SDL3_VER = 2024-06-02
 SDL3_DIR = $(LIB_DIR)/sdl/sdl3/$(ARC)/SDL3-$(SDL3_VER)/SDL3
 
 # Add backend driver in imgui
-SRCS_CPP += imgui_impl_opengl3.cpp
-SRCS_CPP += imgui_impl_sdl3.cpp
+BACKEND_SRCS_CPP += imgui_impl_opengl3.cpp
+BACKEND_SRCS_CPP += imgui_impl_sdl3.cpp
 
 #
 CFLAGS += -DCIMGUI_USE_SDL3

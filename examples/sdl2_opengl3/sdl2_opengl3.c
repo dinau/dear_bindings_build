@@ -24,6 +24,7 @@ const int MainWinHeight = 800;
 
 // Main code
 int main(int argc, char *argv[]){
+  (void)argc; (void) argv;
   // Setup SDL
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0) {
     printf("Error: %s\n", SDL_GetError());
@@ -54,10 +55,10 @@ int main(int argc, char *argv[]){
 
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
-  SDL_GL_SetSwapInterval(1); // Enable vsync
+  SDL_GL_SetSwapInterval(1);  // Enable vsync
 
   // Setup Dear ImGui context
-  //IMGUI_CHECKVERSION();
+  // IMGUI_CHECKVERSION();
   ImGui_CreateContext(NULL);
   ImGuiIO* io = ImGui_GetIO(); (void)io;
   io->ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
@@ -65,7 +66,7 @@ int main(int argc, char *argv[]){
 
   // Setup Dear ImGui style
   ImGui_StyleColorsDark(NULL);
-  //ImGui_StyleColorsLight(NULL);
+  // ImGui_StyleColorsLight(NULL);
 
   // Setup Platform/Renderer backends
   cImGui_ImplSDL2_InitForOpenGL(window, gl_context);
@@ -102,17 +103,17 @@ int main(int argc, char *argv[]){
       static int counter = 0;
       static char sBuf[200];
       static char sVer[15];
-      if(ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)){
+      if (ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)) {
         SDL_version ver;
         SDL_GetVersion(&ver);
         ImGui_Text(ICON_FA_COMMENT" " "SDL2 v"); ImGui_SameLine();
-        snprintf(sVer,sizeof(sVer),"%d.%d.%d",ver.major,ver.minor,ver.patch);
-        ImGui_Text(sVer);
+        snprintf(sVer, sizeof(sVer), "%d.%d.%d", ver.major, ver.minor, ver.patch);
+        ImGui_Text("%s",sVer);
         //
         ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();
-        ImGui_Text((char *)glGetString(GL_VERSION));
-        ImGui_InputTextWithHint("InputText","Input text here",sBuf,sizeof(sBuf),0);
-        ImGui_Text("Input result:"); ImGui_SameLine(); ImGui_Text(sBuf);
+        ImGui_Text("%s", (char *)glGetString(GL_VERSION));
+        ImGui_InputTextWithHint("InputText", "Input text here", sBuf, sizeof(sBuf), 0);
+        ImGui_Text("Input result:"); ImGui_SameLine(); ImGui_Text("%s", sBuf);
         ImGui_Checkbox("Demo window", &showDemoWindow);
         ImGui_Checkbox("Another window", &showAnotherWindow);
 

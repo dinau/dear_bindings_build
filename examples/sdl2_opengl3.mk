@@ -8,8 +8,8 @@ endif
 SDL2_DIR = $(LIB_DIR)/sdl/SDL2-$(SDL2_VER)/$(ARC)-w64-mingw32
 
 # Add backend driver in imgui
-SRCS_CPP += imgui_impl_opengl3.cpp
-SRCS_CPP += imgui_impl_sdl2.cpp
+BACKEND_SRCS_CPP += imgui_impl_opengl3.cpp
+BACKEND_SRCS_CPP += imgui_impl_sdl2.cpp
 
 #
 CFLAGS += -DCIMGUI_USE_SDL2

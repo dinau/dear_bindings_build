@@ -7,8 +7,8 @@ else
 endif
 
 # Add backend driver in imgui
-SRCS_CPP += imgui_impl_opengl3.cpp
-SRCS_CPP += imgui_impl_glfw.cpp
+BACKEND_SRCS_CPP += imgui_impl_opengl3.cpp
+BACKEND_SRCS_CPP += imgui_impl_glfw.cpp
 
 #
 CFLAGS += -DCIMGUI_USE_GLFW
