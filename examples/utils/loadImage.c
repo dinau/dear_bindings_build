@@ -6,8 +6,10 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include <GLFW/glfw3.h>
 #include "utils.h"
+#ifdef CIMGUI_USE_GLFW
+#include <GLFW/glfw3.h>
+#endif
 
 // Simple helper function to load an image into a OpenGL texture with common settings
 unsigned char* LoadTextureFromFile(const char* imageName, GLuint* out_texture, int* out_width, int* out_height) {
