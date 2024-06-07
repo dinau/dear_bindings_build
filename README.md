@@ -77,7 +77,7 @@ make gen
 make run
 ```
 
-Artifacts are generated into **./cimgui** folder.
+Artifacts are generated into **../libs/cimgui** folder.
 
 ## Build with Clang, Zig cc 
 
