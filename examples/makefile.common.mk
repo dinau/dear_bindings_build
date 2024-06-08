@@ -1,5 +1,7 @@
 TARGET = $(notdir $(CURDIR))
 
+MAKEFLAGS += -j2
+
 # Link selection: true or false
 #STATIC_CIMGUI = true
 CFLAGS += -static
@@ -65,7 +67,7 @@ else
 #CFLAGS += -shared
 endif
 #
-CFLAGS += -Wall
+CFLAGS += -Wall -Wno-unused-function
 #CFLAGS +=  -Wextra
 CFLAGS += -O2
 ifeq ($(CC),gcc)

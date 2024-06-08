@@ -1,6 +1,6 @@
 SDL2_VER = 2.30.3
 #
-ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+ifeq ($(ARC),32)
 	ARC = i686
 else
   ARC = x86_64
@@ -29,7 +29,5 @@ else
 LIBS += -lSDL2.dll
 
 LDFLAGS += -mconsole -mwindows
-
-MAKE_DEPS += ../sdl2_opengl3.mk
 
 endif

@@ -1,6 +1,6 @@
-#include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <GLFW/glfw3.h>
 
 #include "cimgui.h"
 #include "cimgui_impl_glfw.h"

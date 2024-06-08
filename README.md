@@ -65,6 +65,9 @@ ImGui version **1.90.8 WIP** (2024/05)
 - [glfw_opengl3_image_load](examples/glfw_opengl3_image_load)  
 ![alt](img/glfw_opengl3_image_load.png)
 
+- [glfw_opengl3_image_save](examples/glfw_opengl3_image_save)  
+![alt](img/glfw_opengl3_image_save.png)
+
 ## Regenarate ImGui bindings
 
 ---

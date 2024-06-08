@@ -1,6 +1,7 @@
 # All example are built at a time.
 EXAMPLE_DIRS :=	examples/glfw_opengl3 \
 	              examples/glfw_opengl3_image_load \
+	              examples/glfw_opengl3_image_save \
 	              examples/glfw_opengl3_jp \
 	              examples/sdl2_opengl3 \
 	              examples/sdl3_opengl3
@@ -19,20 +20,10 @@ gen:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
 
 
-# definition loop funciton
+#
 define def_make
-	@$(MAKE) -C $(1) $(2)
+	@$(MAKE) -C  $(1) $(2)
 
 endef
-
-#define def_clean
-#	@$(MAKE) -C $(1) cleanall
-#
-#endef
-#
-#define def_gen
-#	@$(MAKE) -C $(1) gen
-#
-#endef
 
 #MAKEFLAGS += --no-print-directory

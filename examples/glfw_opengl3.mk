@@ -1,10 +1,6 @@
 GLFW_VER = 3.3.9
 #
-ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-  GLFW_DIR = $(LIB_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN32
-else
-  GLFW_DIR = $(LIB_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN64
-endif
+GLFW_DIR = $(LIB_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN$(ARC)
 
 # Add backend driver in imgui
 BACKEND_SRCS_CPP += imgui_impl_opengl3.cpp
@@ -22,11 +18,9 @@ LIBS   += -L$(GLFW_DIR)/lib-mingw-w64
 
 # GLFW Static lib
 ifeq ($(STATIC_GLFW),true)
-LIBS += -lglfw3
+LIBS   += -lglfw3
 else
 # GLFW dll lib
-LIBS += -lglfw3dll
-
-MAKE_DEPS += ../glfw_opengl3.mk
+LIBS   += -lglfw3dll
 
 endif

@@ -7,8 +7,41 @@
 
 #include "setupFonts.h"
 
-GLFWwindow *window;
+// Constants
+const char* SaveImageName = "ImageSaved";
 
+// Global vars
+GLFWwindow *window;
+int cbItemIndex = 0;
+
+typedef struct {
+  char* kind;
+  char* ext;
+} TImageFormat;
+
+TImageFormat imageFormatTbl[] = {  {.kind = "JPEG 90%", .ext = ".jpg"}
+                                 , {.kind = "PNG",      .ext = ".png"}
+                                 , {.kind = "BMP",      .ext = ".bmp"}
+                                 , {.kind = "TGA",      .ext = ".tga"}};
+
+// External functions
+void saveImage(char* fname, GLuint xs, GLuint ys, int imageWidth, int imageHeight, int comp /* = RGB*/, int quality /* = 90*/);
+
+/*--------------
+ * setTooltip()
+ *-------------*/
+void setTooltip(const char* str) {
+  if (ImGui_IsItemHovered(ImGuiHoveredFlags_DelayNormal)) {
+    if (ImGui_BeginTooltip()) {
+      ImGui_Text("%s", str);
+      ImGui_EndTooltip();
+    }
+  }
+}
+
+/*--------
+ * main()
+ *-------*/
 int main(int argc, char *argv[]) {
   (void)argc; (void) argv;
   if (!glfwInit()) return -1;
@@ -74,39 +107,81 @@ int main(int argc, char *argv[]) {
     if (showDemoWindow) ImGui_ShowDemoWindow(&showDemoWindow);
     // show a simple window that we created ourselves.
     {
-      static float f = 0.0f;
+      static float fVal = 0.0f;
       static int counter = 0;
-      static char sBuf[200];
+      char svName[100];
+      char sBuf[200];
       if (ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)) {
         ImGui_Text(ICON_FA_COMMENT" " "GLFW v"); ImGui_SameLine();
-        ImGui_Text("%s", glfwGetVersionString());
+        ImGui_Text("%s" , glfwGetVersionString());
         ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();
         ImGui_Text("%s", (char *)glGetString(GL_VERSION));
-        ImGui_InputTextWithHint("InputText","Input text here", sBuf, sizeof(sBuf), 0);
+        ImGui_InputTextWithHint("InputText","Input text here",sBuf, sizeof(sBuf), 0);
         ImGui_Text("Input result:"); ImGui_SameLine(); ImGui_Text("%s", sBuf);
         ImGui_Checkbox("Demo window", &showDemoWindow);
         ImGui_Checkbox("Another window", &showAnotherWindow);
 
-        ImGui_SliderFloatEx("Float", &f, 0.0f, 1.0f, "%.3f", 0);
+        ImGui_SliderFloatEx("Float", &fVal, 0.0f, 1.0f, "%.3f", 0);
         ImGui_ColorEdit3("clear color", (float *)&clearColor, 0);
 
-        if (ImGui_Button("Button")) counter++;
-        ImGui_SameLine();
-        ImGui_Text("counter = %d", counter);
-        ImGui_Text("Application average %.3f ms/frame (%.1f FPS)",
-            1000.0f / ImGui_GetIO()->Framerate, ImGui_GetIO()->Framerate);
-        //
-        ImGui_SeparatorText(ICON_FA_WRENCH" Icon font test ");
-        ImGui_Text(ICON_FA_TRASH_CAN  " Trash");
-        ImGui_Text(ICON_FA_MAGNIFYING_GLASS_PLUS
-            " " ICON_FA_POWER_OFF
-            " " ICON_FA_MICROPHONE
-            " " ICON_FA_MICROCHIP
-            " " ICON_FA_VOLUME_HIGH
-            " " ICON_FA_SCISSORS
-            " " ICON_FA_SCREWDRIVER_WRENCH
-            " " ICON_FA_BLOG);
-        ImGui_End();
+        // #-- Save button for capturing window image
+        ImGui_PushIDInt(0);
+        ImVec4 col1 = {.x = 0.7, .y = 0.7, .z = 0.0, .w = 1.0};
+        ImGui_PushStyleColorImVec4(ImGuiCol_Button, col1);
+        ImVec4 col2 = {.x = 0.8, .y = 0.8, .z = 0.0, .w = 1.0};
+        ImGui_PushStyleColorImVec4(ImGuiCol_ButtonHovered, col2);
+        ImVec4 col3 = {.x = 0.9, .y = 0.9, .z = 0.0, .w = 1.0};
+        ImGui_PushStyleColorImVec4(ImGuiCol_ButtonActive, col3);
+        ImVec4 col4 = {.x = 0.0, .y = 0.0, .z = 0.0, .w = 1.0};
+        ImGui_PushStyleColorImVec4(ImGuiCol_Text, col4);
+
+        // # Image save button
+        char* imageExt = imageFormatTbl[cbItemIndex].ext;
+        snprintf(svName, sizeof(svName), "%s_%05d%s", SaveImageName, counter, imageExt);
+        if (ImGui_Button("Save Image")) {
+          ImVec2 wkSize = ImGui_GetMainViewport()->WorkSize;
+          // printf("%s, %lf, %lf\n", svName, wkSize.x, wkSize.y);
+          saveImage(svName, 0, 0, wkSize.x, wkSize.y, 3, 90);    // # --- Save Image !
+        }
+        ImGui_PopStyleColorEx(4);
+        ImGui_PopID();
+
+      //#-- Show tooltip help
+      snprintf(sBuf, sizeof(sBuf), "Save to \"%s\"", svName);
+      setTooltip(sBuf);
+      counter++;
+
+      ImGui_SameLine();
+      //#-- ComboBox: Select save image format
+      ImGui_SetNextItemWidth(100);
+      if (ImGui_BeginCombo("##", imageFormatTbl[cbItemIndex].kind, 0)) {
+        for (int n = 0; n < sizeof(imageFormatTbl)/sizeof(TImageFormat); n++) {
+          bool is_selected = (cbItemIndex == n);
+          if (ImGui_SelectableBoolPtr(imageFormatTbl[n].kind, &is_selected, 0)) {
+            if (is_selected) {
+              ImGui_SetItemDefaultFocus();
+            }
+            cbItemIndex = n;
+          }
+        }
+        ImGui_EndCombo();
+      }
+      setTooltip("Select image format");
+      //
+      ImGui_Text("Application average %.3f ms/frame (%.1f FPS)",
+          1000.0f / ImGui_GetIO()->Framerate, ImGui_GetIO()->Framerate);
+      //
+      ImGui_SeparatorText(ICON_FA_WRENCH" Icon font test ");
+      ImGui_Text(ICON_FA_TRASH_CAN  " Trash");
+      ImGui_Text(ICON_FA_MAGNIFYING_GLASS_PLUS
+          " " ICON_FA_POWER_OFF
+          " " ICON_FA_MICROPHONE
+          " " ICON_FA_MICROCHIP
+          " " ICON_FA_VOLUME_HIGH
+          " " ICON_FA_SCISSORS
+          " " ICON_FA_SCREWDRIVER_WRENCH
+          " " ICON_FA_BLOG);
+      ImGui_End();
       }
     }
 

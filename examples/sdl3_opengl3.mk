@@ -26,6 +26,4 @@ LIBS += -lSDL3
 
 LDFLAGS += -mconsole -mwindows
 
-MAKE_DEPS += ../sdl3_opengl3.mk
-
 endif

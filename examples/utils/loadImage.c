@@ -1,15 +1,17 @@
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include <stdio.h>
 #include <stdbool.h>
+#include <stdint.h>
+
 #include <GL/gl.h>
 #include <GL/glext.h>
-
-#include <stdio.h>
-#include <stdint.h>
-#include "utils.h"
 #ifdef CIMGUI_USE_GLFW
 #include <GLFW/glfw3.h>
 #endif
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+#include "utils.h"
+
 
 // Simple helper function to load an image into a OpenGL texture with common settings
 unsigned char* LoadTextureFromFile(const char* imageName, GLuint* out_texture, int* out_width, int* out_height) {
@@ -58,7 +60,7 @@ uint8_t* LoadTitleBarIcon(GLFWwindow* window, const char* iconName) {
     const GLFWimage img  = {.width = width, .height = height, .pixels = pixels};
     glfwSetWindowIcon(window, 1, &img);
   } else {
-    printf("\nNot found: %s",iconName);
+    printf("\nNot found: %s", iconName);
     glfwSetWindowIcon(window, 0, NULL);
   }
   return pixels;
