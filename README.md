@@ -14,7 +14,7 @@
 
 # Dear_Bindings_Build
 
-This project aims to simply build ImGui examples with **C language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings).
+This project aims to easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings).
 
 ImGui version **1.90.8 WIP** (2024/05)
 
@@ -24,6 +24,7 @@ ImGui version **1.90.8 WIP** (2024/05)
 
 - Windows10 OS
 - GCC (or Clang or **'Zig cc'** compiler)
+- Use **Zig: 0.12.0** (zig cc: clang version 17.0.6)
 - Pyhton3
 - MSys/MinGW basic commands (make, rm, cp ...)
 
@@ -57,6 +58,7 @@ ImGui version **1.90.8 WIP** (2024/05)
 [glfw_opengl3](examples/glfw_opengl3)  
 [sdl2_opengl3](examples/sdl2_opengl3)  
 [sdl3_opengl3](examples/sdl3_opengl3)  
+[zig_glfw_opengl3](examples/zig_glfw_opengl3)  
 ![alt](img/glfw_opengl3.png)
 
 - [glfw_opengl3_jp](examples/glfw_opengl3_jp)  
@@ -80,7 +82,7 @@ make gen
 make run
 ```
 
-Artifacts are generated into **../libs/cimgui** folder.
+Artifacts are generated into `../libs/cimgui` folder.
 
 ## Build with Clang, Zig cc 
 
@@ -91,7 +93,7 @@ For instance,
 ```sh 
 pwd 
 glfw_opengl3
-make TC=clang    # or TC=zig
+make TC=clang    # or TC=zigcc
 ```
 
 ## My tools version
@@ -99,7 +101,6 @@ make TC=clang    # or TC=zig
 ---
 
 - clang version 18.1.6
-- ~~cmake version 3.28.0-rc2~~
 - gcc.exe (Rev2, Built by MSYS2 project) 13.2.0
 - git version 2.41.0.windows.3
 - make: GNU Make 4.3

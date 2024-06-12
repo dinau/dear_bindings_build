@@ -4,7 +4,8 @@ EXAMPLE_DIRS :=	examples/glfw_opengl3 \
 	              examples/glfw_opengl3_image_save \
 	              examples/glfw_opengl3_jp \
 	              examples/sdl2_opengl3 \
-	              examples/sdl3_opengl3
+	              examples/sdl3_opengl3 \
+	              examples/zig_glfw_opengl3
 
 all:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))

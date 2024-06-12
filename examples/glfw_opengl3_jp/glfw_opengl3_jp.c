@@ -58,6 +58,10 @@ int main(int argc, char *argv[]) {
   bool showDemoWindow = true;
   bool showAnotherWindow = false;
   ImVec4 clearColor = {.x = 0.25f, .y = 0.55f, .z = 0.90f, .w = 1.00f};
+  char sBuf[200];
+  for (int i = 0; i<sizeof(sBuf); i++) {
+    sBuf[i] = '\0';
+  }
 
   //ImGui_StyleColorsClassic(NULL);
   ImGui_StyleColorsDark(NULL);
@@ -78,7 +82,6 @@ int main(int argc, char *argv[]) {
     {
       static float f = 0.0f;
       static int counter = 0;
-      static char sBuf[200];
      if (ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)) {
         ImGui_Text(ICON_FA_COMMENT" " "GLFW v"); ImGui_SameLine();
         ImGui_Text("%s", glfwGetVersionString());

@@ -2,6 +2,10 @@ TARGET = $(notdir $(CURDIR))
 
 MAKEFLAGS += -j2
 
+ifeq ($(V),)
+  D = @
+endif
+
 # Link selection: true or false
 #STATIC_CIMGUI = true
 CFLAGS += -static
@@ -19,7 +23,11 @@ ifeq ($(TC),clang)
 CC =  clang
 CXX = clang++
 endif
-ifeq ($(TC),zig)
+ifeq ($(TC),clangcl)
+CC =  clang-cl
+CXX = clang-cl
+endif
+ifeq ($(TC),zigcc)
 CC =  zig cc
 CXX = zig c++
 endif
@@ -115,36 +123,36 @@ afterbuild:
 MAKE_DEPS += ../makefile.common.mk Makefile
 $(TARGET)$(EXE): $(OTHER_OBJS) $(MY_OBJS) $(MAKE_DEPS)
 	@echo [$(CXX)]: - Link - $@
-	@$(CXX) $(CXXFLAGS) -o $@  $(OTHER_OBJS) $(MY_OBJS) -lcimgui $(LIBS) $(LDFLAGS)
+	$(D)$(CXX) $(CXXFLAGS) -o $@  $(OTHER_OBJS) $(MY_OBJS) -lcimgui $(LIBS) $(LDFLAGS)
 	@-$(STRIP)
 
 $(LIB_CIMGUI_ARCHIVE): $(CIMGUI_OBJS)
 	@echo [$(AR) ]: $@
-	@$(AR) -rc $@ $^
+	$(D)$(AR) -rc $@ $^
 
 $(CIMGUI_BUILD_DIR)/%.o: %.cpp $(DEPS_IMGUI) $(MAKE_DEPS)
 	@echo [$(CXX)]: $(notdir $<)
-	@$(CXX) -c -o $@ $(CXXFLAGS) $<
+	$(D)$(CXX) -c -o $@ $(CXXFLAGS) $<
 #
 $(CIMGUI_BUILD_DIR)/%.o: %.c $(DEPS_CIMGUI) $(MAKE_DEPS)
 	@echo [$(CC)]: $(notdir $<)
-	@$(CC) -c -o $@ $(CFLAGS) $<
+	$(D)$(CC) -c -o $@ $(CFLAGS) $<
 
 $(OTHER_OBJ_DIR)/%.o: %.cpp $(DEPS_IMGUI) $(MAKE_DEPS)
 	@echo [$(CXX)]: $(notdir $<)
-	@$(CXX) -c -o $@ $(CXXFLAGS) $<
+	$(D)$(CXX) -c -o $@ $(CXXFLAGS) $<
 #
 $(OTHER_OBJ_DIR)/%.o: %.c $(DEPS_CIMGUI) $(MAKE_DEPS)
 	@echo [$(CC)]: $(notdir $<)
-	@$(CC) -c -o $@ $(CFLAGS) $<
+	$(D)$(CC) -c -o $@ $(CFLAGS) $<
 
 $(BUILD_DIR)/%.o: %.cpp $(DEPS_PROJ) $(MAKE_DEPS)
 	@echo [$(CXX)]: $(notdir $<)
-	@$(CXX) -c -o $@ $(CXXFLAGS) $<
+	$(D)$(CXX) -c -o $@ $(CXXFLAGS) $<
 #
 $(BUILD_DIR)/%.o: %.c $(DEPS_PROJ) $(MAKE_DEPS)
 	@echo [$(CC)]: $(notdir $<)
-	@$(CC) -c -o $@ $(CFLAGS) $<
+	$(D)$(CC) -c -o $@ $(CFLAGS) $<
 #
 .PHONY: run gen clean cleanall cleanlib $(BUILD_DIR)
 
