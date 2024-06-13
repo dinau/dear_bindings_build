@@ -47,12 +47,13 @@ pub fn build(b: *std.Build) void {
     //----------------------------------
     // Detect 32bit or 64bit Winddws OS
     //----------------------------------
-    const glfw_base = "../../libs/glfw/glfw-3.3.9.bin.WIN";
+    var sBuf: [2048]u8 = undefined;
+    const Glfw_Base = "../../libs/glfw/glfw-3.3.9.bin.WIN";
     var sArc = "64";
     if(builtin.cpu.arch == std.Target.Cpu.Arch.x86){
       sArc = "32";
     }
-    const glfw_path = b.pathJoin(&.{glfw_base, sArc});
+    const glfw_path = std.fmt.bufPrint(&sBuf, "{s}{s}", .{Glfw_Base,sArc}) catch unreachable;
     //---------------
     // Include paths
     //---------------
@@ -102,8 +103,12 @@ pub fn build(b: *std.Build) void {
     exe.linkSystemLibrary("user32");
     exe.linkSystemLibrary("shell32");
     // GLFW
-    exe.addLibraryPath(.{ .path = b.pathJoin(&.{glfw_path, "lib-vc2019"})});
-    exe.linkSystemLibrary("glfw3");      // For static link
+    //exe.addLibraryPath(.{.path = b.pathJoin(&.{glfw_path, "lib-mingw-64"})});
+    //exe.linkSystemLibrary("glfw3");      // For static link
+    // Static link
+    exe.addObjectFile(.{.path = b.pathJoin(&.{glfw_path, "lib-mingw-w64","libglfw3.a"})});
+    // Dynamic link
+    //exe.addObjectFile(.{.path = b.pathJoin(&.{glfw_path, "lib-mingw-w64","libglfw3dll.a"})});
     //exe.linkSystemLibrary("glfw3dll"); // For dynamic link
     // System
     exe.linkLibC();
