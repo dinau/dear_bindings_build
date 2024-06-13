@@ -46,8 +46,7 @@ ImGui version **1.90.8 WIP** (2024/05)
 1. Build and Run 
 
    ```sh
-   make                # or 'make run'
-   ./glfw_opengl3.exe  # run application
+   make run                
    ```
 
 ## Examples screen shots 
