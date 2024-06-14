@@ -5,12 +5,32 @@ pub const ig = @cImport ({
   @cInclude ("cimgui.h");
   @cInclude ("cimgui_impl_glfw.h");
   @cInclude ("cimgui_impl_opengl3.h");
+  @cInclude ("loadImage.h");
+  @cInclude ("saveImage.h");
 });
 pub const c = @cImport ({
   @cInclude ("setupFonts.h");
   @cInclude ("IconsFontAwesome6.h");
+  @cInclude ("stb_image.h");
+
 });
 
+const TImgFormat = struct {
+  kind:[:0]const u8,
+  ext :[:0]const u8,
+};
+const enKind = enum { jpg, png, bmp, tga };
+const ImgFormatTbl = [_]TImgFormat {
+            TImgFormat {.kind = "JPEG 90%", .ext = ".jpg"}
+          , TImgFormat {.kind = "PNG     ", .ext = ".png"}
+          , TImgFormat {.kind = "BMP     ", .ext = ".bmp"}
+          , TImgFormat {.kind = "TGA     ", .ext = ".tga"}
+};
+
+var cbItemIndex:usize = @intFromEnum(enKind.jpg);
+
+// Constants
+const SaveImageName = "ImageSaved";
 const IMGUI_HAS_DOCK = false; // true: Can't compile at this time.
 
 fn glfw_error_callback (err: c_int, description: [*c] const u8) callconv (.C) void
@@ -73,6 +93,15 @@ pub fn main () !void {
   ig.glfwShowWindow(window);
 
   ig.glfwSwapInterval(1);  // Enable VSync --- Lower CPU load
+                           //
+  // Load title bar icon
+  const IconName = "icon_qr_my_github_red.png";
+  const pIconData = ig.LoadTitleBarIcon(window, IconName);
+  defer {
+    if (pIconData != 0) {
+      c.stbi_image_free(pIconData);  // free memory for icon
+    }
+  }
 
   // Setup Dear ImGui context
   if (ig.ImGui_CreateContext (null) == null){
@@ -116,6 +145,15 @@ pub fn main () !void {
   //ig.ImGui_StyleColorsDark (null);
   //ig.ImGui_StyleColorsLight (null);
 
+  //------------
+  // Load image
+  //------------
+  const ImageName = "himeji-400.jpg";
+  var textureId : ig.GLuint = undefined;
+  var textureWidth: c_int = 0;
+  var textureHeight : c_int = 0;
+  _ = ig.LoadTextureFromFile(ImageName, &textureId, &textureWidth, &textureHeight);
+
   c.setupFonts(); // Setup CJK fonts and Icon fonts
 
   //---------------
@@ -158,9 +196,50 @@ pub fn main () !void {
       _ = ig.ImGui_SliderFloat ("Float", &fval, 0.0, 1.0);
       _ = ig.ImGui_ColorEdit3 ("Clear color", &clearColor, 0);
 
-      if (ig.ImGui_Button ("Button")) counter += 1;
-      ig.ImGui_SameLine ();
-      ig.ImGui_Text ("Counter = %d", counter);
+      // Save button for capturing window image
+      ig.ImGui_PushIDInt(0);
+      ig.ImGui_PushStyleColorImVec4(ig.ImGuiCol_Button,        ig.ImVec4 {.x = 0.7, .y = 0.7, .z = 0.0, .w = 1.0});
+      ig.ImGui_PushStyleColorImVec4(ig.ImGuiCol_ButtonHovered, ig.ImVec4 {.x = 0.8, .y = 0.8, .z = 0.0, .w = 1.0});
+      ig.ImGui_PushStyleColorImVec4(ig.ImGuiCol_ButtonActive,  ig.ImVec4 {.x = 0.9, .y = 0.9, .z = 0.0, .w = 1.0});
+      ig.ImGui_PushStyleColorImVec4(ig.ImGuiCol_Text,          ig.ImVec4 {.x = 0.0, .y = 0.0, .z = 0.0, .w = 1.0});
+
+      // Image save button
+      const imageExt = ImgFormatTbl[cbItemIndex].ext;
+      var svNameBuf:[std.fs.MAX_PATH_BYTES]u8 = undefined;
+      var     svBuf:[std.fs.MAX_PATH_BYTES]u8 = undefined;
+      const slsName = try std.fmt.bufPrint(&svNameBuf, "{s}_{}{s}", .{SaveImageName, counter, imageExt});
+      if (ig.ImGui_Button("Save Image")) {
+        const wkSize = ig.ImGui_GetMainViewport().*.WorkSize;
+        const sx:c_int =  @intFromFloat(wkSize.x);
+        const sy:c_int =  @intFromFloat(wkSize.y);
+        _ = c.printf("%s, %d, %d\n", slsName.ptr, sx, sy);
+        ig.saveImage(slsName.ptr, 0, 0, sx, sy, 3, 90);    // # --- Save Image !
+      }
+      ig.ImGui_PopStyleColorEx(4);
+      ig.ImGui_PopID();
+
+      // Show tooltip help
+      const slsBuf = try std.fmt.bufPrint(&svBuf, "Save to {s}", .{slsName});
+      setTooltip(slsBuf.ptr);
+      counter += 1;
+
+      ig.ImGui_SameLine();
+      // ComboBox: Select save image format
+      ig.ImGui_SetNextItemWidth(100);
+      if (ig.ImGui_BeginCombo("##", ImgFormatTbl[cbItemIndex].kind, 0)) {
+        for (ImgFormatTbl, 0..)|_, n| {
+          var is_selected = (cbItemIndex == n);
+          if (ig.ImGui_SelectableBoolPtr(ImgFormatTbl[n].kind, &is_selected, 0)) {
+            if (is_selected) {
+              ig.ImGui_SetItemDefaultFocus();
+            }
+            cbItemIndex = n;
+          }
+        }
+        ig.ImGui_EndCombo();
+      }
+      setTooltip("Select image format");
+
       ig.ImGui_Text ("Application average %.3f ms/frame (%.1f FPS)", 1000.0 / pio.*.Framerate, pio.*.Framerate);
       // Show icon fonts
       ig.ImGui_SeparatorText(c.ICON_FA_WRENCH ++ " Icon font test ");
@@ -187,6 +266,25 @@ pub fn main () !void {
       if (ig.ImGui_Button ("Close Me")) showAnotherWindow = false;
     }
 
+    // Show image load window
+    if (ig.ImGui_Begin("Image load test", null, 0)) {
+      defer ig.ImGui_End();
+      // Load image
+      const size       = ig.ImVec2 {.x = @floatFromInt(textureWidth), .y = @floatFromInt(textureHeight)};
+      ig.ImGui_SetNextWindowSize(size, ig.ImGuiCond_Always);
+
+      const shortVersion = true;
+      if (shortVersion) {
+        ig.ImGui_Image(@ptrFromInt(textureId), size);
+      } else { // Long version
+        const uv0        = ig.ImVec2 {.x = 0, .y = 0};
+        const uv1        = ig.ImVec2 {.x = 1, .y = 1};
+        const tint_col   = ig.ImVec4 {.x = 1, .y = 1, .z = 1, .w = 1};
+        const border_col = ig.ImVec4 {.x = 0, .y = 0, .z = 0, .w = 0};
+        ig.ImGui_ImageEx(@ptrFromInt(textureId), size, uv0, uv1, tint_col, border_col);
+      }
+    }
+
     //-----------
     // End procs
     //-----------
@@ -209,3 +307,16 @@ pub fn main () !void {
     ig.glfwSwapBuffers(window);
   } // while end
 } // main end
+
+
+//--------------
+// setTooltip()
+//--------------
+fn setTooltip (str: [*c] const u8) void {
+  if (ig.ImGui_IsItemHovered(ig.ImGuiHoveredFlags_DelayNormal)) {
+    if (ig.ImGui_BeginTooltip()) {
+      ig.ImGui_Text(str);
+      ig.ImGui_EndTooltip();
+    }
+  }
+}

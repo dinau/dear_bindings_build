@@ -52,9 +52,9 @@ unsigned char* LoadTextureFromFile(const char* imageName, GLuint* out_texture, i
 /*--------------------
  * LoadTitleBarIcon()
  * ------------------*/
-uint8_t* LoadTitleBarIcon(GLFWwindow* window, const char* iconName) {
+unsigned char* LoadTitleBarIcon(GLFWwindow* window, const char* iconName) {
   int width, height, channels;
-  uint8_t*  pixels = 0;
+  unsigned char*  pixels = 0;
   if (existsFile(iconName)) {
     pixels = stbi_load(iconName, &width, &height, &channels, 0);
     const GLFWimage img  = {.width = width, .height = height, .pixels = pixels};

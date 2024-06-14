@@ -1,12 +1,11 @@
-#include "cimgui.h"
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 
+#include "cimgui.h"
 #include "cimgui_impl_glfw.h"
 #include "cimgui_impl_opengl3.h"
 
 #include "setupFonts.h"
-
 
 GLFWwindow *window;
 
@@ -59,11 +58,11 @@ int main(int argc, char *argv[]) {
   bool showAnotherWindow = false;
   ImVec4 clearColor = {.x = 0.25f, .y = 0.55f, .z = 0.90f, .w = 1.00f};
   char sBuf[200];
-  for (int i = 0; i<sizeof(sBuf); i++) {
+  for (int i = 0; i < sizeof(sBuf); i++) {
     sBuf[i] = '\0';
   }
 
-  //ImGui_StyleColorsClassic(NULL);
+  // ImGui_StyleColorsClassic(NULL);
   ImGui_StyleColorsDark(NULL);
 
   setupFonts();
@@ -87,7 +86,7 @@ int main(int argc, char *argv[]) {
         ImGui_Text("%s", glfwGetVersionString());
         ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();
         ImGui_Text("%s", (char *)glGetString(GL_VERSION));
-        ImGui_InputTextWithHint("テキスト入力","ここへ入力", sBuf, sizeof(sBuf), 0);
+        ImGui_InputTextWithHint("テキスト入力", "ここへ入力", sBuf, sizeof(sBuf), 0);
         ImGui_Text("入力結果:"); ImGui_SameLine(); ImGui_Text("%s", sBuf);
         ImGui_Checkbox("デモ・ウインドウ", &showDemoWindow);
         ImGui_Checkbox("その他のウインドウ", &showAnotherWindow);

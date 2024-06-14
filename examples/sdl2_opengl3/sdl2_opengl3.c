@@ -7,13 +7,14 @@
 // - Documentation        https://dearimgui.com/docs (same as your local docs/ folder).
 // - Introduction, links and more at the top of imgui.cpp
 
-#include "cimgui.h"
-#include "cimgui_impl_sdl2.h"
-#include "cimgui_impl_opengl3.h"
 #include <stdio.h>
 #define SDL_MAIN_HANDLED
 #include <SDL.h>
 #include <SDL_opengl.h>
+
+#include "cimgui.h"
+#include "cimgui_impl_sdl2.h"
+#include "cimgui_impl_opengl3.h"
 
 #include "setupFonts.h"
 
@@ -23,7 +24,7 @@ const int MainWinWidth = 1024;
 const int MainWinHeight = 800;
 
 // Main code
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
   (void)argc; (void) argv;
   // Setup SDL
   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0) {
@@ -144,7 +145,7 @@ int main(int argc, char *argv[]){
       }
     }
     if (showAnotherWindow) {
-      ImGui_Begin("Another Window", &showAnotherWindow,0);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
+      ImGui_Begin("Another Window", &showAnotherWindow, 0);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
       ImGui_Text("Hello from another window!");
       if (ImGui_Button("Close Me"))
         showAnotherWindow = false;

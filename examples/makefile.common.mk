@@ -105,6 +105,11 @@ DEPS_CIMGUI = $(CIMGUI_DIR)/cimgui.h
 DEPS_OTHER  = $(wildcard *.h) $(wildcard $(UTILS_DIR)/*.h)
 DEPS_PROJ   = $(wildcard *.h)
 
+# Hide console winodw
+ifeq ($(HIDE_CONSOLE_WINDOW),true)
+	LDFLAGS += -mwindows
+endif
+
 CXXFLAGS += $(CFLAGS)
 CXXFLAGS += -fno-exceptions -fno-rtti -std=c++11
 LDFLAGS += -L$(CIMGUI_ARCHIVE_DIR)
@@ -113,6 +118,9 @@ MAKE_DIRS = $(BUILD_DIR)        \
             $(CIMGUI_DIR)       \
  	          $(CIMGUI_BUILD_DIR) \
    	        $(OTHER_OBJ_DIR)
+
+
+
 
 all: $(MAKE_DIRS) $(LIB_CIMGUI_ARCHIVE) $(TARGET)$(EXE) afterbuild
 lib: $(LIB_CIMGUI_ARCHIVE)

@@ -5,6 +5,7 @@
   - [Prerequisites](#prerequisites)
   - [Build and run](#build-and-run)
   - [Examples screen shots](#examples-screen-shots)
+  - [Hiding console window](#hiding-console-window)
   - [Regenarate ImGui bindings](#regenarate-imgui-bindings)
   - [Build with Clang, Zig cc](#build-with-clang-zig-cc)
   - [My tools version](#my-tools-version)
@@ -14,7 +15,7 @@
 
 # Dear_Bindings_Build
 
-This project aims to easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings).
+This project aims to easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) and ImGui.
 
 ImGui version **1.90.8 WIP** (2024/05)
 
@@ -69,9 +70,40 @@ ImGui version **1.90.8 WIP** (2024/05)
 - [glfw_opengl3_image_save](examples/glfw_opengl3_image_save)  
 ![alt](img/glfw_opengl3_image_save.png)
 
+
+## Hiding console window
+
+---
+
+- Zig lang. examples  
+Open `build.zig` in each example folder and **enable** option line as follows,
+
+  ```zig
+  ... snip ...
+  exe.subsystem = .Windows;  // Hide console window
+  ... snip ...
+  ```
+
+  and execute `make`.
+
+
+- C lang. examples  
+Open `Makefile` in each example folder and **change** option as follows,
+
+  ```Makefile
+  ... snip ...
+  HIDE_CONSOLE_WINDOW = true
+  ... snip ...
+  ```
+
+  and execute `make`.
+
+
 ## Regenarate ImGui bindings
 
 ---
+
+For instance,
 
 ```sh
 pwd 
@@ -94,6 +126,8 @@ pwd
 glfw_opengl3
 make TC=clang    # or TC=zigcc
 ```
+
+Note: Except Zig lang. examples.
 
 ## My tools version
 

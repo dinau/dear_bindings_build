@@ -12,7 +12,7 @@
 #include "stb_image.h"
 
 GLFWwindow *window;
-uint8_t* pIconData;  // == 0,  Memory pointer for icon.
+unsigned char* pIconData;  // == 0,  Memory pointer for icon.
 
 int main(int argc, char *argv[]) {
   (void)argc; (void) argv;
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
   glfwSwapInterval(1);  // Enable Vsync
 
   // Load title bar icon
-  const char* IconName = "icon_qr_my_github.png";
+  const char* IconName = "icon_qr_my_github_red.png";
   pIconData = LoadTitleBarIcon(window, IconName);
 
   printf("opengl version: %s\n", (char *)glGetString(GL_VERSION));
@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
   }
 
   ImGui_StyleColorsDark(NULL);
-  //  ImGui_StyleColorsClassic(NULL);
+  // ImGui_StyleColorsClassic(NULL);
 
   setupFonts();
 

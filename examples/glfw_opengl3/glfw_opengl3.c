@@ -1,6 +1,7 @@
+#include <stdio.h>
+
 #include "cimgui.h"
 #include <GLFW/glfw3.h>
-#include <stdio.h>
 
 #include "cimgui_impl_glfw.h"
 #include "cimgui_impl_opengl3.h"
@@ -58,7 +59,7 @@ int main(int argc, char *argv[]) {
   bool showAnotherWindow = false;
   ImVec4 clearColor = {.x = 0.25f, .y = 0.55f, .z = 0.90f, .w = 1.00f};
   char sBuf[200];
-  for (int i = 0; i<sizeof(sBuf); i++) {
+  for (int i = 0; i < sizeof(sBuf); i++) {
     sBuf[i] = '\0';
   }
 

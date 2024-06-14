@@ -10,6 +10,10 @@ LDFLAGS += -luuid -lcomdlg32 -ladvapi32 -lsetupapi -lhid -lversion
 LDFLAGS += -lws2_32 -ldinput8 -ldxguid -ldxerr8  -lwinmm
 
 AFTER_BUILD = @cp -u $(SDL3_DIR)/bin/SDL3.dll .
+
+# TODO no effect ?
+HIDE_CONSOLE_WINDOW = true
+
 include ../makefile.common.mk
 
-gen: $(CIMGUI_ROOT) gencimgui impl_opengl3 impl_sdl3
+gen: $(CIMGUI_DIR) gencimgui impl_opengl3 impl_sdl3
