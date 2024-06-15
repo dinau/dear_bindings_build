@@ -162,7 +162,7 @@ $(BUILD_DIR)/%.o: %.c $(DEPS_PROJ) $(MAKE_DEPS)
 	@echo [$(CC)]: $(notdir $<)
 	$(D)$(CC) -c -o $@ $(CFLAGS) $<
 #
-.PHONY: run gen clean cleanall cleanlib $(BUILD_DIR)
+.PHONY: run gen clean cleanall cleanobjs  cleanother $(BUILD_DIR)
 
 $(BUILD_DIR):
 	@-mkdir -p  $@
@@ -183,12 +183,12 @@ clean:
 	-rm $(TARGET)$(EXE)
 	-rm $(TARGET).lib $(TARGET).pdb
 	-rm $(MY_OBJS)
-cleanlib:
-	-rm $(LIB_CIMGUI_ARCHIVE)
-	-rm -fr $(CIMGUI_BUILD_DIR)
 cleanother:
 	-rm -fr $(OTHER_OBJ_DIR)
-cleanall: clean cleanlib cleanother
+cleanobjs: clean cleanother
+	-rm $(LIB_CIMGUI_ARCHIVE)
+	-rm -fr $(CIMGUI_BUILD_DIR)
+cleanall: cleanobjs
 	-rm -fr $(BUILD_DIR)
 #
 include ../gen.mk

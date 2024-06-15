@@ -18,9 +18,13 @@ LIBS   += -L$(GLFW_DIR)/lib-mingw-w64
 
 # GLFW Static lib
 ifeq ($(STATIC_GLFW),true)
-LIBS   += -lglfw3
+	# TODO
+  ifeq ($(TC),zigcc)
+    LIBS   += -lglfw3dll
+  else
+    LIBS   += -lglfw3
+  endif
 else
 # GLFW dll lib
 LIBS   += -lglfw3dll
-
 endif

@@ -79,7 +79,10 @@ ImGui version **1.90.8 WIP** (2024/05)
 
 - [glfw_opengl3_image_save](examples/glfw_opengl3_image_save)  
 - [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load)  
-![alt](img/glfw_opengl3_image_save.png)
+![alt](img/glfw_opengl3_image_save.png)  
+Image file captured would be saved in current folder.  
+It can be saved as `JPEG / PNG / BMP / TGA` file.
+
 
 
 ## Hiding console window
@@ -135,8 +138,11 @@ For instance,
 ```sh 
 pwd 
 glfw_opengl3
+make cleanobjs   
 make TC=clang    # or TC=zigcc
 ```
+
+Compiling with `TC=zigcc` may link dynamic library at this time. 
 
 Note: Except Zig lang. examples.
 
