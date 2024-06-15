@@ -15,7 +15,7 @@
 
 # Dear_Bindings_Build
 
-This project aims to easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) and ImGui.
+This project aims to simply and easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) and ImGui.
 
 ImGui version **1.90.8 WIP** (2024/05)
 
@@ -54,20 +54,31 @@ ImGui version **1.90.8 WIP** (2024/05)
 
 ---
 
-- OpenGL3 backend  
+- C lang.  
 [glfw_opengl3](examples/glfw_opengl3)  
 [sdl2_opengl3](examples/sdl2_opengl3)  
 [sdl3_opengl3](examples/sdl3_opengl3)  
+- Zig lang.  
 [zig_glfw_opengl3](examples/zig_glfw_opengl3)  
 ![alt](img/glfw_opengl3.png)
+
+---
 
 - [glfw_opengl3_jp](examples/glfw_opengl3_jp)  
 ![alt](img/glfw_opengl3_jp.png)
 
-- [glfw_opengl3_image_load](examples/glfw_opengl3_image_load)  
+
+---
+
+- [glfw_opengl3_image_load](examples/glfw_opengl3_image_load)
+- [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load)  
 ![alt](img/glfw_opengl3_image_load.png)
 
+
+---
+
 - [glfw_opengl3_image_save](examples/glfw_opengl3_image_save)  
+- [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load)  
 ![alt](img/glfw_opengl3_image_save.png)
 
 
