@@ -14,18 +14,18 @@
 
 
 // Simple helper function to load an image into a OpenGL texture with common settings
-unsigned char* LoadTextureFromFile(const char* imageName, GLuint* out_texture, int* out_width, int* out_height) {
+bool LoadTextureFromFile(const char* imageName, GLuint* out_texture, int* out_width, int* out_height) {
   unsigned char* image_data = NULL;
   if (!existsFile(imageName)) {
     printf("\nError!: Image file not found  error: %s", imageName);
-    return image_data;
+    return false;
   }
   // Load from file
   image_data = stbi_load(imageName, out_width, out_height, NULL, 4);
   if (image_data == NULL) {
     *out_texture = (GLuint)0;
     printf("\nError!: Image load error:  %s", imageName);
-    return NULL;
+    return false;
   }
   // Create a OpenGL texture identifier
   glGenTextures(1, out_texture);
@@ -45,7 +45,7 @@ unsigned char* LoadTextureFromFile(const char* imageName, GLuint* out_texture, i
   // Free image memory
   stbi_image_free(image_data);
 
-  return image_data;
+  return true;
 }
 
 #ifdef CIMGUI_USE_GLFW
