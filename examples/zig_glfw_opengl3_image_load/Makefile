@@ -12,7 +12,7 @@ all:
 	zig build $(OPT)
 
 run: all
-	./zig-out/bin/$(TARGET).exe
+	(cd zig-out/bin; ./$(TARGET).exe)
 
 cleanall:
 	rm -fr zig-out

@@ -26,6 +26,7 @@ ImGui version **1.90.8 WIP** (2024/05)
 - Windows10 OS
 - GCC (or Clang or **'Zig cc'** compiler)
 - Use **Zig: 0.12.0** (zig cc: clang version 17.0.6)
+- **Zig 0.13.0 ?** (Compiling is ok so far)
 - Pyhton3
 - MSys/MinGW basic commands (make, rm, cp ...)
 
@@ -54,34 +55,55 @@ ImGui version **1.90.8 WIP** (2024/05)
 
 ---
 
-- C lang.  
-[glfw_opengl3](examples/glfw_opengl3)  
-[sdl2_opengl3](examples/sdl2_opengl3)  
-[sdl3_opengl3](examples/sdl3_opengl3)  
-- Zig lang.  
-[zig_glfw_opengl3](examples/zig_glfw_opengl3)  
+| C lang.                               |
+|:-------------------------------------:|
+| [glfw_opengl3](examples/glfw_opengl3) |
+| [sdl2_opengl3](examples/sdl2_opengl3) |
+| [sdl3_opengl3](examples/sdl3_opengl3) |
+
+|                   Zig lang.                   |
+|:---------------------------------------------:|
+| [zig_glfw_opengl3](examples/zig_glfw_opengl3) |
+| [zig_sdl2_opengl3](examples/zig_sdl2_opengl3) |
+
 ![alt](img/glfw_opengl3.png)
 
 ---
 
-- [glfw_opengl3_jp](examples/glfw_opengl3_jp)  
+|                   C lang.                   |
+|:-------------------------------------------:|
+| [glfw_opengl3_jp](examples/glfw_opengl3_jp) |
+
 ![alt](img/glfw_opengl3_jp.png)
 
 
 ---
 
-- [glfw_opengl3_image_load](examples/glfw_opengl3_image_load)
-- [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load)  
+|                           C lang.                           |
+|:-----------------------------------------------------------:|
+| [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |
+
+|                              Zig lang.                              |
+|:-------------------------------------------------------------------:|
+| [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load) |
+
 ![alt](img/glfw_opengl3_image_load.png)
 
 
 ---
 
-- [glfw_opengl3_image_save](examples/glfw_opengl3_image_save)  
-- [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load)  
+|                           C lang.                           |
+|:-----------------------------------------------------------:|
+| [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |
+
+
+|                              Zig lang.                              |
+|:-------------------------------------------------------------------:|
+| [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load) |
+
 ![alt](img/glfw_opengl3_image_save.png)  
 Image file captured would be saved in current folder.  
-It can be saved as `JPEG / PNG / BMP / TGA` file.
+Image can be saved as `JPEG / PNG / BMP / TGA` file.
 
 
 
@@ -126,6 +148,8 @@ make cleanall
 make gen
 make run
 ```
+
+Note: Except Zig lang. examples.
 
 Artifacts are generated into `../libs/cimgui` folder.
 

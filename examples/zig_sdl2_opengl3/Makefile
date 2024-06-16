@@ -10,10 +10,16 @@ OPT += --release=fast
 
 all:
 	zig build $(OPT)
+	-strip zig-out/bin/$(TARGET).exe
+
+.PHONY: run cleanall clean
 
 run: all
 	(cd zig-out/bin; ./$(TARGET).exe)
 
 cleanall:
-	rm -fr zig-out
-	rm -fr zig-cache
+	-rm -fr zig-out
+	-rm -fr zig-cache
+
+clean:
+	-rm -fr zig-out

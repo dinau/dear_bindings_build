@@ -19,7 +19,7 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
 
 //    const lib = b.addStaticLibrary(.{
-//        .name = "zig_glfw_opengl3_image_load",
+//        .name = "zig_sdl2_opengl3_image_load",
 //        // In this case the main source file is merely a path, however, in more
 //        // complicated build scripts, this could be a generated file.
 //        .root_source_file = b.path("src/root.zig"),
@@ -33,7 +33,7 @@ pub fn build(b: *std.Build) void {
 //    b.installArtifact(lib);
 
     const exe = b.addExecutable(.{
-        .name = "zig_glfw_opengl3_image_load",
+        .name = "zig_sdl2_opengl3",
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
@@ -42,16 +42,17 @@ pub fn build(b: *std.Build) void {
     // Detect 32bit or 64bit Winddws OS
     //----------------------------------
     var sBuf: [2048]u8 = undefined;
-    const Glfw_Base = "../../libs/glfw/glfw-3.3.9.bin.WIN";
-    var sArc = "64";
+    const sdl2_Base = "../../libs/sdl/SDL2-2.30.3";
+    var sArc:[]const u8 = "x86_64";
     if(builtin.cpu.arch == std.Target.Cpu.Arch.x86){
-      sArc = "32";
+      sArc = "i686";
     }
-    const glfw_path = std.fmt.bufPrint(&sBuf, "{s}{s}", .{Glfw_Base, sArc}) catch unreachable;
+    const sdl2_path = std.fmt.bufPrint(&sBuf, "{s}/{s}-w64-mingw32", .{sdl2_Base,sArc}) catch unreachable;
     //---------------
     // Include paths
     //---------------
-    exe.addIncludePath(b.path(b.pathJoin(&.{glfw_path,"include"})));
+    exe.addIncludePath(b.path(b.pathJoin(&.{sdl2_path, "include/SDL2"})));
+    //
     exe.addIncludePath(b.path("src"));
     exe.addIncludePath(b.path("../utils"));
     exe.addIncludePath(b.path("../utils/fonticon"));
@@ -64,7 +65,7 @@ pub fn build(b: *std.Build) void {
     //--------------------------------
     exe.root_module.addCMacro("IMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS", "");
     exe.root_module.addCMacro("ImDrawIdx", "unsigned int");
-    exe.root_module.addCMacro("CIMGUI_USE_GLFW", "");
+    exe.root_module.addCMacro("CIMGUI_USE_SDL2", "");
     //---------------
     // Sources C/C++
     //---------------
@@ -78,11 +79,11 @@ pub fn build(b: *std.Build) void {
         "../../libs/imgui/imgui_draw.cpp",
         // CImGui main
         "../libs/cimgui/cimgui.cpp",
-        // ImGui GLFW and OpenGL interface
+        // ImGui sdl2 and OpenGL interface
         "../../libs/imgui/backends/imgui_impl_opengl3.cpp",
-        "../../libs/imgui/backends/imgui_impl_glfw.cpp",
-        // CImGui GLFW and OpenGL interface
-        "../libs/cimgui/cimgui_impl_glfw.cpp",
+        "../../libs/imgui/backends/imgui_impl_sdl2.cpp",
+        // CImGui sdl2 and OpenGL interface
+        "../libs/cimgui/cimgui_impl_sdl2.cpp",
         "../libs/cimgui/cimgui_impl_opengl3.cpp",
         // CImGui SDL interface
         //"../libs/cimgui/cimgui_impl_sdl2.cpp",
@@ -101,17 +102,35 @@ pub fn build(b: *std.Build) void {
     //---------------
     exe.linkSystemLibrary("gdi32");
     exe.linkSystemLibrary("imm32");
-    exe.linkSystemLibrary("opengl32");
-    exe.linkSystemLibrary("user32");
+    exe.linkSystemLibrary("advapi32");
+    exe.linkSystemLibrary("comdlg32");
+    exe.linkSystemLibrary("dinput8");
+    exe.linkSystemLibrary("dxerr8");
+    exe.linkSystemLibrary("dxguid");
+    exe.linkSystemLibrary("gdi32");
+    exe.linkSystemLibrary("hid");
+    exe.linkSystemLibrary("kernel32");
+    exe.linkSystemLibrary("ole32");
+    exe.linkSystemLibrary("oleaut32");
+    exe.linkSystemLibrary("setupapi");
     exe.linkSystemLibrary("shell32");
-    // GLFW
-    //exe.addLibraryPath(b.path(b.pathJoin(&.{glfw_path, "lib-mingw-64"})));
-    //exe.linkSystemLibrary("glfw3");      // For static link
+    exe.linkSystemLibrary("user32");
+    exe.linkSystemLibrary("uuid");
+    exe.linkSystemLibrary("version");
+    exe.linkSystemLibrary("winmm");
+    exe.linkSystemLibrary("winspool");
+    exe.linkSystemLibrary("ws2_32");
+    exe.linkSystemLibrary("opengl32");
+    exe.linkSystemLibrary("shell32");
+    exe.linkSystemLibrary("user32");
+    // sdl2
+    //exe.addLibraryPath(b.path(b.pathJoin(&.{sdl2_path, "lib-mingw-64"})));
+    //exe.linkSystemLibrary("SDL2");      // For static link
     // Static link
-    exe.addObjectFile(b.path(b.pathJoin(&.{glfw_path, "lib-mingw-w64","libglfw3.a"})));
+    exe.addObjectFile(b.path(b.pathJoin(&.{sdl2_path, "lib","libSDL2.a"})));
     // Dynamic link
-    //exe.addObjectFile(b.path(b.pathJoin(&.{glfw_path, "lib-mingw-w64","libglfw3dll.a"})));
-    //exe.linkSystemLibrary("glfw3dll"); // For dynamic link
+    //exe.addObjectFile(b.path(b.pathJoin(&.{sdl2_path, "lib","libSDL2dll.a"})));
+    //exe.linkSystemLibrary("SDL2dll"); // For dynamic link
     // System
     exe.linkLibC();
     exe.linkLibCpp();
@@ -122,9 +141,7 @@ pub fn build(b: *std.Build) void {
     // step when running `zig build`).
     b.installArtifact(exe);
 
-    const resBin =   [_][]const u8{ "imgui.ini"
-                                  , "himeji-400.jpg"
-                                  , "icon_qr_my_github_red.png"};
+    const resBin =   [_][]const u8{ "imgui.ini"};
     const resUtils = [_][]const u8{ "fonticon/fa6/fa-solid-900.ttf"
                                   , "fonticon/fa6/LICENSE.txt"};
     inline for(resBin)|file|{

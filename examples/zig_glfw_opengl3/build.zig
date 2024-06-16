@@ -1,4 +1,4 @@
-// Use zig-0.12.0 (2024/06)
+// Used zig-0.12.0 (2024/06)
 //
 const std = @import("std");
 const builtin = @import("builtin");
@@ -51,7 +51,7 @@ pub fn build(b: *std.Build) void {
     //---------------
     // Include paths
     //---------------
-    exe.addIncludePath(b.path(b.pathJoin(&.{glfw_path,"include"})));
+    exe.addIncludePath(b.path(b.pathJoin(&.{glfw_path, "include"})));
     exe.addIncludePath(b.path("src"));
     exe.addIncludePath(b.path("../utils"));
     exe.addIncludePath(b.path("../utils/fonticon"));

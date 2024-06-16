@@ -158,7 +158,7 @@ int main(int argc, char *argv[]) {
     glClear(GL_COLOR_BUFFER_BIT);
     cImGui_ImplOpenGL3_RenderDrawData(ImGui_GetDrawData());
     SDL_GL_SwapWindow(window);
-  }
+  } // while end
 
   // Cleanup
   cImGui_ImplOpenGL3_Shutdown();
