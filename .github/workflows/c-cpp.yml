@@ -1,24 +1,22 @@
 name: C/C++/Zig CI
-
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
 jobs:
   build:
-
     runs-on: windows-2019
-
-
+    strategy:
+      matrix:
+        zig: [ '0.12.0', '0.13.0' ]
     steps:
     - uses: actions/checkout@v4
       with:
         submodules: 'recursive'
+    - name: Setup zig
     - uses: goto-bus-stop/setup-zig@v2
       with:
-        version: 0.12.0
-
+        zig-version: ${{matrix.zig}}
     - name: make
       run: make
