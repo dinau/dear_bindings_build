@@ -1,4 +1,5 @@
 const std = @import ("std");
+const builtin = @import ("builtin");
 
 pub const ig = @cImport ({
   @cInclude ("GLFW/glfw3.h");
@@ -184,6 +185,8 @@ pub fn main () !void {
       ig.ImGui_Text (ig.glGetString(ig.GL_VERSION));
       ig.ImGui_Text(c.ICON_FA_CIRCLE_INFO ++ " Dear ImGui v"); ig.ImGui_SameLine ();
       ig.ImGui_Text(ig.IMGUI_VERSION);
+      ig.ImGui_Text(c.ICON_FA_CIRCLE_INFO ++ " Zig v"); ig.ImGui_SameLine ();
+      ig.ImGui_Text(builtin.zig_version_string);
 
       ig.ImGui_Spacing();
       _ = ig.ImGui_InputTextWithHint("InputText","Input text here", &sTextInuputBuf, sTextInuputBuf.len, 0);
@@ -207,7 +210,7 @@ pub fn main () !void {
       const imageExt = ImgFormatTbl[cbItemIndex].ext;
       var svNameBuf:[std.fs.MAX_PATH_BYTES]u8 = undefined;
       var     svBuf:[std.fs.MAX_PATH_BYTES]u8 = undefined;
-      const slsName = try std.fmt.bufPrint(&svNameBuf, "{s}_{}{s}", .{SaveImageName, counter, imageExt});
+      const slsName = try std.fmt.bufPrint(&svNameBuf, "{s}_{d}{s}", .{SaveImageName, counter, imageExt});
       if (ig.ImGui_Button("Save Image")) {
         const wkSize = ig.ImGui_GetMainViewport().*.WorkSize;
         const sx:c_int =  @intFromFloat(wkSize.x);
