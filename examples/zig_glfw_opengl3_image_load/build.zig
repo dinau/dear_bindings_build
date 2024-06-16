@@ -122,23 +122,19 @@ pub fn build(b: *std.Build) void {
     // step when running `zig build`).
     b.installArtifact(exe);
 
-    const res1 = "himeji-400.jpg";
-    const res2 = "icon_qr_my_github_red.png";
-    const res3 = "imgui.ini";
-    const res4Name = "fonticon/fa6/fa-solid-900.ttf";
-    const res4 = "../utils/" ++ res4Name;
-    const res5Name = "fonticon/fa6/LICENSE.txt";
-    const res5 = "../utils/" ++ res5Name;
-    const install_res1 = b.addInstallFile(b.path(res1),"bin/" ++ res1);
-    const install_res2 = b.addInstallFile(b.path(res2),"bin/" ++ res2);
-    const install_res3 = b.addInstallFile(b.path(res3),"bin/" ++ res3);
-    const install_res4 = b.addInstallFile(b.path(res4),"utils/" ++ res4Name);
-    const install_res5 = b.addInstallFile(b.path(res5),"utils/" ++ res5Name);
-    b.getInstallStep().dependOn(&install_res1.step);
-    b.getInstallStep().dependOn(&install_res2.step);
-    b.getInstallStep().dependOn(&install_res3.step);
-    b.getInstallStep().dependOn(&install_res4.step);
-    b.getInstallStep().dependOn(&install_res5.step);
+    const resBin =   [_][]const u8{ "imgui.ini"
+                                  , "himeji-400.jpg"
+                                  , "icon_qr_my_github_red.png"};
+    const resUtils = [_][]const u8{ "fonticon/fa6/fa-solid-900.ttf"
+                                  , "fonticon/fa6/LICENSE.txt"};
+    inline for(resBin)|file|{
+      const res = b.addInstallFile(b.path(file),"bin/" ++ file);
+      b.getInstallStep().dependOn(&res.step);
+    }
+    inline for(resUtils)|file|{
+      const res = b.addInstallFile(b.path("../utils/" ++ file),"utils/" ++ file);
+      b.getInstallStep().dependOn(&res.step);
+    }
     //
     // This *creates* a Run step in the build graph, to be executed when another
     // step is evaluated that depends on it. The next line below will establish
