@@ -51,14 +51,14 @@ pub fn build(b: *std.Build) void {
     //---------------
     // Include paths
     //---------------
-    exe.addIncludePath(.{ .path = b.pathJoin(&.{glfw_path,"include"})});
-    exe.addIncludePath(.{ .path = "src" });
-    exe.addIncludePath(.{ .path = "../utils" });
-    exe.addIncludePath(.{ .path = "../utils/fonticon" });
-    exe.addIncludePath(.{ .path = "../libs/cimgui" });
-    exe.addIncludePath(.{ .path = "../../libs/imgui" });
-    exe.addIncludePath(.{ .path = "../../libs/stb" });
-    exe.addIncludePath(.{ .path = "../../libs/imgui/backends" });
+    exe.addIncludePath(b.path(b.pathJoin(&.{glfw_path,"include"})));
+    exe.addIncludePath(b.path("src"));
+    exe.addIncludePath(b.path("../utils"));
+    exe.addIncludePath(b.path("../utils/fonticon"));
+    exe.addIncludePath(b.path("../libs/cimgui"));
+    exe.addIncludePath(b.path("../../libs/imgui"));
+    exe.addIncludePath(b.path("../../libs/stb"));
+    exe.addIncludePath(b.path("../../libs/imgui/backends"));
     //--------------------------------
     // Define macro for C/C++ sources
     //--------------------------------
@@ -105,12 +105,12 @@ pub fn build(b: *std.Build) void {
     exe.linkSystemLibrary("user32");
     exe.linkSystemLibrary("shell32");
     // GLFW
-    //exe.addLibraryPath(.{.path = b.pathJoin(&.{glfw_path, "lib-mingw-64"})});
+    //exe.addLibraryPath(b.path(b.pathJoin(&.{glfw_path, "lib-mingw-64"})));
     //exe.linkSystemLibrary("glfw3");      // For static link
     // Static link
-    exe.addObjectFile(.{.path = b.pathJoin(&.{glfw_path, "lib-mingw-w64","libglfw3.a"})});
+    exe.addObjectFile(b.path(b.pathJoin(&.{glfw_path, "lib-mingw-w64","libglfw3.a"})));
     // Dynamic link
-    //exe.addObjectFile(.{.path = b.pathJoin(&.{glfw_path, "lib-mingw-w64","libglfw3dll.a"})});
+    //exe.addObjectFile(b.path(b.pathJoin(&.{glfw_path, "lib-mingw-w64","libglfw3dll.a"})));
     //exe.linkSystemLibrary("glfw3dll"); // For dynamic link
     // System
     exe.linkLibC();
