@@ -66,8 +66,9 @@ int main(int argc, char *argv[]) {
   io->ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
   // Setup Dear ImGui style
-  ImGui_StyleColorsDark(NULL);
   // ImGui_StyleColorsLight(NULL);
+  // ImGui_StyleColorsLight(NULL);
+  ImGui_StyleColorsClassic(NULL);
 
   // Setup Platform/Renderer backends
   cImGui_ImplSDL2_InitForOpenGL(window, gl_context);
@@ -101,7 +102,10 @@ int main(int argc, char *argv[]) {
     cImGui_ImplSDL2_NewFrame();
     ImGui_NewFrame();
 
-    if (showDemoWindow) ImGui_ShowDemoWindow(&showDemoWindow);
+    if (showDemoWindow) {
+      ImGui_ShowDemoWindow(&showDemoWindow);
+    }
+    //
     // show a simple window that we created ourselves.
     {
       static float f = 0.0f;

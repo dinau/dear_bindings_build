@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
   SDL_GL_SetSwapInterval(1);  // Enable vsync
-  // SDL_ShowWindow(window);
+
   // Setup Dear ImGui context
   // IMGUI_CHECKVERSION();
   ImGui_CreateContext(NULL);
@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
     //
     // show a simple window that we created ourselves.
     {
-      static float f = 0.0f;
+      static float fval = 0.0f;
       static int counter = 0;
       if (ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)) {
         ImGui_Text(ICON_FA_COMMENT" " "SDL3 v"); ImGui_SameLine();
@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
         ImGui_Checkbox("Demo window", &showDemoWindow);
         ImGui_Checkbox("Another window", &showAnotherWindow);
 
-        ImGui_SliderFloatEx("Float", &f, 0.0f, 1.0f, "%.3f", 0);
+        ImGui_SliderFloatEx("Float", &fval, 0.0f, 1.0f, "%.3f", 0);
         ImGui_ColorEdit3("clear color", (float *)&clearColor, 0);
 
         if (ImGui_Button("Button")) counter++;
@@ -146,7 +146,7 @@ int main(int argc, char *argv[]) {
     glClear(GL_COLOR_BUFFER_BIT);
     cImGui_ImplOpenGL3_RenderDrawData(ImGui_GetDrawData());
     SDL_GL_SwapWindow(window);
-  }
+  } // while end
 
   // Cleanup
   cImGui_ImplOpenGL3_Shutdown();

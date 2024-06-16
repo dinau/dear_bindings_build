@@ -15,7 +15,7 @@
 
 # Dear_Bindings_Build
 
-This project aims to simply and easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) and ImGui.
+This project aims to simply and easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 
 ImGui version **1.90.8 WIP** (2024/05)
 
@@ -55,51 +55,39 @@ ImGui version **1.90.8 WIP** (2024/05)
 
 ---
 
-| C lang.                               |
-|:-------------------------------------:|
-| [glfw_opengl3](examples/glfw_opengl3) |
-| [sdl2_opengl3](examples/sdl2_opengl3) |
-| [sdl3_opengl3](examples/sdl3_opengl3) |
+| Language  |                                          GLFW |                                          SDL2 |                                          SDL3 |
+|:---------:|----------------------------------------------:|----------------------------------------------:|----------------------------------------------:|
+| C lang.   |         [glfw_opengl3](examples/glfw_opengl3) |         [sdl2_opengl3](examples/sdl2_opengl3) |         [sdl3_opengl3](examples/sdl3_opengl3) |
+| Zig lang. | [zig_glfw_opengl3](examples/zig_glfw_opengl3) | [zig_sdl2_opengl3](examples/zig_sdl2_opengl3) | [zig_sdl3_opengl3](examples/zig_sdl3_opengl3) |
 
-|                   Zig lang.                   |
-|:---------------------------------------------:|
-| [zig_glfw_opengl3](examples/zig_glfw_opengl3) |
-| [zig_sdl2_opengl3](examples/zig_sdl2_opengl3) |
 
 ![alt](img/glfw_opengl3.png)
 
----
 
-|                   C lang.                   |
-|:-------------------------------------------:|
-| [glfw_opengl3_jp](examples/glfw_opengl3_jp) |
+| Language |                                        GLFW |
+|:--------:|--------------------------------------------:|
+|  C lang. | [glfw_opengl3_jp](examples/glfw_opengl3_jp) |
 
 ![alt](img/glfw_opengl3_jp.png)
 
 
 ---
 
-|                           C lang.                           |
-|:-----------------------------------------------------------:|
-| [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |
-
-|                              Zig lang.                              |
-|:-------------------------------------------------------------------:|
-| [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load) |
+| Language  |                                                                GLFW |
+|:---------:|--------------------------------------------------------------------:|
+| C lang.   |         [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |
+| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load) |
 
 ![alt](img/glfw_opengl3_image_load.png)
 
 
 ---
 
-|                           C lang.                           |
-|:-----------------------------------------------------------:|
-| [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |
+|  Language | GLFW                                                                |
+|:---------:|--------------------------------------------------------------------:|
+|  C lang.  | [glfw_opengl3_image_save](examples/glfw_opengl3_image_save)         |
+| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load) |
 
-
-|                              Zig lang.                              |
-|:-------------------------------------------------------------------:|
-| [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load) |
 
 ![alt](img/glfw_opengl3_image_save.png)  
 Image file captured would be saved in current folder.  
@@ -187,9 +175,8 @@ Note: Except Zig lang. examples.
 
 ---
 
-- **Nim** language  
-[Imguin](https://github.com/dinau/imguin), [Nimgl_test](https://github.com/dinau/nimgl_test), [Nim_implot](https://github.com/dinau/nim_implot)
-- **Lua** lanugage  
-[LuaJITImGui](https://github.com/dinau/luajitimgui)
-- **Python** language  
-[DearPyGui for 32bit WindowsOS Binary](https://github.com/dinau/DearPyGui32/tree/win32)
+| Language             | Project                                                                                                                                         |
+| -------------------: | :----------------------------------------------------------------:                                                                              |
+| **Nim**              | [Imguin](https://github.com/dinau/imguin), [Nimgl_test](https://github.com/dinau/nimgl_test), [Nim_implot](https://github.com/dinau/nim_implot) |
+| **Lua**              | [LuaJITImGui](https://github.com/dinau/luajitimgui)                                                                                             |
+| **Python**           | [DearPyGui for 32bit WindowsOS Binary](https://github.com/dinau/DearPyGui32/tree/win32)                                                         |
