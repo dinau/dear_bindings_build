@@ -15,7 +15,7 @@ all:
 .PHONY: run cleanall clean
 
 run: all
-	(cd zig-out/bin; ./$(TARGET).exe)
+	./zig-out/bin/$(TARGET).exe
 
 cleanall:
 	-rm -fr zig-out

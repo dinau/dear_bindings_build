@@ -47,7 +47,8 @@ pub fn build(b: *std.Build) void {
     if(builtin.cpu.arch == std.Target.Cpu.Arch.x86){
       sArc = "32";
     }
-    const sdl3_rel_date = "2024-06-02";
+    //const sdl3_rel_date = "2024-06-02";
+    const sdl3_rel_date = "2024-06-16";
     const sdl3_path = std.fmt.bufPrint(&sBuf, "{s}/{s}/SDL3-{s}/SDL3", .{sdl3_Base,sArc,sdl3_rel_date}) catch unreachable;
     //---------------
     // Include paths

@@ -183,10 +183,10 @@ pub fn main () !void {
       ig.ImGui_Text (ig.glfwGetVersionString());
       ig.ImGui_Text (c.ICON_FA_COMMENT ++ " OpenGL v"); ig.ImGui_SameLine ();
       ig.ImGui_Text (ig.glGetString(ig.GL_VERSION));
-      ig.ImGui_Text(c.ICON_FA_CIRCLE_INFO ++ " Dear ImGui v"); ig.ImGui_SameLine ();
-      ig.ImGui_Text(ig.IMGUI_VERSION);
-      ig.ImGui_Text(c.ICON_FA_CIRCLE_INFO ++ " Zig v"); ig.ImGui_SameLine ();
-      ig.ImGui_Text(builtin.zig_version_string);
+      ig.ImGui_Text (c.ICON_FA_CIRCLE_INFO ++ " Dear ImGui v"); ig.ImGui_SameLine ();
+      ig.ImGui_Text (ig.IMGUI_VERSION);
+      ig.ImGui_Text (c.ICON_FA_CIRCLE_INFO ++ " Zig v"); ig.ImGui_SameLine ();
+      ig.ImGui_Text (builtin.zig_version_string);
 
       ig.ImGui_Spacing();
       _ = ig.ImGui_InputTextWithHint("InputText","Input text here", &sTextInuputBuf, sTextInuputBuf.len, 0);

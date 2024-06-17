@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
     if (showDemoWindow) ImGui_ShowDemoWindow(&showDemoWindow);
     // show a simple window that we created ourselves.
     {
-      static float f = 0.0f;
+      static float fval = 0.0f;
       static int counter = 0;
       if (ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)) {
         ImGui_Text(ICON_FA_COMMENT" " "GLFW v"); ImGui_SameLine();
@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
         ImGui_Checkbox("Demo window", &showDemoWindow);
         ImGui_Checkbox("Another window", &showAnotherWindow);
 
-        ImGui_SliderFloatEx("Float", &f, 0.0f, 1.0f, "%.3f", 0);
+        ImGui_SliderFloatEx("Float", &fval, 0.0f, 1.0f, "%.3f", 0);
         ImGui_ColorEdit3("Clear color", (float *)&clearColor, 0);
 
         if (ImGui_Button("Button")) counter++;

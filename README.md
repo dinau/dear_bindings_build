@@ -8,6 +8,7 @@
   - [Hiding console window](#hiding-console-window)
   - [Regenarate ImGui bindings](#regenarate-imgui-bindings)
   - [Build with Clang, Zig cc](#build-with-clang-zig-cc)
+  - [SDL](#sdl)
   - [My tools version](#my-tools-version)
   - [Similar project](#similar-project)
 
@@ -17,7 +18,7 @@
 
 This project aims to simply and easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 
-ImGui version **1.90.8 WIP** (2024/05)
+ImGui version **1.90.8** (2024/06)
 
 ## Prerequisites
 
@@ -64,6 +65,8 @@ ImGui version **1.90.8 WIP** (2024/05)
 ![alt](img/glfw_opengl3.png)
 
 
+---
+
 | Language |                                        GLFW |
 |:--------:|--------------------------------------------:|
 |  C lang. | [glfw_opengl3_jp](examples/glfw_opengl3_jp) |
@@ -92,8 +95,6 @@ ImGui version **1.90.8 WIP** (2024/05)
 ![alt](img/glfw_opengl3_image_save.png)  
 Image file captured would be saved in current folder.  
 Image can be saved as `JPEG / PNG / BMP / TGA` file.
-
-
 
 ## Hiding console window
 
@@ -157,6 +158,18 @@ make TC=clang    # or TC=zigcc
 Compiling with `TC=zigcc` may link dynamic library at this time. 
 
 Note: Except Zig lang. examples.
+
+
+## SDL
+
+---
+
+- SDL3  Build-SDL3  
+https://github.com/mmozeiko/build-sdl3/releases  
+https://github.com/mmozeiko/build-sdl3
+- SDL3 Build-SDL3-Win32  
+https://github.com/JBetz/build-sdl3-win32/releases  
+https://github.com/JBetz/build-sdl3-win32
 
 ## My tools version
 

@@ -1,4 +1,5 @@
 const std = @import ("std");
+const builtin = @import ("builtin");
 
 pub const ig = @cImport ({
   @cInclude ("cimgui.h");
@@ -132,14 +133,14 @@ pub fn main () !void {
       defer ig.ImGui_End ();
       var ver:ig.SDL_version = undefined;
       ig.SDL_GetVersion(&ver);
-      var vBuf:[100:0]u8 = undefined;
-      const sVer = try std.fmt.bufPrint(&vBuf,"{d}.{d}.{d}",.{ver.major,ver.minor,ver.patch});
       ig.ImGui_Text (c.ICON_FA_COMMENT ++ " SDL v"); ig.ImGui_SameLine ();
-      ig.ImGui_Text (sVer.ptr);
+      ig.ImGui_Text ("%d.%d.%d", ver.major, ver.minor, ver.patch);
       ig.ImGui_Text (c.ICON_FA_COMMENT ++ " OpenGL v"); ig.ImGui_SameLine ();
       ig.ImGui_Text (ig.glGetString(ig.GL_VERSION));
       ig.ImGui_Text(c.ICON_FA_CIRCLE_INFO ++ " Dear ImGui v"); ig.ImGui_SameLine ();
       ig.ImGui_Text(ig.IMGUI_VERSION);
+      ig.ImGui_Text(c.ICON_FA_CIRCLE_INFO ++ " Zig v"); ig.ImGui_SameLine ();
+      ig.ImGui_Text(builtin.zig_version_string);
 
       ig.ImGui_Spacing();
       _ = ig.ImGui_InputTextWithHint("InputText","Input text here", &sTextInuputBuf, sTextInuputBuf.len, 0);

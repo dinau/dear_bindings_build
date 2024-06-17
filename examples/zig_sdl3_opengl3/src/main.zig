@@ -1,4 +1,5 @@
 const std = @import ("std");
+const builtin = @import ("builtin");
 
 pub const ig = @cImport ({
   @cInclude ("cimgui.h");
@@ -6,6 +7,7 @@ pub const ig = @cImport ({
   @cInclude ("cimgui_impl_opengl3.h");
   @cInclude ("SDL3/SDL.h");
   @cInclude ("SDL3/SDL_opengl.h");
+  @cInclude ("SDL3/SDL_mouse.h");
 });
 pub const c = @cImport ({
   @cInclude ("setupFonts.h");
@@ -50,7 +52,7 @@ pub fn main () !void {
   _ = ig.SDL_GL_SetAttribute(ig.SDL_GL_DOUBLEBUFFER, 1);
   _ = ig.SDL_GL_SetAttribute(ig.SDL_GL_DEPTH_SIZE, 24);
   _ = ig.SDL_GL_SetAttribute(ig.SDL_GL_STENCIL_SIZE, 8);
-  const window_flags = (ig.SDL_WINDOW_OPENGL | ig.SDL_WINDOW_RESIZABLE);
+  const window_flags = (ig.SDL_WINDOW_OPENGL | ig.SDL_WINDOW_RESIZABLE | ig.SDL_WINDOW_HIDDEN);
   const window = ig.SDL_CreateWindow("Dear ImGui SDL3+OpenGL3 example", MainWinWidth, MainWinHeight, window_flags);
   if (window == null) {
     try stdout.print("Error: SDL_CreateWindow(): {s}\n", .{ig.SDL_GetError()});
@@ -64,6 +66,7 @@ pub fn main () !void {
 
   _= ig.SDL_GL_MakeCurrent(window, gl_context);
   _= ig.SDL_GL_SetSwapInterval(1);  // Enable vsync
+  _= ig.SDL_ShowWindow(window);
 
   // Setup Dear ImGui context
   if (ig.ImGui_CreateContext (null) == null){
@@ -132,12 +135,14 @@ pub fn main () !void {
     //------------------
     if (ig.ImGui_Begin (c.ICON_FA_THUMBS_UP ++ " ImGui: Dear Bindings", null, 0)) {
       defer ig.ImGui_End ();
-      ig.ImGui_Text (c.ICON_FA_COMMENT ++ " SDL v"); ig.ImGui_SameLine ();
-      ig.ImGui_Text (ig.SDL_GetRevision());
+      ig.ImGui_Text (c.ICON_FA_COMMENT ++ " SDL3 v"); ig.ImGui_SameLine ();
+      ig.ImGui_Text ("[%d],[%s]", ig.SDL_GetVersion(), ig.SDL_GetRevision());
       ig.ImGui_Text (c.ICON_FA_COMMENT ++ " OpenGL v"); ig.ImGui_SameLine ();
       ig.ImGui_Text (ig.glGetString(ig.GL_VERSION));
       ig.ImGui_Text(c.ICON_FA_CIRCLE_INFO ++ " Dear ImGui v"); ig.ImGui_SameLine ();
       ig.ImGui_Text(ig.IMGUI_VERSION);
+      ig.ImGui_Text(c.ICON_FA_CIRCLE_INFO ++ " Zig v"); ig.ImGui_SameLine ();
+      ig.ImGui_Text(builtin.zig_version_string);
 
       ig.ImGui_Spacing();
       _ = ig.ImGui_InputTextWithHint("InputText","Input text here", &sTextInuputBuf, sTextInuputBuf.len, 0);

@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
   SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
   SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-  SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+  SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI /*| SDL_WINDOW_HIDDEN */);
   SDL_Window* window = SDL_CreateWindow("Dear ImGui SDL2+OpenGL3 example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, MainWinWidth, MainWinHeight, window_flags);
   if (window == nullptr) {
     printf("Error: SDL_CreateWindow(): %s\n", SDL_GetError());
@@ -57,6 +57,7 @@ int main(int argc, char *argv[]) {
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
   SDL_GL_SetSwapInterval(1);  // Enable vsync
+  //SDL_ShowWindow(window);
 
   // Setup Dear ImGui context
   // IMGUI_CHECKVERSION();
@@ -108,15 +109,13 @@ int main(int argc, char *argv[]) {
     //
     // show a simple window that we created ourselves.
     {
-      static float f = 0.0f;
+      static float fval = 0.0f;
       static int counter = 0;
-      static char sVer[15];
       if (ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)) {
         SDL_version ver;
         SDL_GetVersion(&ver);
         ImGui_Text(ICON_FA_COMMENT" " "SDL2 v"); ImGui_SameLine();
-        snprintf(sVer, sizeof(sVer), "%d.%d.%d", ver.major, ver.minor, ver.patch);
-        ImGui_Text("%s",sVer);
+        ImGui_Text("%d.%d.%d", ver.major, ver.minor, ver.patch);
         //
         ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();
         ImGui_Text("%s", (char *)glGetString(GL_VERSION));
@@ -125,7 +124,7 @@ int main(int argc, char *argv[]) {
         ImGui_Checkbox("Demo window", &showDemoWindow);
         ImGui_Checkbox("Another window", &showAnotherWindow);
 
-        ImGui_SliderFloatEx("Float", &f, 0.0f, 1.0f, "%.3f", 0);
+        ImGui_SliderFloatEx("Float", &fval, 0.0f, 1.0f, "%.3f", 0);
         ImGui_ColorEdit3("clear color", (float *)&clearColor, 0);
 
         if (ImGui_Button("Button")) counter++;
