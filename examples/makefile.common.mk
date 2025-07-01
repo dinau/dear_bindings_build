@@ -1,6 +1,6 @@
 TARGET = $(notdir $(CURDIR))
 
-MAKEFLAGS += -j2
+#MAKEFLAGS += -j2
 
 ifeq ($(V),)
   D = @
@@ -32,28 +32,27 @@ CC =  zig cc
 CXX = zig c++
 endif
 
-LIB_DIR            = ../../libs
-IMGUI_DIR          = $(LIB_DIR)/imgui
-STB_DIR            = $(LIB_DIR)/stb
+LIBS_DIR            = ../../libs
+IMGUI_DIR          = $(LIBS_DIR)/imgui
+STB_DIR            = $(LIBS_DIR)/stb
 #
-CIMGUI_DIR         = ../libs/cimgui
-CIMGUI_BUILD_DIR   = $(CIMGUI_DIR)/.build
+DCIMGUI_DIR         = $(LIBS_DIR)/dcimgui
+DCIMGUI_BUILD_DIR   = $(DCIMGUI_DIR)/.build
 #
 UTILS_DIR          = ../utils
 FONT_HEADER_DIR    = $(UTILS_DIR)/fonticon
 #
 BUILD_DIR          = .build
-OTHER_OBJ_DIR      = $(BUILD_DIR)/other
 #
-CIMGUI_ARCHIVE_DIR = ../libs
-LIB_CIMGUI_ARCHIVE = $(CIMGUI_ARCHIVE_DIR)/libcimgui.a
+DCIMGUI_ARCHIVE_DIR = $(LIBS_DIR)
+LIB_CIMGUI_ARCHIVE = $(DCIMGUI_ARCHIVE_DIR)/libcimgui.a
 
 #
-VPATH = .:$(CIMGUI_DIR):$(IMGUI_DIR):$(IMGUI_DIR)/backends:$(UTILS_DIR)
+VPATH = .:$(DCIMGUI_DIR):$(DCIMGUI_DIR)/backends:$(IMGUI_DIR):$(IMGUI_DIR)/backends:$(UTILS_DIR)
 
 # CImGui / ImGui sources
-CIMGUI_SRCS_CPP += $(notdir $(wildcard $(CIMGUI_DIR)/*.cpp))
-CIMGUI_SRCS_CPP += $(BACKEND_SRCS_CPP)
+DCIMGUI_SRCS_CPP += $(notdir $(wildcard $(DCIMGUI_DIR)/*.cpp))
+DCIMGUI_SRCS_CPP += $(notdir $(BACKEND_SRCS_CPP))
 IMGUI_SRCS_CPP  += $(notdir $(wildcard $(IMGUI_DIR)/*.cpp))
 
 # My sources
@@ -61,11 +60,11 @@ MY_SRCS_C   += $(wildcard *.c)
 MY_SRCS_CPP += $(wildcard *.cpp)
 
 # Utils sources
-OTHER_SRCS_CPP += $(notdir $(wildcard $(UTILS_DIR)/*.cpp))
-OTHER_SRCS_C   += $(notdir $(wildcard $(UTILS_DIR)/*.c))
+UTILS_SRCS_CPP += $(notdir $(wildcard $(UTILS_DIR)/*.cpp))
+UTILS_SRCS_C   += $(notdir $(wildcard $(UTILS_DIR)/*.c))
 
-CIMGUI_OBJS = $(addprefix $(CIMGUI_BUILD_DIR)/,$(CIMGUI_SRCS_CPP:.cpp=.o) $(IMGUI_SRCS_CPP:.cpp=.o))
-OTHER_OBJS  = $(addprefix $(OTHER_OBJ_DIR)/,$(OTHER_SRCS_C:.c=.o) $(OTHER_SRCS_CPP:.cpp=.o))
+DCIMGUI_OBJS = $(addprefix $(DCIMGUI_BUILD_DIR)/,$(DCIMGUI_SRCS_CPP:.cpp=.o) $(IMGUI_SRCS_CPP:.cpp=.o))
+UTILS_OBJS  = $(addprefix $(BUILD_DIR)/,$(UTILS_SRCS_C:.c=.o) $(UTILS_SRCS_CPP:.cpp=.o))
 MY_OBJS     = $(addprefix $(BUILD_DIR)/,$(MY_SRCS_C:.c=.o) $(MY_SRCS_CPP:.cpp=.o))
 
 #
@@ -84,9 +83,9 @@ CFLAGS += -ffunction-sections -fdata-sections -Wl,--gc-sections
 else
 STRIP = strip $(TARGET)$(EXE)
 endif
-#
-CFLAGS += -I$(CIMGUI_DIR) -I$(IMGUI_DIR) -I. -I$(IMGUI_DIR)/backends
-CFLAGS += -I$(UTILS_DIR)   -I$(FONT_HEADER_DIR)
+# Includes INCS
+CFLAGS += -I$(DCIMGUI_DIR) -I$(DCIMGUI_DIR)/backends -I$(IMGUI_DIR) -I. -I$(IMGUI_DIR)/backends
+CFLAGS += -I$(UTILS_DIR)  -I$(FONT_HEADER_DIR)
 CFLAGS += -I$(STB_DIR)
 
 # CImGui flags
@@ -101,7 +100,7 @@ CFLAGS += -DIMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS
 LIBS += -lgdi32 -limm32 -lopengl32
 
 DEPS_IMGUI  = $(wildcard $(IMGUI_DIR)/*.h)
-DEPS_CIMGUI = $(CIMGUI_DIR)/cimgui.h
+DEPS_CIMGUI = $(DCIMGUI_DIR)/dcimgui.h
 DEPS_OTHER  = $(wildcard *.h) $(wildcard $(UTILS_DIR)/*.h)
 DEPS_PROJ   = $(wildcard *.h)
 
@@ -112,83 +111,69 @@ endif
 
 CXXFLAGS += $(CFLAGS)
 CXXFLAGS += -fno-exceptions -fno-rtti -std=c++11
-LDFLAGS += -L$(CIMGUI_ARCHIVE_DIR)
+LDFLAGS += -L$(DCIMGUI_ARCHIVE_DIR)
 
 MAKE_DIRS = $(BUILD_DIR)        \
-            $(CIMGUI_DIR)       \
- 	          $(CIMGUI_BUILD_DIR) \
-   	        $(OTHER_OBJ_DIR)
-
-
-
+ 	          $(DCIMGUI_BUILD_DIR)
 
 all: $(MAKE_DIRS) $(LIB_CIMGUI_ARCHIVE) $(TARGET)$(EXE) afterbuild
+
 lib: $(LIB_CIMGUI_ARCHIVE)
 afterbuild:
 	-$(AFTER_BUILD)
 #dll: $(BUILD_DIR) cimgui.dll
 
 MAKE_DEPS += ../makefile.common.mk Makefile
-$(TARGET)$(EXE): $(OTHER_OBJS) $(MY_OBJS) $(MAKE_DEPS)
+$(TARGET)$(EXE): $(UTILS_OBJS) $(MY_OBJS) $(MAKE_DEPS)
 	@echo [$(CXX)]: - Link - $@
-	$(D)$(CXX) $(CXXFLAGS) -o $@  $(OTHER_OBJS) $(MY_OBJS) -lcimgui $(LIBS) $(LDFLAGS)
+	$(D)$(CXX) $(CXXFLAGS) -o $@  $(UTILS_OBJS) $(MY_OBJS) -lcimgui $(LIBS) $(LDFLAGS)
 	@-$(STRIP)
 
-$(LIB_CIMGUI_ARCHIVE): $(CIMGUI_OBJS)
-	@echo [$(AR) ]: $@
+$(LIB_CIMGUI_ARCHIVE): $(DCIMGUI_OBJS)
+	@echo [ $(AR) ]: $@
 	$(D)$(AR) -rc $@ $^
 
-$(CIMGUI_BUILD_DIR)/%.o: %.cpp $(DEPS_IMGUI) $(MAKE_DEPS)
+$(DCIMGUI_BUILD_DIR)/%.o: %.cpp $(DEPS_IMGUI) $(MAKE_DEPS)
 	@echo [$(CXX)]: $(notdir $<)
 	$(D)$(CXX) -c -o $@ $(CXXFLAGS) $<
-#
-$(CIMGUI_BUILD_DIR)/%.o: %.c $(DEPS_CIMGUI) $(MAKE_DEPS)
-	@echo [$(CC)]: $(notdir $<)
-	$(D)$(CC) -c -o $@ $(CFLAGS) $<
 
-$(OTHER_OBJ_DIR)/%.o: %.cpp $(DEPS_IMGUI) $(MAKE_DEPS)
-	@echo [$(CXX)]: $(notdir $<)
-	$(D)$(CXX) -c -o $@ $(CXXFLAGS) $<
-#
-$(OTHER_OBJ_DIR)/%.o: %.c $(DEPS_CIMGUI) $(MAKE_DEPS)
+$(DCIMGUI_BUILD_DIR)/%.o: %.c $(DEPS_CIMGUI) $(MAKE_DEPS)
 	@echo [$(CC)]: $(notdir $<)
 	$(D)$(CC) -c -o $@ $(CFLAGS) $<
 
 $(BUILD_DIR)/%.o: %.cpp $(DEPS_PROJ) $(MAKE_DEPS)
 	@echo [$(CXX)]: $(notdir $<)
 	$(D)$(CXX) -c -o $@ $(CXXFLAGS) $<
-#
+
 $(BUILD_DIR)/%.o: %.c $(DEPS_PROJ) $(MAKE_DEPS)
 	@echo [$(CC)]: $(notdir $<)
 	$(D)$(CC) -c -o $@ $(CFLAGS) $<
-#
+
 .PHONY: run gen clean cleanall cleanobjs  cleanother $(BUILD_DIR)
 
 $(BUILD_DIR):
 	@-mkdir -p  $@
 
-$(CIMGUI_DIR):
+$(DCIMGUI_BUILD_DIR):
 	@-mkdir -p $@
 
-$(CIMGUI_BUILD_DIR):
-	@-mkdir -p $@
+$(UTILS_OBJ_DIR):
+	@ -mkdir -p $@
 
-$(OTHER_OBJ_DIR):
-	@-mkdir -p $@
-#
 run: all
 	./$(TARGET)
-#
+
 clean:
 	-rm $(TARGET)$(EXE)
 	-rm $(TARGET).lib $(TARGET).pdb
 	-rm $(MY_OBJS)
 cleanother:
-	-rm -fr $(OTHER_OBJ_DIR)
+	-rm -fr $(UTILS_OBJ_DIR)
 cleanobjs: clean cleanother
 	-rm $(LIB_CIMGUI_ARCHIVE)
-	-rm -fr $(CIMGUI_BUILD_DIR)
+	-rm -fr $(DCIMGUI_BUILD_DIR)
 cleanall: cleanobjs
 	-rm -fr $(BUILD_DIR)
+	-rm -fr $(DCIMGUI_BUILD_DIR)
 #
 include ../gen.mk

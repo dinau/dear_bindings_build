@@ -2,9 +2,9 @@ const std = @import ("std");
 const builtin = @import ("builtin");
 
 pub const ig = @cImport ({
-  @cInclude ("cimgui.h");
-  @cInclude ("cimgui_impl_sdl2.h");
-  @cInclude ("cimgui_impl_opengl3.h");
+  @cInclude ("dcimgui.h");
+  @cInclude ("dcimgui_impl_sdl2.h");
+  @cInclude ("dcimgui_impl_opengl3.h");
   @cInclude ("SDL.h");
   @cInclude ("SDL_opengl.h");
 });
@@ -114,6 +114,13 @@ pub fn main () !void {
       if ((event.type == ig.SDL_WINDOWEVENT) and (event.window.event == ig.SDL_WINDOWEVENT_CLOSE) and (event.window.windowID == ig.SDL_GetWindowID(window)))
         done = true;
     }
+
+    // Iconify sleep
+    if (0 != (ig.SDL_GetWindowFlags(window) & ig.SDL_WINDOW_MINIMIZED)){
+      ig.SDL_Delay(10);
+      continue;
+    }
+
     // Start the Dear ImGui frame
     ig.cImGui_ImplOpenGL3_NewFrame();
     ig.cImGui_ImplSDL2_NewFrame();

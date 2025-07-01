@@ -3,9 +3,9 @@ const builtin = @import ("builtin");
 
 pub const ig = @cImport ({
   @cInclude ("GLFW/glfw3.h");
-  @cInclude ("cimgui.h");
-  @cInclude ("cimgui_impl_glfw.h");
-  @cInclude ("cimgui_impl_opengl3.h");
+  @cInclude ("dcimgui.h");
+  @cInclude ("dcimgui_impl_glfw.h");
+  @cInclude ("dcimgui_impl_opengl3.h");
   @cInclude ("loadImage.h");
   @cInclude ("saveImage.h");
 });
@@ -162,6 +162,13 @@ pub fn main () !void {
   //---------------
   while (ig.glfwWindowShouldClose (window) == 0) {
     ig.glfwPollEvents ();
+
+    // Iconify sleep
+    if( 0 != ig.glfwGetWindowAttrib(window, ig.GLFW_ICONIFIED)){
+        ig.cImGui_ImplGlfw_Sleep(10);
+        continue;
+    }
+
     // Start the Dear ImGui frame
     ig.cImGui_ImplOpenGL3_NewFrame ();
     ig.cImGui_ImplGlfw_NewFrame ();
@@ -208,8 +215,8 @@ pub fn main () !void {
 
       // Image save button
       const imageExt = ImgFormatTbl[cbItemIndex].ext;
-      var svNameBuf:[std.fs.MAX_PATH_BYTES]u8 = undefined;
-      var     svBuf:[std.fs.MAX_PATH_BYTES]u8 = undefined;
+      var svNameBuf:[2048]u8 = undefined;
+      var     svBuf:[2048]u8 = undefined;
       const slsName = try std.fmt.bufPrint(&svNameBuf, "{s}_{d}{s}", .{SaveImageName, counter, imageExt});
       if (ig.ImGui_Button("Save Image")) {
         const wkSize = ig.ImGui_GetMainViewport().*.WorkSize;
@@ -277,14 +284,11 @@ pub fn main () !void {
       ig.ImGui_SetNextWindowSize(size, ig.ImGuiCond_Always);
 
       const shortVersion = true;
+      const texRef = ig.ImTextureRef{._TexData = null, ._TexID = textureId};
       if (shortVersion) {
-        ig.ImGui_Image(@ptrFromInt(textureId), size);
+        ig.ImGui_Image(texRef, size);
       } else { // Long version
-        const uv0        = ig.ImVec2 {.x = 0, .y = 0};
-        const uv1        = ig.ImVec2 {.x = 1, .y = 1};
-        const tint_col   = ig.ImVec4 {.x = 1, .y = 1, .z = 1, .w = 1};
-        const border_col = ig.ImVec4 {.x = 0, .y = 0, .z = 0, .w = 0};
-        ig.ImGui_ImageEx(@ptrFromInt(textureId), size, uv0, uv1, tint_col, border_col);
+        ig.ImGui_ImageEx(texRef, size, ig.ImVec2 {.x = 0, .y = 0}, ig.ImVec2 {.x = 1, .y = 1});
       }
     }
 

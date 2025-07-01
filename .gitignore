@@ -1,3 +1,8 @@
+
+GPATH
+GRTAGS
+GTAGS
+
 ImageSaved*
 zig-out/
 .zig-out/
@@ -39,7 +44,7 @@ libs/glfw/glfw-3.3.9.bin.WIN64/*.md
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
+#*.dll
 
 # Fortran module files
 *.mod
@@ -48,8 +53,8 @@ libs/glfw/glfw-3.3.9.bin.WIN64/*.md
 # Compiled Static libraries
 *.lai
 *.la
-*.a
-*.lib
+#*.a
+#*.lib
 
 # Executables
 *.exe

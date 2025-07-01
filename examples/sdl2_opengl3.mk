@@ -1,15 +1,10 @@
-SDL2_VER = 2.30.3
-#
-ifeq ($(ARC),32)
-	ARC = i686
-else
-  ARC = x86_64
-endif
-SDL2_DIR = $(LIB_DIR)/sdl/SDL2-$(SDL2_VER)/$(ARC)-w64-mingw32
+SDL2_DIR = ../../libs/sdl/SDL2/x86_64-w64-mingw32
 
 # Add backend driver in imgui
 BACKEND_SRCS_CPP += imgui_impl_opengl3.cpp
 BACKEND_SRCS_CPP += imgui_impl_sdl2.cpp
+BACKEND_SRCS_CPP += dcimgui_impl_opengl3.cpp
+BACKEND_SRCS_CPP += dcimgui_impl_sdl2.cpp
 
 #
 CFLAGS += -DCIMGUI_USE_SDL2
@@ -18,6 +13,7 @@ LIBS   += -L.
 
 # SDL2 settings
 #CFLAGS += $(shell pkg-config --cflags sdl2)
+CFLAGS += -I$(SDL2_DIR)/include
 CFLAGS += -I$(SDL2_DIR)/include/SDL2
 LIBS   += -L$(SDL2_DIR)/lib
 

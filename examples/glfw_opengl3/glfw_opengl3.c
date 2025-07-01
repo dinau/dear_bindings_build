@@ -1,10 +1,9 @@
 #include <stdio.h>
 
-#include "cimgui.h"
 #include <GLFW/glfw3.h>
-
-#include "cimgui_impl_glfw.h"
-#include "cimgui_impl_opengl3.h"
+#include "dcimgui.h"
+#include "dcimgui_impl_glfw.h"
+#include "dcimgui_impl_opengl3.h"
 
 #include "setupFonts.h"
 
@@ -20,12 +19,14 @@ int main(int argc, char *argv[]) {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
+  glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+
   const char *glsl_version = "#version 130";
 
   // just an extra window hint for resize
   glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
-  window = glfwCreateWindow(1024, 800, "ImGui window", NULL, NULL);
+  window = glfwCreateWindow(1024, 900, "ImGui window", NULL, NULL);
   if (!window) {
     printf("Failed to create window! Terminating!\n");
     glfwTerminate();
@@ -66,6 +67,8 @@ int main(int argc, char *argv[]) {
   ImGui_StyleColorsClassic(NULL);
 
   setupFonts();
+
+  int showWindowDelay = 2;
 
   // main event loop
   // bool quit = false;
@@ -139,6 +142,10 @@ int main(int argc, char *argv[]) {
     }
 #endif
     glfwSwapBuffers(window);
+
+    if (showWindowDelay > 0) showWindowDelay--;
+    if (showWindowDelay == 0) glfwShowWindow(window);
+
   }
 
   // clean up

@@ -2,9 +2,9 @@ const std = @import ("std");
 const builtin = @import ("builtin");
 
 pub const ig = @cImport ({
-  @cInclude ("cimgui.h");
-  @cInclude ("cimgui_impl_sdl3.h");
-  @cInclude ("cimgui_impl_opengl3.h");
+  @cInclude ("dcimgui.h");
+  @cInclude ("dcimgui_impl_sdl3.h");
+  @cInclude ("dcimgui_impl_opengl3.h");
   @cInclude ("SDL3/SDL.h");
   @cInclude ("SDL3/SDL_opengl.h");
   @cInclude ("SDL3/SDL_mouse.h");
@@ -31,7 +31,7 @@ pub fn main () !void {
   const stdout = bw.writer();
 
   // Setup SDL
-  if (ig.SDL_Init(ig.SDL_INIT_VIDEO | ig.SDL_INIT_TIMER | ig.SDL_INIT_GAMEPAD) != 0) {
+  if (!ig.SDL_Init(ig.SDL_INIT_VIDEO | ig.SDL_INIT_GAMEPAD)) {
     try stdout.print("Error: {s}\n", .{ig.SDL_GetError()});
     return error.SDL_init;
   }
@@ -46,7 +46,7 @@ pub fn main () !void {
   _ = ig.SDL_GL_SetAttribute(ig.SDL_GL_CONTEXT_MAJOR_VERSION, 3);
   _ = ig.SDL_GL_SetAttribute(ig.SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
-  _ = ig.SDL_SetHint(ig.SDL_HINT_IME_SHOW_UI, "1");
+  //_ = ig.SDL_SetHint(ig.SDL_HINT_IME_SHOW_UI, "1");
 
   // Create window with graphics context
   _ = ig.SDL_GL_SetAttribute(ig.SDL_GL_DOUBLEBUFFER, 1);
@@ -62,7 +62,7 @@ pub fn main () !void {
 
   _ = ig.SDL_SetWindowPosition(window, ig.SDL_WINDOWPOS_CENTERED, ig.SDL_WINDOWPOS_CENTERED);
   const gl_context = ig.SDL_GL_CreateContext(window);
-  defer _ = ig.SDL_GL_DeleteContext(gl_context);
+  defer _ = ig.SDL_GL_DestroyContext(gl_context);
 
   _= ig.SDL_GL_MakeCurrent(window, gl_context);
   _= ig.SDL_GL_SetSwapInterval(1);  // Enable vsync
@@ -111,13 +111,20 @@ pub fn main () !void {
   var done = false;
   while (!done) {
     var event: ig.SDL_Event = undefined;
-    while (1 == ig.SDL_PollEvent(&event)) {
+    while (ig.SDL_PollEvent(&event)) {
       _ = ig.cImGui_ImplSDL3_ProcessEvent(&event);
       if (event.type == ig.SDL_EVENT_QUIT)
         done = true;
       if ((event.type == ig.SDL_EVENT_WINDOW_CLOSE_REQUESTED) and (event.window.windowID == ig.SDL_GetWindowID(window)))
         done = true;
     }
+
+    // Iconify sleep
+    if (0 != (ig.SDL_GetWindowFlags(window) & ig.SDL_WINDOW_MINIMIZED)){
+      ig.SDL_Delay(10);
+      continue;
+    }
+
     // Start the Dear ImGui frame
     ig.cImGui_ImplOpenGL3_NewFrame();
     ig.cImGui_ImplSDL3_NewFrame();

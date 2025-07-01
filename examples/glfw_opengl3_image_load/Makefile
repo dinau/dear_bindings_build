@@ -1,6 +1,6 @@
 STATIC_GLFW = true
 
-HIDE_CONSOLE_WINDOW = false
+HIDE_CONSOLE_WINDOW = true
 
 include ../arc.mk
 include ../glfw_opengl3.mk

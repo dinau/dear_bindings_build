@@ -2,9 +2,9 @@
 #include <stdint.h>
 #include <GLFW/glfw3.h>
 
-#include "cimgui.h"
-#include "cimgui_impl_glfw.h"
-#include "cimgui_impl_opengl3.h"
+#include "dcimgui.h"
+#include "dcimgui_impl_glfw.h"
+#include "dcimgui_impl_opengl3.h"
 
 #include "setupFonts.h"
 #include "loadImage.h"
@@ -24,12 +24,14 @@ int main(int argc, char *argv[]) {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
+  glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+
   const char *glsl_version = "#version 130";
 
   // just an extra window hint for resize
   glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
-  window = glfwCreateWindow(1024, 800, "ImGui window", NULL, NULL);
+  window = glfwCreateWindow(1024, 900, "ImGui window", NULL, NULL);
   if (!window) {
     printf("Failed to create window! Terminating!\n");
     glfwTerminate();
@@ -81,6 +83,8 @@ int main(int argc, char *argv[]) {
   int textureWidth = 0;
   int textureHeight = 0;
   LoadTextureFromFile(ImageName, &textureId, &textureWidth, &textureHeight);
+
+  int showWindowDelay = 2;
 
   // main event loop
   // bool quit = false;
@@ -141,13 +145,9 @@ int main(int argc, char *argv[]) {
     //# Show image load window
     if (ImGui_Begin("Image load test", NULL, 0)) {
       //# Load image
-        ImVec2 size = {.x = (float)textureWidth, .y = (float)textureHeight},
-                uv0 = {.x = 0, .y = 0},
-                uv1 = {.x = 1, .y = 1};
-        ImVec4 tint_col   = {.x = 1, .y = 1, .z = 1, .w = 1},
-               border_col = {.x = 0, .y = 0, .z = 0, .w = 0};
+      ImVec2 size = {.x = (float)textureWidth, .y = (float)textureHeight};
       ImGui_SetNextWindowSize(size, ImGuiCond_Always);
-      ImGui_ImageEx((void*)textureId, size, uv0, uv1, tint_col, border_col);
+      ImGui_ImageEx((ImTextureRef){._TexData = NULL, ._TexID = textureId} ,size ,(ImVec2){.x = 0, .y = 0} ,(ImVec2){.x = 1, .y = 1});
       ImGui_End();
     }
 
@@ -167,6 +167,10 @@ int main(int argc, char *argv[]) {
     }
 #endif
     glfwSwapBuffers(window);
+
+    if (showWindowDelay > 0) showWindowDelay--;
+    if (showWindowDelay == 0) glfwShowWindow(window);
+
   }
 
   // clean up

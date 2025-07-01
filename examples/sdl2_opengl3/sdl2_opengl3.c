@@ -12,9 +12,9 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 
-#include "cimgui.h"
-#include "cimgui_impl_sdl2.h"
-#include "cimgui_impl_opengl3.h"
+#include "dcimgui.h"
+#include "dcimgui_impl_sdl2.h"
+#include "dcimgui_impl_opengl3.h"
 
 #include "setupFonts.h"
 
@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
   SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
   SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-  SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI /*| SDL_WINDOW_HIDDEN */);
+  SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_HIDDEN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI /*| SDL_WINDOW_HIDDEN */);
   SDL_Window* window = SDL_CreateWindow("Dear ImGui SDL2+OpenGL3 example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, MainWinWidth, MainWinHeight, window_flags);
   if (window == nullptr) {
     printf("Error: SDL_CreateWindow(): %s\n", SDL_GetError());
@@ -85,6 +85,8 @@ int main(int argc, char *argv[]) {
   }
 
   setupFonts();
+
+  int showWindowDelay = 2;
 
   // Main loop
   bool done = false;
@@ -161,6 +163,10 @@ int main(int argc, char *argv[]) {
     glClear(GL_COLOR_BUFFER_BIT);
     cImGui_ImplOpenGL3_RenderDrawData(ImGui_GetDrawData());
     SDL_GL_SwapWindow(window);
+
+    if(showWindowDelay >= 0) showWindowDelay -= 1;
+    if(showWindowDelay == 0) SDL_ShowWindow(window); // Visible main window here at start up
+
   } // while end
 
   // Cleanup

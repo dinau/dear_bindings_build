@@ -2,9 +2,9 @@ const std = @import ("std");
 
 pub const ig = @cImport ({
   @cInclude ("GLFW/glfw3.h");
-  @cInclude ("cimgui.h");
-  @cInclude ("cimgui_impl_glfw.h");
-  @cInclude ("cimgui_impl_opengl3.h");
+  @cInclude ("dcimgui.h");
+  @cInclude ("dcimgui_impl_glfw.h");
+  @cInclude ("dcimgui_impl_opengl3.h");
 });
 pub const c = @cImport ({
   @cInclude ("setupFonts.h");
@@ -123,6 +123,13 @@ pub fn main () !void {
   //---------------
   while (ig.glfwWindowShouldClose (window) == 0) {
     ig.glfwPollEvents ();
+
+    // Iconify sleep
+    if( 0 != ig.glfwGetWindowAttrib(window, ig.GLFW_ICONIFIED)){
+        ig.cImGui_ImplGlfw_Sleep(10);
+        continue;
+    }
+
     // Start the Dear ImGui frame
     ig.cImGui_ImplOpenGL3_NewFrame ();
     ig.cImGui_ImplGlfw_NewFrame ();

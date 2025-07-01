@@ -1,6 +1,6 @@
 # true:  Static link, use libSDL3.a
 # false: Dynamic link, use SDL3.dll
-STATIC_SDL3 = false
+STATIC_SDL3 = true
 include ../arc.mk
 include ../sdl3_opengl3.mk
 

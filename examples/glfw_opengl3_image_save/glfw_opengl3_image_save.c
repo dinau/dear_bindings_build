@@ -1,9 +1,9 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 
-#include "cimgui.h"
-#include "cimgui_impl_glfw.h"
-#include "cimgui_impl_opengl3.h"
+#include "dcimgui.h"
+#include "dcimgui_impl_glfw.h"
+#include "dcimgui_impl_opengl3.h"
 
 #include "setupFonts.h"
 
@@ -52,12 +52,14 @@ int main(int argc, char *argv[]) {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
+  glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+
   const char *glsl_version = "#version 130";
 
   // just an extra window hint for resize
   glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
-  window = glfwCreateWindow(1024, 800, "ImGui window", NULL, NULL);
+  window = glfwCreateWindow(1024, 900, "ImGui window", NULL, NULL);
   if (!window) {
     printf("Failed to create window! Terminating!\n");
     glfwTerminate();
@@ -99,6 +101,7 @@ int main(int argc, char *argv[]) {
 
   setupFonts();
 
+  int showWindowDelay = 2;
   // main event loop
   // bool quit = false;
   while (!glfwWindowShouldClose(window)) {
@@ -114,7 +117,7 @@ int main(int argc, char *argv[]) {
       static float fVal = 0.0f;
       static int counter = 0;
       char svName[1024];
-      char sTooltipBuf[1024];
+      char sTooltipBuf[1024 * 2];
       if (ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)) {
         ImGui_Text(ICON_FA_COMMENT" " "GLFW v"); ImGui_SameLine();
         ImGui_Text("%s" , glfwGetVersionString());
@@ -214,6 +217,10 @@ int main(int argc, char *argv[]) {
     }
 #endif
     glfwSwapBuffers(window);
+
+    if (showWindowDelay > 0) showWindowDelay--;
+    if (showWindowDelay == 0) glfwShowWindow(window);
+
   }
 
   // clean up

@@ -1,6 +1,3 @@
-# Use zig-0.12.0
-# by dinau (2024/06)
-#
 TARGET = $(notdir $(CURDIR))
 #
 OPT += --release=fast
@@ -9,6 +6,7 @@ OPT += --release=fast
 #OPT += --release=safe
 
 all:
+	zig version
 	zig build $(OPT)
 	-strip zig-out/bin/$(TARGET).exe
 
@@ -19,7 +17,7 @@ run: all
 
 cleanall:
 	-rm -fr zig-out
-	-rm -fr zig-cache
+	-rm -fr zig-cache .zig-cache
 
 clean:
 	-rm -fr zig-out

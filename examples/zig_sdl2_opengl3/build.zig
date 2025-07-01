@@ -3,19 +3,9 @@
 const std = @import("std");
 const builtin = @import("builtin");
 
-// Although this function looks imperative, note that its job is to
-// declaratively construct a build graph that will be executed by an external
-// runner.
 pub fn build(b: *std.Build) void {
-    // Standard target options allows the person running `zig build` to choose
-    // what target to build for. Here we do not override the defaults, which
-    // means any target is allowed, and the default is native. Other options
-    // for restricting supported target set are available.
     const target = b.standardTargetOptions(.{});
 
-    // Standard optimization options allow the person running `zig build` to select
-    // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall. Here we do not
-    // set a preferred release mode, allowing the user to decide how to optimize.
     const optimize = b.standardOptimizeOption(.{});
 
 //    const lib = b.addStaticLibrary(.{
@@ -42,7 +32,7 @@ pub fn build(b: *std.Build) void {
     // Detect 32bit or 64bit Winddws OS
     //----------------------------------
     var sBuf: [2048]u8 = undefined;
-    const sdl2_Base = "../../libs/sdl/SDL2-2.30.3";
+    const sdl2_Base = "../../libs/sdl/SDL2";
     var sArc:[]const u8 = "x86_64";
     if(builtin.cpu.arch == std.Target.Cpu.Arch.x86){
       sArc = "i686";
@@ -56,7 +46,8 @@ pub fn build(b: *std.Build) void {
     exe.addIncludePath(b.path("src"));
     exe.addIncludePath(b.path("../utils"));
     exe.addIncludePath(b.path("../utils/fonticon"));
-    exe.addIncludePath(b.path("../libs/cimgui"));
+    exe.addIncludePath(b.path("../../libs/dcimgui"));
+    exe.addIncludePath(b.path("../../libs/dcimgui/backends"));
     exe.addIncludePath(b.path("../../libs/imgui"));
     exe.addIncludePath(b.path("../../libs/stb"));
     exe.addIncludePath(b.path("../../libs/imgui/backends"));
@@ -78,13 +69,13 @@ pub fn build(b: *std.Build) void {
         "../../libs/imgui/imgui_widgets.cpp",
         "../../libs/imgui/imgui_draw.cpp",
         // CImGui main
-        "../libs/cimgui/cimgui.cpp",
+        "../../libs/dcimgui/dcimgui.cpp",
         // ImGui sdl2 and OpenGL interface
         "../../libs/imgui/backends/imgui_impl_opengl3.cpp",
         "../../libs/imgui/backends/imgui_impl_sdl2.cpp",
         // CImGui sdl2 and OpenGL interface
-        "../libs/cimgui/cimgui_impl_sdl2.cpp",
-        "../libs/cimgui/cimgui_impl_opengl3.cpp",
+        "../../libs/dcimgui/backends/dcimgui_impl_sdl2.cpp",
+        "../../libs/dcimgui/backends/dcimgui_impl_opengl3.cpp",
         // CImGui SDL interface
         //"../libs/cimgui/cimgui_impl_sdl2.cpp",
         //"../libs/cimgui/cimgui_impl_sdl3.cpp",
@@ -134,7 +125,7 @@ pub fn build(b: *std.Build) void {
     // System
     exe.linkLibC();
     exe.linkLibCpp();
-    //exe.subsystem = .Windows;  // Hide console window
+    exe.subsystem = .Windows;  // Hide console window
 
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default

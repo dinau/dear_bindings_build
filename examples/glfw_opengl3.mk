@@ -5,6 +5,8 @@ GLFW_DIR = $(LIB_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN$(ARC)
 # Add backend driver in imgui
 BACKEND_SRCS_CPP += imgui_impl_opengl3.cpp
 BACKEND_SRCS_CPP += imgui_impl_glfw.cpp
+BACKEND_SRCS_CPP += dcimgui_impl_opengl3.cpp
+BACKEND_SRCS_CPP += dcimgui_impl_glfw.cpp
 
 #
 CFLAGS += -DCIMGUI_USE_GLFW

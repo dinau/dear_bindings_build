@@ -6,34 +6,42 @@
   - [Build and run](#build-and-run)
   - [Examples screen shots](#examples-screen-shots)
   - [Hiding console window](#hiding-console-window)
-  - [Regenarate ImGui bindings](#regenarate-imgui-bindings)
-  - [Build with Clang, Zig cc](#build-with-clang-zig-cc)
   - [SDL](#sdl)
   - [My tools version](#my-tools-version)
-  - [Similar project](#similar-project)
+- [SDL libraries](#sdl-libraries)
+  - [Similar project ImGui / CImGui](#similar-project-imgui--cimgui)
+  - [SDL game tutorial Platfromer](#sdl-game-tutorial-platfromer)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Dear_Bindings_Build
+![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_dev.yml/badge.svg)
+![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_rel.yml/badge.svg)  
+![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/linux_dev.yml/badge.svg)
+![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/linux_rel.yml/badge.svg)  
+
+### Dear_Bindings_Build
 
 This project aims to simply and easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 
-ImGui version **1.90.8** (2024/06)
+ImGui version **1.92.0** (2025/06)
 
-## Prerequisites
+#### Prerequisites
 
 ---
 
-- Windows10 OS
+- Windows10 OS or later
 - GCC (or Clang or **'Zig cc'** compiler)
-- Use **Zig: 0.12.0** (zig cc: clang version 17.0.6)
-- **Zig 0.13.0 ?** (Compiling is ok so far)
-- Pyhton3
+- Use **Zig: 0.14.1** 
 - MSys/MinGW basic commands (make, rm, cp ...)
 
-## Build and run
+#### Build and run
 
 ---
+
+|    OS   |        State       |
+|:-------:|:------------------:|
+| Windows |         OK         |
+|  Linux  | Work in progress ? |
 
 1. Download this project.
 
@@ -52,7 +60,7 @@ ImGui version **1.90.8** (2024/06)
    make run                
    ```
 
-## Examples screen shots 
+#### Examples screen shots 
 
 ---
 
@@ -96,7 +104,7 @@ ImGui version **1.90.8** (2024/06)
 Image file captured would be saved in current folder.  
 Image can be saved as `JPEG / PNG / BMP / TGA` file.
 
-## Hiding console window
+#### Hiding console window
 
 ---
 
@@ -123,73 +131,55 @@ Open `Makefile` in each example folder and **change** option as follows,
 
   and execute `make`.
 
-
-## Regenarate ImGui bindings
-
----
-
-For instance,
-
-```sh
-pwd 
-glfw_opengl3
-make cleanall
-make gen
-make run
-```
-
-Note: Except Zig lang. examples.
-
-Artifacts are generated into `../libs/cimgui` folder.
-
-## Build with Clang, Zig cc 
+#### SDL
 
 ---
 
-For instance,
+https://github.com/libsdl-org/SDL
 
-```sh 
-pwd 
-glfw_opengl3
-make cleanobjs   
-make TC=clang    # or TC=zigcc
-```
-
-Compiling with `TC=zigcc` may link dynamic library at this time. 
-
-Note: Except Zig lang. examples.
-
-
-## SDL
+#### My tools version
 
 ---
 
-- SDL3  Build-SDL3  
-https://github.com/mmozeiko/build-sdl3/releases  
-https://github.com/mmozeiko/build-sdl3
-- SDL3 Build-SDL3-Win32  
-https://github.com/JBetz/build-sdl3-win32/releases  
-https://github.com/JBetz/build-sdl3-win32
+- gcc.exe (Rev2, Built by MSYS2 project) 15.1.0
+- make: GNU Make 4.4.1
+- Python 3.12.6
+- zig: 0.14.1
 
-## My tools version
+### SDL libraries
 
 ---
 
-- clang version 18.1.6
-- gcc.exe (Rev2, Built by MSYS2 project) 13.2.0
-- git version 2.41.0.windows.3
-- make: GNU Make 4.3
-- Python 3.12.3
-- zig: 0.12.0 (zig cc: clang version 17.0.6)
-- SDL2 ver.2.30.3
-- SDL3 2024-06-02
+https://github.com/libsdl-org/SDL/releases
 
-## Similar project
+#### Similar project ImGui / CImGui
 
 ---
 
-| Language             | Project                                                                                                                                         |
-| -------------------: | :----------------------------------------------------------------:                                                                              |
-| **Nim**              | [Imguin](https://github.com/dinau/imguin), [Nimgl_test](https://github.com/dinau/nimgl_test), [Nim_implot](https://github.com/dinau/nim_implot) |
-| **Lua**              | [LuaJITImGui](https://github.com/dinau/luajitimgui)                                                                                             |
-| **Python**           | [DearPyGui for 32bit WindowsOS Binary](https://github.com/dinau/DearPyGui32/tree/win32)                                                         |
+| Language [^order]    |          | Project                                                                                                                                         |
+| -------------------: | :---:    | :----------------------------------------------------------------:                                                                              |
+| **Lua**              | Script   | [LuaJITImGui](https://github.com/dinau/luajitImGui)                                                                                             |
+| **NeLua**            | Compiler | [NeLuaImGui](https://github.com/dinau/neluaImGui)                                                                                               |
+| **Nim**              | Compiler | [ImGuin](https://github.com/dinau/imguin), [Nimgl_test](https://github.com/dinau/nimgl_test), [Nim_implot](https://github.com/dinau/nim_implot) |
+| **Python**           | Script   | [DearPyGui for 32bit WindowsOS Binary](https://github.com/dinau/DearPyGui32/tree/win32)                                                         |
+| **Ruby**             | Script   | [igRuby_Examples](https://github.com/dinau/igruby_examples)                                                                                     |
+| **Zig**, C lang.     | Compiler | [Dear_Bindings_Build](https://github.com/dinau/dear_bindings_build)                                                                             |
+| **Zig**              | Compiler | [ImGuinZ](https://github.com/dinau/imguinz)                                                                                                     |
+
+
+#### SDL game tutorial Platfromer
+
+---
+
+![ald](https://github.com/dinau/nelua-platformer/raw/main/img/platformer-nelua-sdl2.gif)
+
+
+| Language    [^order] |          | SDL         | Project                                                                                                                                               |
+| -------------------: | :---:    | :---:       | :----------------------------------------------------------------:                                                                                    |
+| **LuaJIT**           | Script   | SDL2        | [LuaJIT-Platformer](https://github.com/dinau/luajit-platformer)
+| **Nelua**            | Compiler | SDL2        | [NeLua-Platformer](https://github.com/dinau/nelua-platformer)
+| **Nim**              | Compiler | SDL3 / SDL2 | [Nim-Platformer-sdl2](https://github.com/def-/nim-platformer)/ [Nim-Platformer-sdl3](https://github.com/dinau/sdl3_nim/tree/main/examples/platformer) |
+| **Ruby**             | Script   | SDL3        | [Ruby-Platformer](https://github.com/dinau/ruby-platformer)                                                                                           |
+| **Zig**              | Compiler | SDL2        | [Zig-Platformer](https://github.com/dinau/zig-platformer)                                                                                             |
+
+[^order]: Alphabectial order

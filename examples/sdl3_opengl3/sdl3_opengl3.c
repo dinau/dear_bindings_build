@@ -3,9 +3,9 @@
 #include <SDL3/SDL_opengl.h>
 #include <SDL3/SDL_mouse.h>
 
-#include "cimgui.h"
-#include "cimgui_impl_sdl3.h"
-#include "cimgui_impl_opengl3.h"
+#include "dcimgui.h"
+#include "dcimgui_impl_sdl3.h"
+#include "dcimgui_impl_opengl3.h"
 
 #include "setupFonts.h"
 
@@ -18,7 +18,7 @@ const int MainWinHeight = 800;
 int main(int argc, char *argv[]) {
   (void)argc; (void) argv;
   // Setup SDL
-  if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMEPAD) != 0) {
+  if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMEPAD)) {
     printf("Error: SDL_Init(): %s\n", SDL_GetError());
     return -1;
   }
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
-  SDL_SetHint(SDL_HINT_IME_SHOW_UI, "1");
+  //SDL_SetHint(SDL_HINT_IME_SHOW_UI, "1");
 
   // Create window with graphics context
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -46,7 +46,6 @@ int main(int argc, char *argv[]) {
   SDL_GLContext gl_context = SDL_GL_CreateContext(window);
   SDL_GL_MakeCurrent(window, gl_context);
   SDL_GL_SetSwapInterval(1);  // Enable vsync
-  SDL_ShowWindow(window);
 
   // Setup Dear ImGui context
   // IMGUI_CHECKVERSION();
@@ -74,6 +73,8 @@ int main(int argc, char *argv[]) {
   }
 
   setupFonts();
+
+  int showWindowDelay = 2;
 
   // Main loop
   bool done = false;
@@ -148,6 +149,11 @@ int main(int argc, char *argv[]) {
     glClear(GL_COLOR_BUFFER_BIT);
     cImGui_ImplOpenGL3_RenderDrawData(ImGui_GetDrawData());
     SDL_GL_SwapWindow(window);
+
+
+    if(showWindowDelay >= 0) showWindowDelay -= 1;
+    if(showWindowDelay == 0) SDL_ShowWindow(window); // Visible main window here at start up
+                                                     //
   } // while end
 
   // Cleanup
