@@ -1,3 +1,0 @@
-[submodule "libs/dear_bindings"]
-	path = libs/dear_bindings
-	url = https://github.com/dearimgui/dear_bindings

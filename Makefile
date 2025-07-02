@@ -18,9 +18,6 @@ EXAMPLE_DIRS_C := \
 	            examples/glfw_opengl3_jp \
 	            examples/sdl2_opengl3
 
-#EXAMPLE_DIRS_C += \
-#	            examples/sdl3_opengl3
-
 all:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
 
@@ -32,8 +29,19 @@ test:
 clean:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),cleanall ))
 
+
+DB_DIR = ../dear_bindings
+DCIMGUI_DIR = libs/dcimgui
+
 gen:
-	$(foreach exdir,$(EXAMPLE_DIRS_C), $(call def_make,$(exdir),$@ ))
+	@(cd $(DB_DIR); sh BuildAllBindings.sh)
+	@rm -fr  $(DCIMGUI_DIR)
+	@mkdir -p $(DCIMGUI_DIR)
+	@cp -fr $(DB_DIR)/generated/* $(DCIMGUI_DIR)/
+	@echo
+	@echo =====================================
+	@echo OK: genereated: "$(DCIMGUI_DIR)/*"
+	@echo =====================================
 
 
 #

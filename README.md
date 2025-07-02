@@ -25,28 +25,34 @@ This project aims to simply and easily build ImGui examples with **C language** 
 
 ImGui version **1.92.0** (2025/06)
 
+#### Features
+
+---
+
+- [x] No dependence on external zig libraries
+- [x] No download external libraries
+- [x] Included ImGui / GLFW / SDL2 / SDL3 / STB_image libraries in this project
+- [x] Using IconFont [FontAwewsome 6](https://fontawesome.com)
+- [x] Image load/save
+
 #### Prerequisites
 
 ---
 
 - Windows10 OS or later
+- ~~Linux OS~~ WIP
 - GCC (or Clang or **'Zig cc'** compiler)
-- Use **Zig: 0.14.1** 
+- Use **Zig: 0.14.1** or **0.15.0-dev**
 - MSys/MinGW basic commands (make, rm, cp ...)
 
 #### Build and run
 
 ---
 
-|    OS   |        State       |
-|:-------:|:------------------:|
-| Windows |         OK         |
-|  Linux  | Work in progress ? |
-
 1. Download this project.
 
    ```sh
-   git clone --recurse-submodules https://github.com/dinau/dear_bindings_build
+   git clone https://github.com/dinau/dear_bindings_build
    ```
 1. Go to one of the examples folder,
 

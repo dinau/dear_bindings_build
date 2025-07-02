@@ -113,7 +113,7 @@ pub fn main () !void {
   const pio = ig.ImGui_GetIO ();
   pio.*.ConfigFlags |= ig.ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
   //pio.*.ConfigFlags |= ig.ImGuiConfigFlags_NavEnableGamepad;    // Enable Gamepad Controls
-  // Setup doncking feature --- can't compile well at this moment.
+  // Setup docking feature --- can't compile well at this moment.
   if (IMGUI_HAS_DOCK) {
     pio.*.ConfigFlags |= ig.ImGuiConfigFlags_DockingEnable;       // Enable Docking
     pio.*.ConfigFlags |= ig.ImGuiConfigFlags_ViewportsEnable;     // Enable Multi-Viewport / Platform Windows
@@ -304,7 +304,7 @@ pub fn main () !void {
     ig.cImGui_ImplOpenGL3_RenderDrawData(ig.ImGui_GetDrawData());
     // Docking featrue --- N/A
     if (IMGUI_HAS_DOCK){
-      if (pio.*.ConfigFlags & ig.ImGuiConfigFlags_ViewPortsEnable) {
+      if (0 != (pio.*.ConfigFlags & ig.ImGuiConfigFlags_ViewPortsEnable)) {
         const backup_current_window = ig.glfwGetCurrentContext();
         ig.ImGui_UpdatePlatformWindows();
         ig.ImGui_RenderPlatformWindowsDefault();
