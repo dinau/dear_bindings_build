@@ -23,6 +23,8 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_rel.yml/badge.svg)  
+
 ### Dear_Bindings_Build
 
 This project aims to simply and easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
