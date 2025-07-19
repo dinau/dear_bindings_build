@@ -1,7 +1,7 @@
 GLFW_VER = 3.3.9
 #
 LIBS_DIR = ../../libs
-GLFW_DIR = $(LIB_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN64
+GLFW_DIR = $(LIBS_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN64
 
 # Add backend driver in imgui
 BACKEND_SRCS_CPP += imgui_impl_opengl3.cpp
