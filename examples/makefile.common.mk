@@ -106,7 +106,9 @@ DEPS_PROJ   = $(wildcard *.h)
 
 # Hide console winodw
 ifeq ($(HIDE_CONSOLE_WINDOW),true)
-	LDFLAGS += -mwindows
+	ifeq ($(OS),Windows_NT)
+		LDFLAGS += -mwindows
+	endif
 endif
 
 CXXFLAGS += $(CFLAGS)
