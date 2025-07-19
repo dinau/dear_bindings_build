@@ -21,4 +21,4 @@ jobs:
         version: 0.14.1
 
     - name: make
-      run: make
+      run: make V=1
