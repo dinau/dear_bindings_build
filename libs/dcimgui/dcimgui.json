@@ -2,7 +2,7 @@
     "defines": [
         {
             "name": "IMGUI_VERSION",
-            "content": "\"1.92.0\"",
+            "content": "\"1.92.1\"",
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
@@ -11,7 +11,7 @@
         },
         {
             "name": "IMGUI_VERSION_NUM",
-            "content": "19200",
+            "content": "19210",
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
@@ -477,7 +477,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3657
+                "line": 3659
             }
         }
     ],
@@ -6472,7 +6472,7 @@
                     "value": 16,
                     "is_count": false,
                     "comments": {
-                        "attached": "// Backend Renderer supports ImTextureData requests to create/update/destroy textures. This enables incremental texture updates and texture reloads."
+                        "attached": "// Backend Renderer supports ImTextureData requests to create/update/destroy textures. This enables incremental texture updates and texture reloads. See https://github.com/ocornut/imgui/blob/master/docs/BACKENDS.md for instructions on how to upgrade your custom backend."
                     },
                     "is_internal": false,
                     "source_location": {
@@ -10707,7 +10707,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3512
+                        "line": 3514
                     }
                 },
                 {
@@ -10720,20 +10720,19 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3513
+                        "line": 3515
                     }
                 }
             ],
             "comments": {
                 "preceding": [
-                    "// We intentionally support a limited amount of texture formats to limit burden on CPU-side code and extension.",
                     "// Most standard backends only support RGBA32 but we provide a single channel option for low-resource/embedded systems."
                 ]
             },
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3510
+                "line": 3512
             }
         },
         {
@@ -10748,7 +10747,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3519
+                        "line": 3521
                     }
                 },
                 {
@@ -10761,7 +10760,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3520
+                        "line": 3522
                     }
                 },
                 {
@@ -10774,7 +10773,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3521
+                        "line": 3523
                     }
                 },
                 {
@@ -10787,7 +10786,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3522
+                        "line": 3524
                     }
                 },
                 {
@@ -10800,7 +10799,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3523
+                        "line": 3525
                     }
                 }
             ],
@@ -10812,7 +10811,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3517
+                "line": 3519
             }
         },
         {
@@ -10828,7 +10827,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3674
+                        "line": 3676
                     }
                 },
                 {
@@ -10842,7 +10841,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3675
+                        "line": 3677
                     }
                 },
                 {
@@ -10856,7 +10855,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3676
+                        "line": 3678
                     }
                 },
                 {
@@ -10870,7 +10869,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3677
+                        "line": 3679
                     }
                 }
             ],
@@ -10882,7 +10881,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3672
+                "line": 3674
             }
         },
         {
@@ -10898,7 +10897,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3883
+                        "line": 3886
                     }
                 },
                 {
@@ -10912,7 +10911,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3884
+                        "line": 3887
                     }
                 },
                 {
@@ -10926,7 +10925,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3885
+                        "line": 3888
                     }
                 },
                 {
@@ -10940,7 +10939,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3886
+                        "line": 3889
                     }
                 }
             ],
@@ -10953,7 +10952,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3881
+                "line": 3884
             }
         },
         {
@@ -10969,7 +10968,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3966
+                        "line": 3969
                     }
                 },
                 {
@@ -10983,7 +10982,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3967
+                        "line": 3970
                     }
                 },
                 {
@@ -10997,7 +10996,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3968
+                        "line": 3971
                     }
                 },
                 {
@@ -11011,7 +11010,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3969
+                        "line": 3972
                     }
                 },
                 {
@@ -11025,7 +11024,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3970
+                        "line": 3973
                     }
                 },
                 {
@@ -11039,7 +11038,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3971
+                        "line": 3974
                     }
                 },
                 {
@@ -11053,7 +11052,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3972
+                        "line": 3975
                     }
                 },
                 {
@@ -11067,7 +11066,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3973
+                        "line": 3976
                     }
                 },
                 {
@@ -11081,7 +11080,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3974
+                        "line": 3977
                     }
                 },
                 {
@@ -11095,7 +11094,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3975
+                        "line": 3978
                     }
                 },
                 {
@@ -11109,7 +11108,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3976
+                        "line": 3979
                     }
                 },
                 {
@@ -11123,7 +11122,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3977
+                        "line": 3980
                     }
                 },
                 {
@@ -11137,7 +11136,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3978
+                        "line": 3981
                     }
                 },
                 {
@@ -11154,7 +11153,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3981
+                        "line": 3984
                     }
                 },
                 {
@@ -11168,7 +11167,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3982
+                        "line": 3985
                     }
                 }
             ],
@@ -11180,7 +11179,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3964
+                "line": 3967
             }
         }
     ],
@@ -22324,7 +22323,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3531
+                        "line": 3533
                     }
                 },
                 {
@@ -22344,7 +22343,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3531
+                        "line": 3533
                     }
                 },
                 {
@@ -22364,7 +22363,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3532
+                        "line": 3534
                     }
                 },
                 {
@@ -22384,7 +22383,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3532
+                        "line": 3534
                     }
                 }
             ],
@@ -22398,7 +22397,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3529
+                "line": 3531
             }
         },
         {
@@ -22429,7 +22428,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3545
+                        "line": 3547
                     }
                 },
                 {
@@ -22449,7 +22448,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3546
+                        "line": 3548
                     }
                 },
                 {
@@ -22472,7 +22471,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3547
+                        "line": 3549
                     }
                 },
                 {
@@ -22492,7 +22491,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3548
+                        "line": 3550
                     }
                 },
                 {
@@ -22512,7 +22511,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3549
+                        "line": 3551
                     }
                 },
                 {
@@ -22532,7 +22531,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3550
+                        "line": 3552
                     }
                 },
                 {
@@ -22552,7 +22551,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3551
+                        "line": 3553
                     }
                 },
                 {
@@ -22572,7 +22571,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3552
+                        "line": 3554
                     }
                 },
                 {
@@ -22595,7 +22594,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3553
+                        "line": 3555
                     }
                 },
                 {
@@ -22615,7 +22614,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3554
+                        "line": 3556
                     }
                 },
                 {
@@ -22635,7 +22634,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3555
+                        "line": 3557
                     }
                 },
                 {
@@ -22655,7 +22654,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3556
+                        "line": 3558
                     }
                 },
                 {
@@ -22675,7 +22674,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3557
+                        "line": 3559
                     }
                 },
                 {
@@ -22695,7 +22694,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3558
+                        "line": 3560
                     }
                 },
                 {
@@ -22715,7 +22714,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3559
+                        "line": 3561
                     }
                 },
                 {
@@ -22735,7 +22734,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3560
+                        "line": 3562
                     }
                 }
             ],
@@ -22753,7 +22752,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3542
+                "line": 3544
             }
         },
         {
@@ -22789,7 +22788,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3587
+                        "line": 3589
                     }
                 },
                 {
@@ -22812,7 +22811,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3588
+                        "line": 3590
                     }
                 },
                 {
@@ -22832,7 +22831,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3589
+                        "line": 3591
                     }
                 },
                 {
@@ -22852,7 +22851,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3590
+                        "line": 3592
                     }
                 },
                 {
@@ -22875,7 +22874,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3593
+                        "line": 3595
                     }
                 },
                 {
@@ -22895,7 +22894,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3594
+                        "line": 3596
                     }
                 },
                 {
@@ -22915,27 +22914,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3595
-                    }
-                },
-                {
-                    "name": "FontNo",
-                    "is_array": false,
-                    "is_anonymous": false,
-                    "type": {
-                        "declaration": "ImS8",
-                        "description": {
-                            "kind": "User",
-                            "name": "ImS8"
-                        }
-                    },
-                    "comments": {
-                        "attached": "// 0        // Index of font within TTF/OTF file"
-                    },
-                    "is_internal": false,
-                    "source_location": {
-                        "filename": "imgui.h",
-                        "line": 3596
+                        "line": 3597
                     }
                 },
                 {
@@ -22955,7 +22934,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3597
+                        "line": 3598
                     }
                 },
                 {
@@ -22975,7 +22954,27 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3598
+                        "line": 3599
+                    }
+                },
+                {
+                    "name": "EllipsisChar",
+                    "is_array": false,
+                    "is_anonymous": false,
+                    "type": {
+                        "declaration": "ImWchar",
+                        "description": {
+                            "kind": "User",
+                            "name": "ImWchar"
+                        }
+                    },
+                    "comments": {
+                        "attached": "// 0        // Explicitly specify Unicode codepoint of ellipsis character. When fonts are being merged first specified ellipsis will be used."
+                    },
+                    "is_internal": false,
+                    "source_location": {
+                        "filename": "imgui.h",
+                        "line": 3600
                     }
                 },
                 {
@@ -22995,7 +22994,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3599
+                        "line": 3601
                     }
                 },
                 {
@@ -23021,7 +23020,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3600
+                        "line": 3602
                     }
                 },
                 {
@@ -23047,7 +23046,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3601
+                        "line": 3603
                     }
                 },
                 {
@@ -23070,7 +23069,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3603
+                        "line": 3605
                     }
                 },
                 {
@@ -23090,7 +23089,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3604
+                        "line": 3606
                     }
                 },
                 {
@@ -23110,7 +23109,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3605
+                        "line": 3607
                     }
                 },
                 {
@@ -23130,7 +23129,27 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3606
+                        "line": 3608
+                    }
+                },
+                {
+                    "name": "FontNo",
+                    "is_array": false,
+                    "is_anonymous": false,
+                    "type": {
+                        "declaration": "ImU32",
+                        "description": {
+                            "kind": "User",
+                            "name": "ImU32"
+                        }
+                    },
+                    "comments": {
+                        "attached": "// 0        // Index of font within TTF/OTF file"
+                    },
+                    "is_internal": false,
+                    "source_location": {
+                        "filename": "imgui.h",
+                        "line": 3609
                     }
                 },
                 {
@@ -23150,7 +23169,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3607
+                        "line": 3610
                     }
                 },
                 {
@@ -23173,7 +23192,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3609
+                        "line": 3612
                     }
                 },
                 {
@@ -23193,27 +23212,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3610
-                    }
-                },
-                {
-                    "name": "EllipsisChar",
-                    "is_array": false,
-                    "is_anonymous": false,
-                    "type": {
-                        "declaration": "ImWchar",
-                        "description": {
-                            "kind": "User",
-                            "name": "ImWchar"
-                        }
-                    },
-                    "comments": {
-                        "attached": "// 0        // Explicitly specify Unicode codepoint of ellipsis character. When fonts are being merged first specified ellipsis will be used."
-                    },
-                    "is_internal": false,
-                    "source_location": {
-                        "filename": "imgui.h",
-                        "line": 3611
+                        "line": 3613
                     }
                 },
                 {
@@ -23236,7 +23235,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3614
+                        "line": 3616
                     }
                 },
                 {
@@ -23259,7 +23258,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3615
+                        "line": 3617
                     }
                 },
                 {
@@ -23280,12 +23279,12 @@
                         }
                     },
                     "comments": {
-                        "attached": "// Custom font backend for this source (other use one stored in ImFontAtlas)"
+                        "attached": "// Custom font backend for this source (default source is the one stored in ImFontAtlas)"
                     },
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3616
+                        "line": 3618
                     }
                 },
                 {
@@ -23308,7 +23307,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3617
+                        "line": 3619
                     }
                 }
             ],
@@ -23320,7 +23319,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3584
+                "line": 3586
             }
         },
         {
@@ -23349,7 +23348,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3626
+                        "line": 3628
                     }
                 },
                 {
@@ -23370,7 +23369,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3627
+                        "line": 3629
                     }
                 },
                 {
@@ -23391,7 +23390,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3628
+                        "line": 3630
                     }
                 },
                 {
@@ -23412,7 +23411,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3629
+                        "line": 3631
                     }
                 },
                 {
@@ -23432,7 +23431,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3630
+                        "line": 3632
                     }
                 },
                 {
@@ -23452,7 +23451,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3631
+                        "line": 3633
                     }
                 },
                 {
@@ -23472,7 +23471,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3631
+                        "line": 3633
                     }
                 },
                 {
@@ -23492,7 +23491,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3631
+                        "line": 3633
                     }
                 },
                 {
@@ -23512,7 +23511,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3631
+                        "line": 3633
                     }
                 },
                 {
@@ -23532,7 +23531,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3632
+                        "line": 3634
                     }
                 },
                 {
@@ -23552,7 +23551,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3632
+                        "line": 3634
                     }
                 },
                 {
@@ -23572,7 +23571,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3632
+                        "line": 3634
                     }
                 },
                 {
@@ -23592,7 +23591,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3632
+                        "line": 3634
                     }
                 },
                 {
@@ -23612,7 +23611,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3633
+                        "line": 3635
                     }
                 }
             ],
@@ -23625,7 +23624,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3624
+                "line": 3626
             }
         },
         {
@@ -23653,7 +23652,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3642
+                        "line": 3644
                     }
                 }
             ],
@@ -23666,7 +23665,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3640
+                "line": 3642
             }
         },
         {
@@ -23694,7 +23693,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3664
+                        "line": 3666
                     }
                 },
                 {
@@ -23714,7 +23713,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3664
+                        "line": 3666
                     }
                 },
                 {
@@ -23734,7 +23733,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3665
+                        "line": 3667
                     }
                 },
                 {
@@ -23754,7 +23753,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3665
+                        "line": 3667
                     }
                 },
                 {
@@ -23774,7 +23773,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3666
+                        "line": 3668
                     }
                 },
                 {
@@ -23794,7 +23793,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3666
+                        "line": 3668
                     }
                 }
             ],
@@ -23808,7 +23807,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3662
+                "line": 3664
             }
         },
         {
@@ -23839,7 +23838,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3787
+                        "line": 3790
                     }
                 },
                 {
@@ -23859,7 +23858,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3788
+                        "line": 3791
                     }
                 },
                 {
@@ -23879,7 +23878,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3789
+                        "line": 3792
                     }
                 },
                 {
@@ -23899,7 +23898,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3790
+                        "line": 3793
                     }
                 },
                 {
@@ -23919,7 +23918,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3791
+                        "line": 3794
                     }
                 },
                 {
@@ -23939,7 +23938,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3792
+                        "line": 3795
                     }
                 },
                 {
@@ -23959,7 +23958,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3793
+                        "line": 3796
                     }
                 },
                 {
@@ -23982,7 +23981,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3794
+                        "line": 3797
                     }
                 },
                 {
@@ -24008,7 +24007,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3800
+                        "line": 3803
                     }
                 },
                 {
@@ -24044,7 +24043,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3804
+                        "line": 3807
                     }
                 },
                 {
@@ -24067,7 +24066,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3807
+                        "line": 3810
                     }
                 },
                 {
@@ -24087,7 +24086,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3808
+                        "line": 3811
                     }
                 },
                 {
@@ -24107,7 +24106,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3809
+                        "line": 3812
                     }
                 },
                 {
@@ -24127,7 +24126,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3810
+                        "line": 3813
                     }
                 },
                 {
@@ -24147,7 +24146,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3811
+                        "line": 3814
                     }
                 },
                 {
@@ -24167,7 +24166,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3812
+                        "line": 3815
                     }
                 },
                 {
@@ -24187,7 +24186,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3813
+                        "line": 3816
                     }
                 },
                 {
@@ -24207,7 +24206,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3814
+                        "line": 3817
                     }
                 },
                 {
@@ -24227,7 +24226,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3815
+                        "line": 3818
                     }
                 },
                 {
@@ -24252,7 +24251,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3816
+                        "line": 3819
                     }
                 },
                 {
@@ -24272,7 +24271,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3817
+                        "line": 3820
                     }
                 },
                 {
@@ -24292,7 +24291,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3818
+                        "line": 3821
                     }
                 },
                 {
@@ -24312,7 +24311,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3819
+                        "line": 3822
                     }
                 },
                 {
@@ -24335,7 +24334,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3820
+                        "line": 3823
                     }
                 },
                 {
@@ -24356,12 +24355,12 @@
                         }
                     },
                     "comments": {
-                        "attached": "// Font loader opaque interface (default to stb_truetype, can be changed to use FreeType by defining IMGUI_ENABLE_FREETYPE). Don't set directly!"
+                        "attached": "// Font loader opaque interface (default to use FreeType when IMGUI_ENABLE_FREETYPE is defined, otherwise default to use stb_truetype). Use SetFontLoader() to change this at runtime."
                     },
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3821
+                        "line": 3824
                     }
                 },
                 {
@@ -24387,7 +24386,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3822
+                        "line": 3825
                     }
                 },
                 {
@@ -24410,7 +24409,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3823
+                        "line": 3826
                     }
                 },
                 {
@@ -24430,7 +24429,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3824
+                        "line": 3827
                     }
                 },
                 {
@@ -24450,7 +24449,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3825
+                        "line": 3828
                     }
                 },
                 {
@@ -24473,7 +24472,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3826
+                        "line": 3829
                     }
                 },
                 {
@@ -24502,7 +24501,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3831
+                        "line": 3834
                     }
                 }
             ],
@@ -24532,7 +24531,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3699
+                "line": 3701
             }
         },
         {
@@ -24563,7 +24562,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3802
+                        "line": 3805
                     }
                 },
                 {
@@ -24586,7 +24585,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3802
+                        "line": 3805
                     }
                 }
             ],
@@ -24602,7 +24601,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3802
+                "line": 3805
             }
         },
         {
@@ -24633,7 +24632,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3850
+                        "line": 3853
                     }
                 },
                 {
@@ -24653,7 +24652,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3851
+                        "line": 3854
                     }
                 },
                 {
@@ -24673,7 +24672,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3852
+                        "line": 3855
                     }
                 },
                 {
@@ -24693,7 +24692,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3853
+                        "line": 3856
                     }
                 },
                 {
@@ -24716,7 +24715,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3856
+                        "line": 3859
                     }
                 },
                 {
@@ -24736,7 +24735,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3857
+                        "line": 3860
                     }
                 },
                 {
@@ -24756,7 +24755,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3858
+                        "line": 3861
                     }
                 },
                 {
@@ -24779,7 +24778,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3861
+                        "line": 3864
                     }
                 },
                 {
@@ -24802,7 +24801,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3861
+                        "line": 3864
                     }
                 },
                 {
@@ -24823,7 +24822,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3862
+                        "line": 3865
                     }
                 },
                 {
@@ -24844,7 +24843,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3863
+                        "line": 3866
                     }
                 },
                 {
@@ -24865,7 +24864,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3864
+                        "line": 3867
                     }
                 },
                 {
@@ -24885,7 +24884,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3865
+                        "line": 3868
                     }
                 },
                 {
@@ -24905,7 +24904,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3866
+                        "line": 3869
                     }
                 },
                 {
@@ -24928,7 +24927,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3867
+                        "line": 3870
                     }
                 },
                 {
@@ -24951,7 +24950,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3868
+                        "line": 3871
                     }
                 }
             ],
@@ -24964,7 +24963,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3847
+                "line": 3850
             }
         },
         {
@@ -24998,7 +24997,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3897
+                        "line": 3900
                     }
                 },
                 {
@@ -25021,7 +25020,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3898
+                        "line": 3901
                     }
                 },
                 {
@@ -25041,7 +25040,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3899
+                        "line": 3902
                     }
                 },
                 {
@@ -25061,7 +25060,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3900
+                        "line": 3903
                     }
                 },
                 {
@@ -25085,7 +25084,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3904
+                        "line": 3907
                     }
                 },
                 {
@@ -25105,7 +25104,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3905
+                        "line": 3908
                     }
                 },
                 {
@@ -25125,7 +25124,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3906
+                        "line": 3909
                     }
                 },
                 {
@@ -25145,7 +25144,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3907
+                        "line": 3910
                     }
                 },
                 {
@@ -25165,7 +25164,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3908
+                        "line": 3911
                     }
                 },
                 {
@@ -25190,7 +25189,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3909
+                        "line": 3912
                     }
                 },
                 {
@@ -25210,7 +25209,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3910
+                        "line": 3913
                     }
                 },
                 {
@@ -25230,7 +25229,7 @@
                     "is_internal": true,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3911
+                        "line": 3914
                     }
                 },
                 {
@@ -25256,7 +25255,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3913
+                        "line": 3916
                     }
                 }
             ],
@@ -25272,7 +25271,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3894
+                "line": 3897
             }
         },
         {
@@ -25300,7 +25299,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3994
+                        "line": 3997
                     }
                 },
                 {
@@ -25320,7 +25319,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3995
+                        "line": 3998
                     }
                 },
                 {
@@ -25340,7 +25339,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3996
+                        "line": 3999
                     }
                 },
                 {
@@ -25360,7 +25359,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3997
+                        "line": 4000
                     }
                 },
                 {
@@ -25380,7 +25379,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3998
+                        "line": 4001
                     }
                 },
                 {
@@ -25400,7 +25399,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 3999
+                        "line": 4002
                     }
                 },
                 {
@@ -25420,7 +25419,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4000
+                        "line": 4003
                     }
                 },
                 {
@@ -25440,7 +25439,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4001
+                        "line": 4004
                     }
                 },
                 {
@@ -25460,7 +25459,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4002
+                        "line": 4005
                     }
                 },
                 {
@@ -25483,7 +25482,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4003
+                        "line": 4006
                     }
                 },
                 {
@@ -25513,7 +25512,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4010
+                        "line": 4013
                     }
                 },
                 {
@@ -25536,7 +25535,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4011
+                        "line": 4014
                     }
                 },
                 {
@@ -25559,7 +25558,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4012
+                        "line": 4015
                     }
                 },
                 {
@@ -25582,7 +25581,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4013
+                        "line": 4016
                     }
                 },
                 {
@@ -25602,7 +25601,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4014
+                        "line": 4017
                     }
                 },
                 {
@@ -25622,7 +25621,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4015
+                        "line": 4018
                     }
                 },
                 {
@@ -25642,7 +25641,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4016
+                        "line": 4019
                     }
                 },
                 {
@@ -25662,7 +25661,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4017
+                        "line": 4020
                     }
                 }
             ],
@@ -25680,7 +25679,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3992
+                "line": 3995
             }
         },
         {
@@ -25893,7 +25892,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4090
+                        "line": 4093
                     }
                 },
                 {
@@ -26019,7 +26018,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4095
+                        "line": 4098
                     }
                 },
                 {
@@ -26166,7 +26165,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4100
+                        "line": 4103
                     }
                 },
                 {
@@ -26190,7 +26189,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4105
+                        "line": 4108
                     }
                 },
                 {
@@ -26212,7 +26211,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4112
+                        "line": 4115
                     }
                 },
                 {
@@ -26229,7 +26228,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4113
+                        "line": 4116
                     }
                 },
                 {
@@ -26254,7 +26253,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4116
+                        "line": 4119
                     }
                 },
                 {
@@ -28340,7 +28339,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4166
+                        "line": 4169
                     }
                 },
                 {
@@ -28364,7 +28363,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4174
+                        "line": 4177
                     }
                 },
                 {
@@ -28388,7 +28387,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4178
+                        "line": 4181
                     }
                 }
             ],
@@ -28400,7 +28399,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4078
+                "line": 4081
             }
         },
         {
@@ -28428,7 +28427,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4185
+                        "line": 4188
                     }
                 },
                 {
@@ -28448,7 +28447,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4185
+                        "line": 4188
                     }
                 },
                 {
@@ -28468,7 +28467,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4186
+                        "line": 4189
                     }
                 },
                 {
@@ -28488,7 +28487,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4186
+                        "line": 4189
                     }
                 },
                 {
@@ -28508,7 +28507,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4187
+                        "line": 4190
                     }
                 },
                 {
@@ -28531,7 +28530,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4188
+                        "line": 4191
                     }
                 }
             ],
@@ -28544,7 +28543,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4183
+                "line": 4186
             }
         },
         {
@@ -28572,7 +28571,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4195
+                        "line": 4198
                     }
                 },
                 {
@@ -28592,7 +28591,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4196
+                        "line": 4199
                     }
                 },
                 {
@@ -28612,7 +28611,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4197
+                        "line": 4200
                     }
                 },
                 {
@@ -28632,7 +28631,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4198
+                        "line": 4201
                     }
                 },
                 {
@@ -28652,7 +28651,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui.h",
-                        "line": 4199
+                        "line": 4202
                     }
                 }
             ],
@@ -28664,7 +28663,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4193
+                "line": 4196
             }
         }
     ],
@@ -71391,7 +71390,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3565
+                "line": 3567
             }
         },
         {
@@ -71433,7 +71432,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3566
+                "line": 3568
             }
         },
         {
@@ -71478,7 +71477,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3567
+                "line": 3569
             }
         },
         {
@@ -71549,7 +71548,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3568
+                "line": 3570
             }
         },
         {
@@ -71594,7 +71593,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3569
+                "line": 3571
             }
         },
         {
@@ -71639,7 +71638,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3570
+                "line": 3572
             }
         },
         {
@@ -71681,7 +71680,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3571
+                "line": 3573
             }
         },
         {
@@ -71726,7 +71725,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3572
+                "line": 3574
             }
         },
         {
@@ -71787,7 +71786,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3575
+                "line": 3577
             }
         },
         {
@@ -71845,7 +71844,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3576
+                "line": 3578
             }
         },
         {
@@ -71887,7 +71886,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3645
+                "line": 3647
             }
         },
         {
@@ -71948,7 +71947,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3646
+                "line": 3648
             }
         },
         {
@@ -72006,7 +72005,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3647
+                "line": 3649
             }
         },
         {
@@ -72064,7 +72063,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3648
+                "line": 3650
             }
         },
         {
@@ -72148,7 +72147,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3649
+                "line": 3651
             }
         },
         {
@@ -72212,7 +72211,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3650
+                "line": 3652
             }
         },
         {
@@ -72273,7 +72272,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3651
+                "line": 3653
             }
         },
         {
@@ -72337,7 +72336,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3703
+                "line": 3705
             }
         },
         {
@@ -72402,7 +72401,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3704
+                "line": 3706
             }
         },
         {
@@ -72520,7 +72519,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3705
+                "line": 3707
             }
         },
         {
@@ -72651,7 +72650,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3706
+                "line": 3708
             }
         },
         {
@@ -72785,7 +72784,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3707
+                "line": 3709
             }
         },
         {
@@ -72906,7 +72905,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3708
+                "line": 3710
             }
         },
         {
@@ -72964,7 +72963,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3709
+                "line": 3711
             }
         },
         {
@@ -73009,7 +73008,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3711
+                "line": 3713
             }
         },
         {
@@ -73054,7 +73053,71 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3712
+                "line": 3714
+            }
+        },
+        {
+            "name": "ImFontAtlas_SetFontLoader",
+            "original_fully_qualified_name": "SetFontLoader",
+            "return_type": {
+                "declaration": "void",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "void"
+                }
+            },
+            "arguments": [
+                {
+                    "name": "self",
+                    "type": {
+                        "declaration": "ImFontAtlas*",
+                        "description": {
+                            "kind": "Pointer",
+                            "is_nullable": false,
+                            "inner_type": {
+                                "kind": "User",
+                                "name": "ImFontAtlas"
+                            }
+                        }
+                    },
+                    "is_array": false,
+                    "is_varargs": false,
+                    "is_instance_pointer": true
+                },
+                {
+                    "name": "font_loader",
+                    "type": {
+                        "declaration": "const ImFontLoader*",
+                        "description": {
+                            "kind": "Pointer",
+                            "inner_type": {
+                                "kind": "User",
+                                "name": "ImFontLoader",
+                                "storage_classes": [
+                                    "const"
+                                ]
+                            }
+                        }
+                    },
+                    "is_array": false,
+                    "is_varargs": false,
+                    "is_instance_pointer": false
+                }
+            ],
+            "is_default_argument_helper": false,
+            "is_manual_helper": false,
+            "is_imstr_helper": false,
+            "has_imstr_helper": false,
+            "is_unformatted_helper": false,
+            "is_static": false,
+            "original_class": "ImFontAtlas",
+            "comments": {
+                "attached": "// Change font loader at runtime."
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui.h",
+                "line": 3715
             }
         },
         {
@@ -73102,7 +73165,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3715
+                "line": 3718
             }
         },
         {
@@ -73147,7 +73210,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3716
+                "line": 3719
             }
         },
         {
@@ -73192,7 +73255,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3717
+                "line": 3720
             }
         },
         {
@@ -73253,7 +73316,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3728
+                "line": 3731
             }
         },
         {
@@ -73372,7 +73435,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3729
+                "line": 3732
             }
         },
         {
@@ -73491,7 +73554,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3730
+                "line": 3733
             }
         },
         {
@@ -73555,7 +73618,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3731
+                "line": 3734
             }
         },
         {
@@ -73619,7 +73682,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3732
+                "line": 3735
             }
         },
         {
@@ -73673,7 +73736,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3733
+                "line": 3736
             }
         },
         {
@@ -73727,7 +73790,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3741
+                "line": 3744
             }
         },
         {
@@ -73790,7 +73853,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3747
+                "line": 3750
             }
         },
         {
@@ -73847,7 +73910,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3748
+                "line": 3751
             }
         },
         {
@@ -73904,7 +73967,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3749
+                "line": 3752
             }
         },
         {
@@ -73961,7 +74024,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3750
+                "line": 3753
             }
         },
         {
@@ -74018,7 +74081,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3751
+                "line": 3754
             }
         },
         {
@@ -74075,7 +74138,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3752
+                "line": 3755
             }
         },
         {
@@ -74132,7 +74195,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3753
+                "line": 3756
             }
         },
         {
@@ -74189,7 +74252,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3754
+                "line": 3757
             }
         },
         {
@@ -74296,7 +74359,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3778
+                "line": 3781
             }
         },
         {
@@ -74354,7 +74417,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3779
+                "line": 3782
             }
         },
         {
@@ -74431,7 +74494,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3780
+                "line": 3783
             }
         },
         {
@@ -74508,7 +74571,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3832
+                "line": 3835
             }
         },
         {
@@ -74578,7 +74641,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3833
+                "line": 3836
             }
         },
         {
@@ -74683,7 +74746,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3834
+                "line": 3837
             }
         },
         {
@@ -74816,7 +74879,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3835
+                "line": 3838
             }
         },
         {
@@ -74962,7 +75025,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3836
+                "line": 3839
             }
         },
         {
@@ -75004,7 +75067,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3872
+                "line": 3875
             }
         },
         {
@@ -75065,7 +75128,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3873
+                "line": 3876
             }
         },
         {
@@ -75126,7 +75189,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3874
+                "line": 3877
             }
         },
         {
@@ -75181,7 +75244,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3875
+                "line": 3878
             }
         },
         {
@@ -75236,7 +75299,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3876
+                "line": 3879
             }
         },
         {
@@ -75291,7 +75354,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3919
+                "line": 3922
             }
         },
         {
@@ -75336,7 +75399,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3920
+                "line": 3923
             }
         },
         {
@@ -75390,7 +75453,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3921
+                "line": 3924
             }
         },
         {
@@ -75456,7 +75519,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3926
+                "line": 3929
             }
         },
         {
@@ -75531,7 +75594,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3926
+                "line": 3929
             }
         },
         {
@@ -75634,7 +75697,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3927
+                "line": 3930
             }
         },
         {
@@ -75780,7 +75843,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3927
+                "line": 3930
             }
         },
         {
@@ -75892,7 +75955,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3928
+                "line": 3931
             }
         },
         {
@@ -76005,7 +76068,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3929
+                "line": 3932
             }
         },
         {
@@ -76135,7 +76198,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3929
+                "line": 3932
             }
         },
         {
@@ -76311,7 +76374,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3930
+                "line": 3933
             }
         },
         {
@@ -76429,7 +76492,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3932
+                "line": 3935
             }
         },
         {
@@ -76476,7 +76539,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3936
+                "line": 3939
             }
         },
         {
@@ -76547,7 +76610,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3937
+                "line": 3940
             }
         },
         {
@@ -76615,7 +76678,7 @@
             "is_internal": true,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 3938
+                "line": 3941
             }
         },
         {
@@ -76665,7 +76728,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4023
+                "line": 4026
             }
         },
         {
@@ -76710,7 +76773,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4024
+                "line": 4027
             }
         },
         {
@@ -76761,7 +76824,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4214
+                "line": 4217
             }
         },
         {
@@ -76807,7 +76870,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4215
+                "line": 4218
             }
         },
         {
@@ -76921,7 +76984,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4217
+                "line": 4220
             }
         },
         {
@@ -76969,7 +77032,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4219
+                "line": 4222
             }
         },
         {
@@ -76998,7 +77061,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4220
+                "line": 4223
             }
         },
         {
@@ -77041,7 +77104,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4221
+                "line": 4224
             }
         },
         {
@@ -77070,7 +77133,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4222
+                "line": 4225
             }
         },
         {
@@ -77102,7 +77165,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4223
+                "line": 4226
             }
         },
         {
@@ -77134,7 +77197,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4224
+                "line": 4227
             }
         },
         {
@@ -77166,7 +77229,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4225
+                "line": 4228
             }
         },
         {
@@ -77228,7 +77291,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4227
+                "line": 4230
             }
         },
         {
@@ -77298,7 +77361,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4227
+                "line": 4230
             }
         },
         {
@@ -77327,7 +77390,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4228
+                "line": 4231
             }
         },
         {
@@ -77380,7 +77443,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4231
+                "line": 4234
             }
         },
         {
@@ -77601,7 +77664,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4232
+                "line": 4235
             }
         },
         {
@@ -77833,7 +77896,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4232
+                "line": 4235
             }
         },
         {
@@ -78054,7 +78117,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4233
+                "line": 4236
             }
         },
         {
@@ -78286,7 +78349,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4233
+                "line": 4236
             }
         },
         {
@@ -78321,7 +78384,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
-                "line": 4235
+                "line": 4238
             }
         }
     ]

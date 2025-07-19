@@ -8,19 +8,19 @@ pub fn build(b: *std.Build) void {
 
     const optimize = b.standardOptimizeOption(.{});
 
-//    const lib = b.addStaticLibrary(.{
-//        .name = "zig_glfw_opengl3_image_load",
-//        // In this case the main source file is merely a path, however, in more
-//        // complicated build scripts, this could be a generated file.
-//        .root_source_file = b.path("src/root.zig"),
-//        .target = target,
-//        .optimize = optimize,
-//    });
+    //    const lib = b.addStaticLibrary(.{
+    //        .name = "zig_glfw_opengl3_image_load",
+    //        // In this case the main source file is merely a path, however, in more
+    //        // complicated build scripts, this could be a generated file.
+    //        .root_source_file = b.path("src/root.zig"),
+    //        .target = target,
+    //        .optimize = optimize,
+    //    });
 
     // This declares intent for the library to be installed into the standard
     // location when the user invokes the "install" step (the default step when
     // running `zig build`).
-//    b.installArtifact(lib);
+    //    b.installArtifact(lib);
 
     const exe = b.addExecutable(.{
         .name = "zig_glfw_opengl3_image_load",
@@ -34,14 +34,14 @@ pub fn build(b: *std.Build) void {
     var sBuf: [2048]u8 = undefined;
     const Glfw_Base = "../../libs/glfw/glfw-3.3.9.bin.WIN";
     var sArc = "64";
-    if(builtin.cpu.arch == std.Target.Cpu.Arch.x86){
-      sArc = "32";
+    if (builtin.cpu.arch == std.Target.Cpu.Arch.x86) {
+        sArc = "32";
     }
-    const glfw_path = std.fmt.bufPrint(&sBuf, "{s}{s}", .{Glfw_Base, sArc}) catch unreachable;
+    const glfw_path = std.fmt.bufPrint(&sBuf, "{s}{s}", .{ Glfw_Base, sArc }) catch unreachable;
     //---------------
     // Include paths
     //---------------
-    exe.addIncludePath(b.path(b.pathJoin(&.{glfw_path, "include"})));
+    exe.addIncludePath(b.path(b.pathJoin(&.{ glfw_path, "include" })));
     exe.addIncludePath(b.path("src"));
     exe.addIncludePath(b.path("../utils"));
     exe.addIncludePath(b.path("../utils/fonticon"));
@@ -60,32 +60,31 @@ pub fn build(b: *std.Build) void {
     // Sources C/C++
     //---------------
     exe.addCSourceFiles(.{
-      .files = &.{
-        // ImGui main
-        "../../libs/imgui/imgui.cpp",
-        "../../libs/imgui/imgui_tables.cpp",
-        "../../libs/imgui/imgui_demo.cpp",
-        "../../libs/imgui/imgui_widgets.cpp",
-        "../../libs/imgui/imgui_draw.cpp",
-        // CImGui main
-        "../../libs/dcimgui/dcimgui.cpp",
-        // ImGui GLFW and OpenGL interface
-        "../../libs/imgui/backends/imgui_impl_opengl3.cpp",
-        "../../libs/imgui/backends/imgui_impl_glfw.cpp",
-        // CImGui GLFW and OpenGL interface
-        "../../libs/dcimgui/backends/dcimgui_impl_glfw.cpp",
-        "../../libs/dcimgui/backends/dcimgui_impl_opengl3.cpp",
-        // CImGui SDL interface
-        //"../libs/cimgui/cimgui_impl_sdl2.cpp",
-        //"../libs/cimgui/cimgui_impl_sdl3.cpp",
-        // utils folder
-        "../utils/setupFonts.c",
-        "../utils/loadImage.c",
-        "../utils/saveImage.c",
-        "../utils/utils.c",
-      },
-      .flags = &.{
-      },
+        .files = &.{
+            // ImGui main
+            "../../libs/imgui/imgui.cpp",
+            "../../libs/imgui/imgui_tables.cpp",
+            "../../libs/imgui/imgui_demo.cpp",
+            "../../libs/imgui/imgui_widgets.cpp",
+            "../../libs/imgui/imgui_draw.cpp",
+            // CImGui main
+            "../../libs/dcimgui/dcimgui.cpp",
+            // ImGui GLFW and OpenGL interface
+            "../../libs/imgui/backends/imgui_impl_opengl3.cpp",
+            "../../libs/imgui/backends/imgui_impl_glfw.cpp",
+            // CImGui GLFW and OpenGL interface
+            "../../libs/dcimgui/backends/dcimgui_impl_glfw.cpp",
+            "../../libs/dcimgui/backends/dcimgui_impl_opengl3.cpp",
+            // CImGui SDL interface
+            //"../libs/cimgui/cimgui_impl_sdl2.cpp",
+            //"../libs/cimgui/cimgui_impl_sdl3.cpp",
+            // utils folder
+            "../utils/setupFonts.c",
+            "../utils/loadImage.c",
+            "../utils/saveImage.c",
+            "../utils/utils.c",
+        },
+        .flags = &.{},
     });
     //---------------
     // Libs
@@ -99,32 +98,29 @@ pub fn build(b: *std.Build) void {
     //exe.addLibraryPath(b.path(b.pathJoin(&.{glfw_path, "lib-mingw-64"})));
     //exe.linkSystemLibrary("glfw3");      // For static link
     // Static link
-    exe.addObjectFile(b.path(b.pathJoin(&.{glfw_path, "lib-mingw-w64","libglfw3.a"})));
+    exe.addObjectFile(b.path(b.pathJoin(&.{ glfw_path, "lib-mingw-w64", "libglfw3.a" })));
     // Dynamic link
     //exe.addObjectFile(b.path(b.pathJoin(&.{glfw_path, "lib-mingw-w64","libglfw3dll.a"})));
     //exe.linkSystemLibrary("glfw3dll"); // For dynamic link
     // System
     exe.linkLibC();
     exe.linkLibCpp();
-    exe.subsystem = .Windows;  // Hide console window
+    exe.subsystem = .Windows; // Hide console window
 
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default
     // step when running `zig build`).
     b.installArtifact(exe);
 
-    const resBin =   [_][]const u8{ "imgui.ini"
-                                  , "himeji-400.jpg"
-                                  , "icon_qr_my_github_red.png"};
-    const resUtils = [_][]const u8{ "fonticon/fa6/fa-solid-900.ttf"
-                                  , "fonticon/fa6/LICENSE.txt"};
-    inline for(resBin)|file|{
-      const res = b.addInstallFile(b.path(file),"bin/" ++ file);
-      b.getInstallStep().dependOn(&res.step);
+    const resBin = [_][]const u8{ "imgui.ini", "himeji-400.jpg", "icon_qr_my_github_red.png" };
+    const resUtils = [_][]const u8{ "fonticon/fa6/fa-solid-900.ttf", "fonticon/fa6/LICENSE.txt" };
+    inline for (resBin) |file| {
+        const res = b.addInstallFile(b.path(file), "bin/" ++ file);
+        b.getInstallStep().dependOn(&res.step);
     }
-    inline for(resUtils)|file|{
-      const res = b.addInstallFile(b.path("../utils/" ++ file),"utils/" ++ file);
-      b.getInstallStep().dependOn(&res.step);
+    inline for (resUtils) |file| {
+        const res = b.addInstallFile(b.path("../utils/" ++ file), "utils/" ++ file);
+        b.getInstallStep().dependOn(&res.step);
     }
     //
     // This *creates* a Run step in the build graph, to be executed when another

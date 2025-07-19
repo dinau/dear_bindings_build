@@ -2,28 +2,32 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Dear_Bindings_Build](#dear_bindings_build)
+  - [Features](#features)
+  - [Available libraries list at this moment](#available-libraries-list-at-this-moment)
   - [Prerequisites](#prerequisites)
   - [Build and run](#build-and-run)
   - [Examples screen shots](#examples-screen-shots)
+    - [zig_imknobs](#zig_imknobs)
+    - [zig_imtoggle](#zig_imtoggle)
+    - [zig_imspinner](#zig_imspinner)
+    - [zig_imfiledialog](#zig_imfiledialog)
+    - [opengl3](#opengl3)
+    - [opengl3_jp](#opengl3_jp)
+    - [image_load](#image_load)
   - [Hiding console window](#hiding-console-window)
   - [SDL](#sdl)
   - [My tools version](#my-tools-version)
-- [SDL libraries](#sdl-libraries)
+  - [SDL libraries](#sdl-libraries)
   - [Similar project ImGui / CImGui](#similar-project-imgui--cimgui)
   - [SDL game tutorial Platfromer](#sdl-game-tutorial-platfromer)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_dev.yml/badge.svg)
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_rel.yml/badge.svg)  
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/linux_dev.yml/badge.svg)
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/linux_rel.yml/badge.svg)  
-
 ### Dear_Bindings_Build
 
 This project aims to simply and easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 
-ImGui version **1.92.0** (2025/06)
+ImGui version **1.92.1** (2025/07)
 
 #### Features
 
@@ -35,6 +39,25 @@ ImGui version **1.92.0** (2025/06)
 - [x] Using IconFont [FontAwewsome 6](https://fontawesome.com)
 - [x] Image load/save
 
+#### Available libraries list at this moment
+
+---
+
+Library name / C lang. wrapper
+
+- [x] [ImGui](https://github.com/ocornut/imgui) / [Dear_Bindings](https://github.com/dearimgui/dear_bindings)
+- [ ] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot)
+- [ ] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d) 
+- [ ] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) 
+- [ ] [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo) / [CImGuizmo](https://github.com/cimgui/cimguizmo) 
+- [x] [ImGui-Knobs](https://github.com/altschuler/imgui-knobs) / [CImGui-Knobs](libs/cimgui-knobs) (2025/07)
+- [x] [ImGuiFileDialog](https://github.com/aiekick/ImGuiFileDialog) / [CImGuiFileDialog](https://github.com/dinau/CImGuiFileDialog) (2025/07)
+- [x] [ImGui_Toggle](https://github.com/cmdwtf/imgui_toggle) / [CimGui_Toggle](https://github.com/dinau/cimgui_toggle) (2025/07)
+- [x] [ImSpinner](https://github.com/dalerank/imspinner) / [CImSpinner](https://github.com/dinau/cimspinner) (2025/07)
+- [ ] [ImGuiColorTextEdit](https://github.com/santaclose/ImGuiColorTextEdit) / [cimCTE](https://github.com/cimgui/cimCTE) 
+- [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) 
+
+
 #### Prerequisites
 
 ---
@@ -42,7 +65,7 @@ ImGui version **1.92.0** (2025/06)
 - Windows10 OS or later
 - ~~Linux OS~~ WIP
 - GCC (or Clang or **'Zig cc'** compiler)
-- Use **Zig: 0.14.1** or **0.15.0-dev**
+- Use **Zig: 0.14.1** or **0.15.0-dev.885+e83776595**
 - MSys/MinGW basic commands (make, rm, cp ...)
 
 #### Build and run
@@ -68,6 +91,32 @@ ImGui version **1.92.0** (2025/06)
 
 #### Examples screen shots 
 
+##### [zig_imknobs](examples/zig_imknobs) 
+
+---
+
+![alt](img/zig_imknobs.png)
+
+##### [zig_imtoggle](examples/zig_imtoggle) 
+
+---
+
+![alt](img/zig_imtoggle.png)
+
+##### [zig_imspinner](examples/zig_imspinner) 
+
+---
+
+![alt](img/zig_imspinner.gif)
+
+##### [zig_imfiledialog](examples/zig_imfiledialog) 
+
+---
+
+![alt](img/zig_imfiledialog.png)
+
+##### opengl3
+
 ---
 
 | Language  |                                          GLFW |                                          SDL2 |                                          SDL3 |
@@ -79,6 +128,8 @@ ImGui version **1.92.0** (2025/06)
 ![alt](img/glfw_opengl3.png)
 
 
+##### opengl3_jp
+
 ---
 
 | Language |                                        GLFW |
@@ -87,6 +138,8 @@ ImGui version **1.92.0** (2025/06)
 
 ![alt](img/glfw_opengl3_jp.png)
 
+
+##### image_load
 
 ---
 
@@ -137,11 +190,12 @@ Open `Makefile` in each example folder and **change** option as follows,
 
   and execute `make`.
 
-#### SDL
+#### SDL libraries
 
 ---
 
-https://github.com/libsdl-org/SDL
+https://github.com/libsdl-org/SDL  
+https://github.com/libsdl-org/SDL/releases
 
 #### My tools version
 
@@ -151,12 +205,6 @@ https://github.com/libsdl-org/SDL
 - make: GNU Make 4.4.1
 - Python 3.12.6
 - zig: 0.14.1
-
-### SDL libraries
-
----
-
-https://github.com/libsdl-org/SDL/releases
 
 #### Similar project ImGui / CImGui
 
@@ -186,6 +234,6 @@ https://github.com/libsdl-org/SDL/releases
 | **Nelua**            | Compiler | SDL2        | [NeLua-Platformer](https://github.com/dinau/nelua-platformer)
 | **Nim**              | Compiler | SDL3 / SDL2 | [Nim-Platformer-sdl2](https://github.com/def-/nim-platformer)/ [Nim-Platformer-sdl3](https://github.com/dinau/sdl3_nim/tree/main/examples/platformer) |
 | **Ruby**             | Script   | SDL3        | [Ruby-Platformer](https://github.com/dinau/ruby-platformer)                                                                                           |
-| **Zig**              | Compiler | SDL2        | [Zig-Platformer](https://github.com/dinau/zig-platformer)                                                                                             |
+| **Zig**              | Compiler | SDL3 / SDL2 | [Zig-Platformer](https://github.com/dinau/zig-platformer)                                                                                             |
 
 [^order]: Alphabectial order

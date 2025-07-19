@@ -1,0 +1,8 @@
+*.d
+*.o
+*.exe
+.git/
+*.org
+*.vcxproj.*
+*.vcxproj
+*.emscripten

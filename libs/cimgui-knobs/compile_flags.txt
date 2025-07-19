@@ -1,0 +1,13 @@
+-I.
+-Ilibs/cimgui
+-Ilibs/cimgui/imgui
+-Ilibs/cimgui/generator/output
+-IImGuiFileDialog
+
+-Idemo/utils
+-Idemo/utils/fonticon
+
+-DCIMGUI_USE_GLFW
+-DCIMGUI_USE_OPENGL3
+
+-Ilibs/imgui-knobs

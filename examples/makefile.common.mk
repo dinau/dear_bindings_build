@@ -113,6 +113,11 @@ CXXFLAGS += $(CFLAGS)
 CXXFLAGS += -fno-exceptions -fno-rtti -std=c++11
 LDFLAGS += -L$(DCIMGUI_ARCHIVE_DIR)
 
+# Strip debug info
+ifneq (($DEBUG_INFO),true)
+	LDFLAGS += -s
+endif
+
 MAKE_DIRS = $(BUILD_DIR)        \
  	          $(DCIMGUI_BUILD_DIR)
 
@@ -127,7 +132,6 @@ MAKE_DEPS += ../makefile.common.mk Makefile
 $(TARGET)$(EXE): $(UTILS_OBJS) $(MY_OBJS) $(MAKE_DEPS)
 	@echo [$(CXX)]: - Link - $@
 	$(D)$(CXX) $(CXXFLAGS) -o $@  $(UTILS_OBJS) $(MY_OBJS) -lcimgui $(LIBS) $(LDFLAGS)
-	@-$(STRIP)
 
 $(LIB_CIMGUI_ARCHIVE): $(DCIMGUI_OBJS)
 	@echo [ $(AR) ]: $@
@@ -175,5 +179,7 @@ cleanobjs: clean cleanother
 cleanall: cleanobjs
 	-rm -fr $(BUILD_DIR)
 	-rm -fr $(DCIMGUI_BUILD_DIR)
+fmt:
+#
 #
 include ../gen.mk

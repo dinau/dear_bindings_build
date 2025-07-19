@@ -1,0 +1,10 @@
+-Ilibs/cimgui
+-Ilibs/cimgui/imgui
+-Ilibs/cimgui/generator/output
+-Ilibs/ImGuiFileDialog
+
+-Iexamples/utils
+-Iexamples/utils/fonticon
+
+-DCIMGUI_USE_GLFW
+-DCIMGUI_USE_OPENGL3

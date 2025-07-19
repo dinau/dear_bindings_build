@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
     {
       static float fval = 0.0f;
       static int counter = 0;
-      if (ImGui_Begin(ICON_FA_THUMBS_UP " " "ImGui: Dear_Bindings", NULL, 0)) {
+      ImGui_Begin(ICON_FA_THUMBS_UP " " "ImGui: Dear_Bindings", NULL, 0);
         ImGui_Text(ICON_FA_COMMENT" " "GLFW v"); ImGui_SameLine();
         ImGui_Text("%s", glfwGetVersionString());
         ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();
@@ -129,25 +129,25 @@ int main(int argc, char *argv[]) {
             " " ICON_FA_SCISSORS
             " " ICON_FA_SCREWDRIVER_WRENCH
             " " ICON_FA_BLOG);
-        ImGui_End();
-      }
+      ImGui_End();
     }
 
     if (showAnotherWindow) {
       ImGui_Begin("imgui Another Window", &showAnotherWindow, 0);
-      ImGui_Text("Hello from imgui");
-      if (ImGui_Button("Close me")) {
-        showAnotherWindow = false;
-      }
+        ImGui_Text("Hello from imgui");
+        if (ImGui_Button("Close me")) {
+          showAnotherWindow = false;
+        }
       ImGui_End();
     }
 
     //# Show image load window
-    if (ImGui_Begin("Image load test", NULL, 0)) {
-      //# Load image
-      ImVec2 size = {.x = (float)textureWidth, .y = (float)textureHeight};
-      ImGui_SetNextWindowSize(size, ImGuiCond_Always);
-      ImGui_ImageEx((ImTextureRef){._TexData = NULL, ._TexID = textureId} ,size ,(ImVec2){.x = 0, .y = 0} ,(ImVec2){.x = 1, .y = 1});
+    {
+      ImGui_Begin("Image load test", NULL, 0);
+        //# Load image
+        ImVec2 size = {.x = (float)textureWidth, .y = (float)textureHeight};
+        ImGui_SetNextWindowSize(size, ImGuiCond_Always);
+        ImGui_ImageEx((ImTextureRef){._TexData = NULL, ._TexID = textureId} ,size ,(ImVec2){.x = 0, .y = 0} ,(ImVec2){.x = 1, .y = 1});
       ImGui_End();
     }
 

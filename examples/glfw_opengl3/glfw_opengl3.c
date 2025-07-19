@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
     {
       static float fval = 0.0f;
       static int counter = 0;
-      if (ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0)) {
+      ImGui_Begin(ICON_FA_THUMBS_UP" " "ImGui: Dear_Bindings", NULL, 0);
         ImGui_Text(ICON_FA_COMMENT" " "GLFW v"); ImGui_SameLine();
         ImGui_Text("%s", glfwGetVersionString());
         ImGui_Text(ICON_FA_COMMENT" " "OpenGL v"); ImGui_SameLine();
@@ -113,8 +113,7 @@ int main(int argc, char *argv[]) {
             " " ICON_FA_SCISSORS
             " " ICON_FA_SCREWDRIVER_WRENCH
             " " ICON_FA_BLOG);
-        ImGui_End();
-      }
+      ImGui_End();
     }
 
     if (showAnotherWindow) {

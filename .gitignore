@@ -1,8 +1,9 @@
-
+.ccache
 GPATH
 GRTAGS
 GTAGS
-
+00*/
+zig_imnodes/
 ImageSaved*
 zig-out/
 .zig-out/
