@@ -5,7 +5,6 @@ EXAMPLE_DIRS :=\
 	            examples/glfw_opengl3_image_save     \
 	            examples/glfw_opengl3_jp             \
 	            examples/sdl2_opengl3                \
-	            examples/sdl3_opengl3                \
 							examples/zig_glfw_opengl3            \
 							examples/zig_glfw_opengl3_image_load \
 							examples/zig_imfiledialog            \
@@ -13,7 +12,6 @@ EXAMPLE_DIRS :=\
 							examples/zig_imspinner               \
 							examples/zig_imtoggle                \
 							examples/zig_sdl2_opengl3            \
- 							examples/zig_sdl3_opengl3
 
 EXAMPLE_DIRS_C := \
 							examples/glfw_opengl3 \
@@ -21,6 +19,11 @@ EXAMPLE_DIRS_C := \
 	            examples/glfw_opengl3_image_save \
 	            examples/glfw_opengl3_jp \
 	            examples/sdl2_opengl3
+
+ifdef ($(OS),Windows_NT)
+   EXAMPLE_DIRS	+= examples/sdl3_opengl3                \
+   EXAMPLE_DIRS	+= examples/zig_sdl3_opengl3
+endif
 
 all:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
