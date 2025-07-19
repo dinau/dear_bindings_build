@@ -1,4 +1,4 @@
-GLFW_VER = 3.3.9
+GLFW_VER = 3.4
 #
 LIBS_DIR = ../../libs
 GLFW_DIR = $(LIBS_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN64
