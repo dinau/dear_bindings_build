@@ -39,6 +39,9 @@ test:
 clean:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
 
+cleanall:
+	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
+
 DB_DIR             = ../dear_bindings
 DCIMGUI_DIR        = libs/dcimgui
 IMGUI_DIR          = libs/imgui

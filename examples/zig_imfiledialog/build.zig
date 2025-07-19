@@ -32,7 +32,7 @@ pub fn build(b: *std.Build) void {
     // Detect 32bit or 64bit Winddws OS
     //----------------------------------
     var sBuf: [2048]u8 = undefined;
-    const Glfw_Base = "../../libs/glfw/glfw-3.3.9.bin.WIN";
+    const Glfw_Base = "../../libs/glfw/glfw-3.4.bin.WIN";
     var sArc = "64";
     if (builtin.cpu.arch == std.Target.Cpu.Arch.x86) {
         sArc = "32";
