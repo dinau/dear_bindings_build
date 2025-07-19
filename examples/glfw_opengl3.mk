@@ -1,5 +1,6 @@
 GLFW_VER = 3.3.9
 #
+LIBS_DIR = ../../libs
 GLFW_DIR = $(LIB_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN64
 
 # Add backend driver in imgui
