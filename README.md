@@ -37,7 +37,7 @@ ImGui version **1.92.1** (2025/07)
 
 - [x] No dependence on external zig libraries
 - [x] No download external libraries
-- [x] Included ImGui / GLFW / SDL2 / SDL3 / STB_image libraries in this project
+- [x] Included ImGui / GLFW / SDL3 / STB_image libraries in this project
 - [x] Using IconFont [FontAwewsome 6](https://fontawesome.com)
 - [x] Image load/save
 
@@ -121,10 +121,10 @@ Library name / C lang. wrapper
 
 ---
 
-| Language  |                                          GLFW |                                          SDL2 |                                          SDL3 |
-|:---------:|----------------------------------------------:|----------------------------------------------:|----------------------------------------------:|
-| C lang.   |         [glfw_opengl3](examples/glfw_opengl3) |         [sdl2_opengl3](examples/sdl2_opengl3) |         [sdl3_opengl3](examples/sdl3_opengl3) |
-| Zig lang. | [zig_glfw_opengl3](examples/zig_glfw_opengl3) | [zig_sdl2_opengl3](examples/zig_sdl2_opengl3) | [zig_sdl3_opengl3](examples/zig_sdl3_opengl3) |
+| Language  |                                          GLFW |                                          SDL3 |
+|:---------:|----------------------------------------------:|----------------------------------------------:|
+| C lang.   |         [glfw_opengl3](examples/glfw_opengl3) |         [sdl3_opengl3](examples/sdl3_opengl3) |
+| Zig lang. | [zig_glfw_opengl3](examples/zig_glfw_opengl3) | [zig_sdl3_opengl3](examples/zig_sdl3_opengl3) |
 
 
 ![alt](img/glfw_opengl3.png)
