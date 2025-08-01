@@ -1,0 +1,61 @@
+.{
+    .name = .zig_imtoggle,
+    .version = "0.0.1",
+    .fingerprint = 0xb10c0c7452a4939e, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.14.1",
+    .dependencies = .{
+        .appimgui = .{
+            .path = "../../src/libzig/appimgui",
+            .lazy = true,
+        },
+        .dcimgui = .{
+            .path = "../../src/libzig/dcimgui",
+            .lazy = true,
+        },
+        .fonticon = .{
+            .path = "../../src/libzig/fonticon",
+            .lazy = true,
+        },
+        .glfw = .{
+            .path = "../../src/libzig/glfw",
+            .lazy = true,
+        },
+        .imtoggle = .{
+            .path = "../../src/libzig/imtoggle",
+            .lazy = true,
+        },
+        .impl_glfw = .{
+            .path = "../../src/libzig/impl_glfw",
+            .lazy = true,
+        },
+        .impl_opengl3 = .{
+            .path = "../../src/libzig/impl_opengl3",
+            .lazy = true,
+        },
+        .loadicon = .{
+            .path = "../../src/libzig/loadicon",
+            .lazy = true,
+        },
+        .loadimage = .{
+            .path = "../../src/libzig/loadimage",
+            .lazy = true,
+        },
+        .setupfont = .{
+            .path = "../../src/libzig/setupfont",
+            .lazy = true,
+        },
+        .utils = .{
+            .path = "../../src/libzig/utils",
+            .lazy = true,
+        },
+        .zoomglass = .{
+            .path = "../../src/libzig/zoomglass",
+            .lazy = true,
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}

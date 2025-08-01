@@ -1,7 +1,7 @@
 # true:  Static link, use libSDL3.a
 # false: Dynamic link, use SDL3.dll
 
-STATIC_SDL3 = true
+#STATIC_SDL3 = true
 HIDE_CONSOLE_WINDOW = true
 DEBUG_INFO = false
 

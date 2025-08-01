@@ -6,3 +6,6 @@ gen:
 
 clean:
 	$(MAKE) -C .. $@
+
+fmt:
+	$(MAKE) -C .. $@

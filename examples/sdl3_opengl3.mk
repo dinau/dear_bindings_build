@@ -1,5 +1,5 @@
 #
-SDL3_DIR = ../../libs/sdl/SDL3/x86_64-w64-mingw32
+SDL3_DIR = ../../src/libc/sdl/SDL3/x86_64-w64-mingw32
 
 # Add backend driver in imgui
 BACKEND_SRCS_CPP += dcimgui_impl_opengl3.cpp

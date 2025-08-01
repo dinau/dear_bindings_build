@@ -14,6 +14,8 @@ EXE = .exe
 
 # TC : gcc or clang or zig
 TC ?= gcc
+#TC ?= zigcc
+
 ifeq ($(TC),gcc)
 CC  = $(CCACHE) gcc
 CXX = $(CCACHE) g++
@@ -30,9 +32,11 @@ endif
 ifeq ($(TC),zigcc)
 CC =  zig cc
 CXX = zig c++
+AR  = zig ar
+CFLAGS += -Wl,--subsystem,windows
 endif
 
-LIBS_DIR            = ../../libs
+LIBS_DIR            = ../../src/libc
 IMGUI_DIR          = $(LIBS_DIR)/imgui
 STB_DIR            = $(LIBS_DIR)/stb
 #
