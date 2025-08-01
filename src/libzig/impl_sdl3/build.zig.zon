@@ -1,0 +1,12 @@
+.{
+    .name = .dl3,
+    .version = "0.0.1",
+    .fingerprint = 0xc607ff53c35ad03b , // Changing this has security and trust implications.
+    .minimum_zig_version = "0.14.1",
+    .dependencies = .{},
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
