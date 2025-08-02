@@ -1,8 +1,6 @@
 const std = @import("std");
 const ig = @import("dcimgui");
-const glfw = @import("glfw");
 const ifa = @import("fonticon");
-const utils = @import("utils");
 const stf = @import("setupfont");
 const app = @import("appimgui");
 
@@ -38,7 +36,7 @@ pub fn gui_main(window: *app.Window) !void {
     //---------------
     // main loop GUI
     //---------------
-    while (glfw.glfwWindowShouldClose(window.handle) == 0) {
+    while (!window.shouldClose()) {
         window.pollEvents();
 
         // Iconify sleep

@@ -10,6 +10,7 @@
         .glfw = .{ .path = "../glfw" },
         .impl_glfw = .{ .path = "../impl_glfw" },
         .impl_opengl3 = .{ .path = "../impl_opengl3" },
+        .setupfont = .{ .path = "../setupfont" },
     },
     .paths = .{
         "build.zig",
