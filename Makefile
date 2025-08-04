@@ -7,7 +7,6 @@ EXAMPLE_DIRS =\
 							examples/zig_imknobs                 \
 							examples/zig_imspinner               \
 							examples/zig_imtoggle                \
-              examples/zig_sdl3_opengl3
 
 ifeq ($(OS),Windows_NT)
    EXAMPLE_DIRS	+= examples/glfw_opengl3
