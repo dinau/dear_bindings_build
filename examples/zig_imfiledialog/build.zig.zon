@@ -16,8 +16,8 @@
             .path = "../../src/libzig/fonticon",
             .lazy = true,
         },
-        .imfileopendialog = .{
-            .path = "../../src/libzig/imfileopendialog",
+        .imfiledialog = .{
+            .path = "../../src/libzig/imfiledialog",
             .lazy = true,
         },
         .setupfont = .{

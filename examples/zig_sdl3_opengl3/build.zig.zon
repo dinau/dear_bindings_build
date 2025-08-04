@@ -4,28 +4,12 @@
     .fingerprint = 0x108749a4d25c8e86, // Changing this has security and trust implications.
     .minimum_zig_version = "0.14.1",
     .dependencies = .{
-        .appimgui = .{
-            .path = "../../src/libzig/appimgui",
-            .lazy = true,
-        },
         .dcimgui = .{
             .path = "../../src/libzig/dcimgui",
             .lazy = true,
         },
         .fonticon = .{
             .path = "../../src/libzig/fonticon",
-            .lazy = true,
-        },
-        .glfw = .{
-            .path = "../../src/libzig/glfw",
-            .lazy = true,
-        },
-        .imtoggle = .{
-            .path = "../../src/libzig/imtoggle",
-            .lazy = true,
-        },
-        .impl_glfw = .{
-            .path = "../../src/libzig/impl_glfw",
             .lazy = true,
         },
         .impl_opengl3 = .{
@@ -36,28 +20,12 @@
             .path = "../../src/libzig/impl_sdl3",
             .lazy = true,
         },
-        .loadicon = .{
-            .path = "../../src/libzig/loadicon",
-            .lazy = true,
-        },
-        .loadimage = .{
-            .path = "../../src/libzig/loadimage",
-            .lazy = true,
-        },
         .sdl3 = .{
             .path = "../../src/libzig/sdl3",
             .lazy = true,
         },
         .setupfont = .{
             .path = "../../src/libzig/setupfont",
-            .lazy = true,
-        },
-        .utils = .{
-            .path = "../../src/libzig/utils",
-            .lazy = true,
-        },
-        .zoomglass = .{
-            .path = "../../src/libzig/zoomglass",
             .lazy = true,
         },
     },

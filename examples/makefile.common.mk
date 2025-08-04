@@ -173,16 +173,16 @@ $(UTILS_OBJ_DIR):
 run: all
 	./$(TARGET)
 
-clean:
+clean: cleanall
 	-rm $(TARGET)$(EXE)
 	-rm $(TARGET).lib $(TARGET).pdb
 	-rm $(MY_OBJS)
 cleanother:
 	-rm -fr $(UTILS_OBJ_DIR)
-cleanobjs: clean cleanother
+cleanobjs: cleanother
 	-rm $(LIB_CIMGUI_ARCHIVE)
 	-rm -fr $(DCIMGUI_BUILD_DIR)
-cleanall: cleanobjs
+cleanall:
 	-rm -fr $(BUILD_DIR)
 	-rm -fr $(DCIMGUI_BUILD_DIR)
 fmt:

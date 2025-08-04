@@ -1,0 +1,34 @@
+.{
+    .name = .app_iconfontviewer,
+    .version = "0.0.1",
+    .fingerprint = 0xf76c12823ca535dc, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.14.1",
+    .dependencies = .{
+        .appimgui  =  .{
+            .path = "../../src/libzig/appimgui"
+        },
+        .dcimgui  =  .{
+            .path = "../../src/libzig/dcimgui"
+        },
+        .fonticon =  .{
+            .path = "../../src/libzig/fonticon"
+        },
+        .glfw = .{
+            .path = "../../src/libzig/glfw"
+        },
+        .setupfont = .{
+            .path = "../../src/libzig/setupfont"
+        },
+        .utils = .{
+            .path = "../../src/libzig/utils"
+        },
+        .zoomglass = .{
+            .path = "../../src/libzig/zoomglass"
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}

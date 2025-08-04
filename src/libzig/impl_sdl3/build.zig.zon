@@ -1,7 +1,7 @@
 .{
-    .name = .dl3,
+    .name = .sdl3,
     .version = "0.0.1",
-    .fingerprint = 0xc607ff53c35ad03b , // Changing this has security and trust implications.
+    .fingerprint = 0x6188f62fd0471d7c, // Changing this has security and trust implications.
     .minimum_zig_version = "0.14.1",
     .dependencies = .{},
     .paths = .{

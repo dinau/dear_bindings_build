@@ -11,13 +11,13 @@
     - [zig_imtoggle](#zig_imtoggle)
     - [zig_imspinner](#zig_imspinner)
     - [zig_imfiledialog](#zig_imfiledialog)
+    - [zig_iconfontviewer](#zig_iconfontviewer)
     - [opengl3](#opengl3)
     - [opengl3_jp](#opengl3_jp)
     - [image_load](#image_load)
   - [Hiding console window](#hiding-console-window)
-  - [SDL](#sdl)
-  - [My tools version](#my-tools-version)
   - [SDL libraries](#sdl-libraries)
+  - [My tools version](#my-tools-version)
   - [Similar project ImGui / CImGui](#similar-project-imgui--cimgui)
   - [SDL game tutorial Platfromer](#sdl-game-tutorial-platfromer)
 
@@ -37,7 +37,7 @@ ImGui version **1.92.1** (2025/07)
 
 - [x] No dependence on external zig libraries
 - [x] No download external libraries
-- [x] Included ImGui / GLFW / SDL3 / STB_image libraries in this project
+- [x] Included ImGui / GLFW / SDL3 / STB_image libraries in this project (except Linux OS)
 - [x] Using IconFont [FontAwewsome 6](https://fontawesome.com)
 - [x] Image load/save
 
@@ -65,8 +65,15 @@ Library name / C lang. wrapper
 ---
 
 - Windows10 OS or later
-- ~~Linux OS~~ WIP
-- GCC (or Clang or **'Zig cc'** compiler)
+- Linux OS: Debian / Ubunts families
+
+  ```sh
+  $ sudo apt install lib{opengl-dev,gl1-mesa-dev,glfw3,glfw3-dev}
+  ```
+
+  See [SDL3 installation](https://github.com/dinau/sdl3_nim#for-linux-os)
+
+- GCC (or Clang or **'zig cc'** compiler)
 - Use **Zig: 0.14.1** or **0.15.0-dev.885+e83776595**
 - MSys/MinGW basic commands (make, rm, cp ...)
 
@@ -93,29 +100,45 @@ Library name / C lang. wrapper
 
 #### Examples screen shots 
 
-##### [zig_imknobs](examples/zig_imknobs) 
+##### zig_imknobs
 
 ---
+
+ [zig_imknobs](examples/zig_imknobs) 
 
 ![alt](img/zig_imknobs.png)
 
-##### [zig_imtoggle](examples/zig_imtoggle) 
+##### zig_imtoggle
 
 ---
+
+[zig_imtoggle](examples/zig_imtoggle) 
 
 ![alt](img/zig_imtoggle.png)
 
-##### [zig_imspinner](examples/zig_imspinner) 
+##### zig_imspinner
 
 ---
+
+[zig_imspinner](examples/zig_imspinner) 
 
 ![alt](img/zig_imspinner.gif)
 
-##### [zig_imfiledialog](examples/zig_imfiledialog) 
+##### zig_imfiledialog
 
 ---
 
+[zig_imfiledialog](examples/zig_imfiledialog) 
+
 ![alt](img/zig_imfiledialog.png)
+
+##### zig_iconfontviewer
+
+---
+
+[zig_iconfontviewer](examples/zig_iconfontviewer) 
+
+![alt](img/zig_iconfontviewer.png)
 
 ##### opengl3
 

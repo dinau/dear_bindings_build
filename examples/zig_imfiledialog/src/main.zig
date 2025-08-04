@@ -4,7 +4,7 @@ const ifa = @import("fonticon");
 const stf = @import("setupfont");
 const app = @import("appimgui");
 
-const fld = @import("imfileopendialog");
+const fld = @import("imfiledialog");
 
 const MainWinWidth: i32 = 1024;
 const MainWinHeight: i32 = 800;
