@@ -23,7 +23,8 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_rel.yml/badge.svg)  
+![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_rel.yml/badge.svg)
+![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/linux_rel.yml/badge.svg)  
 
 ### Dear_Bindings_Build
 
