@@ -17,8 +17,21 @@ ifeq ($(OS),Windows_NT)
    EXAMPLE_DIRS	+= examples/zig_sdl3_opengl3
 endif
 
+
+EXAMPLE_DIRS_ZIG =\
+							examples/zig_glfw_opengl3            \
+							examples/zig_glfw_opengl3_image_load \
+							examples/zig_iconfontviewer          \
+							examples/zig_imfiledialog        \
+							examples/zig_imknobs                 \
+							examples/zig_imspinner               \
+							examples/zig_imtoggle                \
+
 all:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
+
+zig:
+	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),all ))
 
 fmt:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
