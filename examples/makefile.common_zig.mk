@@ -15,5 +15,7 @@ clean:
 	@-rm -fr zig-out
 	@-rm -fr zig-cache .zig-cache
 
+cleanall: clean
+
 fmt:
 	zig fmt .

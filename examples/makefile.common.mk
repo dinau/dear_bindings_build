@@ -101,7 +101,11 @@ CFLAGS += -DImDrawIdx="unsigned int"
 CFLAGS += -DIMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS
 
 # LIBS
+ifeq ($(OS),Windows_NT)
 LIBS += -lgdi32 -limm32 -lopengl32
+else
+LIBS += -lGL -lglfw3
+endif
 
 DEPS_IMGUI  = $(wildcard $(IMGUI_DIR)/*.h)
 DEPS_CIMGUI = $(DCIMGUI_DIR)/dcimgui.h
@@ -173,16 +177,17 @@ $(UTILS_OBJ_DIR):
 run: all
 	./$(TARGET)
 
-clean: cleanall
+clean:
 	-rm $(TARGET)$(EXE)
 	-rm $(TARGET).lib $(TARGET).pdb
 	-rm $(MY_OBJS)
+	-rm -fr $(BUILD_DIR)
 cleanother:
 	-rm -fr $(UTILS_OBJ_DIR)
-cleanobjs: cleanother
+cleanobjs: clean cleanother
 	-rm $(LIB_CIMGUI_ARCHIVE)
 	-rm -fr $(DCIMGUI_BUILD_DIR)
-cleanall:
+cleanall: cleanobjs
 	-rm -fr $(BUILD_DIR)
 	-rm -fr $(DCIMGUI_BUILD_DIR)
 fmt:

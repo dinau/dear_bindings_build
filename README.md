@@ -23,14 +23,13 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_rel.yml/badge.svg)
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/linux_rel.yml/badge.svg)  
+![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_rel.yml/badge.svg)  
 
 ### Dear_Bindings_Build
 
 This project aims to simply and easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 
-ImGui version **1.92.1** (2025/07)
+[]Dear ImGui]() version **1.92.2** (2025/06)
 
 #### Features
 
@@ -38,9 +37,15 @@ ImGui version **1.92.1** (2025/07)
 
 - [x] No dependence on external zig libraries
 - [x] No download external libraries
-- [x] Included ImGui / GLFW / SDL3 / STB_image libraries in this project (except Linux OS)
+- [x] Included ImGui / GLFW / SDL3 / STB_image libraries in this project
 - [x] Using IconFont [FontAwewsome 6](https://fontawesome.com)
 - [x] Image load/save
+
+- Frontends and Backends 
+
+   |                    | GLFW   |   SDL3   |
+   | ---                | :----: |   :----: |
+   | OpenGL3<br>backend | v      |   v      |
 
 #### Available libraries list at this moment
 
@@ -49,14 +54,14 @@ ImGui version **1.92.1** (2025/07)
 Library name / C lang. wrapper
 
 - [x] [ImGui](https://github.com/ocornut/imgui) / [Dear_Bindings](https://github.com/dearimgui/dear_bindings)
-- [ ] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot)
-- [ ] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d) 
-- [ ] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) 
-- [ ] [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo) / [CImGuizmo](https://github.com/cimgui/cimguizmo) 
 - [x] [ImGui-Knobs](https://github.com/altschuler/imgui-knobs) / [CImGui-Knobs](libs/cimgui-knobs) (2025/07)
 - [x] [ImGuiFileDialog](https://github.com/aiekick/ImGuiFileDialog) / [CImGuiFileDialog](https://github.com/dinau/CImGuiFileDialog) (2025/07)
 - [x] [ImGui_Toggle](https://github.com/cmdwtf/imgui_toggle) / [CimGui_Toggle](https://github.com/dinau/cimgui_toggle) (2025/07)
 - [x] [ImSpinner](https://github.com/dalerank/imspinner) / [CImSpinner](https://github.com/dinau/cimspinner) (2025/07)
+- [ ] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot)
+- [ ] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d) 
+- [ ] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) 
+- [ ] [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo) / [CImGuizmo](https://github.com/cimgui/cimguizmo) 
 - [ ] [ImGuiColorTextEdit](https://github.com/santaclose/ImGuiColorTextEdit) / [cimCTE](https://github.com/cimgui/cimCTE) 
 - [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) 
 
@@ -65,18 +70,40 @@ Library name / C lang. wrapper
 
 ---
 
-- Windows10 OS or later
+- Windows10 OS or later  
+MSys/MinGW basic commands (make, rm, cp ...)
 - Linux OS: Debian / Ubunts families
+- GCC (or Clang or **'Zig cc'** compiler)
+- Zig language Compiler  
+Use: [zig-x86_64-windows-0.14.1.zip](https://ziglang.org/download/0.14.1/zig-x86_64-windows-0.14.1.zip) 
 
-  ```sh
-  $ sudo apt install lib{opengl-dev,gl1-mesa-dev,glfw3,glfw3-dev}
-  ```
+#### Compiling 
 
-  See [SDL3 installation](https://github.com/dinau/sdl3_nim#for-linux-os)
+---
 
-- GCC (or Clang or **'zig cc'** compiler)
-- Use **Zig: 0.14.1** or **0.15.0-dev.885+e83776595**
-- MSys/MinGW basic commands (make, rm, cp ...)
+- GCC compiler
+
+   | example                     | Windows | Linux  |
+   | ---                         | :----:  | :----: |
+   | glfw_opengl3                | v       |        |
+   | glfw_opengl3_image_load     | v       |        |
+   | glfw_opengl3_image_save     | v       |        |
+   | glfw_opengl3_jp             | v       |        |
+   | sdl3_opengl3                | v       |        |
+
+- Zig compiler
+
+   | example                     | Windows | Linux  |
+   | ---                         | :----:  | :----: |
+   | zig_glfw_opengl3            | v       | v      |
+   | zig_glfw_opengl3_image_load | v       | v      |
+   | zig_iconfontviewer          | v       | v      |
+   | zig_imfiledialog            | v       | v      |
+   | zig_imkonbs                 | v       | v      |
+   | zig_imspinner               | v       | v      |
+   | zig_imtoggle                | v       | v      |
+   | zig_sdl3_opengl3            | v       |        |
+
 
 #### Build and run
 
