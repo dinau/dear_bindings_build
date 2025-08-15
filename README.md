@@ -5,6 +5,7 @@
   - [Features](#features)
   - [Available libraries list at this moment](#available-libraries-list-at-this-moment)
   - [Prerequisites](#prerequisites)
+  - [Compiling](#compiling)
   - [Build and run](#build-and-run)
   - [Examples screen shots](#examples-screen-shots)
     - [zig_imknobs](#zig_imknobs)
@@ -30,7 +31,7 @@
 
 This project aims to simply and easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 
-[]Dear ImGui]() version **1.92.2** (2025/06)
+[Dear ImGui](https://github.com/ocornut/imgui) version **1.92.2b** (2025/08)
 
 #### Features
 

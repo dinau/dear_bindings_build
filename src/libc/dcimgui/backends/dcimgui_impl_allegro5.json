@@ -243,6 +243,46 @@
             }
         },
         {
+            "name": "cImGui_ImplAllegro5_SetDisplay",
+            "original_fully_qualified_name": "ImGui_ImplAllegro5_SetDisplay",
+            "return_type": {
+                "declaration": "void",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "void"
+                }
+            },
+            "arguments": [
+                {
+                    "name": "display",
+                    "type": {
+                        "declaration": "ALLEGRO_DISPLAY*",
+                        "description": {
+                            "kind": "Pointer",
+                            "inner_type": {
+                                "kind": "User",
+                                "name": "ALLEGRO_DISPLAY"
+                            }
+                        }
+                    },
+                    "is_array": false,
+                    "is_varargs": false,
+                    "is_instance_pointer": false
+                }
+            ],
+            "is_default_argument_helper": false,
+            "is_manual_helper": false,
+            "is_imstr_helper": false,
+            "has_imstr_helper": false,
+            "is_unformatted_helper": false,
+            "is_static": false,
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui_impl_allegro5.h",
+                "line": 36
+            }
+        },
+        {
             "name": "cImGui_ImplAllegro5_CreateDeviceObjects",
             "original_fully_qualified_name": "ImGui_ImplAllegro5_CreateDeviceObjects",
             "return_type": {
@@ -267,7 +307,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui_impl_allegro5.h",
-                "line": 38
+                "line": 39
             }
         },
         {
@@ -290,7 +330,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui_impl_allegro5.h",
-                "line": 39
+                "line": 40
             }
         },
         {
@@ -335,7 +375,7 @@
             "is_internal": false,
             "source_location": {
                 "filename": "imgui_impl_allegro5.h",
-                "line": 42
+                "line": 43
             }
         }
     ]

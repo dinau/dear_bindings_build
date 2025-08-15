@@ -2,7 +2,7 @@
     "defines": [
         {
             "name": "IMGUI_VERSION",
-            "content": "\"1.92.2\"",
+            "content": "\"1.92.2b\"",
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
@@ -11,7 +11,7 @@
         },
         {
             "name": "IMGUI_VERSION_NUM",
-            "content": "19220",
+            "content": "19222",
             "is_internal": false,
             "source_location": {
                 "filename": "imgui.h",
