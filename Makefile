@@ -3,14 +3,7 @@ EXAMPLE_DIRS =\
 							examples/glfw_opengl3                \
 	            examples/glfw_opengl3_image_load     \
 	            examples/glfw_opengl3_image_save     \
-	            examples/glfw_opengl3_jp             \
-							examples/zig_glfw_opengl3            \
-							examples/zig_glfw_opengl3_image_load \
-							examples/zig_iconfontviewer          \
-							examples/zig_imfiledialog        \
-							examples/zig_imknobs                 \
-							examples/zig_imspinner               \
-							examples/zig_imtoggle                \
+	            examples/glfw_opengl3_jp
 
 ifeq ($(OS),Windows_NT)
    EXAMPLE_DIRS	+= examples/sdl3_opengl3
@@ -25,11 +18,12 @@ EXAMPLE_DIRS_ZIG =\
 							examples/zig_imfiledialog        \
 							examples/zig_imknobs                 \
 							examples/zig_imspinner               \
-							examples/zig_imtoggle                \
+							examples/zig_imtoggle
 
-all:
+all: zig
+ifeq ($(OS),Windows_NT)
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
-
+endif
 zig:
 	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),all ))
 

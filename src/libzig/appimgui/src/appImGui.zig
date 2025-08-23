@@ -11,7 +11,7 @@ const img_icon = @import("loadicon");
 //---------------------
 // glfw_error_callback
 //---------------------
-fn glfw_error_callback(err: c_int, description: [*c]const u8) callconv(.C) void {
+fn glfw_error_callback(err: c_int, description: [*c]const u8) callconv(.c) void {
     std.debug.print("GLFW Error {d}: {s}\n", .{ err, description });
 }
 
@@ -52,21 +52,20 @@ pub const Window = struct {
     showWindowDelay: i32, // TODO: Avoid flickering of window at startup
     ini: TIni,
     clearColor: [4]f32,
-    var glsl_version_buf: [30]u8 = undefined;
 
     //-------------
     // createImGui
     //-------------
-    const versions = [_][2]u16{ [_]u16{ 4, 6 }, [_]u16{ 4, 5 }, [_]u16{ 4, 4 }, [_]u16{ 4, 3 }, [_]u16{ 4, 2 }, [_]u16{ 4, 1 }, [_]u16{ 4, 0 }, [_]u16{ 3, 3 } };
+    var versions = [_][2]u16{ [_]u16{ 4, 6 }, [_]u16{ 4, 5 }, [_]u16{ 4, 4 }, [_]u16{ 4, 3 }, [_]u16{ 4, 2 }, [_]u16{ 4, 1 }, [_]u16{ 4, 0 }, [_]u16{ 3, 3 } };
     pub fn createImGui(w: i32, h: i32, title: [*c]const u8) !Window {
         _ = w;
         _ = h;
         var win: Self = undefined;
         try loadIni(&win);
         // For print()
-        const stdout_file = std.io.getStdOut().writer();
-        var bw = std.io.bufferedWriter(stdout_file);
-        const stdout = bw.writer();
+        var stdout_buffer: [1024]u8 = undefined;
+        var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
+        const stdout = &stdout_writer.interface;
 
         //-------------------
         // GLFW initializing
@@ -81,6 +80,14 @@ pub const Window = struct {
         // Decide GL+GLSL versions
         //-------------------------
         var glsl_version: [:0]u8 = undefined;
+        var glsl_version_buf: [30]u8 = undefined;
+        switch (builtin.target.os.tag) {
+            .linux => {
+                      versions[0][0] = 3;
+                      versions[0][1] = 3;
+                      },
+            else => {},
+        }
         for (versions) |ver| {
             glfw.glfwWindowHint(glfw.GLFW_OPENGL_FORWARD_COMPAT, glfw.GLFW_TRUE);
             glfw.glfwWindowHint(glfw.GLFW_OPENGL_PROFILE, glfw.GLFW_OPENGL_CORE_PROFILE);
@@ -89,6 +96,8 @@ pub const Window = struct {
             //
             glfw.glfwWindowHint(glfw.GLFW_RESIZABLE, glfw.GLFW_TRUE); // Resizable window
             glfw.glfwWindowHint(glfw.GLFW_VISIBLE, glfw.GLFW_FALSE); // Needs this if OpenGL is not initialized !.
+            //
+            glfw.glfwWindowHint(glfw.GLFW_DOUBLEBUFFER, glfw.GL_TRUE);
 
             //---------------------------------------------
             // Create GLFW window and activate OpenGL libs
@@ -152,7 +161,7 @@ pub const Window = struct {
         // ImGui GLFW OpenGL backend interface
         //-------------------------------------
         _ = impl_glfw.cImGui_ImplGlfw_InitForOpenGL(@ptrCast(win.handle), true);
-        _ = impl_gl.cImGui_ImplOpenGL3_Init();
+        _ = impl_gl.cImGui_ImplOpenGL3_InitEx(glsl_version.ptr);
 
         _ = setTheme(@enumFromInt(win.ini.window.theme));
 
@@ -406,26 +415,27 @@ pub fn loadIni(win: *Window) !void {
 // saveIni
 //---------
 pub fn saveIni(win: *Window) !void {
+    _ = win;
     // Window pos
-    glfw.glfwGetWindowPos(win.handle, &win.ini.window.startupPosX, &win.ini.window.startupPosY);
-
-    // Window size
-    const ws = ig.ImGui_GetMainViewport().*.WorkSize;
-    win.ini.window.viewportWidth = @intFromFloat(ws.x);
-    win.ini.window.viewportHeight = @intFromFloat(ws.y);
-
-    // Save to ini file
-    const allocator = std.heap.page_allocator;
-    const exe_path = try std.fs.selfExePathAlloc(allocator);
-    defer allocator.free(exe_path);
-
-    const filename = try changeExtension(exe_path, "ini");
-    std.debug.print("Write ini: {s}\n", .{filename});
-
-    var file = try std.fs.cwd().createFile(filename, .{});
-    defer file.close();
-
-    var json_string = std.ArrayList(u8).init(allocator);
-    try std.json.stringify(win.ini, .{ .whitespace = .indent_2 }, json_string.writer());
-    try file.writeAll(json_string.items);
+//    glfw.glfwGetWindowPos(win.handle, &win.ini.window.startupPosX, &win.ini.window.startupPosY);
+//
+//    // Window size
+//    const ws = ig.ImGui_GetMainViewport().*.WorkSize;
+//    win.ini.window.viewportWidth = @intFromFloat(ws.x);
+//    win.ini.window.viewportHeight = @intFromFloat(ws.y);
+//
+//    // Save to ini file
+//    const allocator = std.heap.page_allocator;
+//    const exe_path = try std.fs.selfExePathAlloc(allocator);
+//    defer allocator.free(exe_path);
+//
+//    const filename = try changeExtension(exe_path, "ini");
+//    std.debug.print("Write ini: {s}\n", .{filename});
+//
+//    var file = try std.fs.cwd().createFile(filename, .{});
+//    defer file.close();
+//
+//    var json_string = std.ArrayList(u8).init(allocator);
+//    try std.json.stringify(win.ini, .{ .whitespace = .indent_2 }, json_string.writer());
+//    try file.writeAll(json_string.items);
 }

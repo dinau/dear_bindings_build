@@ -1,5 +1,5 @@
 #
-OPT += --release=fast
+#OPT += --release=fast
 #OPT += --release=small
 # Fail compilation
 #OPT += --release=safe

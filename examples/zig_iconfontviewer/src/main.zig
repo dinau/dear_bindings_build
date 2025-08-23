@@ -17,7 +17,7 @@ const MainWinHeight: i32 = 800;
 pub fn gui_main(window: *app.Window) !void {
     stf.setupFonts(); // Setup CJK fonts and Icon fonts
 
-    //const pio = ig.ImGui_GetIO();
+    const pio = ig.ImGui_GetIO();
 
     var item_current: usize = 0;
     var showIconFontsViewerWindow = true;
@@ -70,17 +70,17 @@ pub fn gui_main(window: *app.Window) !void {
 
             //# Show ListBox main
             ig.ImGui_NewLine();
-            //const listBoxPosTop =  ig.ImGui_GetCursorScreenPos(); //# Get absolute pos.
+            const listBoxPosTop =  ig.ImGui_GetCursorScreenPos(); //# Get absolute pos.
             ig.ImGui_SetNextItemWidth(listBoxWidth);
             _ = ig.ImGui_ListBox("##listbox1", @ptrCast(&item_current), &ift.iconFontsTbl, ift.iconFontsTbl.len, 34);
             // TODO
-            //const listBoxPosEnd = ig.ImGui_GetCursorScreenPos(); // # Get absolute pos.
-            //// # Show magnifying glass (Zooming in Toolchip)
-            //if (ig.ImGui_IsItemHovered(ig.ImGuiHoveredFlags_DelayNone)) {
-            //    if ((pio.*.MousePos.x - listBoxPosTop.x) < 50) {
-            //        utils.zoomGlass(&listBoxTextureID, listBoxWidth, listBoxPosTop, listBoxPosEnd);
-            //    }
-            //}
+            const listBoxPosEnd = ig.ImGui_GetCursorScreenPos(); // # Get absolute pos.
+            // # Show magnifying glass (Zooming in Toolchip)
+            if (ig.ImGui_IsItemHovered(ig.ImGuiHoveredFlags_DelayNone)) {
+                if ((pio.*.MousePos.x - listBoxPosTop.x) < 50) {
+                    utils.zoomGlass(&listBoxTextureID, listBoxWidth, listBoxPosTop, listBoxPosEnd, true);
+                }
+            }
         }
 
         //---------------------

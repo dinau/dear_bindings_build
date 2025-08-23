@@ -90,14 +90,14 @@ pub fn gui_main(window: *app.Window) !void {
 
             // Image save button
             const imageExt = ImgFormatTbl[cbItemIndex].ext;
-            var svNameBuf: [200]u8 = undefined;
-            var svBuf: [200]u8 = undefined;
+            var svNameBuf: [2048]u8 = undefined;
+            var svBuf: [2048]u8 = undefined;
             const slszName = try std.fmt.bufPrintZ(&svNameBuf, "{s}_{}{s}", .{ SaveImageName, counter, imageExt });
             if (ig.ImGui_Button("Save Image")) {
                 const wkSize = ig.ImGui_GetMainViewport().*.WorkSize;
                 const sx: c_int = @intFromFloat(wkSize.x);
                 const sy: c_int = @intFromFloat(wkSize.y);
-                std.debug.print("{s}\n", .{slszName});
+                std.debug.print("[{s}]\n", .{slszName});
                 utils.saveImage(slszName.ptr, 0, 0, sx, sy, 3, 90); // # --- Save Image ! TODO: Crash !
             }
             ig.ImGui_PopStyleColorEx(4);
@@ -143,13 +143,13 @@ pub fn gui_main(window: *app.Window) !void {
             defer ig.ImGui_End();
             // Load image
             const size = utils.vec2(@floatFromInt(textureWidth), @floatFromInt(textureHeight));
-            //const imageBoxPosTop = ig.ImGui_GetCursorScreenPos(); // # Get absolute pos.
+            const imageBoxPosTop = ig.ImGui_GetCursorScreenPos(); // # Get absolute pos.
 
             ig.ImGui_Image(ig.ImTextureRef{ ._TexData = null, ._TexID = textureId }, size);
-            //const  imageBoxPosEnd = ig.ImGui_GetCursorScreenPos(); // # Get absolute pos.
-            //if (ig.ImGui_IsItemHovered(ig.ImGuiHoveredFlags_DelayNone)) {
-            //    utils.zoomGlass(&zoomTextureID, textureWidth, imageBoxPosTop, imageBoxPosEnd);
-            //}
+            const  imageBoxPosEnd = ig.ImGui_GetCursorScreenPos(); // # Get absolute pos.
+            if (ig.ImGui_IsItemHovered(ig.ImGuiHoveredFlags_DelayNone)) {
+                utils.zoomGlass(&textureId, textureWidth, imageBoxPosTop, imageBoxPosEnd, false);
+            }
         }
         // Rendering
         window.render();
