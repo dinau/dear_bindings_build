@@ -12,13 +12,15 @@ endif
 
 
 EXAMPLE_DIRS_ZIG =\
+							examples/zig_imguizmo                \
 							examples/zig_glfw_opengl3            \
 							examples/zig_glfw_opengl3_image_load \
 							examples/zig_iconfontviewer          \
-							examples/zig_imfiledialog        \
+							examples/zig_imfiledialog            \
 							examples/zig_imknobs                 \
 							examples/zig_imspinner               \
-							examples/zig_imtoggle
+							examples/zig_imtoggle                \
+							examples/zig_imcolortextedit
 
 all: zig
 ifeq ($(OS),Windows_NT)

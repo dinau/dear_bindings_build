@@ -3,7 +3,9 @@ DIRS = \
 	dcimgui \
 	fonticon \
 	glfw \
-	imfileopendialog \
+	imcolortextedit \
+	imfiledialog \
+	imguizmo\
 	imknobs\
 	impl_glfw \
 	impl_opengl3 \

@@ -15,6 +15,7 @@
     - [zig_imgui_markdown](#zig_imgui_markdown)
     - [zig_iconfontviewer](#zig_iconfontviewer)
     - [zig_imcolortextedit](#zig_imcolortextedit)
+    - [zig_imguizmo](#zig_imguizmo)
     - [Image load / save](#image-load--save)
     - [zig_glfw_opengl3](#zig_glfw_opengl3)
   - [Hiding console window](#hiding-console-window)
@@ -62,11 +63,11 @@ Library name / C lang. wrapper
 - [x] [ImGui_Toggle](https://github.com/cmdwtf/imgui_toggle) / [CimGui_Toggle](https://github.com/dinau/cimgui_toggle) (2025/07)
 - [x] [ImSpinner](https://github.com/dalerank/imspinner) / [CImSpinner](https://github.com/dinau/cimspinner) (2025/07)
 - [x] [ImGuiColorTextEdit](https://github.com/santaclose/ImGuiColorTextEdit) / [cimCTE](https://github.com/cimgui/cimCTE) (2025/08)
+- [x] [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo) / [CImGuizmo](https://github.com/cimgui/cimguizmo) (2025/08)
 - [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
 - [ ] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot)
 - [ ] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d) 
 - [ ] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) 
-- [ ] [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo) / [CImGuizmo](https://github.com/cimgui/cimguizmo) 
 
 #### Prerequisites
 
@@ -106,6 +107,7 @@ MSys/MinGW basic commands (make, rm, cp ...)
    | ImSpinner          | zig_imspinner               | v       | v                 |
    | ImGui-Toggle       | zig_imtoggle                | v       | v                 |
    | ImGuiColorTextEdit | zig_imcolortextedit         | v       | v                 |
+   | ImGuizmo           | zig_imguizmo                | v       | v                 |
    | ImGui_Markdown     | zig_imgui_markdown          | WIP     | WIP               |
    | -                  | zig_sdl3_opengl3            | v       | v [^sdl3_install] |
 
@@ -195,6 +197,14 @@ MSys/MinGW basic commands (make, rm, cp ...)
 [zig_imcolortextedit](examples/zig_imcolortextedit/src/main.zig) 
 
 ![alt](img/zig_imcolortextedit.png)
+
+##### zig_imguizmo
+
+---
+
+[zig_imguizmo](examples/zig_imguizmo/src/main.zig) 
+
+![alt](img/zig_imguizmo.png)
 
 ##### Image load / save
 
