@@ -7,6 +7,7 @@ DIRS = \
 	imfiledialog \
 	imguizmo\
 	imknobs\
+	imnodes\
 	impl_glfw \
 	impl_opengl3 \
 	imspinner \
