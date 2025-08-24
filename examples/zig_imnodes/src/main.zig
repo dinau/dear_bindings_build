@@ -1,0 +1,234 @@
+const std = @import("std");
+const ig = @import("dcimgui");
+const ifa = @import("fonticon");
+const stf = @import("setupfont");
+const app = @import("appimgui");
+
+const imnodes = @import("imnodes");
+
+const MainWinWidth: i32 = 1200;
+const MainWinHeight: i32 = 800;
+
+//--- Records
+const Node = struct { id: c_int, value: f32 };
+const Link = struct { id: c_int, start_attr: c_int, end_attr: c_int };
+const recObj = struct { nodes: std.ArrayList(Node), links: std.ArrayList(Link), current_id: c_int };
+
+//-----------
+// gui_main()
+//-----------
+pub fn gui_main(window: *app.Window) !void {
+    stf.setupFonts(); // Setup CJK fonts and Icon fonts
+
+    //---------------------
+    // ImNode init context
+    //---------------------
+    const imnodes_context = imnodes.imnodes_CreateContext();
+    defer imnodes.imnodes_DestroyContext(imnodes_context);
+
+    //const pio = ig.ImGui_GetIO_Nil();
+    //
+    var showImNodesWindow = true;
+
+    // Alloator
+    const allocator = std.heap.page_allocator;
+
+    //-- ImNode: Initialize NodeEditor
+    var obj: recObj = undefined;
+    obj.nodes = try std.ArrayList(Node).initCapacity(allocator,1024);
+    obj.links = try std.ArrayList(Link).initCapacity(allocator,1024);
+    defer obj.nodes.deinit(allocator);
+    defer obj.links.deinit(allocator);
+
+    imnodes.imnodes_GetIO().*.LinkDetachWithModifierClick.Modifier = imnodes.getIOKeyCtrlPtr();
+    imnodes.imnodes_PushAttributeFlag(imnodes.ImNodesAttributeFlags_EnableLinkDetachWithDragClick);
+    try loadObj(allocator, &obj);
+
+    //-- ImNode: Shutdown NodeEditor
+    defer {
+        imnodes.imnodes_PopAttributeFlag();
+        saveObj(allocator, &obj) catch unreachable;
+    }
+
+    //---------------
+    // main loop GUI
+    //---------------
+    while (!window.shouldClose ()) {
+        window.pollEvents ();
+
+        // Iconify sleep
+        if( window.isIconified()){
+            continue;
+        }
+        // Start the Dear ImGui frame
+        window.frame();
+
+        //------------------
+        // Show demo window
+        //------------------
+        ig.ImGui_ShowDemoWindow(null);
+        window.showInfoWindow();
+
+        //---------------------
+        // Show ImNodes window
+        //---------------------
+        if (showImNodesWindow) {
+            _ = ig.ImGui_Begin("ImNodes " ++ ifa.ICON_FA_CAT, &showImNodesWindow, 0);
+            defer ig.ImGui_End();
+            //
+            ig.ImGui_TextUnformatted("A -- add node");
+            ig.ImGui_TextUnformatted("\"Close the executable and rerun it -- your nodes should be exactly\"\n\"where you left them !\"");
+            {
+                imnodes.imnodes_BeginNodeEditor();
+                defer imnodes.imnodes_EndNodeEditor();
+                if (ig.ImGui_IsWindowFocused(ig.ImGuiFocusedFlags_RootAndChildWindows) and imnodes.imnodes_IsEditorHovered() and ig.ImGui_IsKeyReleased(ig.ImGuiKey_A)) {
+                    obj.current_id += 1;
+                    const node_id = obj.current_id;
+                    const pos = ig.ImGui_GetMousePos();
+                    imnodes.imnodes_SetNodeScreenSpacePos(node_id, .{.x = pos.x, .y = pos.y});
+                    try obj.nodes.append(allocator, .{ .id = node_id, .value = 0 });
+                }
+                for (obj.nodes.items, 0..) |*node, nodeN| {
+                    imnodes.imnodes_BeginNode(node.id);
+                    defer imnodes.imnodes_EndNode();
+                    {
+                        imnodes.imnodes_BeginNodeTitleBar();
+                        defer imnodes.imnodes_EndNodeTitleBar();
+                        ig.ImGui_Text("%s %d", "node", @as(c_int, @intCast(nodeN)));
+                    }
+                    {
+                        imnodes.imnodes_BeginInputAttribute(node.id << 8, imnodes.ImNodesPinShape_CircleFilled);
+                        defer imnodes.imnodes_EndInputAttribute();
+                        ig.ImGui_TextUnformatted("input");
+                    }
+                    {
+                        imnodes.imnodes_BeginStaticAttribute(node.id << 16);
+                        defer imnodes.imnodes_EndStaticAttribute();
+                        ig.ImGui_PushItemWidth(120);
+                        _ = ig.ImGui_DragFloat("value", &node.value);
+                        ig.ImGui_PopItemWidth();
+                    }
+                    {
+                        imnodes.imnodes_BeginOutputAttribute(node.id << 24, imnodes.ImNodesPinShape_CircleFilled);
+                        defer imnodes.imnodes_EndOutputAttribute();
+                        const  wOut = ig.ImGui_CalcTextSizeEx("output", null, false, -1.0);
+                        const  wVal = ig.ImGui_CalcTextSizeEx("value",  null,  false, -1.0);
+                        ig.ImGui_IndentEx(120 + wVal.x - wOut.x);
+                        ig.ImGui_TextUnformatted("output");
+                    }
+                } //-- end for loop
+
+                for (obj.links.items) |link| {
+                    imnodes.imnodes_Link(link.id, link.start_attr, link.end_attr);
+                }
+            } //-- imnodes_EndNodeEditor()
+
+            var lnk: Link = undefined;
+            if (imnodes.imnodes_IsLinkCreated_BoolPtr(&lnk.start_attr, &lnk.end_attr, null)) {
+                obj.current_id += 1;
+                lnk.id = obj.current_id;
+                try obj.links.append(allocator, lnk);
+            }
+
+            var link_id: c_int = undefined;
+            if (imnodes.imnodes_IsLinkDestroyed(&link_id)) {
+                var idx: i32 = -1;
+                for (obj.links.items, 0..) |item, i| {
+                    if (item.id == link_id) {
+                        idx = @intCast(i);
+                        break;
+                    }
+                }
+                if (idx > 0) {
+                    _ = obj.links.orderedRemove(@intCast(idx));
+                }
+            }
+        } // end ImNodes window
+
+        //--------
+        // render
+        //--------
+        window.render();
+    } // end while loop
+}
+
+//---------
+// saveObj
+//---------
+fn saveObj(alloc: std.mem.Allocator, this: *recObj) !void {
+    _ = alloc;
+    //-- Save the internal imnodes state
+    imnodes.imnodes_SaveCurrentEditorStateToIniFile("save_load.ini");
+    //-- Dump our editor state as bytes into a file
+    const fout = try std.fs.cwd().createFile("save_load.bytes", .{});
+    defer fout.close();
+    //-- Copy the vector: nodes to the file
+    try fout.writeAll(std.mem.asBytes(&this.nodes.items.len)); //   -- save vector:nodes size
+    for (this.nodes.items) |nd| {
+        try fout.writeAll(std.mem.asBytes(&nd.id));
+        try fout.writeAll(std.mem.asBytes(&nd.value));
+    }
+    //-- Copy the vector: links to the file
+    try fout.writeAll(std.mem.asBytes(&this.links.items.len)); //   -- save vector:links size
+    for (this.links.items) |lk| {
+        try fout.writeAll(std.mem.asBytes(&lk.id));
+        try fout.writeAll(std.mem.asBytes(&lk.start_attr));
+        try fout.writeAll(std.mem.asBytes(&lk.end_attr));
+    }
+    //-- Copy the current_id to the file
+    try fout.writeAll(std.mem.asBytes(&this.current_id));
+}
+
+//---------
+// loadObj
+//---------
+fn loadObj(alloc: std.mem.Allocator, this: *recObj) !void {
+    //-- Load the internal imnodes state
+    imnodes.imnodes_LoadCurrentEditorStateFromIniFile("save_load.ini");
+    //-- Load our editor state into memory
+    const fin = std.fs.cwd().openFile("save_load.bytes", .{}) catch return;
+    defer fin.close();
+    //-- Load nodes into memory
+    var sz: usize = undefined;
+    _ = try fin.readAll(std.mem.asBytes(&sz));
+    if (sz == 0) {
+        return;
+    }
+    for (0..sz) |_| {
+        var id: c_int = undefined;
+        _ = try fin.readAll(std.mem.asBytes(&id));
+        var value: f32 = undefined;
+        _ = try fin.readAll(std.mem.asBytes(&value));
+        try this.nodes.append(alloc, .{ .id = id, .value = value });
+    }
+    //-- Load links into memory
+    _ = try fin.readAll(std.mem.asBytes(&sz));
+    for (0..sz) |_| {
+        var id: c_int = undefined;
+        _ = try fin.readAll(std.mem.asBytes(&id));
+        var start_attr: c_int = undefined;
+        _ = try fin.readAll(std.mem.asBytes(&start_attr));
+        var end_attr: c_int = undefined;
+        _ = try fin.readAll(std.mem.asBytes(&end_attr));
+        try this.links.append(alloc, .{ .id = id, .start_attr = start_attr, .end_attr = end_attr });
+    }
+    //-- copy current_id into memory
+    var current_id: c_int = undefined;
+    _ = try fin.readAll(std.mem.asBytes(&current_id));
+    this.current_id = current_id;
+}
+
+//--------
+// main()
+//--------
+pub fn main() !void {
+    var window = try app.Window.createImGui(MainWinWidth, MainWinHeight, "ImGui window in Zig lang.");
+    defer window.destroyImGui();
+
+    //_ = app.setTheme(app.Theme.light); // Theme: dark, classic, light, microsoft
+
+    //---------------
+    // GUI main proc
+    //---------------
+    try gui_main(&window);
+}

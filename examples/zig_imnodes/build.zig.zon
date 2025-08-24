@@ -1,0 +1,33 @@
+.{
+    .name = .zig_imknobs,
+    .version = "0.0.1",
+    .fingerprint = 0xacefef46792a24b4, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.14.1",
+    .dependencies = .{
+        .appimgui = .{
+            .path = "../../src/libzig/appimgui",
+            .lazy = true,
+        },
+        .dcimgui = .{
+            .path = "../../src/libzig/dcimgui",
+            .lazy = true,
+        },
+        .fonticon = .{
+            .path = "../../src/libzig/fonticon",
+            .lazy = true,
+        },
+        .imnodes = .{
+            .path = "../../src/libzig/imnodes",
+            .lazy = true,
+        },
+        .setupfont = .{
+            .path = "../../src/libzig/setupfont",
+            .lazy = true,
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}

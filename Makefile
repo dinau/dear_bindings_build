@@ -12,6 +12,7 @@ endif
 
 
 EXAMPLE_DIRS_ZIG =\
+							examples/zig_imnodes                 \
 							examples/zig_imguizmo                \
 							examples/zig_glfw_opengl3            \
 							examples/zig_glfw_opengl3_image_load \
