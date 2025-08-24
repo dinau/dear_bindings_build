@@ -32,7 +32,7 @@ pub fn build(b: *std.Build) void {
     // macro
     mod.addCMacro("IMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS", "");
     mod.addCMacro("ImDrawIdx", "unsigned int");
-    mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1");
+    //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1");
     // for fileopendialog
     mod.addCMacro("CUSTOM_IMGUIFILEDIALOG_CONFIG", "\"customIconFont.h\"");
     switch (builtin.target.os.tag) {
