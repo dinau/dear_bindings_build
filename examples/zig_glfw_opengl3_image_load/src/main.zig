@@ -34,7 +34,8 @@ pub fn gui_main(window: *app.Window) !void {
     //------------
     // Load image
     //------------
-    const ImageName = "himeji-400.jpg";
+    //const ImageName = "himeji-400.jpg";
+    const ImageName = "fuji-cherry-480.jpg";
     var textureId: glfw.GLuint = undefined;
     var textureWidth: c_int = 0;
     var textureHeight: c_int = 0;
@@ -167,7 +168,7 @@ pub fn main() !void {
     var window = try app.Window.createImGui(MainWinWidth, MainWinHeight, "ImGui window in Zig lang.");
     defer window.destroyImGui();
 
-    //_ = app.setTheme(app.Theme.light); // Theme: dark, classic, light, microsoft
+    _ = app.setTheme(.classic); // Theme: dark, classic, light, microsoft
 
     //---------------
     // GUI main proc

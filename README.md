@@ -14,9 +14,8 @@
     - [zig_imfiledialog](#zig_imfiledialog)
     - [zig_imgui_markdown](#zig_imgui_markdown)
     - [zig_iconfontviewer](#zig_iconfontviewer)
-    - [opengl3](#opengl3)
-    - [opengl3_jp](#opengl3_jp)
-    - [image_load](#image_load)
+    - [zig_glfw_opengl3](#zig_glfw_opengl3)
+    - [Image load / save](#image-load--save)
   - [Hiding console window](#hiding-console-window)
   - [SDL libraries](#sdl-libraries)
   - [My tools version](#my-tools-version)
@@ -76,7 +75,7 @@ Library name / C lang. wrapper
 MSys/MinGW basic commands (make, rm, cp ...)
 - Linux OS: Debian / Ubunts families
 - GCC (or Clang or **'Zig cc'** compiler)
-- Zig language Compiler  
+- Zig Compiler  
    Windows: [zig-x86_64-windows-0.15.1.zip](https://ziglang.org/download/0.15.1/zig-x86_64-windows-0.15.1.zip)  
    Linux:   [zig-x86_64-linux-0.15.1.tar.xz](https://ziglang.org/download/0.15.1/zig-x86_64-linux-0.15.1.tar.xz)
 
@@ -170,7 +169,7 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 ---
 
-WIP
+- [x] Work in progress
 
 [zig_imgui_markdown](examples/zig_imgui_markdown) 
 
@@ -182,55 +181,39 @@ WIP
 
 [zig_iconfontviewer](examples/zig_iconfontviewer) 
 
+- [x] Incremantal search 
+- [x] Magnifing glass
+
 ![alt](img/zig_iconfontviewer.png)
 
-##### opengl3
+##### zig_glfw_opengl3
 
 ---
 
-| Language  |                                          GLFW |                                          SDL3 |
-|:---------:|----------------------------------------------:|----------------------------------------------:|
-| C lang.   |         [glfw_opengl3](examples/glfw_opengl3) |         [sdl3_opengl3](examples/sdl3_opengl3) |
-| Zig lang. | [zig_glfw_opengl3](examples/zig_glfw_opengl3) | [zig_sdl3_opengl3](examples/zig_sdl3_opengl3) |
+- [x] Basic example
+
+|  Language |                                                                               GLFW |                                          SDL3 |
+|:---------:|-----------------------------------------------------------------------------------:|----------------------------------------------:|
+|  C lang.  | [glfw_opengl3](examples/glfw_opengl3), [glfw_opengl3_jp](examples/glfw_opengl3_jp) |         [sdl3_opengl3](examples/sdl3_opengl3) |
+| Zig lang. |                                      [zig_glfw_opengl3](examples/zig_glfw_opengl3) | [zig_sdl3_opengl3](examples/zig_sdl3_opengl3) |
 
 
-![alt](img/glfw_opengl3.png)
+![alt](img/glfw_opengl3.png) ![alt](img/glfw_opengl3_jp.png)
 
-
-##### opengl3_jp
-
----
-
-| Language |                                        GLFW |
-|:--------:|--------------------------------------------:|
-|  C lang. | [glfw_opengl3_jp](examples/glfw_opengl3_jp) |
-
-![alt](img/glfw_opengl3_jp.png)
-
-
-##### image_load
+##### Image load / save
 
 ---
 
-| Language  |                                                                GLFW |
-|:---------:|--------------------------------------------------------------------:|
-| C lang.   |         [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |
-| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load) |
+|  Language |                                                                GLFW | Magnifing glass |
+|:---------:|--------------------------------------------------------------------:|:---------------:|
+|  C lang.  |         [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |
+|  C lang.  |         [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |
+| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load) |        v        |
+
+- [x] Image file captured will be saved in current folder.  
+- [x] Image format can be selected from `JPEG / PNG / BMP / TGA`.
 
 ![alt](img/glfw_opengl3_image_load.png)
-
-
----
-
-|  Language | GLFW                                                                |
-|:---------:|--------------------------------------------------------------------:|
-|  C lang.  | [glfw_opengl3_image_save](examples/glfw_opengl3_image_save)         |
-| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load) |
-
-
-![alt](img/glfw_opengl3_image_save.png)  
-Image file captured would be saved in current folder.  
-Image can be saved as `JPEG / PNG / BMP / TGA` file.
 
 #### Hiding console window
 
@@ -279,7 +262,7 @@ https://github.com/libsdl-org/SDL/releases
 
 ---
 
-| Language [^order]    |          | Project                                                                                                                                         |
+| Language             |          | Project                                                                                                                                         |
 | -------------------: | :---:    | :----------------------------------------------------------------:                                                                              |
 | **Lua**              | Script   | [LuaJITImGui](https://github.com/dinau/luajitImGui)                                                                                             |
 | **NeLua**            | Compiler | [NeLuaImGui](https://github.com/dinau/neluaImGui)                                                                                               |
@@ -297,12 +280,10 @@ https://github.com/libsdl-org/SDL/releases
 ![ald](https://github.com/dinau/nelua-platformer/raw/main/img/platformer-nelua-sdl2.gif)
 
 
-| Language    [^order] |          | SDL         | Project                                                                                                                                               |
+| Language    |          | SDL         | Project                                                                                                                                               |
 | -------------------: | :---:    | :---:       | :----------------------------------------------------------------:                                                                                    |
 | **LuaJIT**           | Script   | SDL2        | [LuaJIT-Platformer](https://github.com/dinau/luajit-platformer)
 | **Nelua**            | Compiler | SDL2        | [NeLua-Platformer](https://github.com/dinau/nelua-platformer)
 | **Nim**              | Compiler | SDL3 / SDL2 | [Nim-Platformer-sdl2](https://github.com/def-/nim-platformer)/ [Nim-Platformer-sdl3](https://github.com/dinau/sdl3_nim/tree/main/examples/platformer) |
 | **Ruby**             | Script   | SDL3        | [Ruby-Platformer](https://github.com/dinau/ruby-platformer)                                                                                           |
 | **Zig**              | Compiler | SDL3 / SDL2 | [Zig-Platformer](https://github.com/dinau/zig-platformer)                                                                                             |
-
-[^order]: Alphabectial order
