@@ -1,0 +1,33 @@
+.{
+    .name = .app_imcolortextedit,
+    .version = "0.0.1",
+    .fingerprint = 0x752c4aa503d20e6c, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.14.1",
+    .dependencies = .{
+        .appimgui = .{
+            .path = "../../src/libzig/appimgui",
+            .lazy = true,
+        },
+        .dcimgui = .{
+            .path = "../../src/libzig/dcimgui",
+            .lazy = true,
+        },
+        .fonticon = .{
+            .path = "../../src/libzig/fonticon",
+            .lazy = true,
+        },
+        .imcolortextedit = .{
+            .path = "../../src/libzig/imcolortextedit",
+            .lazy = true,
+        },
+        .setupfont = .{
+            .path = "../../src/libzig/setupfont",
+            .lazy = true,
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}

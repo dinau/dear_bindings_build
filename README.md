@@ -14,8 +14,9 @@
     - [zig_imfiledialog](#zig_imfiledialog)
     - [zig_imgui_markdown](#zig_imgui_markdown)
     - [zig_iconfontviewer](#zig_iconfontviewer)
-    - [zig_glfw_opengl3](#zig_glfw_opengl3)
+    - [zig_imcolortextedit](#zig_imcolortextedit)
     - [Image load / save](#image-load--save)
+    - [zig_glfw_opengl3](#zig_glfw_opengl3)
   - [Hiding console window](#hiding-console-window)
   - [SDL libraries](#sdl-libraries)
   - [My tools version](#my-tools-version)
@@ -60,12 +61,12 @@ Library name / C lang. wrapper
 - [x] [ImGuiFileDialog](https://github.com/aiekick/ImGuiFileDialog) / [CImGuiFileDialog](https://github.com/dinau/CImGuiFileDialog) (2025/07)
 - [x] [ImGui_Toggle](https://github.com/cmdwtf/imgui_toggle) / [CimGui_Toggle](https://github.com/dinau/cimgui_toggle) (2025/07)
 - [x] [ImSpinner](https://github.com/dalerank/imspinner) / [CImSpinner](https://github.com/dinau/cimspinner) (2025/07)
-- [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025 WIP) 
+- [x] [ImGuiColorTextEdit](https://github.com/santaclose/ImGuiColorTextEdit) / [cimCTE](https://github.com/cimgui/cimCTE) (2025/08)
+- [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
 - [ ] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot)
 - [ ] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d) 
 - [ ] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) 
 - [ ] [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo) / [CImGuizmo](https://github.com/cimgui/cimguizmo) 
-- [ ] [ImGuiColorTextEdit](https://github.com/santaclose/ImGuiColorTextEdit) / [cimCTE](https://github.com/cimgui/cimCTE) 
 
 #### Prerequisites
 
@@ -95,17 +96,18 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 - Zig compiler
 
-   | example                     | Windows | Linux             |
-   | ---                         | :----:  | :----:            |
-   | zig_glfw_opengl3            | v       | v                 |
-   | zig_glfw_opengl3_image_load | v       | v                 |
-   | zig_iconfontviewer          | v       | v                 |
-   | zig_imfiledialog            | v       | v                 |
-   | zig_imkonbs                 | v       | v                 |
-   | zig_imspinner               | v       | v                 |
-   | zig_imtoggle                | v       | v                 |
-   | zig_sdl3_opengl3            | v       | v [^sdl3_install] |
-   | zig_imgui_markdown          | WIP     | WIP               |
+   | Libs               | Example                     | Windows | Linux             |
+   | ---                | ---                         | :----:  | :----:            |
+   | -                  | zig_glfw_opengl3            | v       | v                 |
+   | -                  | zig_glfw_opengl3_image_load | v       | v                 |
+   | -                  | zig_iconfontviewer          | v       | v                 |
+   | ImGuiFiledialog    | zig_imfiledialog            | v       | v                 |
+   | ImGui-Knobs        | zig_imkonbs                 | v       | v                 |
+   | ImSpinner          | zig_imspinner               | v       | v                 |
+   | ImGui-Toggle       | zig_imtoggle                | v       | v                 |
+   | ImGuiColorTextEdit | zig_imcolortextedit         | v       | v                 |
+   | ImGui_Markdown     | zig_imgui_markdown          | WIP     | WIP               |
+   | -                  | zig_sdl3_opengl3            | v       | v [^sdl3_install] |
 
 [^sdl3_install]: [Install SDL3 for Linux](https://github.com/dinau/sdl3_nim#for-linux-os)
 
@@ -137,7 +139,7 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 ---
 
- [zig_imknobs](examples/zig_imknobs) 
+ [zig_imknobs](examples/zig_imknobs/src/main.zig) 
 
 ![alt](img/zig_imknobs.png)
 
@@ -145,7 +147,7 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 ---
 
-[zig_imtoggle](examples/zig_imtoggle) 
+[zig_imtoggle](examples/zig_imtoggle/src/main.zig) 
 
 ![alt](img/zig_imtoggle.png)
 
@@ -153,7 +155,7 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 ---
 
-[zig_imspinner](examples/zig_imspinner) 
+[zig_imspinner](examples/zig_imspinner/src/main.zig) 
 
 ![alt](img/zig_imspinner.gif)
 
@@ -161,7 +163,7 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 ---
 
-[zig_imfiledialog](examples/zig_imfiledialog) 
+[zig_imfiledialog](examples/zig_imfiledialog/src/main.zig) 
 
 ![alt](img/zig_imfiledialog.png)
 
@@ -171,7 +173,7 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 - [x] Work in progress
 
-[zig_imgui_markdown](examples/zig_imgui_markdown) 
+[zig_imgui_markdown](examples/zig_imgui_markdown/src/main.zig) 
 
 ![alt](https://github.com/dinau/cimgui_markdown/raw/main/demo/img/cimgui_markdown.png)
 
@@ -179,12 +181,35 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 ---
 
-[zig_iconfontviewer](examples/zig_iconfontviewer) 
+[zig_iconfontviewer](examples/zig_iconfontviewer/src/main.zig) 
 
 - [x] Incremantal search 
 - [x] Magnifing glass
 
 ![alt](img/zig_iconfontviewer.png)
+
+##### zig_imcolortextedit
+
+---
+
+[zig_imcolortextedit](examples/zig_imcolortextedit/src/main.zig) 
+
+![alt](img/zig_imcolortextedit.png)
+
+##### Image load / save
+
+---
+
+|  Language |                                                                             GLFW | Magnifing glass |
+|:---------:|---------------------------------------------------------------------------------:|:---------------:|
+|  C lang.  |                      [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |
+|  C lang.  |                      [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |
+| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load/src/main.zig) |        v        |
+
+- [x] Image file captured will be saved in current folder.  
+- [x] Image format can be selected from `JPEG / PNG / BMP / TGA`.
+
+![alt](img/glfw_opengl3_image_load.png)
 
 ##### zig_glfw_opengl3
 
@@ -192,29 +217,13 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 - [x] Basic example
 
-|  Language |                                                                               GLFW |                                          SDL3 |
-|:---------:|-----------------------------------------------------------------------------------:|----------------------------------------------:|
-|  C lang.  | [glfw_opengl3](examples/glfw_opengl3), [glfw_opengl3_jp](examples/glfw_opengl3_jp) |         [sdl3_opengl3](examples/sdl3_opengl3) |
-| Zig lang. |                                      [zig_glfw_opengl3](examples/zig_glfw_opengl3) | [zig_sdl3_opengl3](examples/zig_sdl3_opengl3) |
+|  Language |                                                                               GLFW |                                                       SDL3 |
+|:---------:|-----------------------------------------------------------------------------------:|-----------------------------------------------------------:|
+|  C lang.  | [glfw_opengl3](examples/glfw_opengl3), [glfw_opengl3_jp](examples/glfw_opengl3_jp) |                      [sdl3_opengl3](examples/sdl3_opengl3) |
+| Zig lang. |                         [zig_glfw_opengl3](examples/zig_glfw_opengl3/src/main.zig) | [zig_sdl3_opengl3](examples/zig_sdl3_opengl3/src/main.zig) |
 
 
 ![alt](img/glfw_opengl3.png) ![alt](img/glfw_opengl3_jp.png)
-
-##### Image load / save
-
----
-
-|  Language |                                                                GLFW | Magnifing glass |
-|:---------:|--------------------------------------------------------------------:|:---------------:|
-|  C lang.  |         [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |
-|  C lang.  |         [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |
-| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load) |        v        |
-
-- [x] Image file captured will be saved in current folder.  
-- [x] Image format can be selected from `JPEG / PNG / BMP / TGA`.
-
-![alt](img/glfw_opengl3_image_load.png)
-
 #### Hiding console window
 
 ---
