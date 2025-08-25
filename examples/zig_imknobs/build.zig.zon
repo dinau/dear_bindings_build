@@ -2,7 +2,7 @@
     .name = .zig_imknobs,
     .version = "0.0.1",
     .fingerprint = 0xacefef46792a24b4, // Changing this has security and trust implications.
-    .minimum_zig_version = "0.14.1",
+    .minimum_zig_version = "0.15.1",
     .dependencies = .{
         .appimgui = .{
             .path = "../../src/libzig/appimgui",

@@ -1,3 +1,4 @@
+*.mp4
 src/libzig/implot
 src/libc/cimplot
 src/libc/libcimgui.a

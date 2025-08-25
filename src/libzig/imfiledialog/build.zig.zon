@@ -1,7 +1,7 @@
 .{
-    .name = .imfileopendialog,
+    .name = .imfiledialog,
     .version = "0.0.1",
-    .fingerprint = 0x207d8cb79401923c, // Changing this has security and trust implications.
+    .fingerprint = 0xd33ea77613fad2e9, // Changing this has security and trust implications.
     .minimum_zig_version = "0.14.1",
     .dependencies = .{},
     .paths = .{

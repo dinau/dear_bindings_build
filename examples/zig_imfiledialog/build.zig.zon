@@ -1,8 +1,8 @@
 .{
-    .name = .imfiledialog,
+    .name = .zig_imfiledialog,
     .version = "0.0.1",
-    .fingerprint = 0xd33ea776ab2e4c8e,
-    .minimum_zig_version = "0.14.1",
+    .fingerprint = 0x9c23b6588efd7139,
+    .minimum_zig_version = "0.15.1",
     .dependencies = .{
         .appimgui = .{
             .path = "../../src/libzig/appimgui",

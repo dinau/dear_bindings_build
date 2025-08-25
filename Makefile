@@ -7,7 +7,6 @@ EXAMPLE_DIRS =\
 
 ifeq ($(OS),Windows_NT)
    EXAMPLE_DIRS	+= examples/sdl3_opengl3
-   EXAMPLE_DIRS	+= examples/zig_sdl3_opengl3
 endif
 
 
@@ -21,7 +20,11 @@ EXAMPLE_DIRS_ZIG =\
 							examples/zig_imknobs                 \
 							examples/zig_imspinner               \
 							examples/zig_imtoggle                \
-							examples/zig_imcolortextedit
+							examples/zig_imcolortextedit         \
+              examples/zig_imPlotDemo
+ifeq ($(OS),Windows_NT)
+   EXAMPLE_DIRS_ZIG	+= examples/zig_sdl3_opengl3
+endif
 
 all: zig
 ifeq ($(OS),Windows_NT)

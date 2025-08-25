@@ -1,0 +1,28 @@
+.{
+    .name = .zig_implot,
+    .version = "0.0.1",
+    .fingerprint =0x2c34c7df4fdad664, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.15.1",
+    .dependencies = .{
+        .appimgui  =  .{
+            .path = "../../src/libzig/appimgui"
+        },
+        .dcimgui  =  .{
+            .path = "../../src/libzig/dcimgui"
+        },
+        .implot =  .{
+            .path = "../../src/libzig/implot"
+        },
+        .fonticon =  .{
+            .path = "../../src/libzig/fonticon"
+        },
+        .setupfont = .{
+            .path = "../../src/libzig/setupfont"
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}

@@ -40,7 +40,6 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../libc/imgui"));
     mod.addIncludePath(b.path("../../libc/imgui/backends"));
     // macro
-    mod.addCMacro("IMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS", "");
     mod.addCMacro("ImDrawIdx", "unsigned int");
     //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1");
     switch (builtin.target.os.tag) {

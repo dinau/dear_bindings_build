@@ -1,8 +1,8 @@
 .{
-    .name = .app_iconfontviewer,
+    .name = .zig_iconfontviewer,
     .version = "0.0.1",
-    .fingerprint = 0xf76c12823ca535dc, // Changing this has security and trust implications.
-    .minimum_zig_version = "0.14.1",
+    .fingerprint = 0x4921e6bf75983874, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.15.1",
     .dependencies = .{
         .appimgui  =  .{
             .path = "../../src/libzig/appimgui"

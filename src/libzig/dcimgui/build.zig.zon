@@ -1,7 +1,7 @@
 .{
-    .name = .cimgui,
+    .name = .dcimgui,
     .version = "0.0.1",
-    .fingerprint = 0x49726f5fc86677f2, // Changing this has security and trust implications.
+    .fingerprint = 0x1a257974ed05c55c, // Changing this has security and trust implications.
     .minimum_zig_version = "0.14.1",
     .dependencies = .{},
     .paths = .{

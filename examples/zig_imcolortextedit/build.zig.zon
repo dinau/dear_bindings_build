@@ -1,8 +1,8 @@
 .{
-    .name = .app_imcolortextedit,
+    .name = .zig_imcolortextedit,
     .version = "0.0.1",
-    .fingerprint = 0x752c4aa503d20e6c, // Changing this has security and trust implications.
-    .minimum_zig_version = "0.14.1",
+    .fingerprint = 0x2dfa4b409eca8294, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.15.1",
     .dependencies = .{
         .appimgui = .{
             .path = "../../src/libzig/appimgui",

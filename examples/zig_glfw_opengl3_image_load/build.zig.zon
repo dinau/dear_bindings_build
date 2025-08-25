@@ -1,8 +1,8 @@
 .{
-    .name = .app_glfw_opegl3_image_load,
+    .name = .zig_glfw_opegl3_image_load,
     .version = "0.0.1",
-    .fingerprint = 0xd739e67a93b844f7, // Changing this has security and trust implications.
-    .minimum_zig_version = "0.14.1",
+    .fingerprint = 0x45f111db675b0384, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.15.1",
     .dependencies = .{
         .appimgui = .{ .path = "../../src/libzig/appimgui" },
         .dcimgui = .{ .path = "../../src/libzig/dcimgui" },

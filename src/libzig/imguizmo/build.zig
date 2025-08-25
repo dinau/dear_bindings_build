@@ -35,16 +35,8 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../libc/cimguizmo/imguizmo"));
     mod.addIncludePath(b.path("src"));
     // macro
-    mod.addCMacro("IMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS", "");
-    mod.addCMacro("ImDrawIdx", "unsigned int");
-
     //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1"); // Important notice : This must not be enabled.
 
-    switch (builtin.target.os.tag) {
-        .windows => mod.addCMacro("IMGUI_IMPL_API", "extern \"C\" __declspec(dllexport)"),
-        .linux => mod.addCMacro("IMGUI_IMPL_API", "extern \"C\"  "),
-        else => {},
-    }
     mod.addCSourceFiles(.{
         .files = &.{
         "../../libc/cimguizmo/cimguizmo.cpp",
