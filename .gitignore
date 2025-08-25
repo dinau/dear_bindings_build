@@ -1,5 +1,4 @@
 *.mp4
-src/libc/cimplot
 src/libc/libcimgui.a
 .ccache
 GPATH
