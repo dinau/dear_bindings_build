@@ -1,6 +1,6 @@
 GLFW_VER = 3.4
 #
-LIBS_DIR = ../../libs
+LIBS_DIR = ../../libc
 GLFW_DIR = $(LIBS_DIR)/glfw/glfw-$(GLFW_VER).bin.WIN64
 
 # Add backend driver in imgui
@@ -19,15 +19,10 @@ CFLAGS += -I$(GLFW_DIR)/include
 LIBS   += -L.
 LIBS   += -L$(GLFW_DIR)/lib-mingw-w64
 
-# GLFW Static lib
+# GLFW static lib
 ifeq ($(STATIC_GLFW),true)
-	# TODO
-  ifeq ($(TC),zigcc)
-    LIBS   += -lglfw3dll
-  else
     LIBS   += -lglfw3
-  endif
 else
 # GLFW dll lib
-LIBS   += -lglfw3dll
+    LIBS   += -lglfw3dll
 endif

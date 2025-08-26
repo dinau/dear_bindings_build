@@ -35,7 +35,7 @@
 
 ### Dear_Bindings_Build
 
-This project aims to simply and easily build ImGui examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
+This project aims to simply and easily build [Dear ImGui](https://github.com/ocornut/imgui) examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 
 [Dear ImGui](https://github.com/ocornut/imgui) version **1.92.2b** (2025/08)
 
@@ -46,7 +46,7 @@ This project aims to simply and easily build ImGui examples with **C language** 
 - [x] No download external libraries  
 Included Dear_Bindings / Dear ImGui / GLFW / SDL3 / STB_image libraries in this project
 - [x] Included IconFont [FontAwewsome 6](https://fontawesome.com)
-- [x] Image load/save
+- [x] Image load/save example
 
 - Frontends and Backends 
 
@@ -69,8 +69,8 @@ Library name / C lang. wrapper
 - [x] [ImGuiColorTextEdit](https://github.com/santaclose/ImGuiColorTextEdit) / [cimCTE](https://github.com/cimgui/cimCTE) (2025/08)
 - [x] [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo) / [CImGuizmo](https://github.com/cimgui/cimguizmo) (2025/08)
 - [x] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) (2025/08)
-- [x] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot)
-- [x] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d) 
+- [x] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot) (2025/08)
+- [x] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d)  (2025/08)
 - [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
 
 #### Prerequisites
@@ -79,9 +79,18 @@ Library name / C lang. wrapper
 
 - Windows10 OS or later  
 MSys/MinGW basic commands (make, rm, cp ...)
+
+   ```sh
+   pacman -S make mingw-w64-x86_64-{gcc}
+   ```
 - Linux OS: Debian / Ubunts families
+
+   ```sh
+   sudo apt install lib{opengl-dev,glfw3,glfw3-dev}
+   ```
+
 - GCC (or Clang or **'Zig cc'** compiler)
-- Zig Compiler  
+- Install Zig Compiler  
    Windows: [zig-x86_64-windows-0.15.1.zip](https://ziglang.org/download/0.15.1/zig-x86_64-windows-0.15.1.zip)  
    Linux:   [zig-x86_64-linux-0.15.1.tar.xz](https://ziglang.org/download/0.15.1/zig-x86_64-linux-0.15.1.tar.xz)
 

@@ -10,6 +10,10 @@ endif
 #STATIC_CIMGUI = true
 CFLAGS += -static
 
+# Eliminale warinings
+CFLAGS_EXTRA += -Wno-pointer-sign
+#CFLAGS += -W-no-
+
 EXE = .exe
 
 # TC : gcc or clang or zig
@@ -153,7 +157,7 @@ $(DCIMGUI_BUILD_DIR)/%.o: %.cpp $(DEPS_IMGUI) $(MAKE_DEPS)
 
 $(DCIMGUI_BUILD_DIR)/%.o: %.c $(DEPS_CIMGUI) $(MAKE_DEPS)
 	@echo [$(CC)]: $(notdir $<)
-	$(D)$(CC) -c -o $@ $(CFLAGS) $<
+	$(D)$(CC) -c -o $@ $(CFLAGS) $(CFLAGS_EXTRA) $<
 
 $(BUILD_DIR)/%.o: %.cpp $(DEPS_PROJ) $(MAKE_DEPS)
 	@echo [$(CXX)]: $(notdir $<)
@@ -161,7 +165,7 @@ $(BUILD_DIR)/%.o: %.cpp $(DEPS_PROJ) $(MAKE_DEPS)
 
 $(BUILD_DIR)/%.o: %.c $(DEPS_PROJ) $(MAKE_DEPS)
 	@echo [$(CC)]: $(notdir $<)
-	$(D)$(CC) -c -o $@ $(CFLAGS) $<
+	$(D)$(CC) -c -o $@ $(CFLAGS) $(CFLAGS_EXTRA) $<
 
 .PHONY: run gen clean cleanall cleanobjs  cleanother $(BUILD_DIR)
 

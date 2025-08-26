@@ -11,32 +11,38 @@ endif
 
 
 EXAMPLE_DIRS_ZIG =\
-							examples/zig_imnodes                 \
-							examples/zig_imguizmo                \
 							examples/zig_glfw_opengl3            \
 							examples/zig_glfw_opengl3_image_load \
 							examples/zig_iconfontviewer          \
-							examples/zig_imfiledialog            \
-							examples/zig_imknobs                 \
-							examples/zig_imspinner               \
-							examples/zig_imtoggle                \
 							examples/zig_imcolortextedit         \
-              examples/zig_imPlotDemo
+							examples/zig_imfiledialog            \
+							examples/zig_imguizmo                \
+							examples/zig_imknobs                 \
+							examples/zig_imnodes                 \
+							examples/zig_implot                  \
+							examples/zig_implot3d                \
+              examples/zig_imPlotDemo              \
+							examples/zig_imspinner               \
+							examples/zig_imtoggle
 ifeq ($(OS),Windows_NT)
    EXAMPLE_DIRS_ZIG	+= examples/zig_sdl3_opengl3
 endif
 
-all: zig
+.PHONY: test clean gen cc
+
+all: cc zig
+
+cc:
 ifeq ($(OS),Windows_NT)
-	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
+	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),))
 endif
+
 zig:
 	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),all ))
 
 fmt:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
 
-.PHONY: test clean gen
 
 test:
 	@echo $(notdir $(EXAMPLE_DIRS))
@@ -44,7 +50,8 @@ test:
 clean: cleanall
 
 cleanall:
-	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
+	@-$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
+	@-$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),$@ ))
 
 DB_DIR             = ../dear_bindings
 DCIMGUI_DIR        = src/libc/dcimgui

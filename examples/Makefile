@@ -1,11 +1,11 @@
 all:
-	$(MAKE) -C ..
+	@$(MAKE) -C ..
 
 gen:
-	$(MAKE) -C .. $@
+	@$(MAKE) -C .. $@
 
 clean:
-	$(MAKE) -C .. $@
+	@-$(MAKE) -C .. $@
 
 fmt:
-	$(MAKE) -C .. $@
+	@$(MAKE) -C .. $@
