@@ -76,6 +76,7 @@ UTILS_OBJS  = $(addprefix $(BUILD_DIR)/,$(UTILS_SRCS_C:.c=.o) $(UTILS_SRCS_CPP:.
 MY_OBJS     = $(addprefix $(BUILD_DIR)/,$(MY_SRCS_C:.c=.o) $(MY_SRCS_CPP:.cpp=.o))
 
 #
+CFLAGS += -MMD -MP
 ifeq ($(STATIC_CIMGUI),true)
 #CFLAGS += -static
 else
@@ -198,3 +199,5 @@ fmt:
 #
 #
 include ../gen.mk
+
+include $(wildcard $(BUILD_DIR)/*.d)

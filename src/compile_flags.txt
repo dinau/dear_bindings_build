@@ -1,0 +1,31 @@
+-DIMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS
+-DImDrawIdx=unsigned int
+-Ilibc/glfw/glfw-3.4.bin.WIN64/include
+-Ilibc/glfw/glfw-3.4.bin.WIN64/include/GLFW
+-Ilibc/dcimgui
+-Ilibc/imgui
+-Ilibc/imgui/backends
+-Ilibc/sdl/SDL3/x86_64-w64-mingw32/include
+-Ilibc/sdl/SDL3/x86_64-w64-mingw32/include/SDL3
+-Ilibc/stb
+-Ilibs/cimgui
+-Iutils
+-Iutils/fonticon
+-Ilibzig/fonticon/src/fonticon
+-O2
+-Wall
+-Wno-stringop-overflow
+-Wno-unused-function
+-fno-exceptions
+-fno-rtti
+-static
+-std=c++11
+
+
+# See
+# clangdで別ディレクトリのヘッダーを指定したい
+#  https://qiita.com/sudo00/items/99d9619de38574830f65
+#
+# Compiledb
+#  https://github.com/nickdiego/compiledb
+#    $ compiledb make
