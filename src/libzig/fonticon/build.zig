@@ -13,11 +13,6 @@ pub fn build(b: *std.Build) void {
     // -------
     // module
     // -------
-    //const mod  = b.createModule(.{
-    //    .root_source_file = b.path("src/fonticon/IconsFontAwesome6.zig"),
-    //    .target = target,
-    //    .optimize = optimize,
-    //});
     const step = b.addTranslateC(.{
         .root_source_file = b.path("src/fonticon/IconsFontAwesome6.h"),
         .target = target,
@@ -25,7 +20,6 @@ pub fn build(b: *std.Build) void {
         //.link_libc = true,
     });
     const mod = step.addModule(mod_name);
-    //mod.addIncludePath(.{.cwd_relative = b.pathJoin(&.{ glfw_path, "include"})});
     mod.addImport(mod_name, mod);
 
     const lib = b.addLibrary(.{
@@ -34,12 +28,12 @@ pub fn build(b: *std.Build) void {
         .root_module = mod,
     });
 
-    const font_dir = "fonticon/fa6";
-    const resFont = [_][]const u8{ font_dir ++ "/fa-solid-900.ttf", font_dir ++ "/LICENSE.txt" };
-    inline for (resFont) |file| {
-        const res = b.addInstallFile(b.path("src/" ++ file), "utils/" ++ file);
-        b.getInstallStep().dependOn(&res.step);
-    }
+//    const font_dir = "fonticon/fa6";
+//    const resFont = [_][]const u8{ font_dir ++ "/fa-solid-900.ttf", font_dir ++ "/LICENSE.txt" };
+//    inline for (resFont) |file| {
+//        const res = b.addInstallFile(b.path("src/" ++ file), "utils/" ++ file);
+//        b.getInstallStep().dependOn(&res.step);
+//    }
 
     b.installArtifact(lib);
     //    std.debug.print("{s} module\n",.{mod_name});
