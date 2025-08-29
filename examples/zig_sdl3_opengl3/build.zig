@@ -36,7 +36,7 @@ pub fn build(b: *std.Build) void {
     //---------------
     // Libs
     //---------------
-    const sdl_path = "/../../src/libc/sdl/SDL3/x86_64-w64-mingw32";
+    const sdl_path = "../../src/libc/sdl/SDL3/x86_64-w64-mingw32";
     if (builtin.target.os.tag == .windows) {
         exe.root_module.linkSystemLibrary("gdi32", .{});
         exe.root_module.linkSystemLibrary("imm32", .{});
@@ -82,7 +82,7 @@ pub fn build(b: *std.Build) void {
 
     b.installArtifact(exe);
 
-    const resBin = [_][]const u8{ "imgui.ini", "SDL3.dll" };
+    const resBin = [_][]const u8{ "imgui.ini"};
     const resUtils = [_][]const u8{ "fonticon/fa6/fa-solid-900.ttf", "fonticon/fa6/LICENSE.txt" };
     const resIcon = "src/res/z.png";
 
@@ -94,6 +94,14 @@ pub fn build(b: *std.Build) void {
         const res = b.addInstallFile(b.path("../utils/" ++ file), "utils/" ++ file);
         b.getInstallStep().dependOn(&res.step);
     }
+    // SDL3.dll
+    if (builtin.target.os.tag == .windows) {
+        const sdl3dll = "SDL3.dll";
+        const resSDL3Dll = b.addInstallFile(.{.cwd_relative = b.fmt("{s}/{s}/{s}", .{sdl_path, "bin", sdl3dll})}, "bin/" ++ sdl3dll);
+        b.getInstallStep().dependOn(&resSDL3Dll.step);
+    }
+
+    // App icon
     const res = b.addInstallFile(b.path(resIcon), "bin/z.png");
     b.getInstallStep().dependOn(&res.step);
 

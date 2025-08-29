@@ -14,11 +14,11 @@ pub fn zoomGlass(pTextureID: *u32, itemWidth: i32, itemPosTop: ig.ImVec2, itemPo
         const my_tex_h: f32 = @floatFromInt(itemHeight);
         const wkSize = ig.ImGui_GetMainViewport().*.WorkSize;
         if (capture) {
-        img_ld.loadTextureFromBuffer(pTextureID //# TextureID
-            , @intFromFloat(itemPosTop.x) //# x start pos
-            , @intFromFloat(wkSize.y - itemPosEnd.y) //# y start pos
-            , itemWidth, itemHeight); //# Image width and height must be 2^n.
-        }
+            img_ld.loadTextureFromBuffer(pTextureID //# TextureID
+                , @intFromFloat(itemPosTop.x) //# x start pos
+                , @intFromFloat(wkSize.y - itemPosEnd.y) //# y start pos
+                , itemWidth, itemHeight); //# Image width and height must be 2^n.
+            }
         //#igText("lbp: (%.2f, %.2f)", pio.MousePos.x, pio.MousePos.y)
         const pio = ig.ImGui_GetIO();
         const region_sz = 32.0;

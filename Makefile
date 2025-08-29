@@ -26,6 +26,7 @@ EXAMPLE_DIRS_ZIG =\
 							examples/zig_imtoggle
 ifeq ($(OS),Windows_NT)
    EXAMPLE_DIRS_ZIG	+= examples/zig_sdl3_opengl3
+   EXAMPLE_DIRS_ZIG	+= examples/zig_sdl3_sdlgpu3
 endif
 
 .PHONY: test clean gen cc

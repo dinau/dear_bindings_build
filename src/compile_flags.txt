@@ -1,5 +1,6 @@
 -DIMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS
 -DImDrawIdx=unsigned int
+-Ilibc/stb
 -Ilibc/glfw/glfw-3.4.bin.WIN64/include
 -Ilibc/glfw/glfw-3.4.bin.WIN64/include/GLFW
 -Ilibc/dcimgui
@@ -7,7 +8,6 @@
 -Ilibc/imgui/backends
 -Ilibc/sdl/SDL3/x86_64-w64-mingw32/include
 -Ilibc/sdl/SDL3/x86_64-w64-mingw32/include/SDL3
--Ilibc/stb
 -Ilibs/cimgui
 -Iutils
 -Iutils/fonticon

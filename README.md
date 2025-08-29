@@ -50,10 +50,11 @@ Included Dear_Bindings / Dear ImGui / GLFW / SDL3 / STB_image libraries in this 
 
 - Frontends and Backends 
 
-   |                     | GLFW   | SDL3   |
-   | ---                 | :----: | :----: |
-   | OpenGL3<br>backend  | v      | v      |
-   | SDL3 GPU<br>backend | -      | WIP    |
+   |                    | GLFW frontend | SDL3 frontend |
+   | ---                | :----:        | :----:        |
+   | **OpenGL3**<br>backend | v             | v             |
+   | **SDL3GPU**<br>backend | -             | v             |
+   | **Vulkan**<br>backend  | -             | WIP           |
 
 #### Available libraries list at this moment
 
@@ -86,8 +87,18 @@ MSys/MinGW basic commands (make, rm, cp ...)
 - Linux OS: Debian / Ubunts families
 
    ```sh
-   sudo apt install lib{opengl-dev,glfw3,glfw3-dev}
+   sudo apt install make gcc lib{opengl-dev,glfw3,glfw3-dev}
    ```
+   
+   - SDL3  
+   If you are using Debian 13 (Trixie), add
+
+      ```sh
+      sudo apt install libsdl3-dev
+      ```
+
+      otherwise [install SDL3 manually](https://github.com/dinau/sdl3_nim#for-linux-os)
+
 
 - GCC (or Clang or **'Zig cc'** compiler)
 - Install Zig Compiler  
@@ -100,56 +111,28 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 - GCC compiler
 
-   | example                     | Windows | Linux  |
-   | ---                         | :----:  | :----: |
-   | glfw_opengl3                | v       |    -   |
-   | glfw_opengl3_image_load     | v       |    -   |
-   | glfw_opengl3_image_save     | v       |    -   |
-   | glfw_opengl3_jp             | v       |    -   |
-   | sdl3_opengl3                | v       |    -   |
+   | example | Windows | Linux  |
+   | ---     | :----:  | :----: |
+   | glfw_*  | v       | -      |
+   | sdl3_*  | v       | -      |
 
 - Zig compiler
 
-   | Libs               | Example                     | Windows | Linux             |
-   | ---                | ---                         | :----:  | :----:            |
-   | -                  | zig_glfw_opengl3            | v       | v                 |
-   | -                  | zig_glfw_opengl3_image_load | v       | v                 |
-   | -                  | zig_iconfontviewer          | v       | v                 |
-   | ImGuiFiledialog    | zig_imfiledialog            | v       | v                 |
-   | ImGui-Knobs        | zig_imkonbs                 | v       | v                 |
-   | ImSpinner          | zig_imspinner               | v       | v                 |
-   | ImGui-Toggle       | zig_imtoggle                | v       | v                 |
-   | ImGuiColorTextEdit | zig_imcolortextedit         | v       | v                 |
-   | ImGuizmo           | zig_imguizmo                | v       | v                 |
-   | ImNodes            | zig_imnodes                 | v       | v                 |
-   | ImPlot             | zig_implot                  | v       | v                 |
-   | ImPlot3D           | zig_implot3d                | v       | v                 |
-   | ImGui_Markdown     | zig_imgui_markdown          | WIP     | WIP               |
-   | -                  | zig_sdl3_opengl3            | v       | v [^sdl3_install] |
+   | Example | Windows | Linux  |
+   | ---     | :----:  | :----: |
+   | zig_*   | v       | v      |
 
-[^sdl3_install]: [Install SDL3 for Linux](https://github.com/dinau/sdl3_nim#for-linux-os)
 
 
 #### Build and run
 
 ---
 
-1. Download this project.
-
-   ```sh
-   git clone https://github.com/dinau/dear_bindings_build
-   ```
-1. Go to one of the examples folder,
-
-   ```sh
-   cd dear_bindings_build/examples/glfw_opengl3
-   ```
-
-1. Build and Run 
-
-   ```sh
-   make run                
-   ```
+```sh
+git clone https://github.com/dinau/dear_bindings_build
+cd dear_bindings_build/examples/glfw_opengl3
+make run                
+```
 
 #### Examples screen shots 
 
@@ -245,11 +228,12 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 ---
 
-|  Language |                                                                             GLFW | Magnifing glass |
-|:---------:|---------------------------------------------------------------------------------:|:---------------:|
-|  C lang.  |                      [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |
-|  C lang.  |                      [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |
-| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load/src/main.zig) |        v        |
+|  Language |                                                                             GLFW | Magnifing glass | Image load /save |
+|:---------:|---------------------------------------------------------------------------------:|:---------------:|:----------------:|
+|  C lang.  |                      [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |         v        |
+|  C lang.  |                      [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |         v        |
+| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load/src/main.zig) |        v        |         v        |
+| Zig lang. |                       [zig_sdl3_sdlgup3](examples/zig_sdl3_sdlgpu3/src/main.zig) |        -        |       load       |
 
 - [x] Image file captured will be saved in current folder.  
 - [x] Image format can be selected from `JPEG / PNG / BMP / TGA`.
@@ -269,6 +253,7 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 
 ![alt](img/glfw_opengl3.png) ![alt](img/glfw_opengl3_jp.png)
+
 #### Hiding console window
 
 ---
@@ -307,9 +292,9 @@ https://github.com/libsdl-org/SDL/releases
 
 ---
 
-- gcc.exe (Rev2, Built by MSYS2 project) 15.1.0
+- gcc.exe (Rev2, Built by MSYS2 project) 15.2.0
 - make: GNU Make 4.4.1
-- Python 3.12.6
+- Python 3.12.10
 - zig: 0.15.1
 
 #### Similar project ImGui / CImGui

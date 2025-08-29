@@ -12,10 +12,12 @@ DIRS = \
 	implot3d\
 	impl_glfw \
 	impl_opengl3 \
+	impl_sdlgpu3 \
 	imspinner \
 	imtoggle \
 	loadicon \
 	loadimage \
+	loadimage_sdlgpu3 \
 	saveimage \
 	setupfont \
 	utils \
