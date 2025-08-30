@@ -2,7 +2,7 @@
 //    https://github.com/ocornut/imgui/wiki/Image-Loading-and-Displaying-Examples
 //
 #define _CRT_SECURE_NO_WARNINGS
-#define STB_IMAGE_IMPLEMENTATION
+//#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include <stdbool.h>
 #include <stdlib.h>

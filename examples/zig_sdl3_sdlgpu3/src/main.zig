@@ -9,6 +9,7 @@ const sdl = @import("sdl3");
 const impl_sdl3 = @import("impl_sdl3");
 const impl_sdlgpu3 = @import("impl_sdlgpu3");
 const img_load = @import("loadimage_sdlgpu3");
+const zmg = @import("./zoomGlass.zig");
 
 const IMGUI_HAS_DOCK = false; // Docking feature
 
@@ -92,10 +93,10 @@ pub fn main() !void {
     // Load image
     //------------
     const ImageName = "fuji-poke-480.png";
-    var textureId: *sdl.SDL_GPUTexture = undefined;
+    var pTextureId: *sdl.SDL_GPUTexture = undefined;
     var textureWidth: c_int = 0;
     var textureHeight: c_int = 0;
-    _ = img_load.LoadTextureFromFileSDLGPU3(ImageName, @ptrCast(gpu_device), @ptrCast(&textureId), &textureWidth, &textureHeight);
+    _ = img_load.LoadTextureFromFileSDLGPU3(ImageName, @ptrCast(gpu_device), @ptrCast(&pTextureId), &textureWidth, &textureHeight);
 
     //-------------
     // Global vars
@@ -196,10 +197,10 @@ pub fn main() !void {
           // Load image
           const size       = ig.ImVec2 {.x = @floatFromInt(textureWidth), .y = @floatFromInt(textureHeight)};
           imageBoxPosTop   = ig.ImGui_GetCursorScreenPos();// # Get absolute pos.
-          ig.ImGui_Image(ig.ImTextureRef{._TexData = null, ._TexID = @intFromPtr(textureId)}, size);
+          ig.ImGui_Image(ig.ImTextureRef{._TexData = null, ._TexID = @intFromPtr(pTextureId)}, size);
           imageBoxPosEnd   = ig.ImGui_GetCursorScreenPos();// # Get absolute pos.
           if(ig.ImGui_IsItemHovered(ig.ImGuiHoveredFlags_DelayNone)){
-            // TODO utils.zoomGlass(@ptrCast(@alignCast(textureId)), textureWidth, imageBoxPosTop, imageBoxPosEnd, false);
+            zmg.zoomGlass(@alignCast(@ptrCast(pTextureId)), textureWidth, imageBoxPosTop, imageBoxPosEnd, false);
           }
         }
         //-----------
@@ -259,7 +260,7 @@ pub fn main() !void {
 
     // Destroy resources
     _ = sdl.SDL_WaitForGPUIdle(gpu_device);
-    img_load.DestroyTexture(@ptrCast(gpu_device), @ptrCast(textureId));
+    img_load.DestroyTexture(@ptrCast(gpu_device), @ptrCast(pTextureId));
     impl_sdl3.cImGui_ImplSDL3_Shutdown();
     impl_sdlgpu3.cImGui_ImplSDLGPU3_Shutdown();
     ig.ImGui_DestroyContext(null);

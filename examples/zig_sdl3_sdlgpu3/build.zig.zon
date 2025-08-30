@@ -32,6 +32,10 @@
             .path = "../../src/libzig/setupfont",
             .lazy = true,
         },
+        .utils = .{
+            .path = "../../src/libzig/utils",
+            .lazy = true,
+        },
     },
     .paths = .{
         "build.zig",

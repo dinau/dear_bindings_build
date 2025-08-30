@@ -18,7 +18,7 @@
     - [zig_imguizmo](#zig_imguizmo)
     - [zig_imnodes](#zig_imnodes)
     - [zig_implot / zig_implot3d](#zig_implot--zig_implot3d)
-    - [Image load / save](#image-load--save)
+    - [Image load / save (OpenGL, SDL3, SDL3GPU)](#image-load--save-opengl-sdl3-sdl3gpu)
     - [zig_glfw_opengl3](#zig_glfw_opengl3)
   - [Hiding console window](#hiding-console-window)
   - [SDL libraries](#sdl-libraries)
@@ -37,7 +37,8 @@
 
 This project aims to simply and easily build [Dear ImGui](https://github.com/ocornut/imgui) examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 
-[Dear ImGui](https://github.com/ocornut/imgui) version **1.92.2b** (2025/08)
+[DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.17_ImGui_v1.92.2b-docking  
+[Dear ImGui](https://github.com/ocornut/imgui) version **1.92.2b** (2025/08)  
 
 #### Features
 
@@ -48,13 +49,10 @@ Included Dear_Bindings / Dear ImGui / GLFW / SDL3 / STB_image libraries in this 
 - [x] Included IconFont [FontAwewsome 6](https://fontawesome.com)
 - [x] Image load/save example
 
-- Frontends and Backends 
-
-   |                    | GLFW frontend | SDL3 frontend |
-   | ---                | :----:        | :----:        |
-   | **OpenGL3**<br>backend | v             | v             |
-   | **SDL3GPU**<br>backend | -             | v             |
-   | **Vulkan**<br>backend  | -             | WIP           |
+- Frontends and Backends  
+   - GLFW3  - OpenGL3, SDL3
+   - SDL3   - OpenGL3, SDL3GPU, Vulkan (WIP)
+  
 
 #### Available libraries list at this moment
 
@@ -82,16 +80,19 @@ Library name / C lang. wrapper
 MSys/MinGW basic commands (make, rm, cp ...)
 
    ```sh
-   pacman -S make mingw-w64-x86_64-{gcc}
+   pacman -S make mingw-w64-x86_64-{gcc,vulkan-headers,vulkan-loader}
    ```
-- Linux OS: Debian / Ubunts families
+
+   Vulkan version: 1.4.321.0-1 
+- Linux OS: Debian13 / Ubunts families
 
    ```sh
-   sudo apt install make gcc lib{opengl-dev,glfw3,glfw3-dev}
+   sudo apt install make gcc lib{opengl-dev,gl1-mesa-dev,glfw3,glfw3-dev}
+   sudo apt install libvulkan1 mesa-vulkan-drivers vulkan-utils
    ```
    
    - SDL3  
-   If you are using Debian 13 (Trixie), add
+   If you are using Debian13, add
 
       ```sh
       sudo apt install libsdl3-dev
@@ -118,9 +119,10 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 - Zig compiler
 
-   | Example | Windows | Linux  |
-   | ---     | :----:  | :----: |
-   | zig_*   | v       | v      |
+   | Example         | Windows | Linux  |
+   | ---             | :----:  | :----: |
+   | zig_*           | v       | v      |
+   | zig_sdl3_vulkan | v       | ?      |
 
 
 
@@ -224,7 +226,7 @@ make run
 ![alt](img/zig_implot3d.gif)  
 ![alt](img/zig_implot.png)
 
-##### Image load / save
+##### Image load / save (OpenGL, SDL3, SDL3GPU)
 
 ---
 
