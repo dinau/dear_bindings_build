@@ -32,6 +32,7 @@ char LinuxFontNameTbl[][MAX_FONT_NAME] = {
                            ,"/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf"               // Debian
                            ,"/usr/share/fonts/opentype/ipafont-gothic/ipam.ttf"               // Debian
                            ,"/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf" // Linux Mint English
+                           ,"/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",            // English region standard font
                            };
 
 /*------------

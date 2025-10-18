@@ -28,17 +28,12 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_rel.yml/badge.svg) 
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/linux_rel.yml/badge.svg)  
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/win_dev.yml/badge.svg) 
-![alt](https://github.com/dinau/dear_bindings_build/actions/workflows/linux_dev.yml/badge.svg)
-
 ### Dear_Bindings_Build
 
 This project aims to simply and easily build [Dear ImGui](https://github.com/ocornut/imgui) examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 
-[DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.17_ImGui_v1.92.2b-docking  
-[Dear ImGui](https://github.com/ocornut/imgui) version **1.92.2b** (2025/08)  
+[DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.17_ImGui_v1.92.4-docking  
+[Dear ImGui](https://github.com/ocornut/imgui)
 
 #### Features
 
@@ -76,15 +71,15 @@ Library name / C lang. wrapper
 
 ---
 
-- Windows10 OS or later  
-MSys/MinGW basic commands (make, rm, cp ...)
+- Windows11  
+MSys2/MinGW basic commands (make, rm, cp ...)
 
    ```sh
    pacman -S make mingw-w64-x86_64-{gcc,vulkan-headers,vulkan-loader}
    ```
 
-   Vulkan version: 1.4.321.0-1 
-- Linux OS: Debian13 / Ubunts families
+   Vulkan version: 1.4.xxx
+- Linux OS: Debian13 Trixie / Ubuntu families
 
    ```sh
    sudo apt install make gcc lib{opengl-dev,gl1-mesa-dev,glfw3,glfw3-dev}
@@ -92,7 +87,7 @@ MSys/MinGW basic commands (make, rm, cp ...)
    ```
    
    - SDL3  
-   If you are using Debian13, add
+   If you are using Debian13 Trixie, add
 
       ```sh
       sudo apt install libsdl3-dev
@@ -101,30 +96,31 @@ MSys/MinGW basic commands (make, rm, cp ...)
       otherwise [install SDL3 manually](https://github.com/dinau/sdl3_nim#for-linux-os)
 
 
-- GCC (or Clang or **'Zig cc'** compiler)
+- GCC (or Clang or **'zig cc'** compiler)
 - Install Zig Compiler  
-   Windows: [zig-x86_64-windows-0.15.1.zip](https://ziglang.org/download/0.15.1/zig-x86_64-windows-0.15.1.zip)  
-   Linux:   [zig-x86_64-linux-0.15.1.tar.xz](https://ziglang.org/download/0.15.1/zig-x86_64-linux-0.15.1.tar.xz)
+   Windows: [zig-x86_64-windows-0.15.2.zip](https://ziglang.org/download/0.15.2/zig-x86_64-windows-0.15.2.zip)  
+   Linux:   [zig-x86_64-linux-0.15.2.tar.xz](https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz)
 
 #### Compiling 
 
 ---
 
-- GCC compiler
-
-   | example | Windows | Linux  |
-   | ---     | :----:  | :----: |
-   | glfw_*  | v       | -      |
-   | sdl3_*  | v       | -      |
-
 - Zig compiler
 
-   | Example         | Windows | Linux  |
-   | ---             | :----:  | :----: |
-   | zig_*           | v       | v      |
-   | zig_sdl3_vulkan | v       | ?      |
+   | Example name    | Windows | Linux  | Mac OS [^macpr] |
+   | ---             | :----:  | :----: | :---:           |
+   | zig_*           | Y       | Y      | -               |
+   | zig_sdl3_vulkan | WIP     | WIP    | -               |
+
+- GCC compiler
+
+   | example | Windows | Linux  | Mac OS |
+   | ---     | :----:  | :----: | :---:  |
+   | glfw_*  | Y       | Y      | -      |
+   | sdl3_*  | Y       | WIP    | -      |
 
 
+[^macpr]:PR welcome 
 
 #### Build and run
 
@@ -132,7 +128,7 @@ MSys/MinGW basic commands (make, rm, cp ...)
 
 ```sh
 git clone https://github.com/dinau/dear_bindings_build
-cd dear_bindings_build/examples/glfw_opengl3
+cd dear_bindings_build/examples/glfw_opengl3           # for example
 make run                
 ```
 
@@ -232,9 +228,9 @@ make run
 
 |  Language |                                                                             GLFW | Magnifing glass | Image load /save |
 |:---------:|---------------------------------------------------------------------------------:|:---------------:|:----------------:|
-|  C lang.  |                      [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |         v        |
-|  C lang.  |                      [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |         v        |
-| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load/src/main.zig) |        v        |         v        |
+|  C lang.  |                      [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |         Y        |
+|  C lang.  |                      [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |         Y        |
+| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load/src/main.zig) |        Y        |         Y        |
 | Zig lang. |                       [zig_sdl3_sdlgup3](examples/zig_sdl3_sdlgpu3/src/main.zig) |        -        |       load       |
 
 - [x] Image file captured will be saved in current folder.  
@@ -297,7 +293,6 @@ https://github.com/libsdl-org/SDL/releases
 - gcc.exe (Rev2, Built by MSYS2 project) 15.2.0
 - make: GNU Make 4.4.1
 - Python 3.12.10
-- zig: 0.15.1
 
 #### Similar project ImGui / CImGui
 

@@ -1,4 +1,6 @@
-STATIC_GLFW = true
+ifeq ($(OS),Windows_NT)
+	STATIC_GLFW = true
+endif
 HIDE_CONSOLE_WINDOW = true
 DEBUG_INFO = false
 

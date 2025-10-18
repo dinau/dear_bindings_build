@@ -1,4 +1,5 @@
-zig_sdl3_vulkan/
+src/libc/imgui/examples/example_sdl3_vulkan_simple
+examples/zig_sdl3_vulkan/
 setenv.bat
 *.mp4
 src/libc/libcimgui.a

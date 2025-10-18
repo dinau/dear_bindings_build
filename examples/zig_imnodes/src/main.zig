@@ -111,8 +111,8 @@ pub fn gui_main(window: *app.Window) !void {
                     {
                         imnodes.imnodes_BeginOutputAttribute(node.id << 24, imnodes.ImNodesPinShape_CircleFilled);
                         defer imnodes.imnodes_EndOutputAttribute();
-                        const  wOut = ig.ImGui_CalcTextSizeEx("output", null, false, -1.0);
-                        const  wVal = ig.ImGui_CalcTextSizeEx("value",  null,  false, -1.0);
+                        const  wOut = ig.ImGui_CalcTextSize("output");
+                        const  wVal = ig.ImGui_CalcTextSize("value");
                         ig.ImGui_IndentEx(120 + wVal.x - wOut.x);
                         ig.ImGui_TextUnformatted("output");
                     }

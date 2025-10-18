@@ -8,13 +8,16 @@ endif
 
 # Link selection: true or false
 #STATIC_CIMGUI = true
-CFLAGS += -static
+
+ifeq ($(OS),Windows_NT)
+	CFLAGS += -static
+	EXE = .exe
+endif
 
 # Eliminale warinings
 CFLAGS_EXTRA += -Wno-pointer-sign
 #CFLAGS += -W-no-
 
-EXE = .exe
 
 # TC : gcc or clang or zig
 TC ?= gcc
@@ -109,7 +112,7 @@ CFLAGS += -DIMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS
 ifeq ($(OS),Windows_NT)
 LIBS += -lgdi32 -limm32 -lopengl32
 else
-LIBS += -lGL -lglfw3
+LIBS += -L/usr/lib/x86_64-linux-gnu -lGL -lX11 -lglfw
 endif
 
 DEPS_IMGUI  = $(wildcard $(IMGUI_DIR)/*.h)

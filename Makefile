@@ -31,15 +31,13 @@ endif
 
 .PHONY: test clean gen cc
 
-all: cc zig
+all: zig cc
 
 cc:
-ifeq ($(OS),Windows_NT)
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),))
-endif
 
 zig:
-	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),all ))
+	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),cleancache))
 
 fmt:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))

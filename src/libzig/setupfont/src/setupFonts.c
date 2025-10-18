@@ -21,6 +21,7 @@ char LinuxFontNameTbl[][MAX_PATH] = { // For Linux Mint 22 (Ubuntu/Debian family
                            ,"/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf"               // Debian
                            ,"/usr/share/fonts/opentype/ipafont-gothic/ipam.ttf"               // Debian
                            ,"/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf" // Linux Mint English
+                           ,"/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",            // English region standard font
                            };
 
 /*-------------

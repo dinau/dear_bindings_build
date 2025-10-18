@@ -10,10 +10,14 @@ all:
 
 run: all
 	(cd zig-out/bin; ./$(TARGET)$(EXE); cp imgui.ini ../../; cp $(TARGET).ini ../../)
+	$(AFTER_EXEC)
 
 clean:
 	@-rm -fr zig-out
 	@-rm -fr zig-cache .zig-cache
+
+cleancache: all
+	@-rm -fr .zig-cache
 
 cleanall: clean
 

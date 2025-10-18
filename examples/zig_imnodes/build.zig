@@ -44,6 +44,7 @@ pub fn build(b: *std.Build) void {
     } else if (builtin.target.os.tag == .linux) {
         exe.root_module.linkSystemLibrary("glfw3", .{});
         exe.root_module.linkSystemLibrary("GL", .{});
+        exe.root_module.linkSystemLibrary("X11", .{});
     }
 
     // root_module
@@ -54,7 +55,7 @@ pub fn build(b: *std.Build) void {
 
     b.installArtifact(exe);
 
-    const resBin = [_][]const u8{"imgui.ini", "save_load.bytes", "save_load.ini"};
+    const resBin = [_][]const u8{"imgui.ini","save_load.bytes","save_load.ini"};
     const resUtils = [_][]const u8{ "fonticon/fa6/fa-solid-900.ttf", "fonticon/fa6/LICENSE.txt" };
     const resIcon = "src/res/z.png";
 

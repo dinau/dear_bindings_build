@@ -47,12 +47,13 @@ pub fn gui_main(window: *app.Window) void {
             _ = ig.ImGui_Begin("ImSpinner: Dear Bindings in Zig " ++ ifa.ICON_FA_CAT, null, 0);
             defer ig.ImGui_End();
             const red: spn.ImColor = .{ .Value = .{ .x = 1.0, .y = 0.0, .z = 0.0, .w = 1.0 } };
-            const blue: spn.ImColor = .{ .Value = .{ .x = 0.0, .y = 0.0, .z = 1.0, .w = 1.0 } };
+            const cyan: spn.ImColor = .{ .Value = .{ .x = 0.0, .y = 1.0, .z = 1.0, .w = 1.0 } };
+            const blue1: spn.ImColor = .{ .Value = .{ .x = 51.0/255.0, .y = 153.0/255.0, .z = 1.0, .w = 1.0 } };
 
             // See ../build.zig, if you'd like to add other spinners.
-            spn.SpinnerDnaDotsEx("DnaDotsV", 16, 2, red, 1.2, 8, 0.25, true);
+            spn.SpinnerDnaDotsEx("DnaDotsV", 16, 2, blue1, 1.2, 8, 0.25, true);
             spn.ImGui_SameLine(); // Defined by "SPINNER_DNADOTS" in cimspinner_config.h by default
-            spn.SpinnerRainbowMix("Rmix", 16, 2, blue, 2);
+            spn.SpinnerRainbowMix("Rmix", 16, 2, cyan, 2);
             spn.ImGui_SameLine();
             spn.SpinnerAng8("Ang", 16, 2);
             spn.ImGui_SameLine();
