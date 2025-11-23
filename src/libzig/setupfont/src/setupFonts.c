@@ -8,7 +8,7 @@
 #include "IconsFontAwesome6.h"
 
 #define MAX_PATH  2048
-const char* IconFontPath = "../utils/fonticon/fa6/fa-solid-900.ttf";
+const char* IconFontPath = "resources/fonticon/fa6/fa-solid-900.ttf";
 char sBufFontPath[MAX_PATH];
 
 char WinFontNameTbl[][MAX_PATH] = {
@@ -79,7 +79,7 @@ const ImWchar ranges_icon_fonts[]  = {(ImWchar)ICON_MIN_FA, (ImWchar)ICON_MAX_FA
 /*--------------
  * setupFonts()
  *-------------*/
-void setupFonts(void) {
+ImFont* setupFonts(void) {
   ImGuiIO* pio = ImGui_GetIO();
   config  = ImFontConfig_create(); // TODO free()
   ImFont* font = NULL;
@@ -115,5 +115,10 @@ void setupFonts(void) {
   }
   // Merge IconFont
   config->MergeMode = true;
-  ImFontAtlas_AddFontFromFileTTF(pio->Fonts, IconFontPath, point2px(11), config , ranges_icon_fonts);
+  if (existsFile(IconFontPath)) {
+    return ImFontAtlas_AddFontFromFileTTF(pio->Fonts, IconFontPath, point2px(11), config , ranges_icon_fonts);
+  } else{
+    printf("Error!: Font not found [ %s ]:  falied: in %s\n", IconFontPath, __FILE__);
+    return 0;
+  }
 }

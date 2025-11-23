@@ -1,5 +1,7 @@
 #pragma once
 #include <stdbool.h>
 
-void setupFonts(void);
+#include "dcimgui.h"
+
+ImFont* setupFonts(void);
 bool existFile(const char* path);

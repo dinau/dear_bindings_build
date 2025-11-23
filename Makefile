@@ -51,6 +51,7 @@ clean: cleanall
 cleanall:
 	@-$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
 	@-$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),$@ ))
+	@-$(MAKE) -C src/libzig clean
 
 DB_DIR             = ../dear_bindings
 DCIMGUI_DIR        = src/libc/dcimgui

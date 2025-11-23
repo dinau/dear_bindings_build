@@ -28,7 +28,7 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../libc/imgui"));
     mod.addIncludePath(b.path("../../libc/CImGuiFileDialog"));
     mod.addIncludePath(b.path("../../libc/CImGuiFileDialog/libs/ImGuiFileDialog"));
-    mod.addIncludePath(b.path("../fonticon/src/fonticon"));
+    mod.addIncludePath(b.path("../../libc/fonticon"));
     // macro
     //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1");
     // for fileopendialog

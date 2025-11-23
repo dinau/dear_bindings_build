@@ -11,6 +11,8 @@
     - [zig_imknobs](#zig_imknobs)
     - [zig_imtoggle](#zig_imtoggle)
     - [zig_imspinner](#zig_imspinner)
+    - [Raylib example](#raylib-example)
+    - [Raylib + ImGui + rlImGui](#raylib--imgui--rlimgui)
     - [zig_imfiledialog](#zig_imfiledialog)
     - [zig_imgui_markdown](#zig_imgui_markdown)
     - [zig_iconfontviewer](#zig_iconfontviewer)
@@ -31,9 +33,10 @@
 ### Dear_Bindings_Build
 
 This project aims to simply and easily build [Dear ImGui](https://github.com/ocornut/imgui) examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
+And one can use many other libaries and examples with less external dependencies.
 
 [DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.17_ImGui_v1.92.4-docking  
-[Dear ImGui](https://github.com/ocornut/imgui)
+[Dear ImGui](https://github.com/ocornut/imgui): 1.92.4
 
 #### Features
 
@@ -66,6 +69,9 @@ Library name / C lang. wrapper
 - [x] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot) (2025/08)
 - [x] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d)  (2025/08)
 - [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
+
+Additional examples
+- [x] [Raylib](https://github.com/raysan5/raylib), [rlImGui](https://github.com/raylib-extras/rlImGui) (2025/11)
 
 #### Prerequisites
 
@@ -157,6 +163,28 @@ make run
 [zig_imspinner](examples/zig_imspinner/src/main.zig) 
 
 ![alt](img/zig_imspinner.gif)
+
+##### Raylib example 
+
+---
+
+[raylib_basic](examples/zig_raylib_basic/src/main.zig)  
+
+
+![alt](https://github.com/dinau/imguinz/raw/main/img/raylib_basic.gif)
+
+[raylib_cjk](examples/zig_raylib_cjk/src/main.zig): Showing multi byte(CJK) fonts
+
+![alt](https://github.com/dinau/imguinz/raw/main/img/raylib_cjk.gif)
+
+##### Raylib + ImGui + rlImGui 
+
+---
+
+[main.zig](examples/zig_rlimgui_basic/src/main.zig)  
+
+
+![alt](https://github.com/dinau/imguin_examples/raw/main/img/rlimgui.gif)
 
 ##### zig_imfiledialog
 

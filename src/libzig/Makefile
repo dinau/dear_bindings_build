@@ -18,6 +18,8 @@ DIRS = \
 	loadicon \
 	loadimage \
 	loadimage_sdlgpu3 \
+	raylib \
+	rlimgui \
 	saveimage \
 	setupfont \
 	utils \

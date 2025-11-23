@@ -14,7 +14,7 @@ pub fn build(b: *std.Build) void {
     // module
     // -------
     const step = b.addTranslateC(.{
-        .root_source_file = b.path("src/fonticon/IconsFontAwesome6.h"),
+        .root_source_file = b.path("../../libc/fonticon/IconsFontAwesome6.h"),
         .target = target,
         .optimize = optimize,
         //.link_libc = true,

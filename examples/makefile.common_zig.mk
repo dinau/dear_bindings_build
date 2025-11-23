@@ -8,8 +8,14 @@ all:
 	zig version
 	zig build $(OPT)
 
+ZIG_BIN_DIR = zig-out/bin
+
 run: all
-	(cd zig-out/bin; ./$(TARGET)$(EXE); cp imgui.ini ../../; cp $(TARGET).ini ../../)
+	(cd $(ZIG_BIN_DIR); $(LOCAL_LIB_PATH) ./$(TARGET)$(EXE))
+ifneq ($(COPY_IMGUI_INI),false)
+	@-cp $(ZIG_BIN_DIR)/imgui.ini .
+	@-cp $(ZIG_BIN_DIR)/$(TARGET).ini .
+endif
 	$(AFTER_EXEC)
 
 clean:

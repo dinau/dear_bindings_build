@@ -35,13 +35,13 @@ pub fn gui_main(window: *app.Window) !void {
     // Load image
     //------------
     //const ImageName = "himeji-400.jpg";
-    const ImageName = "fuji-cherry-480.jpg";
+    const ImageName = "resources/fuji-cherry-480.jpg";
     var textureId: glfw.GLuint = undefined;
     var textureWidth: c_int = 0;
     var textureHeight: c_int = 0;
     _ = utils.LoadTextureFromFile(ImageName, &textureId, &textureWidth, &textureHeight);
 
-    stf.setupFonts(); // Setup CJK fonts and Icon fonts
+    _ = stf.setupFonts(); // Setup CJK fonts and Icon fonts
 
     var zoomTextureID: glfw.GLuint = 0; //# Must be == 0 at first
     defer glfw.glDeleteTextures(1, &zoomTextureID);

@@ -20,12 +20,13 @@ pub fn build(b: *std.Build) void {
         .link_libc = true,
     });
     step.addIncludePath(b.path("../../libc/dcimgui"));
-    step.addIncludePath(b.path("../fonticon/src/fonticon"));
+    step.addIncludePath(b.path("../../libc/imgui"));
+    step.addIncludePath(b.path("../..libc//fonticon"));
 
     const mod = step.addModule(mod_name);
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imgui"));
-    mod.addIncludePath(b.path("../fonticon/src/fonticon"));
+    mod.addIncludePath(b.path("../../libc/fonticon"));
     mod.addCSourceFiles(.{
         .files = &.{
             "src/setupFonts.c",

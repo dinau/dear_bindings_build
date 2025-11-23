@@ -101,7 +101,7 @@ pub fn main() !void {
     var sTextInuputBuf = [_:0]u8{0} ** 200;
     var showWindowDelay: i32 = 2; // TODO: Avoid flickering of window at startup
 
-    stf.setupFonts();
+    _ = stf.setupFonts();
 
     var done = false;
     while (!done) {
