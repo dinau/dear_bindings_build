@@ -79,4 +79,12 @@ define def_make
 
 endef
 
+copyblib:
+	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_copylib,$(exdir)))
+
+define def_copylib
+	cp -f examples/build_lib.zig $(1)/
+
+endef
+
 MAKEFLAGS += --no-print-directory
