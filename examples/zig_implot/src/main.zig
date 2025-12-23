@@ -1,13 +1,10 @@
-const ig = @import("dcimgui");
+const app = @import("appimgui");
+const ig = app.ig;
+const ifa = app.ifa;
+const c = app.clib;
 const ip = @import("implot");
 const ipz = @import("zimplot.zig");
-const ifa = @import("fonticon");
-const app = @import("appimgui");
-const stf = @import("setupfont");
 
-pub const c = @cImport({
-    @cInclude("stdlib.h");
-});
 
 const IMGUI_HAS_DOCK = false;    // Docking feature
 
@@ -18,7 +15,7 @@ const MainWinHeight: i32 = 900;
 // gui_main()
 //-----------
 pub fn gui_main(window: *app.Window) !void {
-    _ = stf.setupFonts(); // Setup CJK fonts and Icon fonts
+    _ = app.stf.setupFonts(); // Setup CJK fonts and Icon fonts
 
     const imPlotContext = ip.ImPlot_CreateContext();
     defer ip.ImPlot_DestroyContext(imPlotContext);

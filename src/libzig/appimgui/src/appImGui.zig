@@ -1,12 +1,15 @@
 const std = @import("std");
 const builtin = @import("builtin");
-const ig = @import("dcimgui");
-const glfw = @import("glfw");
-const impl_gl = @import("impl_opengl3");
-const impl_glfw = @import("impl_glfw");
-const ifa = @import("fonticon");
-//const img_ld = @import("loadimage");
-const img_icon = @import("loadicon");
+pub const ig = @import("dcimgui");
+pub const glfw = @import("glfw");
+pub const impl_gl = @import("impl_opengl3");
+pub const impl_glfw = @import("impl_glfw");
+pub const ifa = @import("fonticon");
+pub const img_ld = @import("loadimage");
+pub const img_icon = @import("loadicon");
+pub const stf = @import("setupfont");
+pub const utils = @import("utils");
+pub const clib = @import("clib");
 
 //---------------------
 // glfw_error_callback

@@ -3,19 +3,15 @@
 //
 const std = @import("std");
 const math = @import("std").math;
-//
-const ig = @import("dcimgui");
+const app = @import("appimgui");
+const ig = app.ig;
+const utils = app.utils;
+const ifa = app.ifa;
+const c = app.clib;
+
 const ip = @import("implot");
 const ipz = @import("zimplot.zig");
-//
 const utils_ip = @import("utils.zig");
-const utils = @import("utils");
-const ifa = @import("fonticon");
-//
-pub const c = @cImport({
-    @cInclude("stdio.h");
-    @cInclude("stdlib.h");
-});
 
 // const IMPLOT_AUTO_COL =  .{.x = 0, .y = 0, .z = 0, .w = -1}; // TODO
 

@@ -36,7 +36,4 @@ pub fn build(b: *std.Build) void {
         // .linux =>   mod.addIncludePath(.{.cwd_relative = "/usr/include"}),
         else => {},
     }
-
-    b.installArtifact(lib);
-    //std.debug.print("{s} module\n",.{mod_name});
 }

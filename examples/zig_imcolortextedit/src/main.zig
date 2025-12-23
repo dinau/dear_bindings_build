@@ -1,8 +1,7 @@
 const std = @import("std");
-const ig = @import("dcimgui");
-const ifa = @import("fonticon");
-const stf = @import("setupfont");
 const app = @import("appimgui");
+const ig = app.ig;
+const ifa = app.ifa;
 
 const cte = @import("imcolortextedit");
 
@@ -14,7 +13,7 @@ fn point2px(point: f32) f32 {
 // gui_main()
 //-----------
 pub fn gui_main(window: *app.Window) !void {
-    _ = stf.setupFonts(); // Setup CJK fonts and Icon fonts
+    _ = app.stf.setupFonts(); // Setup CJK fonts and Icon fonts
 
     //-- This is a programing font. https://github.com/yuru7/NOTONOTO
     const fontFullPath = "resources/fonts/NOTONOTO-Regular.ttf";

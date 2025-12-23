@@ -1,10 +1,9 @@
 const std = @import("std");
-const ig = @import("dcimgui");
-const glfw = @import("glfw");
-const ifa = @import("fonticon");
-const utils = @import("utils");
-const stf = @import("setupfont");
 const app = @import("appimgui");
+const ig = app.ig;
+const glfw = app.glfw;
+const ifa = app.ifa;
+const utils = app.utils;
 
 const TImgFormat = struct {
     kind: [:0]const u8,
@@ -41,7 +40,7 @@ pub fn gui_main(window: *app.Window) !void {
     var textureHeight: c_int = 0;
     _ = utils.LoadTextureFromFile(ImageName, &textureId, &textureWidth, &textureHeight);
 
-    _ = stf.setupFonts(); // Setup CJK fonts and Icon fonts
+    _ = app.stf.setupFonts(); // Setup CJK fonts and Icon fonts
 
     var zoomTextureID: glfw.GLuint = 0; //# Must be == 0 at first
     defer glfw.glDeleteTextures(1, &zoomTextureID);

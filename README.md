@@ -2,7 +2,8 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Dear_Bindings_Build](#dear_bindings_build)
-  - [Features](#features)
+  - [Zig fetch](#zig-fetch)
+  - [Frontends and Backends](#frontends-and-backends)
   - [Available libraries list at this moment](#available-libraries-list-at-this-moment)
   - [Prerequisites](#prerequisites)
   - [Compiling](#compiling)
@@ -32,24 +33,125 @@
 
 ### Dear_Bindings_Build
 
-This project aims to simply and easily build [Dear ImGui](https://github.com/ocornut/imgui) examples with **C language** and **Zig language** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
+This project aims to simply and easily build [Dear ImGui](https://github.com/ocornut/imgui) examples with **C** and **Zig** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 And one can use many other libaries and examples with less external dependencies.
 
 [DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.17_ImGui_v1.92.4-docking  
 [Dear ImGui](https://github.com/ocornut/imgui): 1.92.4
 
-#### Features
+#### Zig fetch
 
 ---
 
-- [x] No download external libraries  
-Included Dear_Bindings / Dear ImGui / GLFW / SDL3 / STB_image libraries in this project
-- [x] Included IconFont [FontAwewsome 6](https://fontawesome.com)
-- [x] Image load/save example
+1. Zig fetch `dear_bindings_build`
 
-- Frontends and Backends  
-   - GLFW3  - OpenGL3, SDL3
-   - SDL3   - OpenGL3, SDL3GPU, Vulkan (WIP)
+   ```sh
+   mkdir myapp
+   cd myapp
+   zig init
+   
+   zig fetch --save git+https://github.com/dinau/dear_bindings_build
+   ```
+
+1. Edit build.zig  
+   Add dependencies to `build.zig`
+
+   ```zig
+   const imguinz = b.dependency("imguinz", .{});
+   const dependencies = .{
+       "appimgui",
+       "imspinner",
+       "imknobs",
+    // "another_lib",
+   };
+   inline for (dependencies) |dep_name| {
+       const dep = imguinz.builder.dependency(dep_name, .{
+           .target = target, 
+           .optimize = optimize, 
+       });
+       exe.root_module.addImport(dep_name, dep.module(dep_name));
+   }
+   exe.subsystem = .Windows; // Hide console window
+   ```
+
+   You can set `dependencies` (additional libraries), see [dear_bindings_build/build.zig.zon](https://github.com/dinau/dear_bindings_build/blob/main/build.zig.zon)
+
+   ```zig
+   "appimgui"     <- Simple app framework for GLFW and OpenGL backend
+   "imspinner"    <- ImSpinner
+   "imguizmo"     <- ImGuizmo
+   "imknobs"      <- ImKnobs 
+   "imnodes"      <- ImNodes
+   "implot"       <- ImPlots
+   "implot3d"     <- ImPlot3D
+   "imtoggle"     <- ImToggle
+   "raylib"       <- Raylib
+   "rlimgui"      <- rlImgui
+   ... snip  ...
+   ```
+
+1. Edit src/main.zig
+
+   ```zig
+   const app = @import("appimgui");
+   const ig = app.ig;
+   const spinner = @import("imspinner");
+   const knobs = @import("imknobs");
+   
+   // gui_main()
+   pub fn gui_main(window: *app.Window) void {
+   
+       var val2: f32 = 0;
+       while (!window.shouldClose()) { // main loop
+           window.pollEvents();
+           if (window.isIconified()) { // Iconify sleep
+               continue;
+           }
+           window.frame(); // Start ImGui frame
+   
+           ig.ImGui_ShowDemoWindow(null); // Show demo window
+   
+           _ = ig.ImGui_Begin("Spinner", null, 0); // Show Spinner window
+           spinner.SpinnerAtom("atom", 16, 2);
+           ig.ImGui_SameLine();
+           if (knobs.IgKnobFloat("Mix", &val2, -1.0, 1.0, 0.1, "%.1f", knobs.IgKnobVariant_Stepped, 0, 0, 10, -1, -1)) {
+               //window.ini.window.colBGy = (val2 + 1) / 2;
+           }
+           ig.ImGui_End();
+   
+           window.render(); // render
+       } // end while loop
+   }
+   
+   pub fn main() !void {
+       var window = try app.Window.createImGui(1024, 900, "ImGui window in Zig lang.");
+       defer window.destroyImGui();
+   
+       _ = app.setTheme(.classic); // Theme: dark, classic, light, microsoft
+   
+       gui_main(&window); // GUI main proc
+   }
+   ```
+
+1. Build and run
+  
+   ```sh
+   pwd
+   myapp
+
+   zig build
+   cd zig-out/bin
+   ./myapp.exe
+   ```
+   
+   ![myapp.png](https://github.com/dinau/imguinz/raw/main/img/myapp.png)
+
+#### Frontends and Backends  
+
+---
+
+- GLFW3  - OpenGL3, SDL3
+- SDL3   - OpenGL3, SDL3GPU, Vulkan (WIP)
   
 
 #### Available libraries list at this moment

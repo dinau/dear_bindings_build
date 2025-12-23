@@ -1,10 +1,11 @@
 DIRS = \
 	appimgui \
+	clib \
 	dcimgui \
 	fonticon \
 	glfw \
 	imcolortextedit \
-	imfiledialog \
+	imfileopendialog \
 	imguizmo\
 	imknobs\
 	imnodes\

@@ -1,30 +1,10 @@
 .{
-    .name = .zig_iconfontviewer,
+    .name = .app_glfw_opegl3,
     .version = "0.0.1",
-    .fingerprint = 0x4921e6bf75983874, // Changing this has security and trust implications.
+    .fingerprint = 0xebafcb8547c4927f, // Changing this has security and trust implications.
     .minimum_zig_version = "0.15.1",
     .dependencies = .{
-        .appimgui  =  .{
-            .path = "../../src/libzig/appimgui"
-        },
-        .dcimgui  =  .{
-            .path = "../../src/libzig/dcimgui"
-        },
-        .fonticon =  .{
-            .path = "../../src/libzig/fonticon"
-        },
-        .glfw = .{
-            .path = "../../src/libzig/glfw"
-        },
-        .setupfont = .{
-            .path = "../../src/libzig/setupfont"
-        },
-        .utils = .{
-            .path = "../../src/libzig/utils"
-        },
-        .zoomglass = .{
-            .path = "../../src/libzig/zoomglass"
-        },
+        .imguinz = .{ .path = "../../" },
     },
     .paths = .{
         "build.zig",

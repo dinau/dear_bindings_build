@@ -23,6 +23,7 @@ pub fn build(b: *std.Build) void {
     step.addIncludePath(b.path("../../libc/dcimgui/imgui/backends"));
     step.addIncludePath(b.path("../../libc/dcimgui"));
     const mod = step.addModule(mod_name);
+    mod.link_libcpp = true;
     mod.addImport(mod_name, mod);
     mod.addIncludePath(b.path("../../libc/imgui"));
     mod.addIncludePath(b.path("../../libc/dcimgui/imgui/backends"));
@@ -50,11 +51,18 @@ pub fn build(b: *std.Build) void {
         },
     });
 
-    const lib = b.addLibrary(.{
-        .linkage = .static,
-        .name = mod_name,
-        .root_module = mod,
-    });
-    b.installArtifact(lib);
-    //std.debug.print("{s} module\n",.{mod_name});
+    //---------
+    // Linking
+    //---------
+    if (builtin.target.os.tag == .windows) {
+        mod.linkSystemLibrary("gdi32", .{});
+        mod.linkSystemLibrary("imm32", .{});
+        mod.linkSystemLibrary("opengl32", .{});
+        mod.linkSystemLibrary("user32", .{});
+        mod.linkSystemLibrary("shell32", .{});
+    } else if (builtin.target.os.tag == .linux) {
+        mod.linkSystemLibrary("glfw3", .{});
+        mod.linkSystemLibrary("GL", .{});
+        mod.linkSystemLibrary("X11", .{});
+    }
 }

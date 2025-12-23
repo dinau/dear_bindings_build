@@ -1,11 +1,9 @@
 const std = @import("std");
-const ig = @import("dcimgui");
-const glfw = @import("glfw");
-const ifa = @import("fonticon");
-const utils = @import("utils");
-const stf = @import("setupfont");
 const app = @import("appimgui");
-
+const ig = app.ig;
+const glfw = app.glfw;
+const ifa = app.ifa;
+const utils = app.utils;
 const ift = @import("./iconFontsTblDef.zig");
 
 const MainWinWidth: i32 = 1200;
@@ -15,7 +13,7 @@ const MainWinHeight: i32 = 800;
 // gui_main()
 //-----------
 pub fn gui_main(window: *app.Window) !void {
-    _ = stf.setupFonts(); // Setup CJK fonts and Icon fonts
+    _ = app.stf.setupFonts(); // Setup CJK fonts and Icon fonts
 
     const pio = ig.ImGui_GetIO();
 

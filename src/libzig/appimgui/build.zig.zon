@@ -5,12 +5,15 @@
     .minimum_zig_version = "0.15.1",
     .dependencies = .{
         .dcimgui = .{ .path = "../dcimgui" },
-        .fonticon = .{ .path = "../fonticon" },
-        .loadicon = .{ .path = "../loadicon" },
+        .clib = .{ .path = "../clib" },
         .glfw = .{ .path = "../glfw" },
-        .impl_glfw = .{ .path = "../impl_glfw" },
         .impl_opengl3 = .{ .path = "../impl_opengl3" },
+        .impl_glfw = .{ .path = "../impl_glfw" },
+        .fonticon = .{ .path = "../fonticon" },
+        .loadimage = .{ .path = "../loadimage" },
+        .loadicon = .{ .path = "../loadicon" },
         .setupfont = .{ .path = "../setupfont" },
+        .utils = .{ .path = "../utils" },
     },
     .paths = .{
         "build.zig",

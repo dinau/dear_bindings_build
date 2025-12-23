@@ -45,12 +45,4 @@ pub fn build(b: *std.Build) void {
             "../../libc/cimplot/implot/implot_items.cpp",
         },
     });
-
-    const lib = b.addLibrary(.{
-        .linkage = .static,
-        .name = mod_name,
-        .root_module = mod,
-    });
-    b.installArtifact(lib);
-    //std.debug.print("{s} module\n",.{mod_name});
 }

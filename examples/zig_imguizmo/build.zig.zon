@@ -1,24 +1,10 @@
 .{
-    .name = .zig_imguizmo,
+    .name = .app_glfw_opegl3,
     .version = "0.0.1",
-    .fingerprint =0x13f16c2de1125e39, // Changing this has security and trust implications.
+    .fingerprint = 0xebafcb8547c4927f, // Changing this has security and trust implications.
     .minimum_zig_version = "0.15.1",
     .dependencies = .{
-        .appimgui  =  .{
-            .path = "../../src/libzig/appimgui"
-        },
-        .dcimgui  =  .{
-            .path = "../../src/libzig/dcimgui"
-        },
-        .imguizmo =  .{
-            .path = "../../src/libzig/imguizmo"
-        },
-        .fonticon =  .{
-            .path = "../../src/libzig/fonticon"
-        },
-        .setupfont = .{
-            .path = "../../src/libzig/setupfont"
-        },
+        .imguinz = .{ .path = "../../" },
     },
     .paths = .{
         "build.zig",

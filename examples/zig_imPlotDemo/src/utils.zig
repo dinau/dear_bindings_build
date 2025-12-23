@@ -2,11 +2,9 @@ const std = @import("std");
 const math = @import("std").math;
 const ifa = @import("fonticon");
 
-const c = @cImport ({
-  @cInclude ("stdlib.h");
-});
-
-const ig = @import ("dcimgui");
+const app = @import ("appimgui");
+const ig = app.ig;
+const c = app.clib;
 const ip = @import("implot");
 const ipz = @import("zimplot.zig");
 

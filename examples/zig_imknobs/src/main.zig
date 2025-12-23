@@ -1,7 +1,6 @@
-const ig = @import("dcimgui");
-const stf = @import("setupfont");
-const ifa = @import("fonticon");
 const app = @import("appimgui");
+const ig = app.ig;
+const ifa = app.ifa;
 
 const knobs = @import("imknobs");
 
@@ -9,7 +8,7 @@ const knobs = @import("imknobs");
 // gui_main()
 //-----------
 pub fn gui_main(window: *app.Window) void {
-    _ = stf.setupFonts(); // Setup CJK fonts and Icon fonts
+    _ = app.stf.setupFonts(); // Setup CJK fonts and Icon fonts
 
     //---------------
     // main loop GUI

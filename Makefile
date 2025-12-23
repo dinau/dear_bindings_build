@@ -15,7 +15,7 @@ EXAMPLE_DIRS_ZIG =\
 							examples/zig_glfw_opengl3_image_load \
 							examples/zig_iconfontviewer          \
 							examples/zig_imcolortextedit         \
-							examples/zig_imfiledialog            \
+							examples/zig_imfileopendialog            \
 							examples/zig_imguizmo                \
 							examples/zig_imknobs                 \
 							examples/zig_imnodes                 \
