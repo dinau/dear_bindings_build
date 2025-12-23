@@ -57,7 +57,7 @@ And one can use many other libaries and examples with less external dependencies
    Add dependencies to `build.zig`
 
    ```zig
-   const imguinz = b.dependency("imguinz", .{});
+   const dear_bindings_build = b.dependency("dear_bindings_build", .{});
    const dependencies = .{
        "appimgui",
        "imspinner",
@@ -65,7 +65,7 @@ And one can use many other libaries and examples with less external dependencies
     // "another_lib",
    };
    inline for (dependencies) |dep_name| {
-       const dep = imguinz.builder.dependency(dep_name, .{
+       const dep = dear_bindings_build.builder.dependency(dep_name, .{
            .target = target, 
            .optimize = optimize, 
        });
