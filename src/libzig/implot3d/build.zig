@@ -18,14 +18,13 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-
     step.addIncludePath(b.path("./src"));
     step.addIncludePath(b.path("../../libc/dcimgui"));
     step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path("../../libc/cimplot"));
     step.addIncludePath(b.path("../../libc/cimplot3d"));
     step.defineCMacro("CIMGUI_DEFINE_ENUMS_AND_STRUCTS", "");
-    //
+
     const mod = step.addModule(mod_name);
     mod.addImport(mod_name, mod);
     mod.addIncludePath(b.path("../../libc/dcimgui/imgui"));
@@ -34,10 +33,7 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../libc/cimplot3d"));
     mod.addIncludePath(b.path("../../libc/cimplot3d/implotd"));
     mod.addIncludePath(b.path("./src"));
-    // macro
     mod.addCMacro("ImDrawIdx", "unsigned int");
-    //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1");
-
     mod.addCSourceFiles(.{
         .files = &.{
         // ImPlot

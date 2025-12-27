@@ -32,7 +32,7 @@ pub fn build(b: *std.Build) void {
 
     // Static link
     switch (builtin.target.os.tag) {
-        .windows => lib.addObjectFile(b.path(b.pathJoin(&.{ glfw_path, "lib-mingw-w64", "libglfw3.a" }))),
+        .windows => lib.root_module.addObjectFile(b.path(b.pathJoin(&.{ glfw_path, "lib-mingw-w64", "libglfw3.a" }))),
         // .linux =>   mod.addIncludePath(.{.cwd_relative = "/usr/include"}),
         else => {},
     }

@@ -4,7 +4,6 @@ OPT += --release=fast
 # Fail compilation
 #OPT += --release=safe
 
-
 COPY_IMGUI_INI = false
 
 ifeq ($(OS),Windows_NT)

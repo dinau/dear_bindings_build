@@ -18,14 +18,12 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-
     step.addIncludePath(b.path("../../libc/dcimgui"));
     step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path("../../libc/imspinner"));
 
     const mod = step.addModule(mod_name);
     mod.addImport(mod_name, mod);
-
     mod.addIncludePath(b.path("../../libc/imgui"));
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imspinner"));
@@ -166,9 +164,6 @@ pub fn build(b: *std.Build) void {
     mod.addCMacro("SPINNER_3SMUGGLEDOTS", "");
     mod.addCMacro("SPINNER_ROTATESEGMENTSPULSAR", "");
     mod.addCMacro("SPINNER_SPLINEANG", "");
-
-    // macro
-    //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1"); // needs this line for imspinner
 
     mod.addCSourceFiles(.{
         .files = &.{

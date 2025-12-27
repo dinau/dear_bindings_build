@@ -53,15 +53,15 @@ And one can use many other libaries and examples with less external dependencies
    zig fetch --save git+https://github.com/dinau/dear_bindings_build
    ```
 
-1. Edit build.zig  
-   Add dependencies to `build.zig`
+1. Add dependencies to `build.zig`
 
    ```zig
    const dear_bindings_build = b.dependency("dear_bindings_build", .{});
    const dependencies = .{
-       "appimgui",
-       "imspinner",
-       "imknobs",
+       "appimgui",      // Simple app framework
+       "imspinner",     // ImSpinner
+       "imknobs",       // ImKnobs
+       "imtoggle",      // ImToggle
     // "another_lib",
    };
    inline for (dependencies) |dep_name| {
@@ -85,7 +85,6 @@ And one can use many other libaries and examples with less external dependencies
    "implot"       <- ImPlots
    "implot3d"     <- ImPlot3D
    "imtoggle"     <- ImToggle
-   "raylib"       <- Raylib
    "rlimgui"      <- rlImgui
    ... snip  ...
    ```
@@ -95,27 +94,30 @@ And one can use many other libaries and examples with less external dependencies
    ```zig
    const app = @import("appimgui");
    const ig = app.ig;
-   const spinner = @import("imspinner");
-   const knobs = @import("imknobs");
+   const spinner = @import("imspinner"); // ImSpinner
+   const knobs = @import("imknobs"); // ImKnobs
+   const tgl = @import("imtoggle"); // ImToggle
    
    // gui_main()
    pub fn gui_main(window: *app.Window) void {
-   
-       var val2: f32 = 0;
+       var col: f32 = 1.0;
+       var fspd: bool = false;
+       var speed: f32 = 2.0;
+       var spn_col: spinner.ImColor = .{ .Value = .{ .x = col, .y = 1.0, .z = 1.0, .w = 1.0 } };
        while (!window.shouldClose()) { // main loop
            window.pollEvents();
-           if (window.isIconified()) { // Iconify sleep
-               continue;
-           }
            window.frame(); // Start ImGui frame
    
-           ig.ImGui_ShowDemoWindow(null); // Show demo window
+           ig.ImGui_ShowDemoWindow(null); // Show ImGui demo window
    
-           _ = ig.ImGui_Begin("Spinner", null, 0); // Show Spinner window
-           spinner.SpinnerAtom("atom", 16, 2);
+           ig.ImGui_SetNextWindowSize(.{ .x = 0.0, .y = 0.0 }, 0); // Fit window size depending on the size of the widgets
+           _ = ig.ImGui_Begin("Demo", null, 0); // Show demo window
+           spinner.SpinnerAtomEx("atom", 16, 2, spn_col, speed, 3);
            ig.ImGui_SameLine();
-           if (knobs.IgKnobFloat("Mix", &val2, -1.0, 1.0, 0.1, "%.1f", knobs.IgKnobVariant_Stepped, 0, 0, 10, -1, -1)) {
-               //window.ini.window.colBGy = (val2 + 1) / 2;
+           _ = tgl.Toggle("Speed", &fspd, .{ .x = 0.0, .y = 0.0 });
+           if (fspd) speed = 6.0 else speed = 2.0;
+           if (knobs.IgKnobFloat("Color", &col, 0.0, 1.0, 0.05, "%.2f", knobs.IgKnobVariant_Stepped, 0, 0, 10, -1, -1)) {
+               spn_col.Value.x = col;
            }
            ig.ImGui_End();
    
@@ -127,7 +129,7 @@ And one can use many other libaries and examples with less external dependencies
        var window = try app.Window.createImGui(1024, 900, "ImGui window in Zig lang.");
        defer window.destroyImGui();
    
-       _ = app.setTheme(.classic); // Theme: dark, classic, light, microsoft
+       _ = app.setTheme(.dark); // Theme: dark, classic, light, microsoft
    
        gui_main(&window); // GUI main proc
    }
@@ -144,14 +146,14 @@ And one can use many other libaries and examples with less external dependencies
    ./myapp.exe
    ```
    
-   ![myapp.png](https://github.com/dinau/imguinz/raw/main/img/myapp.png)
+   ![myapp.png](img/myapp.png)
 
 #### Frontends and Backends  
 
 ---
 
 - GLFW3  - OpenGL3, SDL3
-- SDL3   - OpenGL3, SDL3GPU, Vulkan (WIP)
+- SDL3   - OpenGL3, SDL3GPU
   
 
 #### Available libraries list at this moment
@@ -173,7 +175,7 @@ Library name / C lang. wrapper
 - [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
 
 Additional examples
-- [x] [Raylib](https://github.com/raysan5/raylib), [rlImGui](https://github.com/raylib-extras/rlImGui) (2025/11)
+- [x] [Raylib](https://github.com/raysan5/raylib), [raylib-zig](https://github.com/raylib-zig/raylib-zig), [rlImGui](https://github.com/raylib-extras/rlImGui) (2025/11)
 
 #### Prerequisites
 
@@ -183,15 +185,13 @@ Additional examples
 MSys2/MinGW basic commands (make, rm, cp ...)
 
    ```sh
-   pacman -S make mingw-w64-x86_64-{gcc,vulkan-headers,vulkan-loader}
+   pacman -S make mingw-w64-ucrt-x86_64-gcc
    ```
 
-   Vulkan version: 1.4.xxx
 - Linux OS: Debian13 Trixie / Ubuntu families
 
    ```sh
    sudo apt install make gcc lib{opengl-dev,gl1-mesa-dev,glfw3,glfw3-dev}
-   sudo apt install libvulkan1 mesa-vulkan-drivers vulkan-utils
    ```
    
    - SDL3  
@@ -218,7 +218,6 @@ MSys2/MinGW basic commands (make, rm, cp ...)
    | Example name    | Windows | Linux  | Mac OS [^macpr] |
    | ---             | :----:  | :----: | :---:           |
    | zig_*           | Y       | Y      | -               |
-   | zig_sdl3_vulkan | WIP     | WIP    | -               |
 
 - GCC compiler
 

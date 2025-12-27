@@ -20,23 +20,18 @@ pub fn build(b: *std.Build) void {
     });
 
     step.defineCMacro("CIMGUI_DEFINE_ENUMS_AND_STRUCTS", "");
+    step.addIncludePath(b.path("src"));
     step.addIncludePath(b.path("../../libc/dcimgui"));
     step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path("../../libc/cimguizmo"));
-    step.addIncludePath(b.path("../../libc/cimguizmo/imGuizmo"));
-    step.addIncludePath(b.path("src"));
     const mod = step.addModule(mod_name);
     mod.addImport(mod_name, mod);
 
     mod.addCMacro("imguizmo_NAMESPACE", "imguizmo"); // for imguizmo
-
+    mod.addIncludePath(b.path("src"));
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imgui"));
     mod.addIncludePath(b.path("../../libc/cimguizmo/imguizmo"));
-    mod.addIncludePath(b.path("src"));
-    // macro
-    //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1"); // Important notice : This must not be enabled.
-
     mod.addCSourceFiles(.{
         .files = &.{
         "../../libc/cimguizmo/cimguizmo.cpp",

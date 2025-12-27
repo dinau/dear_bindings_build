@@ -50,7 +50,7 @@ pub fn build(b: *std.Build) void {
     });
     exe.step.dependOn(&install_resources.step);
 
-    const resBin = [_][]const u8{ "imgui.ini", };
+    const resBin = [_][]const u8{ "imgui.ini", "save_load.bytes", "save_load.ini" };
     inline for (resBin) |file| {
         const res = b.addInstallFile(b.path(file), "bin/" ++ file);
         b.getInstallStep().dependOn(&res.step);

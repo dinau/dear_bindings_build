@@ -25,7 +25,6 @@
         .loadicon          = .{ .path = "src/libzig/loadicon" },
         .loadimage         = .{ .path = "src/libzig/loadimage" },
         .loadimage_sdlgpu3 = .{ .path = "src/libzig/loadimage_sdlgpu3" },
-        .raylib            = .{ .path = "src/libzig/raylib" },
         .rlimgui           = .{ .path = "src/libzig/rlimgui" },
         .saveimage         = .{ .path = "src/libzig/saveimage" },
         .sdl3              = .{ .path = "src/libzig/sdl3" },

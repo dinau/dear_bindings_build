@@ -24,16 +24,10 @@ pub fn build(b: *std.Build) void {
     step.addIncludePath(b.path("../../libc/cimknobs"));
     const mod = step.addModule(mod_name);
     mod.addImport(mod_name, mod);
-
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imgui"));
-
     mod.addIncludePath(b.path("../../libc/cimgui-knobs"));
     mod.addIncludePath(b.path("../../libc/cimgui-knobs//libs/imgui-knobs"));
-    // macro
-    //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1"); // Nees for ImKnobs
-
-    mod.link_libcpp = true;
     mod.addCSourceFiles(.{
         .files = &.{
             "../../libc/cimgui-knobs/cimgui-knobs.cpp",

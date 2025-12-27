@@ -3,7 +3,8 @@ EXAMPLE_DIRS =\
 							examples/glfw_opengl3                \
 	            examples/glfw_opengl3_image_load     \
 	            examples/glfw_opengl3_image_save     \
-	            examples/glfw_opengl3_jp
+	            examples/glfw_opengl3_jp             \
+	            examples/win32_dx11
 
 ifeq ($(OS),Windows_NT)
    EXAMPLE_DIRS	+= examples/sdl3_opengl3
@@ -15,7 +16,7 @@ EXAMPLE_DIRS_ZIG =\
 							examples/zig_glfw_opengl3_image_load \
 							examples/zig_iconfontviewer          \
 							examples/zig_imcolortextedit         \
-							examples/zig_imfileopendialog            \
+							examples/zig_imfileopendialog        \
 							examples/zig_imguizmo                \
 							examples/zig_imknobs                 \
 							examples/zig_imnodes                 \

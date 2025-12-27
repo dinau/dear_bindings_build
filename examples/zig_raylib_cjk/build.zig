@@ -24,7 +24,6 @@ pub fn build(b: *std.Build) void {
 
     const imguinz = b.dependency("imguinz", .{});
     const dependencies = .{
-        "raylib",
         // "another_lib",
     };
     inline for (dependencies) |dep_name| {
@@ -35,19 +34,29 @@ pub fn build(b: *std.Build) void {
     // Load Icon
     exe.root_module.addWin32ResourceFile(.{ .file = b.path("src/res/res.rc") });
 
-    // std.Build: Deprecate Step.Compile APIs that mutate the root module #22587
-    // See. https://github.com/ziglang/zig/pull/22587
-
     exe.subsystem = .Windows; // Hide console window
 
     b.installArtifact(exe);
 
     const install_resources = b.addInstallDirectory(.{
-        .source_dir = b.path("resources"),        // base: assets folder
-        .install_dir = .bin,                      // bin folder
-        .install_subdir = "resources",            // destination: bin/resources/
+        .source_dir = b.path("resources"), // base: assets folder
+        .install_dir = .bin, // bin folder
+        .install_subdir = "resources", // destination: bin/resources/
     });
     exe.step.dependOn(&install_resources.step);
+
+    const raylib_dep = b.dependency("raylib_zig", .{
+        .target = target,
+        .optimize = optimize,
+        //.linkage = .dynamic, // Build raylib as a shared library.linkage = .dynamic, // Build raylib as a shared library
+
+    });
+    const raylib = raylib_dep.module("raylib"); // main raylib module
+    //const raygui = raylib_dep.module("raygui"); // raygui module
+    const raylib_artifact = raylib_dep.artifact("raylib"); // raylib C library
+    exe.linkLibrary(raylib_artifact);
+    exe.root_module.addImport("raylib", raylib);
+    //exe.root_module.addImport("raygui", raygui);
 
     const cjk_font_dir = "../../src/libc/notonoto_v0.0.3/";
     const cjk_font_files = [_][]const u8{ "LICENSE", "NOTONOTO-Regular.ttf", "README.md" };
@@ -55,15 +64,6 @@ pub fn build(b: *std.Build) void {
         const res = b.addInstallFile(b.path(cjk_font_dir ++ file), "bin/resources/fonts/" ++ file);
         b.getInstallStep().dependOn(&res.step);
     }
-
-    // Copy DLL to bin/ folder
-    if (builtin.target.os.tag == .windows) {
-        const dllPath = "../../src/libc/raylib/win/lib/raylib.dll";
-        const basename = std.fs.path.basename(b.path(dllPath).getPath(b));
-        const resDll = b.addInstallFile(b.path(dllPath), b.pathJoin(&.{ "bin", basename }));
-        b.getInstallStep().dependOn(&resDll.step);
-    } else if (builtin.target.os.tag == .linux) {}
-
 
     // save [Executable name].ini
     const sExeIni = b.fmt("{s}.ini", .{exe_name});

@@ -24,7 +24,6 @@ pub fn build(b: *std.Build) void {
 
     const imguinz = b.dependency("imguinz", .{});
     const dependencies = .{
-        "raylib",
         // "another_lib",
     };
     inline for (dependencies) |dep_name| {
@@ -34,9 +33,6 @@ pub fn build(b: *std.Build) void {
 
     // Load Icon
     exe.root_module.addWin32ResourceFile(.{ .file = b.path("src/res/res.rc") });
-
-    // std.Build: Deprecate Step.Compile APIs that mutate the root module #22587
-    // See. https://github.com/ziglang/zig/pull/22587
 
     exe.subsystem = .Windows; // Hide console window
 
@@ -49,14 +45,17 @@ pub fn build(b: *std.Build) void {
     });
     exe.step.dependOn(&install_resources.step);
 
-    // Copy DLL to bin/ folder
-    if (builtin.target.os.tag == .windows) {
-        const dllPath = "../../src/libc/raylib/win/lib/raylib.dll";
-        const basename = std.fs.path.basename(b.path(dllPath).getPath(b));
-        const resDll = b.addInstallFile(b.path(dllPath), b.pathJoin(&.{ "bin", basename }));
-        b.getInstallStep().dependOn(&resDll.step);
-    } else if (builtin.target.os.tag == .linux) {}
-
+    const raylib_dep = b.dependency("raylib_zig", .{
+        .target = target,
+        .optimize = optimize,
+        //.linkage = .dynamic, // Build raylib as a shared library.linkage = .dynamic, // Build raylib as a shared library
+    });
+    const raylib = raylib_dep.module("raylib"); // main raylib module
+    //const raygui = raylib_dep.module("raygui"); // raygui module
+    const raylib_artifact = raylib_dep.artifact("raylib"); // raylib C library
+    exe.linkLibrary(raylib_artifact);
+    exe.root_module.addImport("raylib", raylib);
+    //exe.root_module.addImport("raygui", raygui);
 
     // save [Executable name].ini
     const sExeIni = b.fmt("{s}.ini", .{exe_name});

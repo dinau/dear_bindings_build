@@ -26,22 +26,19 @@ pub fn build(b: *std.Build) void {
     step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path(b.pathJoin(&.{ sdl_path, "include/SDL3" })));
     step.addIncludePath(b.path(b.pathJoin(&.{ sdl_path, "include" })));
+
     const mod = step.addModule(mod_name);
     mod.addImport(mod_name, mod);
-
     switch (builtin.target.os.tag) {
         .windows => mod.addIncludePath(b.path(b.pathJoin(&.{ sdl_path, "include" }))),
         .linux => mod.addIncludePath(.{ .cwd_relative = "/usr/include" }),
         else => {},
     }
-
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/dcimgui/backends"));
     mod.addIncludePath(b.path("../../libc/imgui"));
     mod.addIncludePath(b.path("../../libc/imgui/backends"));
-    // macro
     mod.addCMacro("ImDrawIdx", "unsigned int");
-    //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1");
     switch (builtin.target.os.tag) {
         .windows => mod.addCMacro("IMGUI_IMPL_API", "extern \"C\" __declspec(dllexport)"),
         .linux => mod.addCMacro("IMGUI_IMPL_API", "extern \"C\"  "),

@@ -1,5 +1,4 @@
 const std = @import("std");
-const builtin = @import("builtin");
 
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
@@ -13,24 +12,16 @@ pub fn build(b: *std.Build) void {
     // -------
     // module
     // -------
-    const step = b.addTranslateC(.{
-        .root_source_file = b.path("src/setupFonts.h"),
+    const mod = b.addModule(mod_name, .{
+        .root_source_file = b.path("src/setupFonts.zig"),
         .target = target,
         .optimize = optimize,
-        .link_libc = true,
-    });
-    step.addIncludePath(b.path("../../libc/dcimgui"));
-    step.addIncludePath(b.path("../../libc/imgui"));
-    step.addIncludePath(b.path("../..libc//fonticon"));
-
-    const mod = step.addModule(mod_name);
-    mod.addIncludePath(b.path("../../libc/dcimgui"));
-    mod.addIncludePath(b.path("../../libc/imgui"));
-    mod.addIncludePath(b.path("../../libc/fonticon"));
-    mod.addCSourceFiles(.{
-        .files = &.{
-            "src/setupFonts.c",
-        },
     });
     mod.addImport(mod_name, mod);
+    // import modules
+    const modules = [_][]const u8{ "dcimgui", "fonticon", "clib" };
+    for (modules) |module| {
+        const mod_dep = b.dependency(module, .{});
+        mod.addImport(module, mod_dep.module(module));
+    }
 }

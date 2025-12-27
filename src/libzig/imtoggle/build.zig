@@ -18,25 +18,23 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-
+    step.defineCMacro("CIMGUI_DEFINE_ENUMS_AND_STRUCTS", "");
     step.addIncludePath(b.path("../../libc/dcimgui"));
     step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path("../../libc/cimgui_toggle"));
+
     const mod = step.addModule(mod_name);
     mod.addImport(mod_name, mod);
     mod.addIncludePath(b.path("../../libc/dcimgui/imgui"));
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imgui"));
-    mod.addIncludePath(b.path("../../libc/cimgui_toggle/libs/imgui_toggle"));
-    // macro
-    //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1");
-
+    mod.addIncludePath(b.path("../../libc/cimgui_toggle/imgui_toggle"));
     mod.addCSourceFiles(.{
         .files = &.{
-            "../../libc/cimgui_toggle/libs/imgui_toggle/imgui_toggle.cpp",
-            "../../libc/cimgui_toggle/libs/imgui_toggle/imgui_toggle_presets.cpp",
-            "../../libc/cimgui_toggle/libs/imgui_toggle/imgui_toggle_renderer.cpp",
-            "../../libc/cimgui_toggle/libs/imgui_toggle/imgui_toggle_palette.cpp",
+            "../../libc/cimgui_toggle/imgui_toggle/imgui_toggle.cpp",
+            "../../libc/cimgui_toggle/imgui_toggle/imgui_toggle_presets.cpp",
+            "../../libc/cimgui_toggle/imgui_toggle/imgui_toggle_renderer.cpp",
+            "../../libc/cimgui_toggle/imgui_toggle/imgui_toggle_palette.cpp",
             // CImGui-Toggle
             "../../libc/cimgui_toggle/cimgui_toggle.cpp",
             "../../libc/cimgui_toggle/cimgui_offset_rect.cpp",
