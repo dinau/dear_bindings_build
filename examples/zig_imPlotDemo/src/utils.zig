@@ -4,9 +4,12 @@ const ifa = @import("fonticon");
 
 const app = @import ("appimgui");
 const ig = app.ig;
-const c = app.clib;
 const ip = @import("implot");
 const ipz = @import("zimplot.zig");
+
+// From C standard libraries
+pub const RAND_MAX = @as(c_int, 0x7fff);
+pub extern fn rand() c_int;
 
 pub const IMPLOT_AUTO: f32 = -1;
 pub const INFINITY_f32 = std.math.inf(f32);
@@ -76,7 +79,7 @@ pub const ImPlotPoint = struct {
 
 // Helper function to get random float between min and max.
 pub fn RandomRange(min: f32, max: f32) f32 {
-    return min +  @as(f32,@floatFromInt(c.rand())) * ( max - min) / (@as(f32,@floatFromInt(c.RAND_MAX)));
+    return min +  @as(f32,@floatFromInt(rand())) * ( max - min) / (@as(f32,@floatFromInt(RAND_MAX)));
 }
 
 // Returns a random color.
@@ -100,8 +103,8 @@ pub fn RandomGauss() f64 {
         var U1: f64 = 0;
         var U2: f64 = 0;
         while (true) {
-            U1 =  @as(f64,@floatFromInt(c.rand())) / c.RAND_MAX;
-            U2 =  @as(f64,@floatFromInt(c.rand())) / c.RAND_MAX;
+            U1 =  @as(f64,@floatFromInt(rand())) / RAND_MAX;
+            U2 =  @as(f64,@floatFromInt(rand())) / RAND_MAX;
             V1 = 2 * U1 - 1;
             V2 = 2 * U2 - 1;
             S = V1 * V1 + V2 * V2;

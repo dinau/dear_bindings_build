@@ -5,11 +5,7 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    // Get executable name from current directory name
-    const allocator = b.allocator;
-    const abs_path = b.build_root.handle.realpathAlloc(allocator, ".") catch unreachable;
-    defer allocator.free(abs_path);
-    const exe_name = std.fs.path.basename(abs_path);
+    const exe_name = "zig_rlimgui_basic";
 
     const main_mod = b.createModule(.{
         .root_source_file = b.path("src/main.zig"),
@@ -29,18 +25,12 @@ pub fn build(b: *std.Build) void {
         // "another_lib",
     };
     inline for (dependencies) |dep_name| {
-        const dep = imguinz.builder.dependency(dep_name, .{
-            .target = target,
-            .optimize = optimize,
-        });
+        const dep = imguinz.builder.dependency(dep_name, .{ .target = target, .optimize = optimize, });
         exe.root_module.addImport(dep_name, dep.module(dep_name));
     }
 
     // Load Icon
     exe.root_module.addWin32ResourceFile(.{ .file = b.path("src/res/res.rc") });
-
-    // std.Build: Deprecate Step.Compile APIs that mutate the root module #22587
-    // See. https://github.com/ziglang/zig/pull/22587
 
     exe.subsystem = .Windows; // Hide console window
 
@@ -65,9 +55,7 @@ pub fn build(b: *std.Build) void {
     });
     exe.step.dependOn(&install_resources.step);
 
-    const resBin = [_][]const u8{
-        "imgui.ini",
-    };
+    const resBin = [_][]const u8{ "imgui.ini", };
 
     inline for (resBin) |file| {
         const res = b.addInstallFile(b.path(file), "bin/" ++ file);
@@ -83,7 +71,7 @@ pub fn build(b: *std.Build) void {
 
     // Copy DLL to bin/ folder
     if (builtin.target.os.tag == .windows) {
-        const dllPath = "../../src/libc/raylib/win/lib/raylib.dll";
+        const dllPath = "../../src/libc/raylib/windows/lib/raylib.dll";
         const basename = std.fs.path.basename(b.path(dllPath).getPath(b));
         const resDll = b.addInstallFile(b.path(dllPath), b.pathJoin(&.{ "bin", basename }));
         b.getInstallStep().dependOn(&resDll.step);
@@ -97,6 +85,7 @@ pub fn build(b: *std.Build) void {
     // run
     const run_cmd = b.addRunArtifact(exe);
     run_cmd.step.dependOn(b.getInstallStep());
+    //run_cmd.setCwd(.{ .cwd_relative = b.getInstallPath(.bin, "") });
     if (b.args) |args| {
         run_cmd.addArgs(args);
     }

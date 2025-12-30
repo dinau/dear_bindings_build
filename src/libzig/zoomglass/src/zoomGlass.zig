@@ -18,7 +18,7 @@ pub fn zoomGlass(pTextureID: *u32, itemWidth: i32, itemPosTop: ig.ImVec2, itemPo
                 , @intFromFloat(itemPosTop.x) //# x start pos
                 , @intFromFloat(wkSize.y - itemPosEnd.y) //# y start pos
                 , itemWidth, itemHeight); //# Image width and height must be 2^n.
-            }
+        }
         //#igText("lbp: (%.2f, %.2f)", pio.MousePos.x, pio.MousePos.y)
         const pio = ig.ImGui_GetIO();
         const region_sz = 32.0;
@@ -38,6 +38,6 @@ pub fn zoomGlass(pTextureID: *u32, itemWidth: i32, itemPosTop: ig.ImVec2, itemPo
         const uv0 = ig.ImVec2{ .x = region_x / my_tex_w, .y = region_y / my_tex_h };
         const uv1 = ig.ImVec2{ .x = (region_x + region_sz) / my_tex_w, .y = (region_y + region_sz) / my_tex_h };
         ig.ImGui_Text(ifa.ICON_FA_MAGNIFYING_GLASS ++ "  4 x");
-        ig.ImGui_ImageEx(ig.ImTextureRef{ ._TexData = null, ._TexID = pTextureID.*}, .{ .x = region_sz * zoom, .y = region_sz * zoom }, uv0, uv1);
+        ig.ImGui_ImageEx(ig.ImTextureRef{ ._TexData = null, ._TexID = pTextureID.* }, .{ .x = region_sz * zoom, .y = region_sz * zoom }, uv0, uv1);
     }
 }

@@ -1,6 +1,5 @@
 DIRS = \
 	appimgui \
-	clib \
 	dcimgui \
 	fonticon \
 	glfw \

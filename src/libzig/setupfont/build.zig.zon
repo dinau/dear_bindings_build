@@ -6,7 +6,6 @@
     .dependencies = .{
         .dcimgui = .{ .path = "../dcimgui" },
         .fonticon = .{ .path = "../fonticon" },
-        .clib = .{ .path = "../clib" },
     },
     .paths = .{
         "build.zig",

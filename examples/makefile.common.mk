@@ -20,8 +20,8 @@ CFLAGS_EXTRA += -Wno-pointer-sign
 
 
 # TC : gcc or clang or zig
-TC ?= gcc
-#TC ?= zigcc
+#TC ?= gcc
+TC ?= zigcc
 
 ifeq ($(TC),gcc)
 CC  = $(CCACHE) gcc
@@ -185,6 +185,8 @@ $(UTILS_OBJ_DIR):
 run: all
 	./$(TARGET)
 
+cleancache:
+	-rm -fr .zig-cache
 clean:
 	-rm $(TARGET)$(EXE)
 	-rm $(TARGET).lib $(TARGET).pdb

@@ -12,6 +12,10 @@
 #include "dcimgui_impl_win32.h"
 #include "dcimgui_impl_dx11.h"
 
+#include "setupFonts.h"
+#include "IconsFontAwesome6.h"
+#include "loadicon.h"
+
 // Dear ImGui: standalone example application for Windows API + DirectX 11
 // MinGW/MSYS2 compatible version
 
@@ -61,6 +65,8 @@ int main(int argc, char** argv)
         .lpszClassName = L"ImGui Example",
         .hIconSm = NULL
     };
+    wc.hIcon = (HICON)LoadImage(NULL, "./resources/z.ico", IMAGE_ICON, 0, 0, LR_LOADFROMFILE | LR_DEFAULTSIZE);
+    wc.hIconSm = wc.hIcon;
 
     RegisterClassExW(&wc);
 
@@ -93,8 +99,8 @@ int main(int argc, char** argv)
     }
 
     // Show the window
-    ShowWindow(hwnd, SW_SHOWDEFAULT);
-    UpdateWindow(hwnd);
+    //ShowWindow(hwnd, SW_SHOWDEFAULT);
+    //UpdateWindow(hwnd);
 
     // Setup Dear ImGui context
     //IMGUI_CHECKVERSION();
@@ -134,6 +140,10 @@ int main(int argc, char** argv)
     bool show_demo_window = true;
     bool show_another_window = false;
     ImVec4 clear_color = {0.45f, 0.55f, 0.60f, 1.00f};
+
+    setupFonts();
+
+    int showWindowDelay = 2; // TODO: Avoid flickering of window at startup
 
     // Main loop
     bool done = false;
@@ -184,7 +194,7 @@ int main(int argc, char** argv)
             static float f = 0.0f;
             static int counter = 0;
 
-            ImGui_Begin("Hello, world!", NULL, 0);
+            ImGui_Begin("Hello, world! " ICON_FA_CAT, NULL, 0);
 
             ImGui_Text("This is some useful text.");
             ImGui_Checkbox("Demo Window", &show_demo_window);
@@ -239,6 +249,12 @@ int main(int argc, char** argv)
         // Present
         HRESULT hr = IDXGISwapChain_Present(g_pSwapChain, 1, 0);  // Present with vsync
         g_SwapChainOccluded = (hr == DXGI_STATUS_OCCLUDED);
+
+        if (showWindowDelay >=0 ) showWindowDelay--;
+        if (showWindowDelay ==0 ){
+          ShowWindow(hwnd, SW_SHOWDEFAULT);
+          UpdateWindow(hwnd);
+        }
     }
 
     // Cleanup

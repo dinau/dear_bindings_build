@@ -6,10 +6,9 @@ pub const impl_gl = @import("impl_opengl3");
 pub const impl_glfw = @import("impl_glfw");
 pub const ifa = @import("fonticon");
 pub const img_ld = @import("loadimage");
-pub const img_icon = @import("loadicon");
+pub const icon = @import("loadicon");
 pub const stf = @import("setupfont");
 pub const utils = @import("utils");
-pub const clib = @import("clib");
 
 //---------------------
 // glfw_error_callback
@@ -82,9 +81,9 @@ pub const Window = struct {
         var glsl_version_buf: [30]u8 = undefined;
         switch (builtin.target.os.tag) {
             .linux => {
-                      versions[0][0] = 3;
-                      versions[0][1] = 3;
-                      },
+                versions[0][0] = 3;
+                versions[0][1] = 3;
+            },
             else => {},
         }
         for (versions) |ver| {
@@ -135,7 +134,7 @@ pub const Window = struct {
             const icon_path = try std.fs.path.join(allocator, &paths);
             defer allocator.free(icon_path);
             // Load icon
-            img_icon.LoadTitleBarIcon(win.handle, icon_path.ptr);
+            icon.LoadTitleBarIcon(win.handle, icon_path.ptr);
         }
 
         glfw.glfwSwapInterval(1); // Enable VSync --- Lower CPU load
@@ -226,13 +225,12 @@ pub const Window = struct {
     // isIconified
     //-------------
     pub fn isIconified(win: *Window) bool {
-       if( 0 != glfw.glfwGetWindowAttrib(win.handle, glfw.GLFW_ICONIFIED)){
-           impl_glfw.cImGui_ImplGlfw_Sleep(10);
-           return true;
-       }
-       else {
-           return false;
-       }
+        if (0 != glfw.glfwGetWindowAttrib(win.handle, glfw.GLFW_ICONIFIED)) {
+            impl_glfw.cImGui_ImplGlfw_Sleep(10);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //-------------
@@ -289,9 +287,9 @@ pub const Window = struct {
 //----------
 pub fn setTheme(themeName: Theme) Theme {
     switch (themeName) {
-        Theme.light =>     ig.ImGui_StyleColorsLight(null),
-        Theme.dark =>      ig.ImGui_StyleColorsDark(null),
-        Theme.classic =>   ig.ImGui_StyleColorsClassic(null),
+        Theme.light => ig.ImGui_StyleColorsLight(null),
+        Theme.dark => ig.ImGui_StyleColorsDark(null),
+        Theme.classic => ig.ImGui_StyleColorsClassic(null),
         Theme.microsoft => ig.ImGui_StyleColorsLight(null), //themeMicrosoft(),
     }
     return themeName;
@@ -416,25 +414,90 @@ pub fn loadIni(win: *Window) !void {
 pub fn saveIni(win: *Window) !void {
     _ = win;
     // Window pos
-//    glfw.glfwGetWindowPos(win.handle, &win.ini.window.startupPosX, &win.ini.window.startupPosY);
-//
-//    // Window size
-//    const ws = ig.ImGui_GetMainViewport().*.WorkSize;
-//    win.ini.window.viewportWidth = @intFromFloat(ws.x);
-//    win.ini.window.viewportHeight = @intFromFloat(ws.y);
-//
-//    // Save to ini file
-//    const allocator = std.heap.page_allocator;
-//    const exe_path = try std.fs.selfExePathAlloc(allocator);
-//    defer allocator.free(exe_path);
-//
-//    const filename = try changeExtension(exe_path, "ini");
-//    std.debug.print("Write ini: {s}\n", .{filename});
-//
-//    var file = try std.fs.cwd().createFile(filename, .{});
-//    defer file.close();
-//
-//    var json_string = std.ArrayList(u8).init(allocator);
-//    try std.json.stringify(win.ini, .{ .whitespace = .indent_2 }, json_string.writer());
-//    try file.writeAll(json_string.items);
+    //    glfw.glfwGetWindowPos(win.handle, &win.ini.window.startupPosX, &win.ini.window.startupPosY);
+    //
+    //    // Window size
+    //    const ws = ig.ImGui_GetMainViewport().*.WorkSize;
+    //    win.ini.window.viewportWidth = @intFromFloat(ws.x);
+    //    win.ini.window.viewportHeight = @intFromFloat(ws.y);
+    //
+    //    // Save to ini file
+    //    const allocator = std.heap.page_allocator;
+    //    const exe_path = try std.fs.selfExePathAlloc(allocator);
+    //    defer allocator.free(exe_path);
+    //
+    //    const filename = try changeExtension(exe_path, "ini");
+    //    std.debug.print("Write ini: {s}\n", .{filename});
+    //
+    //    var file = try std.fs.cwd().createFile(filename, .{});
+    //    defer file.close();
+    //
+    //    var json_string = std.ArrayList(u8).init(allocator);
+    //    try std.json.stringify(win.ini, .{ .whitespace = .indent_2 }, json_string.writer());
+    //    try file.writeAll(json_string.items);
+}
+
+
+//==============================================
+// C Export Functions
+//==============================================
+export fn createImGui_c(w: i32, h: i32, title: [*c]const u8) ?*Window {
+    const allocator = std.heap.c_allocator;
+    const win_ptr = allocator.create(Window) catch return null;
+    win_ptr.* = Window.createImGui(w, h, title) catch {
+        allocator.destroy(win_ptr);
+        return null;
+    };
+    return win_ptr;
+}
+
+export fn destroyImGui_c(win: ?*Window) void {
+    if (win) |w| {
+        w.destroyImGui();
+        std.heap.c_allocator.destroy(w);
+    }
+}
+
+export fn render_c(win: ?*Window) void {
+    if (win) |w| {
+        w.render();
+    }
+}
+
+export fn frame_c(win: ?*Window) void {
+    if (win) |w| {
+        w.frame();
+    }
+}
+
+export fn shouldClose_c(win: ?*Window) bool {
+    if (win) |w| {
+        return w.shouldClose();
+    }
+    return true;
+}
+
+export fn pollEvents_c(win: ?*Window) void {
+    if (win) |w| {
+        w.pollEvents();
+    }
+}
+
+export fn isIconified_c(win: ?*Window) bool {
+    if (win) |w| {
+        return w.isIconified();
+    }
+    return false;
+}
+
+export fn showInfoWindow_c(win: ?*Window) void {
+    if (win) |w| {
+        w.showInfoWindow();
+    }
+}
+
+export fn setTheme_c(theme: i32) i32 {
+    const theme_enum: Theme = @enumFromInt(theme);
+    const result = setTheme(theme_enum);
+    return @intFromEnum(result);
 }

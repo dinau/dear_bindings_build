@@ -14,13 +14,11 @@ run: all
 	(cd $(ZIG_BIN_DIR); $(LOCAL_LIB_PATH) ./$(TARGET)$(EXE))
 ifneq ($(COPY_IMGUI_INI),false)
 	@-cp $(ZIG_BIN_DIR)/imgui.ini .
-	@-cp $(ZIG_BIN_DIR)/$(TARGET).ini .
 endif
 	$(AFTER_EXEC)
 
 clean:
-	@-rm -fr zig-out
-	@-rm -fr zig-cache .zig-cache
+	@-rm -fr zig-out .zig-cache
 
 cleancache: all
 	@-rm -fr .zig-cache

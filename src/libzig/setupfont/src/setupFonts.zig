@@ -29,10 +29,17 @@ fn existsFile(path: []const u8) bool {
 
 /// Get Windows font path
 fn getWinFontPath(buf: []u8, font_name: []const u8) ?[]const u8 {
-    const win_dir = std.process.getEnvVarOwned( std.heap.page_allocator, "windir",) catch return null;
+    const win_dir = std.process.getEnvVarOwned(
+        std.heap.page_allocator,
+        "windir",
+    ) catch return null;
     defer std.heap.page_allocator.free(win_dir);
 
-    const result = std.fmt.bufPrint( buf, "{s}\\Fonts\\{s}", .{ win_dir, font_name },) catch return null;
+    const result = std.fmt.bufPrint(
+        buf,
+        "{s}\\Fonts\\{s}",
+        .{ win_dir, font_name },
+    ) catch return null;
 
     return result;
 }
@@ -71,7 +78,7 @@ const ranges_icon_fonts = [_]ig.ImWchar{
 };
 
 /// Setup fonts
-pub fn setupFonts() ?*ig.ImFont {
+pub export fn setupFonts() ?*ig.ImFont {
     const pio = ig.ImGui_GetIO();
     var font: ?*ig.ImFont = null;
 

@@ -5,11 +5,7 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    // Get executable name from current directory name
-    const allocator = b.allocator;
-    const abs_path = b.build_root.handle.realpathAlloc(allocator, ".") catch unreachable;
-    defer allocator.free(abs_path);
-    const exe_name = std.fs.path.basename(abs_path);
+    const exe_name = "zig_raylib_cjk";
 
     const main_mod = b.createModule(.{
         .root_source_file = b.path("src/main.zig"),
@@ -48,7 +44,7 @@ pub fn build(b: *std.Build) void {
     const raylib_dep = b.dependency("raylib_zig", .{
         .target = target,
         .optimize = optimize,
-        //.linkage = .dynamic, // Build raylib as a shared library.linkage = .dynamic, // Build raylib as a shared library
+        .linkage = .dynamic, // Build raylib as a shared library.linkage = .dynamic, // Build raylib as a shared library
 
     });
     const raylib = raylib_dep.module("raylib"); // main raylib module
@@ -65,6 +61,14 @@ pub fn build(b: *std.Build) void {
         b.getInstallStep().dependOn(&res.step);
     }
 
+    // Copy DLL to bin/ folder
+    if (builtin.target.os.tag == .windows) {
+        const dllPath = "../../src/libc/raylib/windows/lib/raylib.dll";
+        const basename = std.fs.path.basename(b.path(dllPath).getPath(b));
+        const resDll = b.addInstallFile(b.path(dllPath), b.pathJoin(&.{ "bin", basename }));
+        b.getInstallStep().dependOn(&resDll.step);
+    } else if (builtin.target.os.tag == .linux) {}
+
     // save [Executable name].ini
     const sExeIni = b.fmt("{s}.ini", .{exe_name});
     const resExeIni = b.addInstallFile(b.path(sExeIni), b.pathJoin(&.{ "bin", sExeIni }));
@@ -73,6 +77,7 @@ pub fn build(b: *std.Build) void {
     // run
     const run_cmd = b.addRunArtifact(exe);
     run_cmd.step.dependOn(b.getInstallStep());
+    //run_cmd.setCwd(.{ .cwd_relative = b.getInstallPath(.bin, "") });
     if (b.args) |args| {
         run_cmd.addArgs(args);
     }

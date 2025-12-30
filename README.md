@@ -141,9 +141,8 @@ And one can use many other libaries and examples with less external dependencies
    pwd
    myapp
 
-   zig build
-   cd zig-out/bin
-   ./myapp.exe
+   zig build run     # or zig build --release=fast
+
    ```
    
    ![myapp.png](img/myapp.png)
@@ -152,8 +151,11 @@ And one can use many other libaries and examples with less external dependencies
 
 ---
 
-- GLFW3  - OpenGL3, SDL3
-- SDL3   - OpenGL3, SDL3GPU
+| Frontends |      Backends     |
+|-----------|:-----------------:|
+| GLFW3     |   OpenGL3, SDL3   |
+| SDL3      |  OpenGL3, SDL3GPU |
+| Win32     | DirectX 11(D3D11) |
   
 
 #### Available libraries list at this moment
@@ -181,12 +183,16 @@ Additional examples
 
 ---
 
-- Windows11  
-MSys2/MinGW basic commands (make, rm, cp ...)
+- Install Zig Compiler  
+   Windows: [zig-x86_64-windows-0.15.2.zip](https://ziglang.org/download/0.15.2/zig-x86_64-windows-0.15.2.zip)  
+   Linux:   [zig-x86_64-linux-0.15.2.tar.xz](https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz)
 
-   ```sh
-   pacman -S make mingw-w64-ucrt-x86_64-gcc
-   ```
+- Windows11  
+   - Optional: MSys2/MinGW basic commands (make, rm, cp ...)
+
+      ```sh
+      pacman -S make 
+      ```
 
 - Linux OS: Debian13 Trixie / Ubuntu families
 
@@ -203,31 +209,25 @@ MSys2/MinGW basic commands (make, rm, cp ...)
 
       otherwise [install SDL3 manually](https://github.com/dinau/sdl3_nim#for-linux-os)
 
-
-- GCC (or Clang or **'zig cc'** compiler)
-- Install Zig Compiler  
-   Windows: [zig-x86_64-windows-0.15.2.zip](https://ziglang.org/download/0.15.2/zig-x86_64-windows-0.15.2.zip)  
-   Linux:   [zig-x86_64-linux-0.15.2.tar.xz](https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz)
-
 #### Compiling 
 
 ---
 
 - Zig compiler
 
-   | Example name    | Windows | Linux  | Mac OS [^macpr] |
-   | ---             | :----:  | :----: | :---:           |
-   | zig_*           | Y       | Y      | -               |
+   | Example name    | Windows | Linux  | 
+   | ---             | :----:  | :----: | 
+   | zig_*           | Y       | Y      | 
 
-- GCC compiler
+- Zig cc compiler
 
-   | example | Windows | Linux  | Mac OS |
-   | ---     | :----:  | :----: | :---:  |
-   | glfw_*  | Y       | Y      | -      |
-   | sdl3_*  | Y       | WIP    | -      |
+   Using Zig module in C source code.
 
-
-[^macpr]:PR welcome 
+   | example | Windows | Linux  | 
+   | ---     | :----:  | :----: | 
+   | glfw_*  | Y       | Y      | 
+   | sdl3_*  | Y       | WIP    | 
+   | win32_* | Y       | -      | 
 
 #### Build and run
 
@@ -235,8 +235,9 @@ MSys2/MinGW basic commands (make, rm, cp ...)
 
 ```sh
 git clone https://github.com/dinau/dear_bindings_build
+
 cd dear_bindings_build/examples/glfw_opengl3           # for example
-make run                
+zig build run --release=fast                           # or make run
 ```
 
 #### Examples screen shots 

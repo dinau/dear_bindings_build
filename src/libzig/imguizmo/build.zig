@@ -5,10 +5,7 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const allocator = b.allocator;
-    const current_dir_abs = b.build_root.handle.realpathAlloc(allocator, ".") catch unreachable;
-    defer allocator.free(current_dir_abs);
-    const mod_name = std.fs.path.basename(current_dir_abs);
+    const mod_name = "imguizmo";
 
     // -------
     // module
@@ -25,7 +22,7 @@ pub fn build(b: *std.Build) void {
     step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path("../../libc/cimguizmo"));
     const mod = step.addModule(mod_name);
-    mod.addImport(mod_name, mod);
+    //mod.addImport(mod_name, mod);
 
     mod.addCMacro("imguizmo_NAMESPACE", "imguizmo"); // for imguizmo
     mod.addIncludePath(b.path("src"));
@@ -34,12 +31,19 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../libc/cimguizmo/imguizmo"));
     mod.addCSourceFiles(.{
         .files = &.{
-        "../../libc/cimguizmo/cimguizmo.cpp",
-        "../../libc/cimguizmo/ImGuizmo/GraphEditor.cpp",
-        "../../libc/cimguizmo/ImGuizmo/ImCurveEdit.cpp",
-        "../../libc/cimguizmo/ImGuizmo/ImGradient.cpp",
-        "../../libc/cimguizmo/ImGuizmo/ImGuizmo.cpp",
-        "../../libc/cimguizmo/ImGuizmo/ImSequencer.cpp",
+            "../../libc/cimguizmo/cimguizmo.cpp",
+            "../../libc/cimguizmo/ImGuizmo/GraphEditor.cpp",
+            "../../libc/cimguizmo/ImGuizmo/ImCurveEdit.cpp",
+            "../../libc/cimguizmo/ImGuizmo/ImGradient.cpp",
+            "../../libc/cimguizmo/ImGuizmo/ImGuizmo.cpp",
+            "../../libc/cimguizmo/ImGuizmo/ImSequencer.cpp",
         },
     });
+
+    const lib = b.addLibrary(.{
+        .linkage = .static,
+        .name = mod_name,
+        .root_module = mod,
+    });
+    b.installArtifact(lib);
 }

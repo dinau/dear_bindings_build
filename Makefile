@@ -1,15 +1,8 @@
 # All example are built at a time.
 EXAMPLE_DIRS =\
 							examples/glfw_opengl3                \
-	            examples/glfw_opengl3_image_load     \
-	            examples/glfw_opengl3_image_save     \
-	            examples/glfw_opengl3_jp             \
-	            examples/win32_dx11
-
-ifeq ($(OS),Windows_NT)
-   EXAMPLE_DIRS	+= examples/sdl3_opengl3
-endif
-
+	            examples/glfw_opengl3_image          \
+	            examples/glfw_opengl3_jp
 
 EXAMPLE_DIRS_ZIG =\
 							examples/zig_glfw_opengl3            \
@@ -24,10 +17,16 @@ EXAMPLE_DIRS_ZIG =\
 							examples/zig_implot3d                \
               examples/zig_imPlotDemo              \
 							examples/zig_imspinner               \
-							examples/zig_imtoggle
+							examples/zig_imtoggle                \
+							examples/zig_raylib_basic            \
+							examples/zig_raylib_cjk              \
+							examples/zig_rlimgui_basic
+
 ifeq ($(OS),Windows_NT)
    EXAMPLE_DIRS_ZIG	+= examples/zig_sdl3_opengl3
    EXAMPLE_DIRS_ZIG	+= examples/zig_sdl3_sdlgpu3
+   EXAMPLE_DIRS	    += examples/sdl3_opengl3
+	 EXAMPLE_DIRS     += examples/win32_dx11
 endif
 
 .PHONY: test clean gen cc
@@ -35,7 +34,7 @@ endif
 all: zig cc
 
 cc:
-	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),))
+	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),cleancache))
 
 zig:
 	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),cleancache))

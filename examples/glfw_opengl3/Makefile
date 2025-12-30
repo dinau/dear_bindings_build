@@ -1,10 +1,8 @@
-ifeq ($(OS),Windows_NT)
-	STATIC_GLFW = true
-endif
-HIDE_CONSOLE_WINDOW = true
-DEBUG_INFO = false
+#
+OPT += --release=fast
+#OPT += --release=small
+# Fail compilation
+#OPT += --release=safe
 
-include ../glfw_opengl3.mk
-include ../makefile.common.mk
 
-gen: $(CIMGUI_DIR) gencimgui impl_opengl3 impl_glfw
+include ../makefile.common_zig.mk

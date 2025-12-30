@@ -1,0 +1,88 @@
+const std = @import("std");
+const builtin = @import("builtin");
+
+pub fn build(b: *std.Build) void {
+    const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
+    const mod = b.createModule(.{
+        .target = target,
+        .optimize = optimize,
+    });
+
+    mod.addCSourceFiles(.{
+        .files = &.{
+            "src/glfw_opengl3_image.c",
+        },
+        .flags = &.{
+            // "-Wl,-s -O3",
+            // "some options",
+        },
+    });
+    // libzig
+    mod.addIncludePath(b.path("../../src/libzig/appimgui/src"));
+    mod.addIncludePath(b.path("../../src/libzig/setupfont/src"));
+    mod.addIncludePath(b.path("../../src/libzig/loadicon/src"));
+    mod.addIncludePath(b.path("../../src/libzig/loadimage/src"));
+    mod.addIncludePath(b.path("../../src/libzig/saveimage/src"));
+    mod.addIncludePath(b.path("../../src/libzig/utils/src"));
+    // libc
+    mod.addIncludePath(b.path("../../src/libc/dcimgui"));
+    mod.addIncludePath(b.path("../../src/libc/dcimgui/backends"));
+    mod.addIncludePath(b.path("../../src/libc/imgui"));
+    mod.addIncludePath(b.path("../../src/libc/fonticon"));
+    mod.addIncludePath(b.path("../../src/libc/stb"));
+    mod.addIncludePath(b.path("../../src/libc/glfw/glfw-3.4.bin.WIN64/include"));
+
+    const exe = b.addExecutable(.{
+        .name = "glfw_opengl3_image",
+        .root_module = mod,
+    });
+
+    const modules = [_][]const u8{"appimgui","dcimgui", "impl_glfw", "impl_opengl3", "setupfont", "loadicon", "loadimage", "saveimage", "utils"};
+    for (modules) |module| {
+        const mod_dep = b.dependency(module, .{.target = target, .optimize = optimize,});
+        exe.linkLibrary(mod_dep.artifact(module));
+    }
+    const glfw_lib_path = "../../src/libc/glfw/glfw-3.4.bin.WIN64/lib-mingw-w64/libglfw3.a";
+    switch (builtin.target.os.tag) {
+        .windows => exe.root_module.addObjectFile(b.path(glfw_lib_path)),
+        // .linux =>   mod.addIncludePath(.{.cwd_relative = "/usr/include"}),
+        else => {},
+    }
+
+    // Load Icon
+    exe.root_module.addWin32ResourceFile(.{ .file = b.path("src/res/res.rc") });
+
+    exe.subsystem = .Windows; // Hide console window
+    exe.linkLibC();
+    b.installArtifact(exe);
+
+    const install_resources = b.addInstallDirectory(.{
+        .source_dir = b.path("resources"),        // base: assets folder
+        .install_dir = .bin,                      // bin folder
+        .install_subdir = "resources",            // destination: bin/resources/
+    });
+    exe.step.dependOn(&install_resources.step);
+
+    const resBin = [_][]const u8{ "imgui.ini", };
+    inline for (resBin) |file| {
+        const res = b.addInstallFile(b.path(file), "bin/" ++ file);
+        b.getInstallStep().dependOn(&res.step);
+    }
+
+    const fonticon_dir = "../../src/libc/fonticon/fa6/";
+    const res_fonticon = [_][]const u8{ "fa-solid-900.ttf", "LICENSE.txt" };
+    inline for (res_fonticon) |file| {
+        const res = b.addInstallFile(b.path(fonticon_dir ++ file), "bin/resources/fonticon/fa6/" ++ file);
+        b.getInstallStep().dependOn(&res.step);
+    }
+
+    const run_step = b.step("run", "Run the app");
+    const run_cmd = b.addRunArtifact(exe);
+    run_step.dependOn(&run_cmd.step);
+    run_cmd.setCwd(.{ .cwd_relative = b.getInstallPath(.bin, "") });
+    run_cmd.step.dependOn(b.getInstallStep());
+    if (b.args) |args| {
+        run_cmd.addArgs(args);
+    }
+}

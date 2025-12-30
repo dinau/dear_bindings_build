@@ -1,6 +1,17 @@
 -I../libs/sdl/SDL2-2.30.3/i686-w64-mingw32/include/SDL2
 -I../libs/sdl/sdl3/32/SDL3-2024-06-02/SDL3/include
 
+// libc
+-I../src/libc/dcimgui
+-I../src/libc/dcimgui/backends
+-I../src/libc/imgui
+-I../src/libc/glfw/glfw-3.4.bin.WIN64/include
+-I../src/libc/glfw/glfw-3.4.bin.WIN64/include/GLFW
+//  libzig
+-I../src/libzig/appimgui/src
+-I../src/libzig/loadicon/src
+-I../src/libzig/setupfont/src
+
 -Wno-stringop-overflow
 -DCIMGUI_USE_GLFW
 -DCIMGUI_USE_OPENGL3
