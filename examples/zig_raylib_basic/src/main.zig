@@ -32,9 +32,13 @@ fn testDrawText() !void {
 // main()
 //--------
 pub fn main() !void {
-    rl.setConfigFlags(.{.vsync_hint = true, .window_resizable = true});              //  Enable VSYNC
+    rl.setConfigFlags(.{.vsync_hint = true, .window_resizable = true, .window_hidden = true});              //  Enable VSYNC
     rl.initWindow(MainWinWidth, MainWinHeight, "raylib [core] example - basic window");
     defer rl.closeWindow();                                                          // Close window and OpenGL context
+                                                                                     //
+    const title_bar_icon = try rl.loadImage("./resources/z.png");
+    rl.setWindowIcon(title_bar_icon);
+    rl.unloadImage(title_bar_icon);
 
     // Define our custom camera to look into our 3d world
     var camera = rl.Camera3D{
@@ -61,6 +65,8 @@ pub fn main() !void {
     rl.setTargetFPS(60);                                                             // Set our game to run at 60 frames-per-second
 
     const mapColor = [_]f32{ (255.0 - 73.0) / 255.0, (255.0 - 113.0) / 255.0, (255.0 - 166.0) / 255.0 };
+
+    var delayShowWindow: i32 = 1;
 
     while (!rl.windowShouldClose()) {
         // Update
@@ -90,6 +96,13 @@ pub fn main() !void {
             rl.drawText(str, 10, 10, 20, .gray);
 
             rl.drawText("Raylib with Zig", 50, 250, 20, .ray_white);
+        }
+
+        if (delayShowWindow == 0) {
+            rl.clearWindowState(rl.ConfigFlags { .window_hidden = true });
+        }
+        if (delayShowWindow >= 0) {
+            delayShowWindow -= 1;
         }
     } // while end
 }
