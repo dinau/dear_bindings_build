@@ -412,31 +412,34 @@ pub fn loadIni(win: *Window) !void {
 // saveIni
 //---------
 pub fn saveIni(win: *Window) !void {
-    _ = win;
     // Window pos
-    //    glfw.glfwGetWindowPos(win.handle, &win.ini.window.startupPosX, &win.ini.window.startupPosY);
-    //
-    //    // Window size
-    //    const ws = ig.ImGui_GetMainViewport().*.WorkSize;
-    //    win.ini.window.viewportWidth = @intFromFloat(ws.x);
-    //    win.ini.window.viewportHeight = @intFromFloat(ws.y);
-    //
-    //    // Save to ini file
-    //    const allocator = std.heap.page_allocator;
-    //    const exe_path = try std.fs.selfExePathAlloc(allocator);
-    //    defer allocator.free(exe_path);
-    //
-    //    const filename = try changeExtension(exe_path, "ini");
-    //    std.debug.print("Write ini: {s}\n", .{filename});
-    //
-    //    var file = try std.fs.cwd().createFile(filename, .{});
-    //    defer file.close();
-    //
-    //    var json_string = std.ArrayList(u8).init(allocator);
-    //    try std.json.stringify(win.ini, .{ .whitespace = .indent_2 }, json_string.writer());
-    //    try file.writeAll(json_string.items);
-}
+        glfw.glfwGetWindowPos(win.handle, &win.ini.window.startupPosX, &win.ini.window.startupPosY);
 
+        // Window size
+        const ws = ig.ImGui_GetMainViewport().*.WorkSize;
+        win.ini.window.viewportWidth = @intFromFloat(ws.x);
+        win.ini.window.viewportHeight = @intFromFloat(ws.y);
+
+        // Save to ini file
+        const allocator = std.heap.page_allocator;
+        const exe_path = try std.fs.selfExePathAlloc(allocator);
+        defer allocator.free(exe_path);
+
+        const filename = try changeExtension(exe_path, "ini");
+        std.debug.print("Write ini: {s}\n", .{filename});
+
+        var file = try std.fs.cwd().createFile(filename, .{});
+        defer file.close();
+
+        var buffer: [4096]u8 = undefined;
+        var writer: std.io.Writer = .fixed(&buffer);
+        var jw: std.json.Stringify = .{
+            .writer = &writer,
+            .options = .{ .whitespace = .indent_2 },
+        };
+        try jw.write(win.ini);
+        try file.writeAll(writer.buffered());
+}
 
 //==============================================
 // C Export Functions
