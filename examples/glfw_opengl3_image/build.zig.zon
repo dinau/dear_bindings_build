@@ -22,7 +22,7 @@
     // original project's identity. Thus it is recommended to leave the comment
     // on the following line intact, so that it shows up in code reviews that
     // modify the field.
-    .fingerprint =0x7e1bad8eaf12e584, // Changing this has security and trust implications.
+    .fingerprint = 0x7e1bad8eaf12e584, // Changing this has security and trust implications.
     // Tracks the earliest Zig version that the package considers to be a
     // supported use case.
     .minimum_zig_version = "0.15.2",
@@ -32,15 +32,15 @@
     // Once all dependencies are fetched, `zig build` no longer requires
     // internet connectivity.
     .dependencies = .{
-        .appimgui = .{.path = "../../src/libzig/appimgui" },
-        .dcimgui = .{.path = "../../src/libzig/dcimgui" },
-        .impl_glfw = .{.path = "../../src/libzig/impl_glfw" },
-        .impl_opengl3 = .{.path = "../../src/libzig/impl_opengl3" },
-        .loadicon = .{.path = "../../src/libzig/loadicon" },
-        .loadimage = .{.path = "../../src/libzig/loadimage" },
-        .saveimage = .{.path = "../../src/libzig/saveimage" },
-        .setupfont = .{.path = "../../src/libzig/setupfont" },
-        .utils = .{.path = "../../src/libzig/utils" },
+        .appimgui = .{ .path = "../../src/libzig/appimgui" },
+        .dcimgui = .{ .path = "../../src/libzig/dcimgui" },
+        .impl_glfw = .{ .path = "../../src/libzig/impl_glfw" },
+        .impl_opengl3 = .{ .path = "../../src/libzig/impl_opengl3" },
+        .loadicon = .{ .path = "../../src/libzig/loadicon" },
+        .loadimage = .{ .path = "../../src/libzig/loadimage" },
+        .saveimage = .{ .path = "../../src/libzig/saveimage" },
+        .setupfont = .{ .path = "../../src/libzig/setupfont" },
+        .utils = .{ .path = "../../src/libzig/utils" },
     },
     .paths = .{
         "build.zig",

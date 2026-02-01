@@ -25,7 +25,10 @@ pub fn build(b: *std.Build) void {
         // "another_lib",
     };
     inline for (dependencies) |dep_name| {
-        const dep = imguinz.builder.dependency(dep_name, .{ .target = target, .optimize = optimize, });
+        const dep = imguinz.builder.dependency(dep_name, .{
+            .target = target,
+            .optimize = optimize,
+        });
         exe.root_module.addImport(dep_name, dep.module(dep_name));
     }
 
@@ -40,27 +43,36 @@ pub fn build(b: *std.Build) void {
     b.installArtifact(exe);
 
     const install_resources = b.addInstallDirectory(.{
-        .source_dir = b.path("resources"),        // base: assets folder
-        .install_dir = .bin,                      // bin folder
-        .install_subdir = "resources",            // destination: bin/resources/
+        .source_dir = b.path("resources"), // base: assets folder
+        .install_dir = .bin, // bin folder
+        .install_subdir = "resources", // destination: bin/resources/
     });
     exe.step.dependOn(&install_resources.step);
 
-    const resBin = [_][]const u8{ "imgui.ini", };
+    const resBin = [_][]const u8{
+        "imgui.ini",
+    };
     inline for (resBin) |file| {
         const res = b.addInstallFile(b.path(file), "bin/" ++ file);
         b.getInstallStep().dependOn(&res.step);
     }
 
     const fonticon_dir = "../../src/libc/fonticon/fa6/";
-    const res_fonticon = [_][]const u8{ "fa-solid-900.ttf", "LICENSE.txt" };
+    const res_fonticon = [_][]const u8{
+        "fa-solid-900.ttf",
+        "LICENSE.txt",
+    };
     inline for (res_fonticon) |file| {
         const res = b.addInstallFile(b.path(fonticon_dir ++ file), "bin/resources/fonticon/fa6/" ++ file);
         b.getInstallStep().dependOn(&res.step);
     }
 
     const cjk_font_dir = "../../src/libc/notonoto_v0.0.3/";
-    const cjk_font_files = [_][]const u8{ "LICENSE","NOTONOTO-Regular.ttf","README.md" };
+    const cjk_font_files = [_][]const u8{
+        "LICENSE",
+        "NOTONOTO-Regular.ttf",
+        "README.md",
+    };
     inline for (cjk_font_files) |file| {
         const res = b.addInstallFile(b.path(cjk_font_dir ++ file), "bin/resources/fonts/" ++ file);
         b.getInstallStep().dependOn(&res.step);

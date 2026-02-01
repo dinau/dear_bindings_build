@@ -17,16 +17,10 @@ const MainWinHeight: i32 = 800;
 // main()
 //--------
 pub fn main() !void {
-    //-------------
-    // For print()
-    //-------------
-    var stdout_buffer: [1024]u8 = undefined;
-    var stdout_writer = std.fs.File.stdout().writer(&stdout_buffer);
-    const stdout = &stdout_writer.interface;
 
     // Setup SDL
     if (!sdl.SDL_Init(sdl.SDL_INIT_VIDEO | sdl.SDL_INIT_GAMEPAD)) {
-        try stdout.print("Error: {s}\n", .{sdl.SDL_GetError()});
+        std.debug.print("Error: {s}\n", .{sdl.SDL_GetError()});
         return error.SDL_init;
     }
     defer sdl.SDL_Quit();
@@ -49,7 +43,7 @@ pub fn main() !void {
     const window_flags = (sdl.SDL_WINDOW_OPENGL | sdl.SDL_WINDOW_RESIZABLE | sdl.SDL_WINDOW_HIDDEN);
     const window = sdl.SDL_CreateWindow("Dear ImGui SDL3+OpenGL3 example", MainWinWidth, MainWinHeight, window_flags);
     if (window == null) {
-        try stdout.print("Error: SDL_CreateWindow(): {s}\n", .{sdl.SDL_GetError()});
+        std.debug.print("Error: SDL_CreateWindow(): {s}\n", .{sdl.SDL_GetError()});
         return error.SDL_CreatWindow;
     }
     defer sdl.SDL_DestroyWindow(window);

@@ -17,7 +17,9 @@ EXAMPLE_DIRS_ZIG =\
 							examples/zig_implot3d                \
               examples/zig_imPlotDemo              \
 							examples/zig_imspinner               \
-							examples/zig_imtoggle                \
+							examples/zig_imtoggle
+
+EXAMPLE_DIRS_ZIG_RAYLIB =\
 							examples/zig_raylib_basic            \
 							examples/zig_raylib_cjk              \
 							examples/zig_rlimgui_basic
@@ -31,13 +33,16 @@ endif
 
 .PHONY: test clean gen cc
 
-all: zig cc
+all: zig cc zig_raylib
 
 cc:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),cleancache))
 
 zig:
 	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),cleancache))
+
+zig_raylib:
+	$(foreach exdir,$(EXAMPLE_DIRS_ZIG_RAYLIB), $(call def_make,$(exdir),cleancache))
 
 fmt:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
@@ -53,10 +58,11 @@ cleanall:
 	@-$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),$@ ))
 	@-$(MAKE) -C src/libzig clean
 
-DB_DIR             = ../dear_bindings
+WORK_DIR           = ../dear_bindings_build_work
+DB_DIR             = $(WORK_DIR)/dear_bindings
 DCIMGUI_DIR        = src/libc/dcimgui
 IMGUI_DIR          = src/libc/imgui
-IMGUI_EXTERNAL_DIR = ../imgui
+IMGUI_EXTERNAL_DIR = $(WORK_DIR)/imgui
 
 gen:
 	@(cd $(DB_DIR); sh BuildAllBindings.sh)
@@ -79,12 +85,12 @@ define def_make
 
 endef
 
-copyblib:
-	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_copylib,$(exdir)))
-
-define def_copylib
-	cp -f examples/build_lib.zig $(1)/
-
-endef
+#copyblib:
+#	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_copylib,$(exdir)))
+#
+#define def_copylib
+#	cp -f examples/build_lib.zig $(1)/
+#
+#endef
 
 MAKEFLAGS += --no-print-directory

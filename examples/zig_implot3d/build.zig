@@ -54,7 +54,7 @@ pub fn build(b: *std.Build) void {
     }
 
     const fonticon_dir = "../../src/libc/fonticon/fa6/";
-    const res_fonticon = [_][]const u8{ "fa-solid-900.ttf", "LICENSE.txt" };
+    const res_fonticon = [_][]const u8{ "fa-solid-900.ttf", "LICENSE.txt" ,};
     inline for (res_fonticon) |file| {
         const res = b.addInstallFile(b.path(fonticon_dir ++ file), "bin/resources/fonticon/fa6/" ++ file);
         b.getInstallStep().dependOn(&res.step);

@@ -1,5 +1,5 @@
 const app = @import("appimgui");
-const ig  = app.ig;
+const ig = app.ig;
 
 //-----------
 // gui_main()

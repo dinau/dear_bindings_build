@@ -6,20 +6,30 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
 
     const mod_name = "dcimgui";
+    var mod: *std.Build.Module = undefined;
+
+    const gen_option = b.option(bool, "gen", "Generate I/O definition file from C header") orelse false;
 
     // -------
     // module
     // -------
-    const step = b.addTranslateC(.{
-        .root_source_file = b.path("src/impl_dcimgui.h"),
-        .target = target,
-        .optimize = optimize,
-    });
-
-    step.addIncludePath(b.path("../../libc/imgui"));
-    step.addIncludePath(b.path("../../libc/dcimgui/imgui/backends"));
-    step.addIncludePath(b.path("../../libc/dcimgui"));
-    const mod = step.addModule(mod_name);
+    if (!gen_option) {
+        mod = b.addModule(mod_name, .{
+            .root_source_file = b.path("src/impl_dcimgui.zig"),
+            .target = target,
+            .optimize = optimize,
+        });
+    } else { // Generate original_temp_zig in zig-out
+        const step = b.addTranslateC(.{
+            .root_source_file = b.path("src/impl_dcimgui.h"),
+            .target = target,
+            .optimize = optimize,
+        });
+        step.addIncludePath(b.path("../../libc/imgui"));
+        step.addIncludePath(b.path("../../libc/dcimgui/imgui/backends"));
+        step.addIncludePath(b.path("../../libc/dcimgui"));
+        mod = step.addModule(mod_name);
+    }
     mod.link_libcpp = true;
     mod.addImport(mod_name, mod);
     mod.addIncludePath(b.path("../../libc/imgui"));
@@ -46,8 +56,10 @@ pub fn build(b: *std.Build) void {
             "../../libc/imgui/imgui_tables.cpp",
             "../../libc/imgui/imgui_widgets.cpp",
         },
+        .flags = &.{
+            "-O2",
+        },
     });
-
     //---------
     // Linking
     //---------
@@ -57,6 +69,7 @@ pub fn build(b: *std.Build) void {
         mod.linkSystemLibrary("opengl32", .{});
         mod.linkSystemLibrary("user32", .{});
         mod.linkSystemLibrary("shell32", .{});
+        mod.linkSystemLibrary("ws2_32", .{});
     } else if (builtin.target.os.tag == .linux) {
         mod.linkSystemLibrary("glfw3", .{});
         mod.linkSystemLibrary("GL", .{});

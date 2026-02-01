@@ -1,6 +1,5 @@
 const std = @import("std");
 const builtin = @import("builtin");
-const blib = @import("./build_lib.zig");
 
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
@@ -14,13 +13,28 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    // Register external module from "./build.zig.zon" file.
-    blib.addExternalModule(b, main_mod);
 
     const exe = b.addExecutable(.{
         .name = exe_name,
         .root_module = main_mod,
     });
+
+    const imguinz = b.dependency("imguinz", .{});
+    const dependencies = .{
+        "dcimgui",
+        "sdl3",
+        "impl_sdl3",
+        "impl_sdlgpu3",
+        "loadimage_sdlgpu3",
+        "setupfont",
+        "fonticon",
+        "utils",
+        // "another_lib",
+    };
+    inline for (dependencies) |dep_name| {
+        const dep = imguinz.builder.dependency(dep_name, .{});
+        exe.root_module.addImport(dep_name, dep.module(dep_name));
+    }
 
     // Load Icon
     exe.root_module.addWin32ResourceFile(.{ .file = b.path("src/res/res.rc") });
@@ -63,7 +77,7 @@ pub fn build(b: *std.Build) void {
         // Static link
         //exe.addObjectFile(b.path(b.pathJoin(&.{sdl3_path, "lib","SDL3.lib"})));
         // Dynamic link
-        exe.addObjectFile(.{ .cwd_relative = b.pathJoin(&.{ sdl_path, "lib", "libSDL3.dll.a" }) });
+        exe.root_module.addObjectFile(.{ .cwd_relative = b.pathJoin(&.{ sdl_path, "lib", "libSDL3.dll.a", }) });
         //exe.linkSystemLibrary("sdl3dll"); // For dynamic link
         // System
     } else if (builtin.target.os.tag == .linux) {
@@ -92,7 +106,7 @@ pub fn build(b: *std.Build) void {
     }
 
     const fonticon_dir = "../../src/libc/fonticon/fa6/";
-    const res_fonticon = [_][]const u8{ "fa-solid-900.ttf", "LICENSE.txt" };
+    const res_fonticon = [_][]const u8{ "fa-solid-900.ttf", "LICENSE.txt", };
     inline for (res_fonticon) |file| {
         const res = b.addInstallFile(b.path(fonticon_dir ++ file), "bin/resources/fonticon/fa6/" ++ file);
         b.getInstallStep().dependOn(&res.step);

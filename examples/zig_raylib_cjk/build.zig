@@ -55,7 +55,7 @@ pub fn build(b: *std.Build) void {
     //exe.root_module.addImport("raygui", raygui);
 
     const cjk_font_dir = "../../src/libc/notonoto_v0.0.3/";
-    const cjk_font_files = [_][]const u8{ "LICENSE", "NOTONOTO-Regular.ttf", "README.md" };
+    const cjk_font_files = [_][]const u8{ "LICENSE", "NOTONOTO-Regular.ttf", "README.md" ,};
     inline for (cjk_font_files) |file| {
         const res = b.addInstallFile(b.path(cjk_font_dir ++ file), "bin/resources/fonts/" ++ file);
         b.getInstallStep().dependOn(&res.step);
