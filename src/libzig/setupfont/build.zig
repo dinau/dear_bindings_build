@@ -15,7 +15,10 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
     // import modules
-    const modules = [_][]const u8{ "dcimgui", "fonticon", };
+    const modules = [_][]const u8{
+        "dcimgui",
+        "fonticon",
+    };
     for (modules) |module| {
         if (mod.import_table.get(module) == null) {
             const mod_dep = b.dependency(module, .{});

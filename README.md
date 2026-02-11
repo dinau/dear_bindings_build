@@ -4,8 +4,8 @@
 - [Dear_Bindings_Build](#dear_bindings_build)
   - [Zig fetch](#zig-fetch)
   - [Frontends and Backends](#frontends-and-backends)
-  - [Available libraries list at this moment](#available-libraries-list-at-this-moment)
   - [Prerequisites](#prerequisites)
+  - [Available libraries list at this moment](#available-libraries-list-at-this-moment)
   - [Compiling](#compiling)
   - [Build and run](#build-and-run)
   - [Examples screen shots](#examples-screen-shots)
@@ -145,7 +145,7 @@ And one can use many other libaries and examples with less external dependencies
 
    ```
    
-   ![myapp.png](img/myapp.png)
+   ![myapp.png](https://github.com/dinau/imguinz/raw/main/img/myapp.gif)
 
 #### Frontends and Backends  
 
@@ -154,38 +154,20 @@ And one can use many other libaries and examples with less external dependencies
 | Frontends |      Backends     |
 |-----------|:-----------------:|
 | GLFW3     |   OpenGL3, SDL3   |
-| SDL3      |  OpenGL3, SDL3GPU |
+| SDL3.4.x  |  OpenGL3, SDL3GPU |
 | Win32     | DirectX 11(D3D11) |
   
-
-#### Available libraries list at this moment
-
----
-
-Library name / C lang. wrapper
-
-- [x] [ImGui](https://github.com/ocornut/imgui) / [Dear_Bindings](https://github.com/dearimgui/dear_bindings)
-- [x] [ImGui-Knobs](https://github.com/altschuler/imgui-knobs) / [CImGui-Knobs](libs/cimgui-knobs) (2025/07)
-- [x] [ImGuiFileDialog](https://github.com/aiekick/ImGuiFileDialog) / [CImGuiFileDialog](https://github.com/dinau/CImGuiFileDialog) (2025/07)
-- [x] [ImGui_Toggle](https://github.com/cmdwtf/imgui_toggle) / [CimGui_Toggle](https://github.com/dinau/cimgui_toggle) (2025/07)
-- [x] [ImSpinner](https://github.com/dalerank/imspinner) / [CImSpinner](https://github.com/dinau/cimspinner) (2025/07)
-- [x] [ImGuiColorTextEdit](https://github.com/santaclose/ImGuiColorTextEdit) / [cimCTE](https://github.com/cimgui/cimCTE) (2025/08)
-- [x] [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo) / [CImGuizmo](https://github.com/cimgui/cimguizmo) (2025/08)
-- [x] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) (2025/08)
-- [x] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot) (2025/08)
-- [x] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d)  (2025/08)
-- [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
-
-Additional examples (Only zig-0.15.2)
-- [x] [Raylib](https://github.com/raysan5/raylib), [raylib-zig](https://github.com/raylib-zig/raylib-zig), [rlImGui](https://github.com/raylib-extras/rlImGui) (2025/11)
+[^except_raylib]: Except Raylib examples
 
 #### Prerequisites
 
 ---
 
-- Install Zig Compiler  zig-0.15.2  / zig-0.16.0-dev.2368
-   Windows: [zig-x86_64-windows-0.15.2.zip](https://ziglang.org/download/0.15.2/zig-x86_64-windows-0.15.2.zip)  
-   Linux:   [zig-x86_64-linux-0.15.2.tar.xz](https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz)
+- Zig Compiler 
+    - [x] zig-0.15.2  
+       Windows: [zig-x86_64-windows-0.15.2.zip](https://ziglang.org/download/0.15.2/zig-x86_64-windows-0.15.2.zip)  
+       Linux:   [zig-x86_64-linux-0.15.2.tar.xz](https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz)
+    - [x] zig-0.16.0-dev.2535 (2026-02-07) [^except_raylib]
 
 - Windows11  
    - Optional: MSys2/MinGW basic commands (make, rm, cp ...)
@@ -208,6 +190,27 @@ Additional examples (Only zig-0.15.2)
       ```
 
       otherwise [install SDL3 manually](https://github.com/dinau/sdl3_nim#for-linux-os)
+
+#### Available libraries list at this moment
+
+---
+
+Library name / C lang. wrapper
+
+- [x] [ImGui](https://github.com/ocornut/imgui) / [Dear_Bindings](https://github.com/dearimgui/dear_bindings)
+- [x] [ImGui-Knobs](https://github.com/altschuler/imgui-knobs) / [CImGui-Knobs](libs/cimgui-knobs) (2025/07)
+- [x] [ImGuiFileDialog](https://github.com/aiekick/ImGuiFileDialog) / [CImGuiFileDialog](https://github.com/dinau/CImGuiFileDialog) (2025/07)
+- [x] [ImGui_Toggle](https://github.com/cmdwtf/imgui_toggle) / [CimGui_Toggle](https://github.com/dinau/cimgui_toggle) (2025/07)
+- [x] [ImSpinner](https://github.com/dalerank/imspinner) / [CImSpinner](https://github.com/dinau/cimspinner) (2025/07)
+- [x] [ImGuiColorTextEdit](https://github.com/santaclose/ImGuiColorTextEdit) / [cimCTE](https://github.com/cimgui/cimCTE) (2025/08)
+- [x] [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo) / [CImGuizmo](https://github.com/cimgui/cimguizmo) (2025/08)
+- [x] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) (2025/08)
+- [x] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot) (2025/08)
+- [x] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d)  (2025/08)
+- [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
+
+Additional examples (Only zig-0.15.2)
+- [x] [Raylib](https://github.com/raysan5/raylib), [raylib-zig](https://github.com/raylib-zig/raylib-zig), [rlImGui](https://github.com/raylib-extras/rlImGui) (2025/11)
 
 #### Compiling 
 

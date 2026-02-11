@@ -38,7 +38,7 @@ pub fn build(b: *std.Build) void {
             "../../libc/cimplot/implot/implot_items.cpp",
         },
         .flags = &.{
-           // "-O2",
+            // "-O2",
         },
     });
 
