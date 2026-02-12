@@ -8,7 +8,7 @@
 #include "utils.h"
 #include "setupFonts.h"
 
-const char* IconFontPath = "../utils/fonticon/fa6/fa-solid-900.ttf";
+const char* IconFontPath = "./resources/fonticon/fa6/fa-solid-900.ttf";
 char sBufFontPath[2048];
 
 /*-----------------
@@ -26,7 +26,7 @@ char* getWinFontPath(char* sBuf, int bufSize, const char* fontName) {
  * getLinuxFontPath()
  *------------------*/
 // For Linux Mint 22 (Ubuntu/Debian family ok ?)
-#define MAX_FONT_NAME  100
+#define MAX_FONT_NAME  2048
 char LinuxFontNameTbl[][MAX_FONT_NAME] = {
                             "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"          // JP
                            ,"/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf"               // Debian

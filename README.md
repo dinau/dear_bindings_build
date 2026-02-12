@@ -126,7 +126,7 @@ And one can use many other libaries and examples with less external dependencies
    }
    
    pub fn main() !void {
-       var window = try app.Window.createImGui(1024, 900, "ImGui window in Zig lang.");
+       var window = try app.Window.createImGui(1024, 900, "ImGui window in Zig");
        defer window.destroyImGui();
    
        _ = app.setTheme(.dark); // Theme: dark, classic, light, microsoft
@@ -183,19 +183,13 @@ And one can use many other libaries and examples with less external dependencies
    ```
    
    - SDL3  
-   If you are using Debian13 Trixie, add
-
-      ```sh
-      sudo apt install libsdl3-dev
-      ```
-
-      otherwise [install SDL3 manually](https://github.com/dinau/sdl3_nim#for-linux-os)
+      [install SDL3 manually](https://github.com/dinau/sdl3_nim#for-linux-os)
 
 #### Available libraries list at this moment
 
 ---
 
-Library name / C lang. wrapper
+Library name / C wrapper
 
 - [x] [ImGui](https://github.com/ocornut/imgui) / [Dear_Bindings](https://github.com/dearimgui/dear_bindings)
 - [x] [ImGui-Knobs](https://github.com/altschuler/imgui-knobs) / [CImGui-Knobs](libs/cimgui-knobs) (2025/07)
@@ -359,12 +353,12 @@ zig build run --release=fast                           # or make run
 
 ---
 
-|  Language |                                                                             GLFW | Magnifing glass | Image load /save |
-|:---------:|---------------------------------------------------------------------------------:|:---------------:|:----------------:|
-|  C lang.  |                      [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |         Y        |
-|  C lang.  |                      [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |         Y        |
-| Zig lang. | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load/src/main.zig) |        Y        |         Y        |
-| Zig lang. |                       [zig_sdl3_sdlgup3](examples/zig_sdl3_sdlgpu3/src/main.zig) |        -        |       load       |
+| Language |                                                                             GLFW | Magnifing glass | Image load /save |
+|:--------:|---------------------------------------------------------------------------------:|:---------------:|:----------------:|
+|     C    |                      [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |         Y        |
+|     C    |                      [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |         Y        |
+|    Zig   | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load/src/main.zig) |        Y        |         Y        |
+|    Zig   |                       [zig_sdl3_sdlgup3](examples/zig_sdl3_sdlgpu3/src/main.zig) |        -        |       load       |
 
 - [x] Image file captured will be saved in current folder.  
 - [x] Image format can be selected from `JPEG / PNG / BMP / TGA`.
@@ -377,10 +371,10 @@ zig build run --release=fast                           # or make run
 
 - [x] Basic example
 
-|  Language |                                                                               GLFW |                                                       SDL3 |
-|:---------:|-----------------------------------------------------------------------------------:|-----------------------------------------------------------:|
-|  C lang.  | [glfw_opengl3](examples/glfw_opengl3), [glfw_opengl3_jp](examples/glfw_opengl3_jp) |                      [sdl3_opengl3](examples/sdl3_opengl3) |
-| Zig lang. |                         [zig_glfw_opengl3](examples/zig_glfw_opengl3/src/main.zig) | [zig_sdl3_opengl3](examples/zig_sdl3_opengl3/src/main.zig) |
+| Language |                                                                               GLFW |                                                       SDL3 |
+|:--------:|-----------------------------------------------------------------------------------:|-----------------------------------------------------------:|
+|     C    | [glfw_opengl3](examples/glfw_opengl3), [glfw_opengl3_jp](examples/glfw_opengl3_jp) |                      [sdl3_opengl3](examples/sdl3_opengl3) |
+|    Zig   |                         [zig_glfw_opengl3](examples/zig_glfw_opengl3/src/main.zig) | [zig_sdl3_opengl3](examples/zig_sdl3_opengl3/src/main.zig) |
 
 
 ![alt](img/glfw_opengl3.png) ![alt](img/glfw_opengl3_jp.png)
@@ -389,7 +383,7 @@ zig build run --release=fast                           # or make run
 
 ---
 
-- Zig lang. examples  
+- Zig examples  
 Open `build.zig` in each example folder and **enable** option line as follows,
 
   ```zig
@@ -401,7 +395,7 @@ Open `build.zig` in each example folder and **enable** option line as follows,
   and execute `make`.
 
 
-- C lang. examples  
+- C examples  
 Open `Makefile` in each example folder and **change** option as follows,
 
   ```Makefile
@@ -438,7 +432,7 @@ https://github.com/libsdl-org/SDL/releases
 | **Nim**              | Compiler | [ImGuin](https://github.com/dinau/imguin), [Nimgl_test](https://github.com/dinau/nimgl_test), [Nim_implot](https://github.com/dinau/nim_implot) |
 | **Python**           | Script   | [DearPyGui for 32bit WindowsOS Binary](https://github.com/dinau/DearPyGui32/tree/win32)                                                         |
 | **Ruby**             | Script   | [igRuby_Examples](https://github.com/dinau/igruby_examples)                                                                                     |
-| **Zig**, C lang.     | Compiler | [Dear_Bindings_Build](https://github.com/dinau/dear_bindings_build)                                                                             |
+| **Zig**, C           | Compiler | [Dear_Bindings_Build](https://github.com/dinau/dear_bindings_build)                                                                             |
 | **Zig**              | Compiler | [ImGuinZ](https://github.com/dinau/imguinz)                                                                                                     |
 
 

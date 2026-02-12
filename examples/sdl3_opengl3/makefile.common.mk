@@ -1,7 +1,5 @@
 TARGET = $(notdir $(CURDIR))
 
-#MAKEFLAGS += -j2
-
 ifeq ($(V),)
   D = @
 endif
@@ -24,34 +22,37 @@ CFLAGS_EXTRA += -Wno-pointer-sign
 TC ?= zigcc
 
 ifeq ($(TC),gcc)
-CC  = $(CCACHE) gcc
-CXX = $(CCACHE) g++
-CXXFLAGS += -Wno-stringop-overflow
+	CC  = $(CCACHE) gcc
+	CXX = $(CCACHE) g++
+	CXXFLAGS += -Wno-stringop-overflow
 endif
 ifeq ($(TC),clang)
-CC =  clang
-CXX = clang++
+	CC =  clang
+	CXX = clang++
 endif
 ifeq ($(TC),clangcl)
-CC =  clang-cl
-CXX = clang-cl
+	CC =  clang-cl
+	CXX = clang-cl
 endif
 ifeq ($(TC),zigcc)
-CC =  zig cc
-CXX = zig c++
-AR  = zig ar
-CFLAGS += -Wl,--subsystem,windows
+	CC =  zig cc
+	CXX = zig c++
+	AR  = zig ar
+	ifeq ($(HIDE_CONSOLE_WINDOW),true)
+		CFLAGS += -Wl,--subsystem,windows
+	endif
 endif
 
-LIBS_DIR            = ../../src/libc
+LIBS_DIR           = ../../src/libc
 IMGUI_DIR          = $(LIBS_DIR)/imgui
 STB_DIR            = $(LIBS_DIR)/stb
 #
-DCIMGUI_DIR         = $(LIBS_DIR)/dcimgui
-DCIMGUI_BUILD_DIR   = $(DCIMGUI_DIR)/.build
+DCIMGUI_DIR        = $(LIBS_DIR)/dcimgui
+DCIMGUI_BUILD_DIR  = $(DCIMGUI_DIR)/.build
 #
-UTILS_DIR          = ../utils
-FONT_HEADER_DIR    = $(UTILS_DIR)/fonticon
+UTILS_DIR          = ./utils
+RESOURCES_DIR      = ./resources
+FONT_HEADER_DIR    = $(RESOURCES_DIR)/fonticon
 #
 BUILD_DIR          = .build
 #
@@ -59,7 +60,7 @@ DCIMGUI_ARCHIVE_DIR = $(LIBS_DIR)
 LIB_CIMGUI_ARCHIVE = $(DCIMGUI_ARCHIVE_DIR)/libcimgui.a
 
 #
-VPATH = .:$(DCIMGUI_DIR):$(DCIMGUI_DIR)/backends:$(IMGUI_DIR):$(IMGUI_DIR)/backends:$(UTILS_DIR)
+VPATH = .:$(DCIMGUI_DIR):$(DCIMGUI_DIR)/backends:$(IMGUI_DIR):$(IMGUI_DIR)/backends:$(UTILS_DIR):src
 
 # CImGui / ImGui sources
 DCIMGUI_SRCS_CPP += $(notdir $(wildcard $(DCIMGUI_DIR)/*.cpp))
@@ -67,16 +68,15 @@ DCIMGUI_SRCS_CPP += $(notdir $(BACKEND_SRCS_CPP))
 IMGUI_SRCS_CPP  += $(notdir $(wildcard $(IMGUI_DIR)/*.cpp))
 
 # My sources
-MY_SRCS_C   += $(wildcard *.c)
-MY_SRCS_CPP += $(wildcard *.cpp)
+MAIN_SRCS_C   += $(notdir $(wildcard src/*.c))
 
 # Utils sources
 UTILS_SRCS_CPP += $(notdir $(wildcard $(UTILS_DIR)/*.cpp))
 UTILS_SRCS_C   += $(notdir $(wildcard $(UTILS_DIR)/*.c))
 
 DCIMGUI_OBJS = $(addprefix $(DCIMGUI_BUILD_DIR)/,$(DCIMGUI_SRCS_CPP:.cpp=.o) $(IMGUI_SRCS_CPP:.cpp=.o))
-UTILS_OBJS  = $(addprefix $(BUILD_DIR)/,$(UTILS_SRCS_C:.c=.o) $(UTILS_SRCS_CPP:.cpp=.o))
-MY_OBJS     = $(addprefix $(BUILD_DIR)/,$(MY_SRCS_C:.c=.o) $(MY_SRCS_CPP:.cpp=.o))
+UTILS_OBJS   = $(addprefix $(BUILD_DIR)/,$(UTILS_SRCS_C:.c=.o) $(UTILS_SRCS_CPP:.cpp=.o))
+MAIN_OBJS    = $(addprefix $(BUILD_DIR)/,$(MAIN_SRCS_C:.c=.o))
 
 #
 CFLAGS += -MMD -MP
@@ -144,12 +144,11 @@ all: $(MAKE_DIRS) $(LIB_CIMGUI_ARCHIVE) $(TARGET)$(EXE) afterbuild
 lib: $(LIB_CIMGUI_ARCHIVE)
 afterbuild:
 	-$(AFTER_BUILD)
-#dll: $(BUILD_DIR) cimgui.dll
 
-MAKE_DEPS += ../makefile.common.mk Makefile
-$(TARGET)$(EXE): $(UTILS_OBJS) $(MY_OBJS) $(MAKE_DEPS)
+MAKE_DEPS += makefile.common.mk Makefile sdl3_opengl3.mk
+$(TARGET)$(EXE): $(UTILS_OBJS) $(MAIN_OBJS) $(MAKE_DEPS)
 	@echo [$(CXX)]: - Link - $@
-	$(D)$(CXX) $(CXXFLAGS) -o $@  $(UTILS_OBJS) $(MY_OBJS) -lcimgui $(LIBS) $(LDFLAGS)
+	$(D)$(CXX) $(CXXFLAGS) -o $@  $(UTILS_OBJS) $(MAIN_OBJS) -lcimgui $(LIBS) $(LDFLAGS)
 
 $(LIB_CIMGUI_ARCHIVE): $(DCIMGUI_OBJS)
 	@echo [ $(AR) ]: $@
@@ -171,7 +170,7 @@ $(BUILD_DIR)/%.o: %.c $(DEPS_PROJ) $(MAKE_DEPS)
 	@echo [$(CC)]: $(notdir $<)
 	$(D)$(CC) -c -o $@ $(CFLAGS) $(CFLAGS_EXTRA) $<
 
-.PHONY: run gen clean cleanall cleanobjs  cleanother $(BUILD_DIR)
+.PHONY: run gen clean cleanall cleanobjs  cleanother cleancache $(BUILD_DIR)
 
 $(BUILD_DIR):
 	@-mkdir -p  $@
@@ -185,24 +184,23 @@ $(UTILS_OBJ_DIR):
 run: all
 	./$(TARGET)
 
-cleancache:
-	-rm -fr .zig-cache
 clean:
-	-rm $(TARGET)$(EXE)
-	-rm $(TARGET).lib $(TARGET).pdb
-	-rm $(MY_OBJS)
-	-rm -fr $(BUILD_DIR)
+	@-rm $(TARGET)$(EXE)
+	@-rm $(MAIN_OBJS)
+	@-rm -fr $(BUILD_DIR)
+	@-rm -fr .zig-cache
 cleanother:
-	-rm -fr $(UTILS_OBJ_DIR)
+	@-rm -fr $(UTILS_OBJ_DIR)
 cleanobjs: clean cleanother
-	-rm $(LIB_CIMGUI_ARCHIVE)
-	-rm -fr $(DCIMGUI_BUILD_DIR)
+	@-rm $(LIB_CIMGUI_ARCHIVE)
+	@-rm -fr $(DCIMGUI_BUILD_DIR)
 cleanall: cleanobjs
-	-rm -fr $(BUILD_DIR)
-	-rm -fr $(DCIMGUI_BUILD_DIR)
+	@-rm -fr $(BUILD_DIR)
+	@-rm -fr $(DCIMGUI_BUILD_DIR)
+cleancache: all
+	@-rm -fr .zig-cache
+
 fmt:
-#
-#
-include ../gen.mk
+	zig fmt .
 
 include $(wildcard $(BUILD_DIR)/*.d)

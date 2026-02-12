@@ -1,4 +1,3 @@
-#
 SDL3_DIR = ../../src/libc/sdl/SDL3/x86_64-w64-mingw32
 
 # Add backend driver in imgui
@@ -25,7 +24,5 @@ else
 # Use SDL3 dll lib
 LIBS += -lSDL3.dll
 #LIBS += -lSDL3
-
-LDFLAGS += -mconsole -mwindows
 
 endif

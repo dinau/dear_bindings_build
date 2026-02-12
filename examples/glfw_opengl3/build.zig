@@ -35,7 +35,7 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../src/libc/glfw/glfw-3.4.bin.WIN64/include"));
 
     const exe = b.addExecutable(.{
-        .name = "glfw_opengl3",
+        .name = exe_name,
         .root_module = mod,
     });
 

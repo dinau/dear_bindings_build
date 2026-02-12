@@ -52,10 +52,12 @@ test:
 	@echo $(notdir $(EXAMPLE_DIRS))
 
 clean: cleanall
+	@-rm -fr .zig-cache
 
 cleanall:
 	@-$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))
 	@-$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),$@ ))
+	@-$(foreach exdir,$(EXAMPLE_DIRS_ZIG_RAYLIB), $(call def_make,$(exdir),$@ ))
 	@-$(MAKE) -C src/libzig clean
 
 WORK_DIR           = ../dear_bindings_build_work
@@ -85,12 +87,5 @@ define def_make
 
 endef
 
-#copyblib:
-#	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_copylib,$(exdir)))
-#
-#define def_copylib
-#	cp -f examples/build_lib.zig $(1)/
-#
-#endef
 
 MAKEFLAGS += --no-print-directory

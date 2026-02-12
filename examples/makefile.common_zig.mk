@@ -18,7 +18,7 @@ endif
 	$(AFTER_EXEC)
 
 clean:
-	@-rm -fr zig-out .zig-cache
+	@-rm -fr zig-out .zig-cache zig-pkg
 
 cleancache: all
 	@-rm -fr .zig-cache
