@@ -60,7 +60,7 @@ DCIMGUI_ARCHIVE_DIR = $(LIBS_DIR)
 LIB_CIMGUI_ARCHIVE = $(DCIMGUI_ARCHIVE_DIR)/libcimgui.a
 
 #
-VPATH = .:$(DCIMGUI_DIR):$(DCIMGUI_DIR)/backends:$(IMGUI_DIR):$(IMGUI_DIR)/backends:$(UTILS_DIR):src
+VPATH += .:$(DCIMGUI_DIR):$(DCIMGUI_DIR)/backends:$(IMGUI_DIR):$(IMGUI_DIR)/backends:$(UTILS_DIR):src
 
 # CImGui / ImGui sources
 DCIMGUI_SRCS_CPP += $(notdir $(wildcard $(DCIMGUI_DIR)/*.cpp))
@@ -74,9 +74,9 @@ MAIN_SRCS_C   += $(notdir $(wildcard src/*.c))
 UTILS_SRCS_CPP += $(notdir $(wildcard $(UTILS_DIR)/*.cpp))
 UTILS_SRCS_C   += $(notdir $(wildcard $(UTILS_DIR)/*.c))
 
-DCIMGUI_OBJS = $(addprefix $(DCIMGUI_BUILD_DIR)/,$(DCIMGUI_SRCS_CPP:.cpp=.o) $(IMGUI_SRCS_CPP:.cpp=.o))
-UTILS_OBJS   = $(addprefix $(BUILD_DIR)/,$(UTILS_SRCS_C:.c=.o) $(UTILS_SRCS_CPP:.cpp=.o))
-MAIN_OBJS    = $(addprefix $(BUILD_DIR)/,$(MAIN_SRCS_C:.c=.o))
+DCIMGUI_OBJS += $(addprefix $(DCIMGUI_BUILD_DIR)/,$(DCIMGUI_SRCS_CPP:.cpp=.o) $(IMGUI_SRCS_CPP:.cpp=.o))
+UTILS_OBJS   += $(addprefix $(BUILD_DIR)/,$(UTILS_SRCS_C:.c=.o) $(UTILS_SRCS_CPP:.cpp=.o))
+MAIN_OBJS    += $(addprefix $(BUILD_DIR)/,$(MAIN_SRCS_C:.c=.o))
 
 #
 CFLAGS += -MMD -MP

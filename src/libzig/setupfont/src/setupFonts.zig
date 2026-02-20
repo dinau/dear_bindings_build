@@ -105,33 +105,12 @@ fn point2px(point: f32) f32 {
 var config: *ig.ImFontConfig = undefined;
 
 /// Create ImFontConfig
-fn ImFontConfig_create() *ig.ImFontConfig {
-    const allocator = std.heap.page_allocator;
-    const cfg = allocator.create(ig.ImFontConfig) catch @panic("Failed to allocate ImFontConfig");
-
-    @memset(std.mem.asBytes(cfg), 0);
-    cfg.FontDataOwnedByAtlas = true;
-    cfg.FontNo = 0;
-    cfg.OversampleH = 3;
-    cfg.OversampleV = 1;
-    cfg.PixelSnapH = false;
-    cfg.GlyphMaxAdvanceX = std.math.floatMax(f32);
-    cfg.RasterizerMultiply = 1.0;
-    cfg.RasterizerDensity = 1.0;
-    cfg.MergeMode = false;
-    cfg.EllipsisChar = @as(ig.ImWchar, @bitCast(@as(u16, 0xFFFF)));
-
-    return cfg;
-}
-
-const ranges_icon_fonts = [_]ig.ImWchar{
-    @as(ig.ImWchar, ifa.ICON_MIN_FA),
-    @as(ig.ImWchar, ifa.ICON_MAX_FA),
-    0,
-};
+pub extern fn ImFontConfig_new() callconv(.c) [*c]ig.ImFontConfig;
 
 /// Setup fonts
 pub export fn setupFonts() ?*ig.ImFont {
+    config = ImFontConfig_new();
+    std.debug.print("setupFonts():\n", .{});
     const pio = ig.ImGui_GetIO();
     var font: ?*ig.ImFont = null;
 
@@ -149,10 +128,10 @@ pub export fn setupFonts() ?*ig.ImFont {
                     pio.*.Fonts,
                     &path_buf,
                     point2px(14.5),
-                    null,
+                    config,
                     null,
                 );
-                std.debug.print("\n==== Found FontPath: [{s}]\n", .{font_path});
+                std.debug.print("==== Found FontPath: [{s}]\n", .{font_path});
                 break;
             }
         }
@@ -169,10 +148,10 @@ pub export fn setupFonts() ?*ig.ImFont {
                     pio.*.Fonts,
                     &path_buf,
                     point2px(13.0),
-                    null,
+                    config,
                     null,
                 );
-                std.debug.print("\n==== Found FontPath: [{s}]\n", .{font_path});
+                std.debug.print("==== Found FontPath: [{s}]\n", .{font_path});
                 break;
             }
         }
@@ -180,28 +159,24 @@ pub export fn setupFonts() ?*ig.ImFont {
 
     // Use default font if no font found
     if (font == null) {
-        std.debug.print("\n==== Error!: Font loading failed\n", .{});
-        std.debug.print("\n==== Default has been set.\n", .{});
-        _ = ig.ImFontAtlas_AddFontDefault(pio.*.Fonts, null);
+        std.debug.print("==== Error!: Font loading failed\n", .{});
+        std.debug.print("==== Default has been set.\n", .{});
+        //_ = ig.ImFontAtlas_AddFontDefault(pio.*.Fonts, null);
+        font = ig.ImFontAtlas_AddFontDefaultVector(pio.*.Fonts, config);
     }
 
     // Merge IconFont
-    config = ImFontConfig_create();
     config.MergeMode = true;
     if (existsFile(IconFontPath)) {
         var icon_path_buf: [IconFontPath.len:0]u8 = undefined;
         @memcpy(&icon_path_buf, IconFontPath);
         icon_path_buf[IconFontPath.len] = 0;
 
-        return ig.ImFontAtlas_AddFontFromFileTTF(
-            pio.*.Fonts,
-            &icon_path_buf,
-            point2px(11.0),
-            config,
-            &ranges_icon_fonts,
-        );
-    } else {
-        std.debug.print("\n==== Error!: Font not found [ {s} ]\n", .{IconFontPath});
-        return null;
+        if (ig.ImFontAtlas_AddFontFromFileTTF( pio.*.Fonts, &icon_path_buf, point2px(11.0), config, null,))|iconfont|{
+            std.debug.print("==== Found IconFont: [{s}]\n", .{IconFontPath});
+            return iconfont;
+        }
     }
+    std.debug.print("==== Error!: IconFont not found [ {s} ]\n", .{IconFontPath});
+    return null;
 }

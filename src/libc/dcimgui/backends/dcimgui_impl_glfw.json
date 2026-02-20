@@ -466,7 +466,7 @@
             "is_static": false,
             "comments": {
                 "preceding": [
-                    "// GFLW callbacks options:",
+                    "// GLFW callbacks options:",
                     "// - Set 'chain_for_all_windows=true' to enable chaining callbacks for all windows (including secondary viewports created by backends or by user)"
                 ]
             },

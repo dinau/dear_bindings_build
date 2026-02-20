@@ -36,8 +36,8 @@
 This project aims to simply and easily build [Dear ImGui](https://github.com/ocornut/imgui) examples with **C** and **Zig** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 And one can use many other libaries and examples with less external dependencies.
 
-[DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.17_ImGui_v1.92.4-docking  
-[Dear ImGui](https://github.com/ocornut/imgui): 1.92.5
+[DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.17_ImGui_v1.92.6-docking  
+[Dear ImGui](https://github.com/ocornut/imgui): 1.92.6
 
 #### Zig fetch
 

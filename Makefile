@@ -64,19 +64,20 @@ WORK_DIR           = ../dear_bindings_build_work
 DB_DIR             = $(WORK_DIR)/dear_bindings
 DCIMGUI_DIR        = src/libc/dcimgui
 IMGUI_DIR          = src/libc/imgui
-IMGUI_EXTERNAL_DIR = $(WORK_DIR)/imgui
+IMGUI_EXTERNAL_DIR = ../000imguin_dev/imguin_git/libs/cimgui/imgui
 
 gen:
-	@(cd $(DB_DIR); sh BuildAllBindings.sh)
-	@rm -fr  $(DCIMGUI_DIR)
-	@mkdir -p $(DCIMGUI_DIR)
-	@cp -fr $(DB_DIR)/generated/* $(DCIMGUI_DIR)/
-	@-mkdir -p $(IMGUI_DIR)
-	@cp -fr $(IMGUI_EXTERNAL_DIR)/* $(IMGUI_DIR)/
-	@echo
-	@echo =====================================
-	@echo OK: genereated: "$(DCIMGUI_DIR)/*"
-	@echo =====================================
+	-mkdir -p $(IMGUI_DIR)
+	cp -fr $(IMGUI_EXTERNAL_DIR)/* $(IMGUI_DIR)/
+	cp -fr $(IMGUI_EXTERNAL_DIR)/* $(WORK_DIR)/imgui/
+	(cd $(DB_DIR); sh BuildAllBindings.sh)
+	rm -fr  $(DCIMGUI_DIR)
+	mkdir -p $(DCIMGUI_DIR)
+	cp -fr $(DB_DIR)/generated/* $(DCIMGUI_DIR)/
+	echo
+	echo =====================================
+	echo OK: genereated: "$(DCIMGUI_DIR)/*"
+	echo =====================================
 
 #
 define def_make

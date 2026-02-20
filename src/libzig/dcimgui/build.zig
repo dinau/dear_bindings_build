@@ -35,6 +35,7 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../libc/imgui"));
     mod.addIncludePath(b.path("../../libc/dcimgui/imgui/backends"));
     mod.addIncludePath(b.path("../../libc/dcimgui"));
+    mod.addIncludePath(b.path("src"));
     // macro
     mod.addCMacro("ImDrawIdx", "unsigned int");
     mod.addCMacro("IMGUI_ENABLE_WIN32_DEFAULT_IME_FUNCTIONS", "");
@@ -55,6 +56,8 @@ pub fn build(b: *std.Build) void {
             "../../libc/imgui/imgui_draw.cpp",
             "../../libc/imgui/imgui_tables.cpp",
             "../../libc/imgui/imgui_widgets.cpp",
+            // utils_dcimgui
+            "src/utils_dcimgui.cpp",
         },
         .flags = &.{
             "-O2",

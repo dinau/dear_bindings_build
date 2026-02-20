@@ -12,4 +12,9 @@ ifeq ($(OS),Windows_NT)
 	AFTER_BUILD = @cp -f $(SDL3_DIR)/bin/SDL3.dll .
 endif
 
+
+VPATH += ../../src/libzig/dcimgui/src
+
+UTILS_OBJS += .build/utils_dcimgui.o
+
 include makefile.common.mk

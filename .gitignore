@@ -1,3 +1,7 @@
+.gitx/
+src/libc/imgui/examples/
+imgui_impl_null.*
+example_null/
 examples/sdl3_opengl3/SDL3.dll
 zig-pkg/
 clibx/

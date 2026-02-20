@@ -189,7 +189,7 @@
                     }
                 },
                 {
-                    "name": "SamplerDefault",
+                    "name": "SamplerLinear",
                     "is_array": false,
                     "is_anonymous": false,
                     "type": {
@@ -203,12 +203,35 @@
                         }
                     },
                     "comments": {
-                        "attached": "// Default sampler (bilinear filtering)"
+                        "attached": "// Bilinear filtering sampler"
                     },
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui_impl_sdlgpu3.h",
                         "line": 61
+                    }
+                },
+                {
+                    "name": "SamplerNearest",
+                    "is_array": false,
+                    "is_anonymous": false,
+                    "type": {
+                        "declaration": "SDL_GPUSampler*",
+                        "description": {
+                            "kind": "Pointer",
+                            "inner_type": {
+                                "kind": "User",
+                                "name": "SDL_GPUSampler"
+                            }
+                        }
+                    },
+                    "comments": {
+                        "attached": "// Nearest/point filtering sampler"
+                    },
+                    "is_internal": false,
+                    "source_location": {
+                        "filename": "imgui_impl_sdlgpu3.h",
+                        "line": 62
                     }
                 },
                 {
@@ -231,7 +254,7 @@
                     "is_internal": false,
                     "source_location": {
                         "filename": "imgui_impl_sdlgpu3.h",
-                        "line": 62
+                        "line": 63
                     }
                 }
             ],
@@ -648,7 +671,7 @@
             "is_static": false,
             "comments": {
                 "preceding": [
-                    "// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = NULL to handle this manually."
+                    "// (Advanced) Use e.g. if you need to precisely control the timing of texture updates (e.g. for staged rendering), by setting ImDrawData::Textures = nullptr to handle this manually."
                 ]
             },
             "is_internal": false,

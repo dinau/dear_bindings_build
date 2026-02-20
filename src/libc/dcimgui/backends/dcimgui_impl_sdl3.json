@@ -48,6 +48,56 @@
                 "filename": "imgui_impl_sdl3.h",
                 "line": 47
             }
+        },
+        {
+            "name": "ImGui_ImplSDL3_MouseCaptureMode",
+            "original_fully_qualified_name": "ImGui_ImplSDL3_MouseCaptureMode",
+            "is_flags_enum": false,
+            "elements": [
+                {
+                    "name": "ImGui_ImplSDL3_MouseCaptureMode_Enabled",
+                    "value": 0,
+                    "is_count": false,
+                    "is_internal": false,
+                    "source_location": {
+                        "filename": "imgui_impl_sdl3.h",
+                        "line": 54
+                    }
+                },
+                {
+                    "name": "ImGui_ImplSDL3_MouseCaptureMode_EnabledAfterDrag",
+                    "value": 1,
+                    "is_count": false,
+                    "is_internal": false,
+                    "source_location": {
+                        "filename": "imgui_impl_sdl3.h",
+                        "line": 54
+                    }
+                },
+                {
+                    "name": "ImGui_ImplSDL3_MouseCaptureMode_Disabled",
+                    "value": 2,
+                    "is_count": false,
+                    "is_internal": false,
+                    "source_location": {
+                        "filename": "imgui_impl_sdl3.h",
+                        "line": 54
+                    }
+                }
+            ],
+            "comments": {
+                "preceding": [
+                    "// (Advanced, for X11 users) Override Mouse Capture mode. Mouse capture allows receiving updated mouse position after clicking inside our window and dragging outside it.",
+                    "// Having this 'Enabled' is in theory always better. But, on X11 if you crash/break to debugger while capture is active you may temporarily lose access to your mouse.",
+                    "// The best solution is to setup your debugger to automatically release capture, e.g. 'setxkbmap -option grab:break_actions && xdotool key XF86Ungrab' or via a GDB script. See #3650.",
+                    "// But you may independently decide on X11, when a debugger is attached, to set this value to ImGui_ImplSDL3_MouseCaptureMode_Disabled."
+                ]
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui_impl_sdl3.h",
+                "line": 54
+            }
         }
     ],
     "typedefs": [
@@ -663,6 +713,43 @@
             "source_location": {
                 "filename": "imgui_impl_sdl3.h",
                 "line": 48
+            }
+        },
+        {
+            "name": "cImGui_ImplSDL3_SetMouseCaptureMode",
+            "original_fully_qualified_name": "ImGui_ImplSDL3_SetMouseCaptureMode",
+            "return_type": {
+                "declaration": "void",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "void"
+                }
+            },
+            "arguments": [
+                {
+                    "name": "mode",
+                    "type": {
+                        "declaration": "ImGui_ImplSDL3_MouseCaptureMode",
+                        "description": {
+                            "kind": "User",
+                            "name": "ImGui_ImplSDL3_MouseCaptureMode"
+                        }
+                    },
+                    "is_array": false,
+                    "is_varargs": false,
+                    "is_instance_pointer": false
+                }
+            ],
+            "is_default_argument_helper": false,
+            "is_manual_helper": false,
+            "is_imstr_helper": false,
+            "has_imstr_helper": false,
+            "is_unformatted_helper": false,
+            "is_static": false,
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui_impl_sdl3.h",
+                "line": 55
             }
         }
     ]
