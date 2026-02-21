@@ -37,7 +37,7 @@ This project aims to simply and easily build [Dear ImGui](https://github.com/oco
 And one can use many other libaries and examples with less external dependencies.
 
 [DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.17_ImGui_v1.92.6-docking  
-[Dear ImGui](https://github.com/ocornut/imgui): 1.92.6
+[Dear ImGui](https://github.com/ocornut/imgui): 1.92.6 dock
 
 #### Zig fetch
 
