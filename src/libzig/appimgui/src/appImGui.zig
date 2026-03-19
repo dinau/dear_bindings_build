@@ -130,7 +130,8 @@ pub const Window = struct {
         //--------------
         // Get exe path  Refered to: https://stackoverflow.com/questions/77718355/how-do-i-build-a-path-relative-to-the-exe-in-zig
         //--------------
-        var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+        // For zig-0.16.0-dev.2905 (2026/03/13)
+        var gpa = std.heap.DebugAllocator(.{}){};
         defer _ = gpa.deinit();
         const allocator = gpa.allocator();
 

@@ -37,8 +37,8 @@ pub fn gui_main(window: *app.Window) !void {
 
     //-- ImNode: Initialize NodeEditor
     var obj: recObj = undefined;
-    obj.nodes = try std.ArrayList(Node).initCapacity(allocator,1024);
-    obj.links = try std.ArrayList(Link).initCapacity(allocator,1024);
+    obj.nodes = try std.ArrayList(Node).initCapacity(allocator, 1024);
+    obj.links = try std.ArrayList(Link).initCapacity(allocator, 1024);
     defer obj.nodes.deinit(allocator);
     defer obj.links.deinit(allocator);
 
@@ -55,11 +55,11 @@ pub fn gui_main(window: *app.Window) !void {
     //---------------
     // main loop GUI
     //---------------
-    while (!window.shouldClose ()) {
-        window.pollEvents ();
+    while (!window.shouldClose()) {
+        window.pollEvents();
 
         // Iconify sleep
-        if( window.isIconified()){
+        if (window.isIconified()) {
             continue;
         }
         // Start the Dear ImGui frame
@@ -87,7 +87,7 @@ pub fn gui_main(window: *app.Window) !void {
                     obj.current_id += 1;
                     const node_id = obj.current_id;
                     const pos = ig.ImGui_GetMousePos();
-                    imnodes.imnodes_SetNodeScreenSpacePos(node_id, .{.x = pos.x, .y = pos.y});
+                    imnodes.imnodes_SetNodeScreenSpacePos(node_id, .{ .x = pos.x, .y = pos.y });
                     try obj.nodes.append(allocator, .{ .id = node_id, .value = 0 });
                 }
                 for (obj.nodes.items, 0..) |*node, nodeN| {
@@ -113,8 +113,8 @@ pub fn gui_main(window: *app.Window) !void {
                     {
                         imnodes.imnodes_BeginOutputAttribute(node.id << 24, imnodes.ImNodesPinShape_CircleFilled);
                         defer imnodes.imnodes_EndOutputAttribute();
-                        const  wOut = ig.ImGui_CalcTextSize("output");
-                        const  wVal = ig.ImGui_CalcTextSize("value");
+                        const wOut = ig.ImGui_CalcTextSize("output");
+                        const wVal = ig.ImGui_CalcTextSize("value");
                         ig.ImGui_IndentEx(120 + wVal.x - wOut.x);
                         ig.ImGui_TextUnformatted("output");
                     }
@@ -228,7 +228,6 @@ fn saveObj(alloc: std.mem.Allocator, this: *recObj) !void {
     }
 }
 
-
 //---------
 // loadObj
 //---------
@@ -251,91 +250,91 @@ fn loadObj(alloc: std.mem.Allocator, this: *recObj) !void {
         }
     }
 
-//-- Load nodes into memory
-var sz: usize = undefined;
-if (is_devel_api) {
-    const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&sz), 0);
-    if (bytes_read != @sizeOf(usize)) return error.UnexpectedEof;
-} else {
-    _ = try fin.readAll(std.mem.asBytes(&sz));
-}
-var current_offset: u64 = @sizeOf(usize);
-
-if (sz == 0) {
-    return;
-}
-
-for (0..sz) |_| {
-    var id: c_int = undefined;
+    //-- Load nodes into memory
+    var sz: usize = undefined;
     if (is_devel_api) {
-        const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&id), current_offset);
+        const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&sz), 0);
+        if (bytes_read != @sizeOf(usize)) return error.UnexpectedEof;
+    } else {
+        _ = try fin.readAll(std.mem.asBytes(&sz));
+    }
+    var current_offset: u64 = @sizeOf(usize);
+
+    if (sz == 0) {
+        return;
+    }
+
+    for (0..sz) |_| {
+        var id: c_int = undefined;
+        if (is_devel_api) {
+            const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&id), current_offset);
+            if (bytes_read != @sizeOf(c_int)) return error.UnexpectedEof;
+            current_offset += @sizeOf(c_int);
+        } else {
+            _ = try fin.readAll(std.mem.asBytes(&id));
+        }
+
+        var value: f32 = undefined;
+        if (is_devel_api) {
+            const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&value), current_offset);
+            if (bytes_read != @sizeOf(f32)) return error.UnexpectedEof;
+            current_offset += @sizeOf(f32);
+        } else {
+            _ = try fin.readAll(std.mem.asBytes(&value));
+        }
+
+        try this.nodes.append(alloc, .{ .id = id, .value = value });
+    }
+
+    //-- Load links into memory
+    if (is_devel_api) {
+        const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&sz), current_offset);
+        if (bytes_read != @sizeOf(usize)) return error.UnexpectedEof;
+        current_offset += @sizeOf(usize);
+    } else {
+        _ = try fin.readAll(std.mem.asBytes(&sz));
+    }
+
+    for (0..sz) |_| {
+        var id: c_int = undefined;
+        if (is_devel_api) {
+            const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&id), current_offset);
+            if (bytes_read != @sizeOf(c_int)) return error.UnexpectedEof;
+            current_offset += @sizeOf(c_int);
+        } else {
+            _ = try fin.readAll(std.mem.asBytes(&id));
+        }
+
+        var start_attr: c_int = undefined;
+        if (is_devel_api) {
+            const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&start_attr), current_offset);
+            if (bytes_read != @sizeOf(c_int)) return error.UnexpectedEof;
+            current_offset += @sizeOf(c_int);
+        } else {
+            _ = try fin.readAll(std.mem.asBytes(&start_attr));
+        }
+
+        var end_attr: c_int = undefined;
+        if (is_devel_api) {
+            const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&end_attr), current_offset);
+            if (bytes_read != @sizeOf(c_int)) return error.UnexpectedEof;
+            current_offset += @sizeOf(c_int);
+        } else {
+            _ = try fin.readAll(std.mem.asBytes(&end_attr));
+        }
+
+        try this.links.append(alloc, .{ .id = id, .start_attr = start_attr, .end_attr = end_attr });
+    }
+
+    //-- copy current_id into memory
+    var current_id: c_int = undefined;
+    if (is_devel_api) {
+        const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&current_id), current_offset);
         if (bytes_read != @sizeOf(c_int)) return error.UnexpectedEof;
-        current_offset += @sizeOf(c_int);
     } else {
-        _ = try fin.readAll(std.mem.asBytes(&id));
+        _ = try fin.readAll(std.mem.asBytes(&current_id));
     }
-
-    var value: f32 = undefined;
-    if (is_devel_api) {
-        const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&value), current_offset);
-        if (bytes_read != @sizeOf(f32)) return error.UnexpectedEof;
-        current_offset += @sizeOf(f32);
-    } else {
-        _ = try fin.readAll(std.mem.asBytes(&value));
-    }
-
-    try this.nodes.append(alloc, .{ .id = id, .value = value });
-}
-
-//-- Load links into memory
-if (is_devel_api) {
-    const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&sz), current_offset);
-    if (bytes_read != @sizeOf(usize)) return error.UnexpectedEof;
-    current_offset += @sizeOf(usize);
-} else {
-    _ = try fin.readAll(std.mem.asBytes(&sz));
-}
-
-for (0..sz) |_| {
-    var id: c_int = undefined;
-    if (is_devel_api) {
-        const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&id), current_offset);
-        if (bytes_read != @sizeOf(c_int)) return error.UnexpectedEof;
-        current_offset += @sizeOf(c_int);
-    } else {
-        _ = try fin.readAll(std.mem.asBytes(&id));
-    }
-
-    var start_attr: c_int = undefined;
-    if (is_devel_api) {
-        const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&start_attr), current_offset);
-        if (bytes_read != @sizeOf(c_int)) return error.UnexpectedEof;
-        current_offset += @sizeOf(c_int);
-    } else {
-        _ = try fin.readAll(std.mem.asBytes(&start_attr));
-    }
-
-    var end_attr: c_int = undefined;
-    if (is_devel_api) {
-        const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&end_attr), current_offset);
-        if (bytes_read != @sizeOf(c_int)) return error.UnexpectedEof;
-        current_offset += @sizeOf(c_int);
-    } else {
-        _ = try fin.readAll(std.mem.asBytes(&end_attr));
-    }
-
-    try this.links.append(alloc, .{ .id = id, .start_attr = start_attr, .end_attr = end_attr });
-}
-
-//-- copy current_id into memory
-var current_id: c_int = undefined;
-if (is_devel_api) {
-    const bytes_read = try fin.readPositionalAll(io, std.mem.asBytes(&current_id), current_offset);
-    if (bytes_read != @sizeOf(c_int)) return error.UnexpectedEof;
-} else {
-    _ = try fin.readAll(std.mem.asBytes(&current_id));
-}
-this.current_id = current_id;
+    this.current_id = current_id;
 }
 
 //--------

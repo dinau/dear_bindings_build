@@ -153,8 +153,8 @@ And one can use many other libaries and examples with less external dependencies
 
 | Frontends |      Backends     |
 |-----------|:-----------------:|
-| GLFW3     |   OpenGL3, SDL3   |
-| SDL3.4.x  |  OpenGL3, SDL3GPU |
+| GLFW3     |      OpenGL3      |
+| SDL3.4    |  OpenGL3, SDL3GPU |
 | Win32     | DirectX 11(D3D11) |
   
 [^except_raylib]: Except Raylib examples
@@ -167,7 +167,7 @@ And one can use many other libaries and examples with less external dependencies
     - [x] zig-0.15.2  
        Windows: [zig-x86_64-windows-0.15.2.zip](https://ziglang.org/download/0.15.2/zig-x86_64-windows-0.15.2.zip)  
        Linux:   [zig-x86_64-linux-0.15.2.tar.xz](https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz)
-    - [x] zig-0.16.0-dev.2565 (2026-02-11) [^except_raylib]
+    - [x] zig-0.16.0-dev.2915+065c6e794 (2026/03/18) [^except_raylib]
 
 - Windows11  
    - Optional: MSys2/MinGW basic commands (make, rm, cp ...)
