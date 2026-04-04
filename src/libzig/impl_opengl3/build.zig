@@ -30,6 +30,7 @@ pub fn build(b: *std.Build) void {
         else => {},
     }
     mod.addIncludePath(b.path("../../libc/dcimgui"));
+    mod.addIncludePath(b.path("../../libc/dcimgui/backends"));
     mod.addIncludePath(b.path("../../libc/dcimgui/imgui"));
     mod.addIncludePath(b.path("../../libc/dcimgui/imgui/backends"));
     mod.addIncludePath(b.path("../../libc/imgui"));

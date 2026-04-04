@@ -36,8 +36,8 @@
 This project aims to simply and easily build [Dear ImGui](https://github.com/ocornut/imgui) examples with **C** and **Zig** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 And one can use many other libaries and examples with less external dependencies.
 
-[DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.17_ImGui_v1.92.6-docking  
-[Dear ImGui](https://github.com/ocornut/imgui): 1.92.6 dock
+[DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.18_ImGui_v1.92.7-docking  
+[Dear ImGui](https://github.com/ocornut/imgui): 1.92.7 dock (2026/04)
 
 #### Zig fetch
 
@@ -167,7 +167,7 @@ And one can use many other libaries and examples with less external dependencies
     - [x] zig-0.15.2  
        Windows: [zig-x86_64-windows-0.15.2.zip](https://ziglang.org/download/0.15.2/zig-x86_64-windows-0.15.2.zip)  
        Linux:   [zig-x86_64-linux-0.15.2.tar.xz](https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz)
-    - [x] zig-0.16.0-dev.2915+065c6e794 (2026/03/18) [^except_raylib]
+    - [x] zig-0.16.0-dev.3070+065c6e794 (2026/04/02) [^except_raylib]
 
 - Windows11  
    - Optional: MSys2/MinGW basic commands (make, rm, cp ...)
@@ -384,7 +384,7 @@ zig build run --release=fast                           # or make run
 ---
 
 - Zig examples  
-Open `build.zig` in each example folder and **enable** option line as follows,
+Open `build.zig` in each example folder and **enable** the option line as follows,
 
   ```zig
   ... snip ...
@@ -396,7 +396,7 @@ Open `build.zig` in each example folder and **enable** option line as follows,
 
 
 - C examples  
-Open `Makefile` in each example folder and **change** option as follows,
+Open `Makefile` in each example folder and **change** the option line as follows,
 
   ```Makefile
   ... snip ...
@@ -426,9 +426,9 @@ https://github.com/libsdl-org/SDL/releases
 ---
 
 | Language             |          | Project                                                                                                                                         |
-| -------------------: | :---:    | :----------------------------------------------------------------:                                                                              |
+| -------------------: | :---:    | :----------------------------------------------------------------:                                                                              |  
 | **Lua**              | Script   | [LuaJITImGui](https://github.com/dinau/luajitImGui)                                                                                             |
-| **NeLua**            | Compiler | [NeLuaImGui](https://github.com/dinau/neluaImGui)                                                                                               |
+| **NeLua**            | Compiler | [NeLuaImGui](https://github.com/dinau/neluaImGui) / [NeLuaImGui2](https://github.com/dinau/neluaImGui2)                                         |
 | **Nim**              | Compiler | [ImGuin](https://github.com/dinau/imguin), [Nimgl_test](https://github.com/dinau/nimgl_test), [Nim_implot](https://github.com/dinau/nim_implot) |
 | **Python**           | Script   | [DearPyGui for 32bit WindowsOS Binary](https://github.com/dinau/DearPyGui32/tree/win32)                                                         |
 | **Ruby**             | Script   | [igRuby_Examples](https://github.com/dinau/igruby_examples)                                                                                     |

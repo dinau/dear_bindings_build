@@ -14,7 +14,7 @@
 #define DEAR_BINDINGS_INTERNAL_GLUE_CODE
 namespace cimgui
 {
-#include "dcimgui.h"
+#include "dcimgui_nodefaultargfunctions.h"
 }
 #undef DEAR_BINDINGS_INTERNAL_GLUE_CODE
 
@@ -381,12 +381,7 @@ CIMGUI_API void        cimgui::ImGui_ShowDebugLogWindow(bool* p_open)
     ::ImGui::ShowDebugLogWindow(p_open);
 }
 
-CIMGUI_API void        cimgui::ImGui_ShowIDStackToolWindow(void)
-{
-    ::ImGui::ShowIDStackToolWindow();
-}
-
-CIMGUI_API void        cimgui::ImGui_ShowIDStackToolWindowEx(bool* p_open)
+CIMGUI_API void        cimgui::ImGui_ShowIDStackToolWindow(bool* p_open)
 {
     ::ImGui::ShowIDStackToolWindow(p_open);
 }
@@ -516,12 +511,7 @@ CIMGUI_API cimgui::ImGuiViewport* cimgui::ImGui_GetWindowViewport(void)
     return reinterpret_cast<::cimgui::ImGuiViewport*>(::ImGui::GetWindowViewport());
 }
 
-CIMGUI_API void cimgui::ImGui_SetNextWindowPos(cimgui::ImVec2 pos, ImGuiCond cond)
-{
-    ::ImGui::SetNextWindowPos(ConvertToCPP_ImVec2(pos), cond);
-}
-
-CIMGUI_API void cimgui::ImGui_SetNextWindowPosEx(cimgui::ImVec2 pos, ImGuiCond cond, cimgui::ImVec2 pivot)
+CIMGUI_API void cimgui::ImGui_SetNextWindowPos(cimgui::ImVec2 pos, ImGuiCond cond, cimgui::ImVec2 pivot)
 {
     ::ImGui::SetNextWindowPos(ConvertToCPP_ImVec2(pos), cond, ConvertToCPP_ImVec2(pivot));
 }
@@ -691,12 +681,7 @@ CIMGUI_API void cimgui::ImGui_PushStyleColorImVec4(ImGuiCol idx, cimgui::ImVec4 
     ::ImGui::PushStyleColor(idx, ConvertToCPP_ImVec4(col));
 }
 
-CIMGUI_API void cimgui::ImGui_PopStyleColor(void)
-{
-    ::ImGui::PopStyleColor();
-}
-
-CIMGUI_API void cimgui::ImGui_PopStyleColorEx(int count)
+CIMGUI_API void cimgui::ImGui_PopStyleColor(int count)
 {
     ::ImGui::PopStyleColor(count);
 }
@@ -721,12 +706,7 @@ CIMGUI_API void cimgui::ImGui_PushStyleVarY(ImGuiStyleVar idx, float val_y)
     ::ImGui::PushStyleVarY(idx, val_y);
 }
 
-CIMGUI_API void cimgui::ImGui_PopStyleVar(void)
-{
-    ::ImGui::PopStyleVar();
-}
-
-CIMGUI_API void cimgui::ImGui_PopStyleVarEx(int count)
+CIMGUI_API void cimgui::ImGui_PopStyleVar(int count)
 {
     ::ImGui::PopStyleVar(count);
 }
@@ -776,12 +756,7 @@ CIMGUI_API cimgui::ImVec2 cimgui::ImGui_GetFontTexUvWhitePixel(void)
     return ConvertFromCPP_ImVec2(::ImGui::GetFontTexUvWhitePixel());
 }
 
-CIMGUI_API ImU32         cimgui::ImGui_GetColorU32(ImGuiCol idx)
-{
-    return ::ImGui::GetColorU32(idx);
-}
-
-CIMGUI_API ImU32         cimgui::ImGui_GetColorU32Ex(ImGuiCol idx, float alpha_mul)
+CIMGUI_API ImU32         cimgui::ImGui_GetColorU32(ImGuiCol idx, float alpha_mul)
 {
     return ::ImGui::GetColorU32(idx, alpha_mul);
 }
@@ -791,12 +766,7 @@ CIMGUI_API ImU32         cimgui::ImGui_GetColorU32ImVec4(cimgui::ImVec4 col)
     return ::ImGui::GetColorU32(ConvertToCPP_ImVec4(col));
 }
 
-CIMGUI_API ImU32         cimgui::ImGui_GetColorU32ImU32(ImU32 col)
-{
-    return ::ImGui::GetColorU32(col);
-}
-
-CIMGUI_API ImU32         cimgui::ImGui_GetColorU32ImU32Ex(ImU32 col, float alpha_mul)
+CIMGUI_API ImU32         cimgui::ImGui_GetColorU32ImU32(ImU32 col, float alpha_mul)
 {
     return ::ImGui::GetColorU32(col, alpha_mul);
 }
@@ -861,12 +831,7 @@ CIMGUI_API void  cimgui::ImGui_Separator(void)
     ::ImGui::Separator();
 }
 
-CIMGUI_API void  cimgui::ImGui_SameLine(void)
-{
-    ::ImGui::SameLine();
-}
-
-CIMGUI_API void  cimgui::ImGui_SameLineEx(float offset_from_start_x, float spacing)
+CIMGUI_API void  cimgui::ImGui_SameLine(float offset_from_start_x, float spacing)
 {
     ::ImGui::SameLine(offset_from_start_x, spacing);
 }
@@ -886,22 +851,12 @@ CIMGUI_API void  cimgui::ImGui_Dummy(cimgui::ImVec2 size)
     ::ImGui::Dummy(ConvertToCPP_ImVec2(size));
 }
 
-CIMGUI_API void  cimgui::ImGui_Indent(void)
-{
-    ::ImGui::Indent();
-}
-
-CIMGUI_API void  cimgui::ImGui_IndentEx(float indent_w)
+CIMGUI_API void  cimgui::ImGui_Indent(float indent_w)
 {
     ::ImGui::Indent(indent_w);
 }
 
-CIMGUI_API void  cimgui::ImGui_Unindent(void)
-{
-    ::ImGui::Unindent();
-}
-
-CIMGUI_API void  cimgui::ImGui_UnindentEx(float indent_w)
+CIMGUI_API void  cimgui::ImGui_Unindent(float indent_w)
 {
     ::ImGui::Unindent(indent_w);
 }
@@ -986,12 +941,7 @@ CIMGUI_API ImGuiID cimgui::ImGui_GetIDInt(int int_id)
     return ::ImGui::GetID(int_id);
 }
 
-CIMGUI_API void cimgui::ImGui_TextUnformatted(const char* text)
-{
-    ::ImGui::TextUnformatted(text);
-}
-
-CIMGUI_API void cimgui::ImGui_TextUnformattedEx(const char* text, const char* text_end)
+CIMGUI_API void cimgui::ImGui_TextUnformatted(const char* text, const char* text_end)
 {
     ::ImGui::TextUnformatted(text, text_end);
 }
@@ -1104,12 +1054,7 @@ CIMGUI_API void cimgui::ImGui_SeparatorText(const char* label)
     ::ImGui::SeparatorText(label);
 }
 
-CIMGUI_API bool cimgui::ImGui_Button(const char* label)
-{
-    return ::ImGui::Button(label);
-}
-
-CIMGUI_API bool cimgui::ImGui_ButtonEx(const char* label, cimgui::ImVec2 size)
+CIMGUI_API bool cimgui::ImGui_Button(const char* label, cimgui::ImVec2 size)
 {
     return ::ImGui::Button(label, ConvertToCPP_ImVec2(size));
 }
@@ -1169,42 +1114,22 @@ CIMGUI_API bool cimgui::ImGui_TextLink(const char* label)
     return ::ImGui::TextLink(label);
 }
 
-CIMGUI_API bool cimgui::ImGui_TextLinkOpenURL(const char* label)
-{
-    return ::ImGui::TextLinkOpenURL(label);
-}
-
-CIMGUI_API bool cimgui::ImGui_TextLinkOpenURLEx(const char* label, const char* url)
+CIMGUI_API bool cimgui::ImGui_TextLinkOpenURL(const char* label, const char* url)
 {
     return ::ImGui::TextLinkOpenURL(label, url);
 }
 
-CIMGUI_API void cimgui::ImGui_Image(cimgui::ImTextureRef tex_ref, cimgui::ImVec2 image_size)
-{
-    ::ImGui::Image(ConvertToCPP_ImTextureRef(tex_ref), ConvertToCPP_ImVec2(image_size));
-}
-
-CIMGUI_API void cimgui::ImGui_ImageEx(cimgui::ImTextureRef tex_ref, cimgui::ImVec2 image_size, cimgui::ImVec2 uv0, cimgui::ImVec2 uv1)
+CIMGUI_API void cimgui::ImGui_Image(cimgui::ImTextureRef tex_ref, cimgui::ImVec2 image_size, cimgui::ImVec2 uv0, cimgui::ImVec2 uv1)
 {
     ::ImGui::Image(ConvertToCPP_ImTextureRef(tex_ref), ConvertToCPP_ImVec2(image_size), ConvertToCPP_ImVec2(uv0), ConvertToCPP_ImVec2(uv1));
 }
 
-CIMGUI_API void cimgui::ImGui_ImageWithBg(cimgui::ImTextureRef tex_ref, cimgui::ImVec2 image_size)
-{
-    ::ImGui::ImageWithBg(ConvertToCPP_ImTextureRef(tex_ref), ConvertToCPP_ImVec2(image_size));
-}
-
-CIMGUI_API void cimgui::ImGui_ImageWithBgEx(cimgui::ImTextureRef tex_ref, cimgui::ImVec2 image_size, cimgui::ImVec2 uv0, cimgui::ImVec2 uv1, cimgui::ImVec4 bg_col, cimgui::ImVec4 tint_col)
+CIMGUI_API void cimgui::ImGui_ImageWithBg(cimgui::ImTextureRef tex_ref, cimgui::ImVec2 image_size, cimgui::ImVec2 uv0, cimgui::ImVec2 uv1, cimgui::ImVec4 bg_col, cimgui::ImVec4 tint_col)
 {
     ::ImGui::ImageWithBg(ConvertToCPP_ImTextureRef(tex_ref), ConvertToCPP_ImVec2(image_size), ConvertToCPP_ImVec2(uv0), ConvertToCPP_ImVec2(uv1), ConvertToCPP_ImVec4(bg_col), ConvertToCPP_ImVec4(tint_col));
 }
 
-CIMGUI_API bool cimgui::ImGui_ImageButton(const char* str_id, cimgui::ImTextureRef tex_ref, cimgui::ImVec2 image_size)
-{
-    return ::ImGui::ImageButton(str_id, ConvertToCPP_ImTextureRef(tex_ref), ConvertToCPP_ImVec2(image_size));
-}
-
-CIMGUI_API bool cimgui::ImGui_ImageButtonEx(const char* str_id, cimgui::ImTextureRef tex_ref, cimgui::ImVec2 image_size, cimgui::ImVec2 uv0, cimgui::ImVec2 uv1, cimgui::ImVec4 bg_col, cimgui::ImVec4 tint_col)
+CIMGUI_API bool cimgui::ImGui_ImageButton(const char* str_id, cimgui::ImTextureRef tex_ref, cimgui::ImVec2 image_size, cimgui::ImVec2 uv0, cimgui::ImVec2 uv1, cimgui::ImVec4 bg_col, cimgui::ImVec4 tint_col)
 {
     return ::ImGui::ImageButton(str_id, ConvertToCPP_ImTextureRef(tex_ref), ConvertToCPP_ImVec2(image_size), ConvertToCPP_ImVec2(uv0), ConvertToCPP_ImVec2(uv1), ConvertToCPP_ImVec4(bg_col), ConvertToCPP_ImVec4(tint_col));
 }
@@ -1219,372 +1144,187 @@ CIMGUI_API void cimgui::ImGui_EndCombo(void)
     ::ImGui::EndCombo();
 }
 
-CIMGUI_API bool cimgui::ImGui_ComboChar(const char* label, int* current_item, const char*const items[], int items_count)
-{
-    return ::ImGui::Combo(label, current_item, items, items_count);
-}
-
-CIMGUI_API bool cimgui::ImGui_ComboCharEx(const char* label, int* current_item, const char*const items[], int items_count, int popup_max_height_in_items)
+CIMGUI_API bool cimgui::ImGui_ComboChar(const char* label, int* current_item, const char*const items[], int items_count, int popup_max_height_in_items)
 {
     return ::ImGui::Combo(label, current_item, items, items_count, popup_max_height_in_items);
 }
 
-CIMGUI_API bool cimgui::ImGui_Combo(const char* label, int* current_item, const char* items_separated_by_zeros)
-{
-    return ::ImGui::Combo(label, current_item, items_separated_by_zeros);
-}
-
-CIMGUI_API bool cimgui::ImGui_ComboEx(const char* label, int* current_item, const char* items_separated_by_zeros, int popup_max_height_in_items)
+CIMGUI_API bool cimgui::ImGui_Combo(const char* label, int* current_item, const char* items_separated_by_zeros, int popup_max_height_in_items)
 {
     return ::ImGui::Combo(label, current_item, items_separated_by_zeros, popup_max_height_in_items);
 }
 
-CIMGUI_API bool cimgui::ImGui_ComboCallback(const char* label, int* current_item, const char* (*getter)(void* user_data, int idx), void* user_data, int items_count)
-{
-    return ::ImGui::Combo(label, current_item, getter, user_data, items_count);
-}
-
-CIMGUI_API bool cimgui::ImGui_ComboCallbackEx(const char* label, int* current_item, const char* (*getter)(void* user_data, int idx), void* user_data, int items_count, int popup_max_height_in_items)
+CIMGUI_API bool cimgui::ImGui_ComboCallback(const char* label, int* current_item, const char* (*getter)(void* user_data, int idx), void* user_data, int items_count, int popup_max_height_in_items)
 {
     return ::ImGui::Combo(label, current_item, getter, user_data, items_count, popup_max_height_in_items);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragFloat(const char* label, float* v)
-{
-    return ::ImGui::DragFloat(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragFloatEx(const char* label, float* v, float v_speed, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragFloat(const char* label, float* v, float v_speed, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragFloat(label, v, v_speed, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragFloat2(const char* label, float v[2])
-{
-    return ::ImGui::DragFloat2(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragFloat2Ex(const char* label, float v[2], float v_speed, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragFloat2(const char* label, float v[2], float v_speed, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragFloat2(label, v, v_speed, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragFloat3(const char* label, float v[3])
-{
-    return ::ImGui::DragFloat3(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragFloat3Ex(const char* label, float v[3], float v_speed, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragFloat3(const char* label, float v[3], float v_speed, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragFloat3(label, v, v_speed, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragFloat4(const char* label, float v[4])
-{
-    return ::ImGui::DragFloat4(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragFloat4Ex(const char* label, float v[4], float v_speed, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragFloat4(const char* label, float v[4], float v_speed, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragFloat4(label, v, v_speed, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragFloatRange2(const char* label, float* v_current_min, float* v_current_max)
-{
-    return ::ImGui::DragFloatRange2(label, v_current_min, v_current_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragFloatRange2Ex(const char* label, float* v_current_min, float* v_current_max, float v_speed, float v_min, float v_max, const char* format, const char* format_max, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragFloatRange2(const char* label, float* v_current_min, float* v_current_max, float v_speed, float v_min, float v_max, const char* format, const char* format_max, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragFloatRange2(label, v_current_min, v_current_max, v_speed, v_min, v_max, format, format_max, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragInt(const char* label, int* v)
-{
-    return ::ImGui::DragInt(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragIntEx(const char* label, int* v, float v_speed, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragInt(const char* label, int* v, float v_speed, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragInt(label, v, v_speed, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragInt2(const char* label, int v[2])
-{
-    return ::ImGui::DragInt2(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragInt2Ex(const char* label, int v[2], float v_speed, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragInt2(const char* label, int v[2], float v_speed, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragInt2(label, v, v_speed, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragInt3(const char* label, int v[3])
-{
-    return ::ImGui::DragInt3(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragInt3Ex(const char* label, int v[3], float v_speed, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragInt3(const char* label, int v[3], float v_speed, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragInt3(label, v, v_speed, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragInt4(const char* label, int v[4])
-{
-    return ::ImGui::DragInt4(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragInt4Ex(const char* label, int v[4], float v_speed, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragInt4(const char* label, int v[4], float v_speed, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragInt4(label, v, v_speed, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragIntRange2(const char* label, int* v_current_min, int* v_current_max)
-{
-    return ::ImGui::DragIntRange2(label, v_current_min, v_current_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragIntRange2Ex(const char* label, int* v_current_min, int* v_current_max, float v_speed, int v_min, int v_max, const char* format, const char* format_max, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragIntRange2(const char* label, int* v_current_min, int* v_current_max, float v_speed, int v_min, int v_max, const char* format, const char* format_max, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragIntRange2(label, v_current_min, v_current_max, v_speed, v_min, v_max, format, format_max, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragScalar(const char* label, ImGuiDataType data_type, void* p_data)
-{
-    return ::ImGui::DragScalar(label, data_type, p_data);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragScalarEx(const char* label, ImGuiDataType data_type, void* p_data, float v_speed, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragScalar(const char* label, ImGuiDataType data_type, void* p_data, float v_speed, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragScalar(label, data_type, p_data, v_speed, p_min, p_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_DragScalarN(const char* label, ImGuiDataType data_type, void* p_data, int components)
-{
-    return ::ImGui::DragScalarN(label, data_type, p_data, components);
-}
-
-CIMGUI_API bool cimgui::ImGui_DragScalarNEx(const char* label, ImGuiDataType data_type, void* p_data, int components, float v_speed, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_DragScalarN(const char* label, ImGuiDataType data_type, void* p_data, int components, float v_speed, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::DragScalarN(label, data_type, p_data, components, v_speed, p_min, p_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderFloat(const char* label, float* v, float v_min, float v_max)
-{
-    return ::ImGui::SliderFloat(label, v, v_min, v_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderFloatEx(const char* label, float* v, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderFloat(const char* label, float* v, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderFloat(label, v, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderFloat2(const char* label, float v[2], float v_min, float v_max)
-{
-    return ::ImGui::SliderFloat2(label, v, v_min, v_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderFloat2Ex(const char* label, float v[2], float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderFloat2(const char* label, float v[2], float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderFloat2(label, v, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderFloat3(const char* label, float v[3], float v_min, float v_max)
-{
-    return ::ImGui::SliderFloat3(label, v, v_min, v_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderFloat3Ex(const char* label, float v[3], float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderFloat3(const char* label, float v[3], float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderFloat3(label, v, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderFloat4(const char* label, float v[4], float v_min, float v_max)
-{
-    return ::ImGui::SliderFloat4(label, v, v_min, v_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderFloat4Ex(const char* label, float v[4], float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderFloat4(const char* label, float v[4], float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderFloat4(label, v, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderAngle(const char* label, float* v_rad)
-{
-    return ::ImGui::SliderAngle(label, v_rad);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderAngleEx(const char* label, float* v_rad, float v_degrees_min, float v_degrees_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderAngle(const char* label, float* v_rad, float v_degrees_min, float v_degrees_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderAngle(label, v_rad, v_degrees_min, v_degrees_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderInt(const char* label, int* v, int v_min, int v_max)
-{
-    return ::ImGui::SliderInt(label, v, v_min, v_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderIntEx(const char* label, int* v, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderInt(const char* label, int* v, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderInt(label, v, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderInt2(const char* label, int v[2], int v_min, int v_max)
-{
-    return ::ImGui::SliderInt2(label, v, v_min, v_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderInt2Ex(const char* label, int v[2], int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderInt2(const char* label, int v[2], int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderInt2(label, v, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderInt3(const char* label, int v[3], int v_min, int v_max)
-{
-    return ::ImGui::SliderInt3(label, v, v_min, v_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderInt3Ex(const char* label, int v[3], int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderInt3(const char* label, int v[3], int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderInt3(label, v, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderInt4(const char* label, int v[4], int v_min, int v_max)
-{
-    return ::ImGui::SliderInt4(label, v, v_min, v_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderInt4Ex(const char* label, int v[4], int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderInt4(const char* label, int v[4], int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderInt4(label, v, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderScalar(const char* label, ImGuiDataType data_type, void* p_data, const void* p_min, const void* p_max)
-{
-    return ::ImGui::SliderScalar(label, data_type, p_data, p_min, p_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderScalarEx(const char* label, ImGuiDataType data_type, void* p_data, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderScalar(const char* label, ImGuiDataType data_type, void* p_data, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderScalar(label, data_type, p_data, p_min, p_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_SliderScalarN(const char* label, ImGuiDataType data_type, void* p_data, int components, const void* p_min, const void* p_max)
-{
-    return ::ImGui::SliderScalarN(label, data_type, p_data, components, p_min, p_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_SliderScalarNEx(const char* label, ImGuiDataType data_type, void* p_data, int components, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_SliderScalarN(const char* label, ImGuiDataType data_type, void* p_data, int components, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::SliderScalarN(label, data_type, p_data, components, p_min, p_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_VSliderFloat(const char* label, cimgui::ImVec2 size, float* v, float v_min, float v_max)
-{
-    return ::ImGui::VSliderFloat(label, ConvertToCPP_ImVec2(size), v, v_min, v_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_VSliderFloatEx(const char* label, cimgui::ImVec2 size, float* v, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_VSliderFloat(const char* label, cimgui::ImVec2 size, float* v, float v_min, float v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::VSliderFloat(label, ConvertToCPP_ImVec2(size), v, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_VSliderInt(const char* label, cimgui::ImVec2 size, int* v, int v_min, int v_max)
-{
-    return ::ImGui::VSliderInt(label, ConvertToCPP_ImVec2(size), v, v_min, v_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_VSliderIntEx(const char* label, cimgui::ImVec2 size, int* v, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_VSliderInt(const char* label, cimgui::ImVec2 size, int* v, int v_min, int v_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::VSliderInt(label, ConvertToCPP_ImVec2(size), v, v_min, v_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_VSliderScalar(const char* label, cimgui::ImVec2 size, ImGuiDataType data_type, void* p_data, const void* p_min, const void* p_max)
-{
-    return ::ImGui::VSliderScalar(label, ConvertToCPP_ImVec2(size), data_type, p_data, p_min, p_max);
-}
-
-CIMGUI_API bool cimgui::ImGui_VSliderScalarEx(const char* label, cimgui::ImVec2 size, ImGuiDataType data_type, void* p_data, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
+CIMGUI_API bool cimgui::ImGui_VSliderScalar(const char* label, cimgui::ImVec2 size, ImGuiDataType data_type, void* p_data, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags)
 {
     return ::ImGui::VSliderScalar(label, ConvertToCPP_ImVec2(size), data_type, p_data, p_min, p_max, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputText(const char* label, char* buf, size_t buf_size, ImGuiInputTextFlags flags)
-{
-    return ::ImGui::InputText(label, buf, buf_size, flags);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputTextEx(const char* label, char* buf, size_t buf_size, ImGuiInputTextFlags flags, cimgui::ImGuiInputTextCallback callback, void* user_data)
+CIMGUI_API bool cimgui::ImGui_InputText(const char* label, char* buf, size_t buf_size, ImGuiInputTextFlags flags, cimgui::ImGuiInputTextCallback callback, void* user_data)
 {
     return ::ImGui::InputText(label, buf, buf_size, flags, reinterpret_cast<::ImGuiInputTextCallback>(callback), user_data);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputTextMultiline(const char* label, char* buf, size_t buf_size)
-{
-    return ::ImGui::InputTextMultiline(label, buf, buf_size);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputTextMultilineEx(const char* label, char* buf, size_t buf_size, cimgui::ImVec2 size, ImGuiInputTextFlags flags, cimgui::ImGuiInputTextCallback callback, void* user_data)
+CIMGUI_API bool cimgui::ImGui_InputTextMultiline(const char* label, char* buf, size_t buf_size, cimgui::ImVec2 size, ImGuiInputTextFlags flags, cimgui::ImGuiInputTextCallback callback, void* user_data)
 {
     return ::ImGui::InputTextMultiline(label, buf, buf_size, ConvertToCPP_ImVec2(size), flags, reinterpret_cast<::ImGuiInputTextCallback>(callback), user_data);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputTextWithHint(const char* label, const char* hint, char* buf, size_t buf_size, ImGuiInputTextFlags flags)
-{
-    return ::ImGui::InputTextWithHint(label, hint, buf, buf_size, flags);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputTextWithHintEx(const char* label, const char* hint, char* buf, size_t buf_size, ImGuiInputTextFlags flags, cimgui::ImGuiInputTextCallback callback, void* user_data)
+CIMGUI_API bool cimgui::ImGui_InputTextWithHint(const char* label, const char* hint, char* buf, size_t buf_size, ImGuiInputTextFlags flags, cimgui::ImGuiInputTextCallback callback, void* user_data)
 {
     return ::ImGui::InputTextWithHint(label, hint, buf, buf_size, flags, reinterpret_cast<::ImGuiInputTextCallback>(callback), user_data);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputFloat(const char* label, float* v)
-{
-    return ::ImGui::InputFloat(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputFloatEx(const char* label, float* v, float step, float step_fast, const char* format, ImGuiInputTextFlags flags)
+CIMGUI_API bool cimgui::ImGui_InputFloat(const char* label, float* v, float step, float step_fast, const char* format, ImGuiInputTextFlags flags)
 {
     return ::ImGui::InputFloat(label, v, step, step_fast, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputFloat2(const char* label, float v[2])
-{
-    return ::ImGui::InputFloat2(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputFloat2Ex(const char* label, float v[2], const char* format, ImGuiInputTextFlags flags)
+CIMGUI_API bool cimgui::ImGui_InputFloat2(const char* label, float v[2], const char* format, ImGuiInputTextFlags flags)
 {
     return ::ImGui::InputFloat2(label, v, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputFloat3(const char* label, float v[3])
-{
-    return ::ImGui::InputFloat3(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputFloat3Ex(const char* label, float v[3], const char* format, ImGuiInputTextFlags flags)
+CIMGUI_API bool cimgui::ImGui_InputFloat3(const char* label, float v[3], const char* format, ImGuiInputTextFlags flags)
 {
     return ::ImGui::InputFloat3(label, v, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputFloat4(const char* label, float v[4])
-{
-    return ::ImGui::InputFloat4(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputFloat4Ex(const char* label, float v[4], const char* format, ImGuiInputTextFlags flags)
+CIMGUI_API bool cimgui::ImGui_InputFloat4(const char* label, float v[4], const char* format, ImGuiInputTextFlags flags)
 {
     return ::ImGui::InputFloat4(label, v, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputInt(const char* label, int* v)
-{
-    return ::ImGui::InputInt(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputIntEx(const char* label, int* v, int step, int step_fast, ImGuiInputTextFlags flags)
+CIMGUI_API bool cimgui::ImGui_InputInt(const char* label, int* v, int step, int step_fast, ImGuiInputTextFlags flags)
 {
     return ::ImGui::InputInt(label, v, step, step_fast, flags);
 }
@@ -1604,32 +1344,17 @@ CIMGUI_API bool cimgui::ImGui_InputInt4(const char* label, int v[4], ImGuiInputT
     return ::ImGui::InputInt4(label, v, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputDouble(const char* label, double* v)
-{
-    return ::ImGui::InputDouble(label, v);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputDoubleEx(const char* label, double* v, double step, double step_fast, const char* format, ImGuiInputTextFlags flags)
+CIMGUI_API bool cimgui::ImGui_InputDouble(const char* label, double* v, double step, double step_fast, const char* format, ImGuiInputTextFlags flags)
 {
     return ::ImGui::InputDouble(label, v, step, step_fast, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputScalar(const char* label, ImGuiDataType data_type, void* p_data)
-{
-    return ::ImGui::InputScalar(label, data_type, p_data);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputScalarEx(const char* label, ImGuiDataType data_type, void* p_data, const void* p_step, const void* p_step_fast, const char* format, ImGuiInputTextFlags flags)
+CIMGUI_API bool cimgui::ImGui_InputScalar(const char* label, ImGuiDataType data_type, void* p_data, const void* p_step, const void* p_step_fast, const char* format, ImGuiInputTextFlags flags)
 {
     return ::ImGui::InputScalar(label, data_type, p_data, p_step, p_step_fast, format, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_InputScalarN(const char* label, ImGuiDataType data_type, void* p_data, int components)
-{
-    return ::ImGui::InputScalarN(label, data_type, p_data, components);
-}
-
-CIMGUI_API bool cimgui::ImGui_InputScalarNEx(const char* label, ImGuiDataType data_type, void* p_data, int components, const void* p_step, const void* p_step_fast, const char* format, ImGuiInputTextFlags flags)
+CIMGUI_API bool cimgui::ImGui_InputScalarN(const char* label, ImGuiDataType data_type, void* p_data, int components, const void* p_step, const void* p_step_fast, const char* format, ImGuiInputTextFlags flags)
 {
     return ::ImGui::InputScalarN(label, data_type, p_data, components, p_step, p_step_fast, format, flags);
 }
@@ -1654,12 +1379,7 @@ CIMGUI_API bool cimgui::ImGui_ColorPicker4(const char* label, float col[4], ImGu
     return ::ImGui::ColorPicker4(label, col, flags, ref_col);
 }
 
-CIMGUI_API bool cimgui::ImGui_ColorButton(const char* desc_id, cimgui::ImVec4 col, ImGuiColorEditFlags flags)
-{
-    return ::ImGui::ColorButton(desc_id, ConvertToCPP_ImVec4(col), flags);
-}
-
-CIMGUI_API bool cimgui::ImGui_ColorButtonEx(const char* desc_id, cimgui::ImVec4 col, ImGuiColorEditFlags flags, cimgui::ImVec2 size)
+CIMGUI_API bool cimgui::ImGui_ColorButton(const char* desc_id, cimgui::ImVec4 col, ImGuiColorEditFlags flags, cimgui::ImVec2 size)
 {
     return ::ImGui::ColorButton(desc_id, ConvertToCPP_ImVec4(col), flags, ConvertToCPP_ImVec2(size));
 }
@@ -1800,32 +1520,17 @@ CIMGUI_API bool  cimgui::ImGui_TreeNodeGetOpen(ImGuiID storage_id)
     return ::ImGui::TreeNodeGetOpen(storage_id);
 }
 
-CIMGUI_API bool cimgui::ImGui_Selectable(const char* label)
-{
-    return ::ImGui::Selectable(label);
-}
-
-CIMGUI_API bool cimgui::ImGui_SelectableEx(const char* label, bool selected, ImGuiSelectableFlags flags, cimgui::ImVec2 size)
+CIMGUI_API bool cimgui::ImGui_Selectable(const char* label, bool selected, ImGuiSelectableFlags flags, cimgui::ImVec2 size)
 {
     return ::ImGui::Selectable(label, selected, flags, ConvertToCPP_ImVec2(size));
 }
 
-CIMGUI_API bool cimgui::ImGui_SelectableBoolPtr(const char* label, bool* p_selected, ImGuiSelectableFlags flags)
-{
-    return ::ImGui::Selectable(label, p_selected, flags);
-}
-
-CIMGUI_API bool cimgui::ImGui_SelectableBoolPtrEx(const char* label, bool* p_selected, ImGuiSelectableFlags flags, cimgui::ImVec2 size)
+CIMGUI_API bool cimgui::ImGui_SelectableBoolPtr(const char* label, bool* p_selected, ImGuiSelectableFlags flags, cimgui::ImVec2 size)
 {
     return ::ImGui::Selectable(label, p_selected, flags, ConvertToCPP_ImVec2(size));
 }
 
-CIMGUI_API cimgui::ImGuiMultiSelectIO* cimgui::ImGui_BeginMultiSelect(ImGuiMultiSelectFlags flags)
-{
-    return reinterpret_cast<::cimgui::ImGuiMultiSelectIO*>(::ImGui::BeginMultiSelect(flags));
-}
-
-CIMGUI_API cimgui::ImGuiMultiSelectIO* cimgui::ImGui_BeginMultiSelectEx(ImGuiMultiSelectFlags flags, int selection_size, int items_count)
+CIMGUI_API cimgui::ImGuiMultiSelectIO* cimgui::ImGui_BeginMultiSelect(ImGuiMultiSelectFlags flags, int selection_size, int items_count)
 {
     return reinterpret_cast<::cimgui::ImGuiMultiSelectIO*>(::ImGui::BeginMultiSelect(flags, selection_size, items_count));
 }
@@ -1860,52 +1565,27 @@ CIMGUI_API bool cimgui::ImGui_ListBox(const char* label, int* current_item, cons
     return ::ImGui::ListBox(label, current_item, items, items_count, height_in_items);
 }
 
-CIMGUI_API bool cimgui::ImGui_ListBoxCallback(const char* label, int* current_item, const char* (*getter)(void* user_data, int idx), void* user_data, int items_count)
-{
-    return ::ImGui::ListBox(label, current_item, getter, user_data, items_count);
-}
-
-CIMGUI_API bool cimgui::ImGui_ListBoxCallbackEx(const char* label, int* current_item, const char* (*getter)(void* user_data, int idx), void* user_data, int items_count, int height_in_items)
+CIMGUI_API bool cimgui::ImGui_ListBoxCallback(const char* label, int* current_item, const char* (*getter)(void* user_data, int idx), void* user_data, int items_count, int height_in_items)
 {
     return ::ImGui::ListBox(label, current_item, getter, user_data, items_count, height_in_items);
 }
 
-CIMGUI_API void cimgui::ImGui_PlotLines(const char* label, const float* values, int values_count)
-{
-    ::ImGui::PlotLines(label, values, values_count);
-}
-
-CIMGUI_API void cimgui::ImGui_PlotLinesEx(const char* label, const float* values, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, cimgui::ImVec2 graph_size, int stride)
+CIMGUI_API void cimgui::ImGui_PlotLines(const char* label, const float* values, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, cimgui::ImVec2 graph_size, int stride)
 {
     ::ImGui::PlotLines(label, values, values_count, values_offset, overlay_text, scale_min, scale_max, ConvertToCPP_ImVec2(graph_size), stride);
 }
 
-CIMGUI_API void cimgui::ImGui_PlotLinesCallback(const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count)
-{
-    ::ImGui::PlotLines(label, values_getter, data, values_count);
-}
-
-CIMGUI_API void cimgui::ImGui_PlotLinesCallbackEx(const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, cimgui::ImVec2 graph_size)
+CIMGUI_API void cimgui::ImGui_PlotLinesCallback(const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, cimgui::ImVec2 graph_size)
 {
     ::ImGui::PlotLines(label, values_getter, data, values_count, values_offset, overlay_text, scale_min, scale_max, ConvertToCPP_ImVec2(graph_size));
 }
 
-CIMGUI_API void cimgui::ImGui_PlotHistogram(const char* label, const float* values, int values_count)
-{
-    ::ImGui::PlotHistogram(label, values, values_count);
-}
-
-CIMGUI_API void cimgui::ImGui_PlotHistogramEx(const char* label, const float* values, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, cimgui::ImVec2 graph_size, int stride)
+CIMGUI_API void cimgui::ImGui_PlotHistogram(const char* label, const float* values, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, cimgui::ImVec2 graph_size, int stride)
 {
     ::ImGui::PlotHistogram(label, values, values_count, values_offset, overlay_text, scale_min, scale_max, ConvertToCPP_ImVec2(graph_size), stride);
 }
 
-CIMGUI_API void cimgui::ImGui_PlotHistogramCallback(const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count)
-{
-    ::ImGui::PlotHistogram(label, values_getter, data, values_count);
-}
-
-CIMGUI_API void cimgui::ImGui_PlotHistogramCallbackEx(const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, cimgui::ImVec2 graph_size)
+CIMGUI_API void cimgui::ImGui_PlotHistogramCallback(const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, cimgui::ImVec2 graph_size)
 {
     ::ImGui::PlotHistogram(label, values_getter, data, values_count, values_offset, overlay_text, scale_min, scale_max, ConvertToCPP_ImVec2(graph_size));
 }
@@ -1930,12 +1610,7 @@ CIMGUI_API void cimgui::ImGui_EndMainMenuBar(void)
     ::ImGui::EndMainMenuBar();
 }
 
-CIMGUI_API bool cimgui::ImGui_BeginMenu(const char* label)
-{
-    return ::ImGui::BeginMenu(label);
-}
-
-CIMGUI_API bool cimgui::ImGui_BeginMenuEx(const char* label, bool enabled)
+CIMGUI_API bool cimgui::ImGui_BeginMenu(const char* label, bool enabled)
 {
     return ::ImGui::BeginMenu(label, enabled);
 }
@@ -1945,12 +1620,7 @@ CIMGUI_API void cimgui::ImGui_EndMenu(void)
     ::ImGui::EndMenu();
 }
 
-CIMGUI_API bool cimgui::ImGui_MenuItem(const char* label)
-{
-    return ::ImGui::MenuItem(label);
-}
-
-CIMGUI_API bool cimgui::ImGui_MenuItemEx(const char* label, const char* shortcut, bool selected, bool enabled)
+CIMGUI_API bool cimgui::ImGui_MenuItem(const char* label, const char* shortcut, bool selected, bool enabled)
 {
     return ::ImGui::MenuItem(label, shortcut, selected, enabled);
 }
@@ -2046,32 +1716,17 @@ CIMGUI_API void cimgui::ImGui_CloseCurrentPopup(void)
     ::ImGui::CloseCurrentPopup();
 }
 
-CIMGUI_API bool cimgui::ImGui_BeginPopupContextItem(void)
-{
-    return ::ImGui::BeginPopupContextItem();
-}
-
-CIMGUI_API bool cimgui::ImGui_BeginPopupContextItemEx(const char* str_id, ImGuiPopupFlags popup_flags)
+CIMGUI_API bool cimgui::ImGui_BeginPopupContextItem(const char* str_id, ImGuiPopupFlags popup_flags)
 {
     return ::ImGui::BeginPopupContextItem(str_id, popup_flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_BeginPopupContextWindow(void)
-{
-    return ::ImGui::BeginPopupContextWindow();
-}
-
-CIMGUI_API bool cimgui::ImGui_BeginPopupContextWindowEx(const char* str_id, ImGuiPopupFlags popup_flags)
+CIMGUI_API bool cimgui::ImGui_BeginPopupContextWindow(const char* str_id, ImGuiPopupFlags popup_flags)
 {
     return ::ImGui::BeginPopupContextWindow(str_id, popup_flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_BeginPopupContextVoid(void)
-{
-    return ::ImGui::BeginPopupContextVoid();
-}
-
-CIMGUI_API bool cimgui::ImGui_BeginPopupContextVoidEx(const char* str_id, ImGuiPopupFlags popup_flags)
+CIMGUI_API bool cimgui::ImGui_BeginPopupContextVoid(const char* str_id, ImGuiPopupFlags popup_flags)
 {
     return ::ImGui::BeginPopupContextVoid(str_id, popup_flags);
 }
@@ -2081,12 +1736,7 @@ CIMGUI_API bool cimgui::ImGui_IsPopupOpen(const char* str_id, ImGuiPopupFlags fl
     return ::ImGui::IsPopupOpen(str_id, flags);
 }
 
-CIMGUI_API bool cimgui::ImGui_BeginTable(const char* str_id, int columns, ImGuiTableFlags flags)
-{
-    return ::ImGui::BeginTable(str_id, columns, flags);
-}
-
-CIMGUI_API bool cimgui::ImGui_BeginTableEx(const char* str_id, int columns, ImGuiTableFlags flags, cimgui::ImVec2 outer_size, float inner_width)
+CIMGUI_API bool cimgui::ImGui_BeginTable(const char* str_id, int columns, ImGuiTableFlags flags, cimgui::ImVec2 outer_size, float inner_width)
 {
     return ::ImGui::BeginTable(str_id, columns, flags, ConvertToCPP_ImVec2(outer_size), inner_width);
 }
@@ -2096,12 +1746,7 @@ CIMGUI_API void cimgui::ImGui_EndTable(void)
     ::ImGui::EndTable();
 }
 
-CIMGUI_API void cimgui::ImGui_TableNextRow(void)
-{
-    ::ImGui::TableNextRow();
-}
-
-CIMGUI_API void cimgui::ImGui_TableNextRowEx(ImGuiTableRowFlags row_flags, float min_row_height)
+CIMGUI_API void cimgui::ImGui_TableNextRow(ImGuiTableRowFlags row_flags, float min_row_height)
 {
     ::ImGui::TableNextRow(row_flags, min_row_height);
 }
@@ -2116,12 +1761,7 @@ CIMGUI_API bool cimgui::ImGui_TableSetColumnIndex(int column_n)
     return ::ImGui::TableSetColumnIndex(column_n);
 }
 
-CIMGUI_API void cimgui::ImGui_TableSetupColumn(const char* label, ImGuiTableColumnFlags flags)
-{
-    ::ImGui::TableSetupColumn(label, flags);
-}
-
-CIMGUI_API void cimgui::ImGui_TableSetupColumnEx(const char* label, ImGuiTableColumnFlags flags, float init_width_or_weight, ImGuiID user_id)
+CIMGUI_API void cimgui::ImGui_TableSetupColumn(const char* label, ImGuiTableColumnFlags flags, float init_width_or_weight, ImGuiID user_id)
 {
     ::ImGui::TableSetupColumn(label, flags, init_width_or_weight, user_id);
 }
@@ -2191,12 +1831,7 @@ CIMGUI_API void                  cimgui::ImGui_TableSetBgColor(ImGuiTableBgTarge
     ::ImGui::TableSetBgColor(target, color, column_n);
 }
 
-CIMGUI_API void  cimgui::ImGui_Columns(void)
-{
-    ::ImGui::Columns();
-}
-
-CIMGUI_API void  cimgui::ImGui_ColumnsEx(int count, const char* id, bool borders)
+CIMGUI_API void  cimgui::ImGui_Columns(int count, const char* id, bool borders)
 {
     ::ImGui::Columns(count, id, borders);
 }
@@ -2266,22 +1901,12 @@ CIMGUI_API void cimgui::ImGui_SetTabItemClosed(const char* tab_or_docked_window_
     ::ImGui::SetTabItemClosed(tab_or_docked_window_label);
 }
 
-CIMGUI_API ImGuiID cimgui::ImGui_DockSpace(ImGuiID dockspace_id)
-{
-    return ::ImGui::DockSpace(dockspace_id);
-}
-
-CIMGUI_API ImGuiID cimgui::ImGui_DockSpaceEx(ImGuiID dockspace_id, cimgui::ImVec2 size, ImGuiDockNodeFlags flags, const cimgui::ImGuiWindowClass* window_class)
+CIMGUI_API ImGuiID cimgui::ImGui_DockSpace(ImGuiID dockspace_id, cimgui::ImVec2 size, ImGuiDockNodeFlags flags, const cimgui::ImGuiWindowClass* window_class)
 {
     return ::ImGui::DockSpace(dockspace_id, ConvertToCPP_ImVec2(size), flags, reinterpret_cast<const ::ImGuiWindowClass*>(window_class));
 }
 
-CIMGUI_API ImGuiID cimgui::ImGui_DockSpaceOverViewport(void)
-{
-    return ::ImGui::DockSpaceOverViewport();
-}
-
-CIMGUI_API ImGuiID cimgui::ImGui_DockSpaceOverViewportEx(ImGuiID dockspace_id, const cimgui::ImGuiViewport* viewport, ImGuiDockNodeFlags flags, const cimgui::ImGuiWindowClass* window_class)
+CIMGUI_API ImGuiID cimgui::ImGui_DockSpaceOverViewport(ImGuiID dockspace_id, const cimgui::ImGuiViewport* viewport, ImGuiDockNodeFlags flags, const cimgui::ImGuiWindowClass* window_class)
 {
     return ::ImGui::DockSpaceOverViewport(dockspace_id, reinterpret_cast<const ::ImGuiViewport*>(viewport), flags, reinterpret_cast<const ::ImGuiWindowClass*>(window_class));
 }
@@ -2409,12 +2034,7 @@ CIMGUI_API void cimgui::ImGui_SetItemDefaultFocus(void)
     ::ImGui::SetItemDefaultFocus();
 }
 
-CIMGUI_API void cimgui::ImGui_SetKeyboardFocusHere(void)
-{
-    ::ImGui::SetKeyboardFocusHere();
-}
-
-CIMGUI_API void cimgui::ImGui_SetKeyboardFocusHereEx(int offset)
+CIMGUI_API void cimgui::ImGui_SetKeyboardFocusHere(int offset)
 {
     ::ImGui::SetKeyboardFocusHere(offset);
 }
@@ -2444,12 +2064,7 @@ CIMGUI_API bool           cimgui::ImGui_IsItemFocused(void)
     return ::ImGui::IsItemFocused();
 }
 
-CIMGUI_API bool           cimgui::ImGui_IsItemClicked(void)
-{
-    return ::ImGui::IsItemClicked();
-}
-
-CIMGUI_API bool           cimgui::ImGui_IsItemClickedEx(ImGuiMouseButton mouse_button)
+CIMGUI_API bool           cimgui::ImGui_IsItemClicked(ImGuiMouseButton mouse_button)
 {
     return ::ImGui::IsItemClicked(mouse_button);
 }
@@ -2529,22 +2144,12 @@ CIMGUI_API cimgui::ImGuiViewport* cimgui::ImGui_GetMainViewport(void)
     return reinterpret_cast<::cimgui::ImGuiViewport*>(::ImGui::GetMainViewport());
 }
 
-CIMGUI_API cimgui::ImDrawList* cimgui::ImGui_GetBackgroundDrawList(void)
-{
-    return reinterpret_cast<::cimgui::ImDrawList*>(::ImGui::GetBackgroundDrawList());
-}
-
-CIMGUI_API cimgui::ImDrawList* cimgui::ImGui_GetBackgroundDrawListEx(cimgui::ImGuiViewport* viewport)
+CIMGUI_API cimgui::ImDrawList* cimgui::ImGui_GetBackgroundDrawList(cimgui::ImGuiViewport* viewport)
 {
     return reinterpret_cast<::cimgui::ImDrawList*>(::ImGui::GetBackgroundDrawList(reinterpret_cast<::ImGuiViewport*>(viewport)));
 }
 
-CIMGUI_API cimgui::ImDrawList* cimgui::ImGui_GetForegroundDrawList(void)
-{
-    return reinterpret_cast<::cimgui::ImDrawList*>(::ImGui::GetForegroundDrawList());
-}
-
-CIMGUI_API cimgui::ImDrawList* cimgui::ImGui_GetForegroundDrawListEx(cimgui::ImGuiViewport* viewport)
+CIMGUI_API cimgui::ImDrawList* cimgui::ImGui_GetForegroundDrawList(cimgui::ImGuiViewport* viewport)
 {
     return reinterpret_cast<::cimgui::ImDrawList*>(::ImGui::GetForegroundDrawList(reinterpret_cast<::ImGuiViewport*>(viewport)));
 }
@@ -2589,12 +2194,7 @@ CIMGUI_API cimgui::ImGuiStorage* cimgui::ImGui_GetStateStorage(void)
     return reinterpret_cast<::cimgui::ImGuiStorage*>(::ImGui::GetStateStorage());
 }
 
-CIMGUI_API cimgui::ImVec2 cimgui::ImGui_CalcTextSize(const char* text)
-{
-    return ConvertFromCPP_ImVec2(::ImGui::CalcTextSize(text));
-}
-
-CIMGUI_API cimgui::ImVec2 cimgui::ImGui_CalcTextSizeEx(const char* text, const char* text_end, bool hide_text_after_double_hash, float wrap_width)
+CIMGUI_API cimgui::ImVec2 cimgui::ImGui_CalcTextSize(const char* text, const char* text_end, bool hide_text_after_double_hash, float wrap_width)
 {
     return ConvertFromCPP_ImVec2(::ImGui::CalcTextSize(text, text_end, hide_text_after_double_hash, wrap_width));
 }
@@ -2624,12 +2224,7 @@ CIMGUI_API bool        cimgui::ImGui_IsKeyDown(cimgui::ImGuiKey key)
     return ::ImGui::IsKeyDown(static_cast<::ImGuiKey>(key));
 }
 
-CIMGUI_API bool        cimgui::ImGui_IsKeyPressed(cimgui::ImGuiKey key)
-{
-    return ::ImGui::IsKeyPressed(static_cast<::ImGuiKey>(key));
-}
-
-CIMGUI_API bool        cimgui::ImGui_IsKeyPressedEx(cimgui::ImGuiKey key, bool repeat)
+CIMGUI_API bool        cimgui::ImGui_IsKeyPressed(cimgui::ImGuiKey key, bool repeat)
 {
     return ::ImGui::IsKeyPressed(static_cast<::ImGuiKey>(key), repeat);
 }
@@ -2679,12 +2274,7 @@ CIMGUI_API bool             cimgui::ImGui_IsMouseDown(ImGuiMouseButton button)
     return ::ImGui::IsMouseDown(button);
 }
 
-CIMGUI_API bool             cimgui::ImGui_IsMouseClicked(ImGuiMouseButton button)
-{
-    return ::ImGui::IsMouseClicked(button);
-}
-
-CIMGUI_API bool             cimgui::ImGui_IsMouseClickedEx(ImGuiMouseButton button, bool repeat)
+CIMGUI_API bool             cimgui::ImGui_IsMouseClicked(ImGuiMouseButton button, bool repeat)
 {
     return ::ImGui::IsMouseClicked(button, repeat);
 }
@@ -2709,12 +2299,7 @@ CIMGUI_API int              cimgui::ImGui_GetMouseClickedCount(ImGuiMouseButton 
     return ::ImGui::GetMouseClickedCount(button);
 }
 
-CIMGUI_API bool             cimgui::ImGui_IsMouseHoveringRect(cimgui::ImVec2 r_min, cimgui::ImVec2 r_max)
-{
-    return ::ImGui::IsMouseHoveringRect(ConvertToCPP_ImVec2(r_min), ConvertToCPP_ImVec2(r_max));
-}
-
-CIMGUI_API bool             cimgui::ImGui_IsMouseHoveringRectEx(cimgui::ImVec2 r_min, cimgui::ImVec2 r_max, bool clip)
+CIMGUI_API bool             cimgui::ImGui_IsMouseHoveringRect(cimgui::ImVec2 r_min, cimgui::ImVec2 r_max, bool clip)
 {
     return ::ImGui::IsMouseHoveringRect(ConvertToCPP_ImVec2(r_min), ConvertToCPP_ImVec2(r_max), clip);
 }
@@ -2749,12 +2334,7 @@ CIMGUI_API cimgui::ImVec2   cimgui::ImGui_GetMouseDragDelta(ImGuiMouseButton but
     return ConvertFromCPP_ImVec2(::ImGui::GetMouseDragDelta(button, lock_threshold));
 }
 
-CIMGUI_API void             cimgui::ImGui_ResetMouseDragDelta(void)
-{
-    ::ImGui::ResetMouseDragDelta();
-}
-
-CIMGUI_API void             cimgui::ImGui_ResetMouseDragDeltaEx(ImGuiMouseButton button)
+CIMGUI_API void             cimgui::ImGui_ResetMouseDragDelta(ImGuiMouseButton button)
 {
     ::ImGui::ResetMouseDragDelta(button);
 }
@@ -2871,12 +2451,7 @@ CIMGUI_API void           cimgui::ImGui_UpdatePlatformWindows(void)
     ::ImGui::UpdatePlatformWindows();
 }
 
-CIMGUI_API void           cimgui::ImGui_RenderPlatformWindowsDefault(void)
-{
-    ::ImGui::RenderPlatformWindowsDefault();
-}
-
-CIMGUI_API void           cimgui::ImGui_RenderPlatformWindowsDefaultEx(void* platform_render_arg, void* renderer_render_arg)
+CIMGUI_API void           cimgui::ImGui_RenderPlatformWindowsDefault(void* platform_render_arg, void* renderer_render_arg)
 {
     ::ImGui::RenderPlatformWindowsDefault(platform_render_arg, renderer_render_arg);
 }
@@ -2956,12 +2531,7 @@ CIMGUI_API void cimgui::ImGuiIO_AddInputCharactersUTF8(cimgui::ImGuiIO* self, co
     reinterpret_cast<::ImGuiIO*>(self)->AddInputCharactersUTF8(str);
 }
 
-CIMGUI_API void cimgui::ImGuiIO_SetKeyEventNativeData(cimgui::ImGuiIO* self, cimgui::ImGuiKey key, int native_keycode, int native_scancode)
-{
-    reinterpret_cast<::ImGuiIO*>(self)->SetKeyEventNativeData(static_cast<::ImGuiKey>(key), native_keycode, native_scancode);
-}
-
-CIMGUI_API void cimgui::ImGuiIO_SetKeyEventNativeDataEx(cimgui::ImGuiIO* self, cimgui::ImGuiKey key, int native_keycode, int native_scancode, int native_legacy_index)
+CIMGUI_API void cimgui::ImGuiIO_SetKeyEventNativeData(cimgui::ImGuiIO* self, cimgui::ImGuiKey key, int native_keycode, int native_scancode, int native_legacy_index)
 {
     reinterpret_cast<::ImGuiIO*>(self)->SetKeyEventNativeData(static_cast<::ImGuiKey>(key), native_keycode, native_scancode, native_legacy_index);
 }
@@ -3349,32 +2919,17 @@ CIMGUI_API cimgui::ImVec2 cimgui::ImDrawList_GetClipRectMax(const cimgui::ImDraw
     return ConvertFromCPP_ImVec2(reinterpret_cast<const ::ImDrawList*>(self)->GetClipRectMax());
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddLine(cimgui::ImDrawList* self, cimgui::ImVec2 p1, cimgui::ImVec2 p2, ImU32 col)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddLine(ConvertToCPP_ImVec2(p1), ConvertToCPP_ImVec2(p2), col);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddLineEx(cimgui::ImDrawList* self, cimgui::ImVec2 p1, cimgui::ImVec2 p2, ImU32 col, float thickness)
+CIMGUI_API void        cimgui::ImDrawList_AddLine(cimgui::ImDrawList* self, cimgui::ImVec2 p1, cimgui::ImVec2 p2, ImU32 col, float thickness)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddLine(ConvertToCPP_ImVec2(p1), ConvertToCPP_ImVec2(p2), col, thickness);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddRect(cimgui::ImDrawList* self, cimgui::ImVec2 p_min, cimgui::ImVec2 p_max, ImU32 col)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddRect(ConvertToCPP_ImVec2(p_min), ConvertToCPP_ImVec2(p_max), col);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddRectEx(cimgui::ImDrawList* self, cimgui::ImVec2 p_min, cimgui::ImVec2 p_max, ImU32 col, float rounding, ImDrawFlags flags, float thickness)
+CIMGUI_API void        cimgui::ImDrawList_AddRect(cimgui::ImDrawList* self, cimgui::ImVec2 p_min, cimgui::ImVec2 p_max, ImU32 col, float rounding, ImDrawFlags flags, float thickness)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddRect(ConvertToCPP_ImVec2(p_min), ConvertToCPP_ImVec2(p_max), col, rounding, flags, thickness);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddRectFilled(cimgui::ImDrawList* self, cimgui::ImVec2 p_min, cimgui::ImVec2 p_max, ImU32 col)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddRectFilled(ConvertToCPP_ImVec2(p_min), ConvertToCPP_ImVec2(p_max), col);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddRectFilledEx(cimgui::ImDrawList* self, cimgui::ImVec2 p_min, cimgui::ImVec2 p_max, ImU32 col, float rounding, ImDrawFlags flags)
+CIMGUI_API void        cimgui::ImDrawList_AddRectFilled(cimgui::ImDrawList* self, cimgui::ImVec2 p_min, cimgui::ImVec2 p_max, ImU32 col, float rounding, ImDrawFlags flags)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddRectFilled(ConvertToCPP_ImVec2(p_min), ConvertToCPP_ImVec2(p_max), col, rounding, flags);
 }
@@ -3384,12 +2939,7 @@ CIMGUI_API void        cimgui::ImDrawList_AddRectFilledMultiColor(cimgui::ImDraw
     reinterpret_cast<::ImDrawList*>(self)->AddRectFilledMultiColor(ConvertToCPP_ImVec2(p_min), ConvertToCPP_ImVec2(p_max), col_upr_left, col_upr_right, col_bot_right, col_bot_left);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddQuad(cimgui::ImDrawList* self, cimgui::ImVec2 p1, cimgui::ImVec2 p2, cimgui::ImVec2 p3, cimgui::ImVec2 p4, ImU32 col)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddQuad(ConvertToCPP_ImVec2(p1), ConvertToCPP_ImVec2(p2), ConvertToCPP_ImVec2(p3), ConvertToCPP_ImVec2(p4), col);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddQuadEx(cimgui::ImDrawList* self, cimgui::ImVec2 p1, cimgui::ImVec2 p2, cimgui::ImVec2 p3, cimgui::ImVec2 p4, ImU32 col, float thickness)
+CIMGUI_API void        cimgui::ImDrawList_AddQuad(cimgui::ImDrawList* self, cimgui::ImVec2 p1, cimgui::ImVec2 p2, cimgui::ImVec2 p3, cimgui::ImVec2 p4, ImU32 col, float thickness)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddQuad(ConvertToCPP_ImVec2(p1), ConvertToCPP_ImVec2(p2), ConvertToCPP_ImVec2(p3), ConvertToCPP_ImVec2(p4), col, thickness);
 }
@@ -3399,12 +2949,7 @@ CIMGUI_API void        cimgui::ImDrawList_AddQuadFilled(cimgui::ImDrawList* self
     reinterpret_cast<::ImDrawList*>(self)->AddQuadFilled(ConvertToCPP_ImVec2(p1), ConvertToCPP_ImVec2(p2), ConvertToCPP_ImVec2(p3), ConvertToCPP_ImVec2(p4), col);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddTriangle(cimgui::ImDrawList* self, cimgui::ImVec2 p1, cimgui::ImVec2 p2, cimgui::ImVec2 p3, ImU32 col)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddTriangle(ConvertToCPP_ImVec2(p1), ConvertToCPP_ImVec2(p2), ConvertToCPP_ImVec2(p3), col);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddTriangleEx(cimgui::ImDrawList* self, cimgui::ImVec2 p1, cimgui::ImVec2 p2, cimgui::ImVec2 p3, ImU32 col, float thickness)
+CIMGUI_API void        cimgui::ImDrawList_AddTriangle(cimgui::ImDrawList* self, cimgui::ImVec2 p1, cimgui::ImVec2 p2, cimgui::ImVec2 p3, ImU32 col, float thickness)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddTriangle(ConvertToCPP_ImVec2(p1), ConvertToCPP_ImVec2(p2), ConvertToCPP_ImVec2(p3), col, thickness);
 }
@@ -3414,12 +2959,7 @@ CIMGUI_API void        cimgui::ImDrawList_AddTriangleFilled(cimgui::ImDrawList* 
     reinterpret_cast<::ImDrawList*>(self)->AddTriangleFilled(ConvertToCPP_ImVec2(p1), ConvertToCPP_ImVec2(p2), ConvertToCPP_ImVec2(p3), col);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddCircle(cimgui::ImDrawList* self, cimgui::ImVec2 center, float radius, ImU32 col)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddCircle(ConvertToCPP_ImVec2(center), radius, col);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddCircleEx(cimgui::ImDrawList* self, cimgui::ImVec2 center, float radius, ImU32 col, int num_segments, float thickness)
+CIMGUI_API void        cimgui::ImDrawList_AddCircle(cimgui::ImDrawList* self, cimgui::ImVec2 center, float radius, ImU32 col, int num_segments, float thickness)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddCircle(ConvertToCPP_ImVec2(center), radius, col, num_segments, thickness);
 }
@@ -3429,12 +2969,7 @@ CIMGUI_API void        cimgui::ImDrawList_AddCircleFilled(cimgui::ImDrawList* se
     reinterpret_cast<::ImDrawList*>(self)->AddCircleFilled(ConvertToCPP_ImVec2(center), radius, col, num_segments);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddNgon(cimgui::ImDrawList* self, cimgui::ImVec2 center, float radius, ImU32 col, int num_segments)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddNgon(ConvertToCPP_ImVec2(center), radius, col, num_segments);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddNgonEx(cimgui::ImDrawList* self, cimgui::ImVec2 center, float radius, ImU32 col, int num_segments, float thickness)
+CIMGUI_API void        cimgui::ImDrawList_AddNgon(cimgui::ImDrawList* self, cimgui::ImVec2 center, float radius, ImU32 col, int num_segments, float thickness)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddNgon(ConvertToCPP_ImVec2(center), radius, col, num_segments, thickness);
 }
@@ -3444,42 +2979,22 @@ CIMGUI_API void        cimgui::ImDrawList_AddNgonFilled(cimgui::ImDrawList* self
     reinterpret_cast<::ImDrawList*>(self)->AddNgonFilled(ConvertToCPP_ImVec2(center), radius, col, num_segments);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddEllipse(cimgui::ImDrawList* self, cimgui::ImVec2 center, cimgui::ImVec2 radius, ImU32 col)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddEllipse(ConvertToCPP_ImVec2(center), ConvertToCPP_ImVec2(radius), col);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddEllipseEx(cimgui::ImDrawList* self, cimgui::ImVec2 center, cimgui::ImVec2 radius, ImU32 col, float rot, int num_segments, float thickness)
+CIMGUI_API void        cimgui::ImDrawList_AddEllipse(cimgui::ImDrawList* self, cimgui::ImVec2 center, cimgui::ImVec2 radius, ImU32 col, float rot, int num_segments, float thickness)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddEllipse(ConvertToCPP_ImVec2(center), ConvertToCPP_ImVec2(radius), col, rot, num_segments, thickness);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddEllipseFilled(cimgui::ImDrawList* self, cimgui::ImVec2 center, cimgui::ImVec2 radius, ImU32 col)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddEllipseFilled(ConvertToCPP_ImVec2(center), ConvertToCPP_ImVec2(radius), col);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddEllipseFilledEx(cimgui::ImDrawList* self, cimgui::ImVec2 center, cimgui::ImVec2 radius, ImU32 col, float rot, int num_segments)
+CIMGUI_API void        cimgui::ImDrawList_AddEllipseFilled(cimgui::ImDrawList* self, cimgui::ImVec2 center, cimgui::ImVec2 radius, ImU32 col, float rot, int num_segments)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddEllipseFilled(ConvertToCPP_ImVec2(center), ConvertToCPP_ImVec2(radius), col, rot, num_segments);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddText(cimgui::ImDrawList* self, cimgui::ImVec2 pos, ImU32 col, const char* text_begin)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddText(ConvertToCPP_ImVec2(pos), col, text_begin);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddTextEx(cimgui::ImDrawList* self, cimgui::ImVec2 pos, ImU32 col, const char* text_begin, const char* text_end)
+CIMGUI_API void        cimgui::ImDrawList_AddText(cimgui::ImDrawList* self, cimgui::ImVec2 pos, ImU32 col, const char* text_begin, const char* text_end)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddText(ConvertToCPP_ImVec2(pos), col, text_begin, text_end);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddTextImFontPtr(cimgui::ImDrawList* self, cimgui::ImFont* font, float font_size, cimgui::ImVec2 pos, ImU32 col, const char* text_begin)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddText(reinterpret_cast<::ImFont*>(font), font_size, ConvertToCPP_ImVec2(pos), col, text_begin);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddTextImFontPtrEx(cimgui::ImDrawList* self, cimgui::ImFont* font, float font_size, cimgui::ImVec2 pos, ImU32 col, const char* text_begin, const char* text_end, float wrap_width, const cimgui::ImVec4* cpu_fine_clip_rect)
+CIMGUI_API void        cimgui::ImDrawList_AddTextImFontPtr(cimgui::ImDrawList* self, cimgui::ImFont* font, float font_size, cimgui::ImVec2 pos, ImU32 col, const char* text_begin, const char* text_end, float wrap_width, const cimgui::ImVec4* cpu_fine_clip_rect)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddText(reinterpret_cast<::ImFont*>(font), font_size, ConvertToCPP_ImVec2(pos), col, text_begin, text_end, wrap_width, reinterpret_cast<const ::ImVec4*>(cpu_fine_clip_rect));
 }
@@ -3509,22 +3024,12 @@ CIMGUI_API void        cimgui::ImDrawList_AddConcavePolyFilled(cimgui::ImDrawLis
     reinterpret_cast<::ImDrawList*>(self)->AddConcavePolyFilled(reinterpret_cast<const ::ImVec2*>(points), num_points, col);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddImage(cimgui::ImDrawList* self, cimgui::ImTextureRef tex_ref, cimgui::ImVec2 p_min, cimgui::ImVec2 p_max)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddImage(ConvertToCPP_ImTextureRef(tex_ref), ConvertToCPP_ImVec2(p_min), ConvertToCPP_ImVec2(p_max));
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddImageEx(cimgui::ImDrawList* self, cimgui::ImTextureRef tex_ref, cimgui::ImVec2 p_min, cimgui::ImVec2 p_max, cimgui::ImVec2 uv_min, cimgui::ImVec2 uv_max, ImU32 col)
+CIMGUI_API void        cimgui::ImDrawList_AddImage(cimgui::ImDrawList* self, cimgui::ImTextureRef tex_ref, cimgui::ImVec2 p_min, cimgui::ImVec2 p_max, cimgui::ImVec2 uv_min, cimgui::ImVec2 uv_max, ImU32 col)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddImage(ConvertToCPP_ImTextureRef(tex_ref), ConvertToCPP_ImVec2(p_min), ConvertToCPP_ImVec2(p_max), ConvertToCPP_ImVec2(uv_min), ConvertToCPP_ImVec2(uv_max), col);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddImageQuad(cimgui::ImDrawList* self, cimgui::ImTextureRef tex_ref, cimgui::ImVec2 p1, cimgui::ImVec2 p2, cimgui::ImVec2 p3, cimgui::ImVec2 p4)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddImageQuad(ConvertToCPP_ImTextureRef(tex_ref), ConvertToCPP_ImVec2(p1), ConvertToCPP_ImVec2(p2), ConvertToCPP_ImVec2(p3), ConvertToCPP_ImVec2(p4));
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddImageQuadEx(cimgui::ImDrawList* self, cimgui::ImTextureRef tex_ref, cimgui::ImVec2 p1, cimgui::ImVec2 p2, cimgui::ImVec2 p3, cimgui::ImVec2 p4, cimgui::ImVec2 uv1, cimgui::ImVec2 uv2, cimgui::ImVec2 uv3, cimgui::ImVec2 uv4, ImU32 col)
+CIMGUI_API void        cimgui::ImDrawList_AddImageQuad(cimgui::ImDrawList* self, cimgui::ImTextureRef tex_ref, cimgui::ImVec2 p1, cimgui::ImVec2 p2, cimgui::ImVec2 p3, cimgui::ImVec2 p4, cimgui::ImVec2 uv1, cimgui::ImVec2 uv2, cimgui::ImVec2 uv3, cimgui::ImVec2 uv4, ImU32 col)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddImageQuad(ConvertToCPP_ImTextureRef(tex_ref), ConvertToCPP_ImVec2(p1), ConvertToCPP_ImVec2(p2), ConvertToCPP_ImVec2(p3), ConvertToCPP_ImVec2(p4), ConvertToCPP_ImVec2(uv1), ConvertToCPP_ImVec2(uv2), ConvertToCPP_ImVec2(uv3), ConvertToCPP_ImVec2(uv4), col);
 }
@@ -3574,12 +3079,7 @@ CIMGUI_API void        cimgui::ImDrawList_PathArcToFast(cimgui::ImDrawList* self
     reinterpret_cast<::ImDrawList*>(self)->PathArcToFast(ConvertToCPP_ImVec2(center), radius, a_min_of_12, a_max_of_12);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_PathEllipticalArcTo(cimgui::ImDrawList* self, cimgui::ImVec2 center, cimgui::ImVec2 radius, float rot, float a_min, float a_max)
-{
-    reinterpret_cast<::ImDrawList*>(self)->PathEllipticalArcTo(ConvertToCPP_ImVec2(center), ConvertToCPP_ImVec2(radius), rot, a_min, a_max);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_PathEllipticalArcToEx(cimgui::ImDrawList* self, cimgui::ImVec2 center, cimgui::ImVec2 radius, float rot, float a_min, float a_max, int num_segments)
+CIMGUI_API void        cimgui::ImDrawList_PathEllipticalArcTo(cimgui::ImDrawList* self, cimgui::ImVec2 center, cimgui::ImVec2 radius, float rot, float a_min, float a_max, int num_segments)
 {
     reinterpret_cast<::ImDrawList*>(self)->PathEllipticalArcTo(ConvertToCPP_ImVec2(center), ConvertToCPP_ImVec2(radius), rot, a_min, a_max, num_segments);
 }
@@ -3599,12 +3099,7 @@ CIMGUI_API void        cimgui::ImDrawList_PathRect(cimgui::ImDrawList* self, cim
     reinterpret_cast<::ImDrawList*>(self)->PathRect(ConvertToCPP_ImVec2(rect_min), ConvertToCPP_ImVec2(rect_max), rounding, flags);
 }
 
-CIMGUI_API void        cimgui::ImDrawList_AddCallback(cimgui::ImDrawList* self, cimgui::ImDrawCallback callback, void* userdata)
-{
-    reinterpret_cast<::ImDrawList*>(self)->AddCallback(reinterpret_cast<::ImDrawCallback>(callback), userdata);
-}
-
-CIMGUI_API void        cimgui::ImDrawList_AddCallbackEx(cimgui::ImDrawList* self, cimgui::ImDrawCallback callback, void* userdata, size_t userdata_size)
+CIMGUI_API void        cimgui::ImDrawList_AddCallback(cimgui::ImDrawList* self, cimgui::ImDrawCallback callback, void* userdata, size_t userdata_size)
 {
     reinterpret_cast<::ImDrawList*>(self)->AddCallback(reinterpret_cast<::ImDrawCallback>(callback), userdata, userdata_size);
 }
@@ -4095,22 +3590,12 @@ CIMGUI_API const char*  cimgui::ImFont_GetDebugName(const cimgui::ImFont* self)
     return reinterpret_cast<const ::ImFont*>(self)->GetDebugName();
 }
 
-CIMGUI_API cimgui::ImFontBaked* cimgui::ImFont_GetFontBaked(cimgui::ImFont* self, float font_size)
-{
-    return reinterpret_cast<::cimgui::ImFontBaked*>(reinterpret_cast<::ImFont*>(self)->GetFontBaked(font_size));
-}
-
-CIMGUI_API cimgui::ImFontBaked* cimgui::ImFont_GetFontBakedEx(cimgui::ImFont* self, float font_size, float density)
+CIMGUI_API cimgui::ImFontBaked* cimgui::ImFont_GetFontBaked(cimgui::ImFont* self, float font_size, float density)
 {
     return reinterpret_cast<::cimgui::ImFontBaked*>(reinterpret_cast<::ImFont*>(self)->GetFontBaked(font_size, density));
 }
 
-CIMGUI_API cimgui::ImVec2 cimgui::ImFont_CalcTextSizeA(cimgui::ImFont* self, float size, float max_width, float wrap_width, const char* text_begin)
-{
-    return ConvertFromCPP_ImVec2(reinterpret_cast<::ImFont*>(self)->CalcTextSizeA(size, max_width, wrap_width, text_begin));
-}
-
-CIMGUI_API cimgui::ImVec2 cimgui::ImFont_CalcTextSizeAEx(cimgui::ImFont* self, float size, float max_width, float wrap_width, const char* text_begin, const char* text_end, const char** out_remaining)
+CIMGUI_API cimgui::ImVec2 cimgui::ImFont_CalcTextSizeA(cimgui::ImFont* self, float size, float max_width, float wrap_width, const char* text_begin, const char* text_end, const char** out_remaining)
 {
     return ConvertFromCPP_ImVec2(reinterpret_cast<::ImFont*>(self)->CalcTextSizeA(size, max_width, wrap_width, text_begin, text_end, out_remaining));
 }
@@ -4120,12 +3605,7 @@ CIMGUI_API const char*  cimgui::ImFont_CalcWordWrapPosition(cimgui::ImFont* self
     return reinterpret_cast<::ImFont*>(self)->CalcWordWrapPosition(size, text, text_end, wrap_width);
 }
 
-CIMGUI_API void         cimgui::ImFont_RenderChar(cimgui::ImFont* self, cimgui::ImDrawList* draw_list, float size, cimgui::ImVec2 pos, ImU32 col, ImWchar c)
-{
-    reinterpret_cast<::ImFont*>(self)->RenderChar(reinterpret_cast<::ImDrawList*>(draw_list), size, ConvertToCPP_ImVec2(pos), col, c);
-}
-
-CIMGUI_API void         cimgui::ImFont_RenderCharEx(cimgui::ImFont* self, cimgui::ImDrawList* draw_list, float size, cimgui::ImVec2 pos, ImU32 col, ImWchar c, const cimgui::ImVec4* cpu_fine_clip)
+CIMGUI_API void         cimgui::ImFont_RenderChar(cimgui::ImFont* self, cimgui::ImDrawList* draw_list, float size, cimgui::ImVec2 pos, ImU32 col, ImWchar c, const cimgui::ImVec4* cpu_fine_clip)
 {
     reinterpret_cast<::ImFont*>(self)->RenderChar(reinterpret_cast<::ImDrawList*>(draw_list), size, ConvertToCPP_ImVec2(pos), col, c, reinterpret_cast<const ::ImVec4*>(cpu_fine_clip));
 }

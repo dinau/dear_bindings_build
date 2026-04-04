@@ -3,7 +3,7 @@
 // https://github.com/dearimgui/dear_bindings
 
 #include "imgui.h"
-#include "imgui_impl_sdlrenderer3.h"
+#include "imgui_impl_sdlrenderer2.h"
 
 #include <stdio.h>
 
@@ -13,7 +13,7 @@
 #define DEAR_BINDINGS_INTERNAL_GLUE_CODE
 namespace cimgui
 {
-#include "dcimgui_impl_sdlrenderer3.h"
+#include "dcimgui_impl_sdlrenderer2.h"
 }
 #undef DEAR_BINDINGS_INTERNAL_GLUE_CODE
 
@@ -95,39 +95,39 @@ static inline ::ImColor ConvertToCPP_ImColor(const cimgui::ImColor& src)
 
 #ifndef IMGUI_DISABLE
 
-CIMGUI_IMPL_API bool cimgui::cImGui_ImplSDLRenderer3_Init(cimgui::SDL_Renderer* renderer)
+CIMGUI_IMPL_API bool cimgui::cImGui_ImplSDLRenderer2_Init(cimgui::SDL_Renderer* renderer)
 {
-    return ::ImGui_ImplSDLRenderer3_Init(reinterpret_cast<::SDL_Renderer*>(renderer));
+    return ::ImGui_ImplSDLRenderer2_Init(reinterpret_cast<::SDL_Renderer*>(renderer));
 }
 
-CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer3_Shutdown(void)
+CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer2_Shutdown(void)
 {
-    ::ImGui_ImplSDLRenderer3_Shutdown();
+    ::ImGui_ImplSDLRenderer2_Shutdown();
 }
 
-CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer3_NewFrame(void)
+CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer2_NewFrame(void)
 {
-    ::ImGui_ImplSDLRenderer3_NewFrame();
+    ::ImGui_ImplSDLRenderer2_NewFrame();
 }
 
-CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer3_RenderDrawData(cimgui::ImDrawData* draw_data, cimgui::SDL_Renderer* renderer)
+CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer2_RenderDrawData(cimgui::ImDrawData* draw_data, cimgui::SDL_Renderer* renderer)
 {
-    ::ImGui_ImplSDLRenderer3_RenderDrawData(reinterpret_cast<::ImDrawData*>(draw_data), reinterpret_cast<::SDL_Renderer*>(renderer));
+    ::ImGui_ImplSDLRenderer2_RenderDrawData(reinterpret_cast<::ImDrawData*>(draw_data), reinterpret_cast<::SDL_Renderer*>(renderer));
 }
 
-CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer3_CreateDeviceObjects(void)
+CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer2_CreateDeviceObjects(void)
 {
-    ::ImGui_ImplSDLRenderer3_CreateDeviceObjects();
+    ::ImGui_ImplSDLRenderer2_CreateDeviceObjects();
 }
 
-CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer3_DestroyDeviceObjects(void)
+CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer2_DestroyDeviceObjects(void)
 {
-    ::ImGui_ImplSDLRenderer3_DestroyDeviceObjects();
+    ::ImGui_ImplSDLRenderer2_DestroyDeviceObjects();
 }
 
-CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer3_UpdateTexture(cimgui::ImTextureData* tex)
+CIMGUI_IMPL_API void cimgui::cImGui_ImplSDLRenderer2_UpdateTexture(cimgui::ImTextureData* tex)
 {
-    ::ImGui_ImplSDLRenderer3_UpdateTexture(reinterpret_cast<::ImTextureData*>(tex));
+    ::ImGui_ImplSDLRenderer2_UpdateTexture(reinterpret_cast<::ImTextureData*>(tex));
 }
 
 #endif // #ifndef IMGUI_DISABLE
