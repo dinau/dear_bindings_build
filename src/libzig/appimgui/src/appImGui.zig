@@ -127,36 +127,38 @@ pub const Window = struct {
         // Load title bar icon
         //---------------------
         const TitleBarIconName = "./resources/z.png";
-        //--------------
-        // Get exe path  Refered to: https://stackoverflow.com/questions/77718355/how-do-i-build-a-path-relative-to-the-exe-in-zig
-        //--------------
-        // For zig-0.16.0-dev.2905 (2026/03/13)
-        var gpa = std.heap.DebugAllocator(.{}){};
-        defer _ = gpa.deinit();
-        const allocator = gpa.allocator();
+        if (utils.existsFile(TitleBarIconName)) {
+            //--------------
+            // Get exe path  Refered to: https://stackoverflow.com/questions/77718355/how-do-i-build-a-path-relative-to-the-exe-in-zig
+            //--------------
+            // For zig-0.16.0-dev.2905 (2026/03/13)
+            var gpa = std.heap.DebugAllocator(.{}){};
+            defer _ = gpa.deinit();
+            const allocator = gpa.allocator();
 
-        var sBuf: [std.fs.max_path_bytes]u8 = undefined;
-        const exe_path: []u8 = if (is_devel_api) blk: {
-            const exe_len = try std.process.executablePath(io, &sBuf);
-            break :blk sBuf[0..exe_len];
-        } else blk: {
-            break :blk try std.fs.selfExePathAlloc(allocator);
-        };
-        defer {
-            if (is_devel_api) {
-                // NA
-            } else {
-                allocator.free(exe_path);
+            var sBuf: [std.fs.max_path_bytes]u8 = undefined;
+            const exe_path: []u8 = if (is_devel_api) blk: {
+                const exe_len = try std.process.executablePath(io, &sBuf);
+                break :blk sBuf[0..exe_len];
+            } else blk: {
+                break :blk try std.fs.selfExePathAlloc(allocator);
+            };
+            defer {
+                if (is_devel_api) {
+                    // NA
+                } else {
+                    allocator.free(exe_path);
+                }
             }
-        }
 
-        const option_exe_dir = std.fs.path.dirname(exe_path);
-        if (option_exe_dir) |exe_dir| {
-            var paths = [_][]const u8{ exe_dir, TitleBarIconName };
-            const icon_path = try std.fs.path.join(allocator, &paths);
-            defer allocator.free(icon_path);
-            // Load icon
-            icon.LoadTitleBarIcon(win.handle, icon_path.ptr);
+            const option_exe_dir = std.fs.path.dirname(exe_path);
+            if (option_exe_dir) |exe_dir| {
+                var paths = [_][]const u8{ exe_dir, TitleBarIconName };
+                const icon_path = try std.fs.path.join(allocator, &paths);
+                defer allocator.free(icon_path);
+                // Load icon
+                icon.LoadTitleBarIcon(win.handle, icon_path.ptr);
+            }
         }
 
         glfw.glfwSwapInterval(1); // Enable VSync --- Lower CPU load
@@ -369,96 +371,114 @@ pub fn loadIni(win: *Window) !void {
         break :blk try std.fs.selfExePathAlloc(std.heap.page_allocator);
     };
 
-    const filename = try changeExtension(exe_path, "ini");
-    std.debug.print(">>> filename = {s}:\n", .{filename});
+    const iniFilename = try changeExtension(exe_path, "ini");
+    if (!utils.existsFile(iniFilename.ptr)) {
+        std.debug.print("Error!: File not found: {s}\n", .{iniFilename});
+        std.debug.print("Do set default *.ini values\n", .{});
 
-    var data: TIni = undefined;
-
-    const file = if (is_devel_api) blk: {
-        break :blk try std.Io.Dir.cwd().openFile(io, filename, .{});
-    } else blk: {
-        break :blk try std.fs.cwd().openFile(filename, .{});
-    };
-    defer {
-        if (is_devel_api) {
-            file.close(io);
-        } else {
-            file.close();
-        }
-    }
-
-    std.debug.print("Read ini: {s}\n", .{filename});
-
-    const file_size = if (is_devel_api)
-        try file.length(io)
-    else
-        try file.getEndPos();
-
-    const allocator = std.heap.page_allocator;
-    const buffer = try allocator.alloc(u8, file_size);
-    defer allocator.free(buffer);
-    if (is_devel_api) {
-        _ = try file.readStreaming(io, &.{buffer});
+        // Window pos
+        win.ini.window.startupPosX = 50;
+        win.ini.window.startupPosY = 50;
+        // Window size
+        win.ini.window.viewportWidth = 800;
+        win.ini.window.viewportHeight = 600;
+        // Background color
+        win.ini.window.colBGx = 0.05;
+        win.ini.window.colBGy = 0.45;
+        win.ini.window.colBGz = 0.65;
+        // Theme
+        win.ini.window.theme = @intFromEnum(Theme.classic);
+        // Image index
+        win.ini.image.imageSaveFormatIndex = 1;
     } else {
-        _ = try file.read(buffer);
-    }
+        var data: TIni = undefined;
 
-    const parsed_data = try std.json.parseFromSlice(TIni, allocator, buffer, .{});
-    defer parsed_data.deinit();
-    data = parsed_data.value;
-    //} else |_| {
-    //    std.debug.print("*.ini file not found: set \"DefaultIni\" values\n", .{});
-    //    const parsed_data = try std.json.parseFromSlice(TIni, allocator, DefaultIni, .{});
-    //    defer parsed_data.deinit();
-    //    data = parsed_data.value;
-    //}
+        const file = if (is_devel_api) blk: {
+            break :blk try std.Io.Dir.cwd().openFile(io, iniFilename, .{});
+        } else blk: {
+            break :blk try std.fs.cwd().openFile(iniFilename, .{});
+        };
+        defer {
+            if (is_devel_api) {
+                file.close(io);
+            } else {
+                file.close();
+            }
+        }
 
-    // Window pos
-    win.ini.window.startupPosX = data.window.startupPosX;
-    win.ini.window.startupPosY = data.window.startupPosY;
-    //std.debug.print("data.window.startupPosX = {d}\n", .{data.window.startupPosX});
-    //std.debug.print("data.window.startupPosY = {d}\n", .{data.window.startupPosY});
-    if (10 > win.ini.window.startupPosX) {
-        win.ini.window.startupPosX = 10;
-    }
-    if (10 > win.ini.window.startupPosY) {
-        win.ini.window.startupPosY = 10;
-    }
-    if (2048 < win.ini.window.startupPosX) {
-        win.ini.window.startupPosX = 10;
-    }
-    if (2048 < win.ini.window.startupPosY) {
-        win.ini.window.startupPosY = 10;
-    }
+        //std.debug.print("Read ini: {s}\n", .{iniFilename});
 
-    // Window size
-    win.ini.window.viewportWidth = data.window.viewportWidth;
-    win.ini.window.viewportHeight = data.window.viewportHeight;
-    //std.debug.print("data.window.viewportWidth = {d}\n", .{data.window.viewportWidth});
-    //std.debug.print("data.window.viewportHeight = {d}\n", .{data.window.viewportHeight});
-    if (win.ini.window.viewportWidth < 100) {
-        win.ini.window.viewportWidth = 100;
-    }
-    if (win.ini.window.viewportHeight < 100) {
-        win.ini.window.viewportHeight = 100;
-    }
-    if (win.ini.window.viewportWidth > 2048) {
-        win.ini.window.viewportWidth = 2048;
-    }
-    if (win.ini.window.viewportHeight > 2048) {
-        win.ini.window.viewportHeight = 2048;
-    }
+        const file_size = if (is_devel_api)
+            try file.length(io)
+        else
+            try file.getEndPos();
 
-    // Background color
-    win.ini.window.colBGx = data.window.colBGx;
-    win.ini.window.colBGy = data.window.colBGy;
-    win.ini.window.colBGz = data.window.colBGz;
+        const allocator = std.heap.page_allocator;
+        const buffer = try allocator.alloc(u8, file_size);
+        defer allocator.free(buffer);
+        if (is_devel_api) {
+            _ = try file.readStreaming(io, &.{buffer});
+        } else {
+            _ = try file.read(buffer);
+        }
 
-    // Theme
-    win.ini.window.theme = data.window.theme;
+        const parsed_data = try std.json.parseFromSlice(TIni, allocator, buffer, .{});
+        defer parsed_data.deinit();
+        data = parsed_data.value;
+        //} else |_| {
+        //    std.debug.print("*.ini file not found: set \"DefaultIni\" values\n", .{});
+        //    const parsed_data = try std.json.parseFromSlice(TIni, allocator, DefaultIni, .{});
+        //    defer parsed_data.deinit();
+        //    data = parsed_data.value;
+        //}
 
-    // Image index
-    win.ini.image.imageSaveFormatIndex = 1;
+        // Window pos
+        win.ini.window.startupPosX = data.window.startupPosX;
+        win.ini.window.startupPosY = data.window.startupPosY;
+        //std.debug.print("data.window.startupPosX = {d}\n", .{data.window.startupPosX});
+        //std.debug.print("data.window.startupPosY = {d}\n", .{data.window.startupPosY});
+        if (10 > win.ini.window.startupPosX) {
+            win.ini.window.startupPosX = 50;
+        }
+        if (10 > win.ini.window.startupPosY) {
+            win.ini.window.startupPosY = 50;
+        }
+        if (2048 < win.ini.window.startupPosX) {
+            win.ini.window.startupPosX = 50;
+        }
+        if (2048 < win.ini.window.startupPosY) {
+            win.ini.window.startupPosY = 50;
+        }
+
+        // Window size
+        win.ini.window.viewportWidth = data.window.viewportWidth;
+        win.ini.window.viewportHeight = data.window.viewportHeight;
+        //std.debug.print("data.window.viewportWidth = {d}\n", .{data.window.viewportWidth});
+        //std.debug.print("data.window.viewportHeight = {d}\n", .{data.window.viewportHeight});
+        if (win.ini.window.viewportWidth < 100) {
+            win.ini.window.viewportWidth = 100;
+        }
+        if (win.ini.window.viewportHeight < 100) {
+            win.ini.window.viewportHeight = 100;
+        }
+        if (win.ini.window.viewportWidth > 2048) {
+            win.ini.window.viewportWidth = 2048;
+        }
+        if (win.ini.window.viewportHeight > 2048) {
+            win.ini.window.viewportHeight = 2048;
+        }
+
+        // Background color
+        win.ini.window.colBGx = data.window.colBGx;
+        win.ini.window.colBGy = data.window.colBGy;
+        win.ini.window.colBGz = data.window.colBGz;
+
+        // Theme
+        win.ini.window.theme = data.window.theme;
+
+        // Image index
+        win.ini.image.imageSaveFormatIndex = 1;
+    }
 }
 
 //---------

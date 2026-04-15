@@ -53,7 +53,8 @@ And one can use many other libaries and examples with less external dependencies
    zig fetch --save git+https://github.com/dinau/dear_bindings_build
    ```
 
-1. Add dependencies to `build.zig`
+1. Add dependencies to `build.zig`  
+Please insert the following lines above `b.installArtifact(exe);`.
 
    ```zig
    const dear_bindings_build = b.dependency("dear_bindings_build", .{});
@@ -147,6 +148,13 @@ And one can use many other libaries and examples with less external dependencies
    
    ![myapp.png](https://github.com/dinau/imguinz/raw/main/img/myapp.gif)
 
+#### Try Wasm demo in your browser
+
+---
+
+Click link for live demo: [Click here](https://dinau.github.io/imguin/wasm/demo/glfw_opengl3_wasm_base.html)  
+![alt](https://github.com/dinau/imguin/raw/main/src/img/wasm_demo_small.gif)
+
 #### Frontends and Backends  
 
 ---
@@ -164,10 +172,9 @@ And one can use many other libaries and examples with less external dependencies
 ---
 
 - Zig Compiler 
-    - [x] zig-0.15.2  
-       Windows: [zig-x86_64-windows-0.15.2.zip](https://ziglang.org/download/0.15.2/zig-x86_64-windows-0.15.2.zip)  
-       Linux:   [zig-x86_64-linux-0.15.2.tar.xz](https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz)
-    - [x] zig-0.16.0-dev.3070+065c6e794 (2026/04/02) [^except_raylib]
+    - [x] zig-0.16.0  
+       Windows: [zig-x86_64-windows-0.16.0.zip](https://ziglang.org/download/0.16.0/zig-x86_64-windows-0.16.0.zip)  
+       Linux:   [  zig-x86_64-linux-0.16.0.tar.xz](https://ziglang.org/download/0.16.0/zig-x86_64-linux-0.16.0.tar.xz)
 
 - Windows11  
    - Optional: MSys2/MinGW basic commands (make, rm, cp ...)

@@ -1555,7 +1555,6 @@ fn demo_DragRects() !void {
     const bg_col: ip.ImVec4 =
       if (st.held) .{ .x = 0.5, .y = 0, .z = 0.5, .w = 1 }
       else if (st.hovered) .{ .x = 0.25, .y = 0, .z = 0.25, .w = 1 }
-      //else .{.x = vec4.x, .y = vec4.y, .z = vec4.z, .w = vec4.w};
       else vec4;
     ip.ImPlot_PushStyleColor_Vec4(ip.ImPlotCol_PlotBg , bg_col);
     if (ip.ImPlot_BeginPlot("##rect", .{ .x = -1, .y = 150 }, ip.ImPlotFlags_CanvasOnly)) {

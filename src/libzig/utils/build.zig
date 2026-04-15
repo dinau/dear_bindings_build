@@ -1,6 +1,7 @@
 const std = @import("std");
 const builtin = @import("builtin");
 
+
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
@@ -15,6 +16,15 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
+    mod.addCSourceFiles(.{
+        .files = &.{
+            "src/utils.c",
+        },
+        .flags = &.{
+            "-O2",
+        },
+    });
+
     mod.addImport(mod_name, mod);
     // import modules
     const modules = [_][]const u8{ "dcimgui", "loadimage", "saveimage", "zoomglass" };

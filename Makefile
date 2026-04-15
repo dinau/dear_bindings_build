@@ -15,9 +15,9 @@ EXAMPLE_DIRS_ZIG =\
 							examples/zig_imnodes                 \
 							examples/zig_implot                  \
 							examples/zig_implot3d                \
-              examples/zig_imPlotDemo              \
 							examples/zig_imspinner               \
-							examples/zig_imtoggle
+							examples/zig_imtoggle                \
+              examples/zig_imPlotDemo
 
 EXAMPLE_DIRS_ZIG_RAYLIB =\
 							examples/zig_raylib_basic            \
@@ -36,13 +36,13 @@ endif
 all: zig cc zig_raylib
 
 cc:
-	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),cleancache))
+	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir)))
 
 zig:
-	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir),cleancache))
+	$(foreach exdir,$(EXAMPLE_DIRS_ZIG), $(call def_make,$(exdir)))
 
 zig_raylib:
-	$(foreach exdir,$(EXAMPLE_DIRS_ZIG_RAYLIB), $(call def_make,$(exdir),cleancache))
+	$(foreach exdir,$(EXAMPLE_DIRS_ZIG_RAYLIB), $(call def_make,$(exdir)))
 
 fmt:
 	$(foreach exdir,$(EXAMPLE_DIRS), $(call def_make,$(exdir),$@ ))

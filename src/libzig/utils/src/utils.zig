@@ -1,20 +1,16 @@
+const builtin = @import("builtin");
 const std = @import("std");
 const ig = @import("dcimgui");
+const is_devel_api = builtin.zig_version.minor >= 16;
+const io = if (is_devel_api) std.Io.Threaded.global_single_threaded.io() else undefined;
+
+pub extern "c" fn existsFile(fname: [*c]const u8) bool;
 
 //---------------
 //--- existsFile
 //---------------
-pub fn existsFile(fname: []const u8) !bool {
-    var file = std.fs.cwd().createFile(fname, .{ .exclusive = true }) catch |e|
-        switch (e) {
-            error.PathAlreadyExists => {
-                return true;
-            },
-            else => return e,
-        };
-    defer file.close();
-    return false;
-}
+//pub fn existsFile(fname: []const u8) bool {
+//}
 
 //---------------
 //--- setTooltip
