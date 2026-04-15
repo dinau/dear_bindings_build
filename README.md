@@ -3,6 +3,7 @@
 
 - [Dear_Bindings_Build](#dear_bindings_build)
   - [Zig fetch](#zig-fetch)
+  - [Try Wasm demo in your browser](#try-wasm-demo-in-your-browser)
   - [Frontends and Backends](#frontends-and-backends)
   - [Prerequisites](#prerequisites)
   - [Available libraries list at this moment](#available-libraries-list-at-this-moment)
