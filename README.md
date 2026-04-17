@@ -1,36 +1,50 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Dear_Bindings_Build](#dear_bindings_build)
-  - [Zig fetch](#zig-fetch)
-  - [Try Wasm demo in your browser](#try-wasm-demo-in-your-browser)
-  - [Frontends and Backends](#frontends-and-backends)
-  - [Prerequisites](#prerequisites)
-  - [Available libraries list at this moment](#available-libraries-list-at-this-moment)
-  - [Compiling](#compiling)
-  - [Build and run](#build-and-run)
-  - [Examples screen shots](#examples-screen-shots)
-    - [zig_imknobs](#zig_imknobs)
-    - [zig_imtoggle](#zig_imtoggle)
-    - [zig_imspinner](#zig_imspinner)
-    - [Raylib example](#raylib-example)
-    - [Raylib + ImGui + rlImGui](#raylib--imgui--rlimgui)
-    - [zig_imfiledialog](#zig_imfiledialog)
-    - [zig_imgui_markdown](#zig_imgui_markdown)
-    - [zig_iconfontviewer](#zig_iconfontviewer)
-    - [zig_imcolortextedit](#zig_imcolortextedit)
-    - [zig_imguizmo](#zig_imguizmo)
-    - [zig_imnodes](#zig_imnodes)
-    - [zig_implot / zig_implot3d](#zig_implot--zig_implot3d)
-    - [Image load / save (OpenGL, SDL3, SDL3GPU)](#image-load--save-opengl-sdl3-sdl3gpu)
-    - [zig_glfw_opengl3](#zig_glfw_opengl3)
-  - [Hiding console window](#hiding-console-window)
-  - [SDL libraries](#sdl-libraries)
-  - [My tools version](#my-tools-version)
-  - [Similar project ImGui / CImGui](#similar-project-imgui--cimgui)
-  - [SDL game tutorial Platfromer](#sdl-game-tutorial-platfromer)
+- [Caution: Due to certain reasons, this repository will be renamed to imguinz2 in a few days.](#caution-due-to-certain-reasons-this-repository-will-be-renamed-to-imguinz2-in-a-few-days)
+  - [Dear_Bindings_Build](#dear_bindings_build)
+    - [Zig fetch](#zig-fetch)
+    - [Try Wasm demo in your browser](#try-wasm-demo-in-your-browser)
+    - [Frontends and Backends](#frontends-and-backends)
+    - [Prerequisites](#prerequisites)
+    - [Available libraries list at this moment](#available-libraries-list-at-this-moment)
+    - [Compiling](#compiling)
+    - [Build and run](#build-and-run)
+    - [Examples screen shots](#examples-screen-shots)
+      - [zig_imknobs](#zig_imknobs)
+      - [zig_imtoggle](#zig_imtoggle)
+      - [zig_imspinner](#zig_imspinner)
+      - [Raylib example](#raylib-example)
+      - [Raylib + ImGui + rlImGui](#raylib--imgui--rlimgui)
+      - [zig_imfiledialog](#zig_imfiledialog)
+      - [zig_imgui_markdown](#zig_imgui_markdown)
+      - [zig_iconfontviewer](#zig_iconfontviewer)
+      - [zig_imcolortextedit](#zig_imcolortextedit)
+      - [zig_imguizmo](#zig_imguizmo)
+      - [zig_imnodes](#zig_imnodes)
+      - [zig_implot / zig_implot3d](#zig_implot--zig_implot3d)
+      - [Image load / save (OpenGL, SDL3, SDL3GPU)](#image-load--save-opengl-sdl3-sdl3gpu)
+      - [zig_glfw_opengl3](#zig_glfw_opengl3)
+    - [Hiding console window](#hiding-console-window)
+    - [SDL libraries](#sdl-libraries)
+    - [My tools version](#my-tools-version)
+    - [Similar project ImGui / CImGui](#similar-project-imgui--cimgui)
+    - [SDL game tutorial Platfromer](#sdl-game-tutorial-platfromer)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Caution: Due to certain reasons, this repository will be renamed to imguinz2 in a few days.
+
+After the repository is renamed to `imguinz2`, navigate to your `dear_bindings_build` project folder in the terminal or command prompt and run the following command once:
+
+```sh
+git remote set-url origin https://github.com/dinau/imguinz2.git
+```
+
+Alternatively, you can simply perform a fresh clone of the new URL:
+
+`https://github.com/dinau/imguinz2.git`
+
 
 ### Dear_Bindings_Build
 
