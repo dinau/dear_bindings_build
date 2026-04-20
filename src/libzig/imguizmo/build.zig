@@ -21,6 +21,7 @@ pub fn build(b: *std.Build) void {
     step.addIncludePath(b.path("../../libc/dcimgui"));
     step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path("../../libc/cimguizmo"));
+    step.addIncludePath(b.path("../../libc/cimgui"));
     const mod = step.addModule(mod_name);
     //mod.addImport(mod_name, mod);
 
@@ -28,6 +29,7 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("src"));
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imgui"));
+    mod.addIncludePath(b.path("../../libc/cimgui"));
     mod.addIncludePath(b.path("../../libc/cimguizmo/imguizmo"));
     mod.addCSourceFiles(.{
         .files = &.{

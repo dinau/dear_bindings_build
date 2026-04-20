@@ -16,17 +16,19 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
+    step.defineCMacro("CIMGUI_DEFINE_ENUMS_AND_STRUCTS", "");
     step.addIncludePath(b.path("./src"));
     step.addIncludePath(b.path("../../libc/dcimgui"));
     step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path("../../libc/cimCTE"));
-    step.defineCMacro("CIMGUI_DEFINE_ENUMS_AND_STRUCTS", "");
+    step.addIncludePath(b.path("../../libc/cimgui"));
     //
     const mod = step.addModule(mod_name);
     mod.addImport(mod_name, mod);
     mod.addIncludePath(b.path("../../libc/dcimgui/imgui"));
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imgui"));
+    mod.addIncludePath(b.path("../../libc/cimgui"));
     //
     mod.addIncludePath(b.path("../../libc/cimCTE"));
     mod.addIncludePath(b.path("../../libc/cimCTE/ImGuiColorTextEdit"));

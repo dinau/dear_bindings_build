@@ -15,7 +15,6 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    step.defineCMacro("CIMGUI_DEFINE_ENUMS_AND_STRUCTS", "");
     step.addIncludePath(b.path("../../libc/dcimgui"));
     step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path("../../libc/cimgui_toggle"));

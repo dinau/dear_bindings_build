@@ -54,14 +54,14 @@ float point2px(float point) { //## Convert point to pixel
 }
 
 static ImFontConfig* config;
-CIMGUI_API ImFontConfig* ImFontConfig_new(void);
+CIMGUI_API ImFontConfig* ImFontConfig_ImFontConfig(void);
 
 /*--------------
  * setupFonts()
  *-------------*/
 ImFont* setupFonts(void) {
   ImGuiIO* pio = ImGui_GetIO();
-  config  = ImFontConfig_new(); // TODO free()
+  config  = ImFontConfig_ImFontConfig(); // TODO free()
   ImFont* font = NULL;
   char* fontPath;
   // Try Windows fonts

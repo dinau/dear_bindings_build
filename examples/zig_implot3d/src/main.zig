@@ -2,7 +2,6 @@ const std = @import("std");
 const app = @import("appimgui");
 const ig = app.ig;
 const ifa = app.ifa;
-const c = app.clib;
 
 const ip = @import("implot");
 const ipz = @import("zimplot.zig");

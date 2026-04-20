@@ -18,6 +18,7 @@ pub fn build(b: *std.Build) void {
     step.addIncludePath(b.path("./src"));
     step.addIncludePath(b.path("../../libc/dcimgui"));
     step.addIncludePath(b.path("../../libc/imgui"));
+    step.addIncludePath(b.path("../../libc/cimgui"));
     step.addIncludePath(b.path("../../libc/cimplot"));
     step.addIncludePath(b.path("../../libc/cimplot3d"));
     step.defineCMacro("CIMGUI_DEFINE_ENUMS_AND_STRUCTS", "");
@@ -27,6 +28,7 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../libc/dcimgui/imgui"));
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imgui"));
+    mod.addIncludePath(b.path("../../libc/cimgui"));
     mod.addIncludePath(b.path("../../libc/cimplot3d"));
     mod.addIncludePath(b.path("../../libc/cimplot3d/implotd"));
     mod.addIncludePath(b.path("./src"));

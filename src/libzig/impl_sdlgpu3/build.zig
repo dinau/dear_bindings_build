@@ -18,10 +18,10 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
         .link_libc = true,
     });
-    step.defineCMacro("CIMGUI_DEFINE_ENUMS_AND_STRUCTS", "");
     step.addIncludePath(b.path("../../libc/dcimgui"));
     step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path("../../libc/imgui/backends"));
+
     switch (builtin.target.os.tag) {
         .windows => {
             step.addIncludePath(b.path(b.pathJoin(&.{ sdl_path, "include/SDL3" })));

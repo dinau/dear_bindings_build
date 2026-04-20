@@ -105,11 +105,11 @@ fn point2px(point: f32) f32 {
 var config: *ig.ImFontConfig = undefined;
 
 /// Create ImFontConfig
-pub extern fn ImFontConfig_new() callconv(.c) [*c]ig.ImFontConfig;
+pub extern fn ImFontConfig_ImFontConfig() callconv(.c) [*c]ig.ImFontConfig;
 
 /// Setup fonts
 pub export fn setupFonts() ?*ig.ImFont {
-    config = ImFontConfig_new();
+    config = ImFontConfig_ImFontConfig();
     std.debug.print("setupFonts():\n", .{});
     const pio = ig.ImGui_GetIO();
     var font: ?*ig.ImFont = null;

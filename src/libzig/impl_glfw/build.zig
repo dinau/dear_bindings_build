@@ -41,7 +41,6 @@ pub fn build(b: *std.Build) void {
         .linux => mod.addCMacro("IMGUI_IMPL_API", "extern \"C\"  "),
         else => {},
     }
-    mod.addCMacro("CIMGUI_USE_GLFW", "");
     mod.addCSourceFiles(.{
         .files = &.{
             "../../libc/dcimgui/backends/dcimgui_impl_glfw.cpp",

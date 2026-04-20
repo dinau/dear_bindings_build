@@ -15,9 +15,9 @@ EXAMPLE_DIRS_ZIG =\
 							examples/zig_imnodes                 \
 							examples/zig_implot                  \
 							examples/zig_implot3d                \
+              examples/zig_imPlotDemo              \
 							examples/zig_imspinner               \
-							examples/zig_imtoggle                \
-              examples/zig_imPlotDemo
+							examples/zig_imtoggle
 
 EXAMPLE_DIRS_ZIG_RAYLIB =\
 							examples/zig_raylib_basic            \

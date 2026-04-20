@@ -5,9 +5,6 @@
 
 #include <GL/gl.h>
 #include <GL/glext.h>
-#ifdef CIMGUI_USE_GLFW
-#include <GLFW/glfw3.h>
-#endif
 
 #define STB_IMAGE_STATIC
 #define STB_IMAGE_IMPLEMENTATION

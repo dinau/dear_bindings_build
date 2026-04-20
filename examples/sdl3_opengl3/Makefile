@@ -13,8 +13,8 @@ ifeq ($(OS),Windows_NT)
 endif
 
 
-VPATH += ../../src/libzig/dcimgui/src
+VPATH += ../../src/libc/cimgui
 
-UTILS_OBJS += .build/utils_dcimgui.o
+#UTILS_OBJS += .build/utils_cimgui.o
 
 include makefile.common.mk

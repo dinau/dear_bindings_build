@@ -2,13 +2,12 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Caution: Due to certain reasons, this repository will be renamed to imguinz2 in a few days.](#caution-due-to-certain-reasons-this-repository-will-be-renamed-to-imguinz2-in-a-few-days)
-  - [Dear_Bindings_Build](#dear_bindings_build)
+  - [ImGuinZ2](#imguinz2)
     - [Zig fetch](#zig-fetch)
     - [Try Wasm demo in your browser](#try-wasm-demo-in-your-browser)
     - [Frontends and Backends](#frontends-and-backends)
     - [Prerequisites](#prerequisites)
     - [Available libraries list at this moment](#available-libraries-list-at-this-moment)
-    - [Compiling](#compiling)
     - [Build and run](#build-and-run)
     - [Examples screen shots](#examples-screen-shots)
       - [zig_imknobs](#zig_imknobs)
@@ -46,10 +45,10 @@ Alternatively, you can simply perform a fresh clone of the new URL:
 `https://github.com/dinau/imguinz2.git`
 
 
-### Dear_Bindings_Build
+### ImGuinZ2
 
 This project aims to simply and easily build [Dear ImGui](https://github.com/ocornut/imgui) examples with **C** and **Zig** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
-And one can use many other libaries and examples with less external dependencies.
+And one can use many other libaries and examples with less external dependencies[^except_raylib].
 
 [DearBindings](https://github.com/dearimgui/dear_bindings): dear_bindings_v0.18_ImGui_v1.92.7-docking  
 [Dear ImGui](https://github.com/ocornut/imgui): 1.92.7 dock (2026/04)
@@ -58,21 +57,21 @@ And one can use many other libaries and examples with less external dependencies
 
 ---
 
-1. Zig fetch `dear_bindings_build`
+1. Zig fetch `imguinz2`
 
    ```sh
    mkdir myapp
    cd myapp
    zig init
    
-   zig fetch --save git+https://github.com/dinau/dear_bindings_build
+   zig fetch --save git+https://github.com/dinau/imguinz2
    ```
 
 1. Add dependencies to `build.zig`  
 Please insert the following lines above `b.installArtifact(exe);`.
 
    ```zig
-   const dear_bindings_build = b.dependency("dear_bindings_build", .{});
+   const imguinz2 = b.dependency("imguinz2", .{});
    const dependencies = .{
        "appimgui",      // Simple app framework
        "imspinner",     // ImSpinner
@@ -81,7 +80,7 @@ Please insert the following lines above `b.installArtifact(exe);`.
     // "another_lib",
    };
    inline for (dependencies) |dep_name| {
-       const dep = dear_bindings_build.builder.dependency(dep_name, .{
+       const dep = imguinz2.builder.dependency(dep_name, .{
            .target = target, 
            .optimize = optimize, 
        });
@@ -90,7 +89,7 @@ Please insert the following lines above `b.installArtifact(exe);`.
    exe.subsystem = .Windows; // Hide console window
    ```
 
-   You can set `dependencies` (additional libraries), see [dear_bindings_build/build.zig.zon](https://github.com/dinau/dear_bindings_build/blob/main/build.zig.zon)
+   You can set `dependencies` (additional libraries), see [imguinz2/build.zig.zon](https://github.com/dinau/imguinz2/blob/main/build.zig.zon)
 
    ```zig
    "appimgui"     <- Simple app framework for GLFW and OpenGL backend
@@ -190,6 +189,7 @@ Click link for live demo: [Click here](https://dinau.github.io/imguin/wasm/demo/
     - [x] zig-0.16.0  
        Windows: [zig-x86_64-windows-0.16.0.zip](https://ziglang.org/download/0.16.0/zig-x86_64-windows-0.16.0.zip)  
        Linux:   [  zig-x86_64-linux-0.16.0.tar.xz](https://ziglang.org/download/0.16.0/zig-x86_64-linux-0.16.0.tar.xz)
+    - [x] zig-0.15.2  
 
 - Windows11  
    - Optional: MSys2/MinGW basic commands (make, rm, cp ...)
@@ -223,40 +223,21 @@ Library name / C wrapper
 - [x] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) (2025/08)
 - [x] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot) (2025/08)
 - [x] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d)  (2025/08)
+- [x] [CImGui](https://github.com/cimgui/cimgui)
 - [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
 
 Additional examples (Only zig-0.15.2)
 - [x] [Raylib](https://github.com/raysan5/raylib), [raylib-zig](https://github.com/raylib-zig/raylib-zig), [rlImGui](https://github.com/raylib-extras/rlImGui) (2025/11)
-
-#### Compiling 
-
----
-
-- Zig compiler
-
-   | Example name    | Windows | Linux  | 
-   | ---             | :----:  | :----: | 
-   | zig_*           | Y       | Y      | 
-
-- Zig cc compiler
-
-   Using Zig module in C source code.
-
-   | example | Windows | Linux  | 
-   | ---     | :----:  | :----: | 
-   | glfw_*  | Y       | Y      | 
-   | sdl3_*  | Y       | WIP    | 
-   | win32_* | Y       | -      | 
 
 #### Build and run
 
 ---
 
 ```sh
-git clone https://github.com/dinau/dear_bindings_build
+git clone https://github.com/dinau/imguinz2
 
-cd dear_bindings_build/examples/glfw_opengl3           # for example
-zig build run --release=fast                           # or make run
+cd imguinz2/examples/glfw_opengl3           # for example
+zig build run --release=fast                # or make run
 ```
 
 #### Examples screen shots 
@@ -439,23 +420,22 @@ https://github.com/libsdl-org/SDL/releases
 
 ---
 
-- gcc.exe (Rev2, Built by MSYS2 project) 15.2.0
 - make: GNU Make 4.4.1
-- Python 3.12.10
+- Python 3.14.3
 
 #### Similar project ImGui / CImGui
 
 ---
 
 | Language             |          | Project                                                                                                                                         |
-| -------------------: | :---:    | :----------------------------------------------------------------:                                                                              |  
+| -------------------: | :---:    | :----------------------------------------------------------------:                                                                              |
 | **Lua**              | Script   | [LuaJITImGui](https://github.com/dinau/luajitImGui)                                                                                             |
 | **NeLua**            | Compiler | [NeLuaImGui](https://github.com/dinau/neluaImGui) / [NeLuaImGui2](https://github.com/dinau/neluaImGui2)                                         |
 | **Nim**              | Compiler | [ImGuin](https://github.com/dinau/imguin), [Nimgl_test](https://github.com/dinau/nimgl_test), [Nim_implot](https://github.com/dinau/nim_implot) |
 | **Python**           | Script   | [DearPyGui for 32bit WindowsOS Binary](https://github.com/dinau/DearPyGui32/tree/win32)                                                         |
 | **Ruby**             | Script   | [igRuby_Examples](https://github.com/dinau/igruby_examples)                                                                                     |
-| **Zig**, C           | Compiler | [Dear_Bindings_Build](https://github.com/dinau/dear_bindings_build)                                                                             |
-| **Zig**              | Compiler | [ImGuinZ](https://github.com/dinau/imguinz)                                                                                                     |
+| **Zig**              | Compiler | [ImGuinZ](https://github.com/dinau/imguinz)     with CImGui                                                                                                |
+| **Zig**, C           | Compiler | [ImGuinZ2](https://github.com/dinau/imguinz2) with Dear Binindings                                                                             |
 
 
 #### SDL game tutorial Platfromer

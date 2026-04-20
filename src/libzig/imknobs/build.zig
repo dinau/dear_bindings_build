@@ -18,11 +18,14 @@ pub fn build(b: *std.Build) void {
 
     step.addIncludePath(b.path("../../libc/dcimgui"));
     step.addIncludePath(b.path("../../libc/imgui"));
+    step.addIncludePath(b.path("../../libzig/cimgui"));
+    step.addIncludePath(b.path("../../libc/imgui"));
     step.addIncludePath(b.path("../../libc/cimknobs"));
     const mod = step.addModule(mod_name);
     mod.addImport(mod_name, mod);
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imgui"));
+    mod.addIncludePath(b.path("../../libzig/cimgui"));
     mod.addIncludePath(b.path("../../libc/cimgui-knobs"));
     mod.addIncludePath(b.path("../../libc/cimgui-knobs//libs/imgui-knobs"));
     mod.addCSourceFiles(.{

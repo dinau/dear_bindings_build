@@ -50,6 +50,8 @@ STB_DIR            = $(LIBS_DIR)/stb
 DCIMGUI_DIR        = $(LIBS_DIR)/dcimgui
 DCIMGUI_BUILD_DIR  = $(DCIMGUI_DIR)/.build
 #
+CIMGUI_DIR         = $(LIBS_DIR)/cimgui
+#
 UTILS_DIR          = ./utils
 RESOURCES_DIR      = ./resources
 FONT_HEADER_DIR    = $(RESOURCES_DIR)/fonticon
@@ -66,6 +68,7 @@ VPATH += .:$(DCIMGUI_DIR):$(DCIMGUI_DIR)/backends:$(IMGUI_DIR):$(IMGUI_DIR)/back
 DCIMGUI_SRCS_CPP += $(notdir $(wildcard $(DCIMGUI_DIR)/*.cpp))
 DCIMGUI_SRCS_CPP += $(notdir $(BACKEND_SRCS_CPP))
 IMGUI_SRCS_CPP  += $(notdir $(wildcard $(IMGUI_DIR)/*.cpp))
+CIMGUI_SRCS_CPP  += $(notdir $(wildcard $(CIMGUI_DIR)/*.cpp))
 
 # My sources
 MAIN_SRCS_C   += $(notdir $(wildcard src/*.c))
@@ -74,7 +77,7 @@ MAIN_SRCS_C   += $(notdir $(wildcard src/*.c))
 UTILS_SRCS_CPP += $(notdir $(wildcard $(UTILS_DIR)/*.cpp))
 UTILS_SRCS_C   += $(notdir $(wildcard $(UTILS_DIR)/*.c))
 
-DCIMGUI_OBJS += $(addprefix $(DCIMGUI_BUILD_DIR)/,$(DCIMGUI_SRCS_CPP:.cpp=.o) $(IMGUI_SRCS_CPP:.cpp=.o))
+DCIMGUI_OBJS += $(addprefix $(DCIMGUI_BUILD_DIR)/,$(DCIMGUI_SRCS_CPP:.cpp=.o) $(IMGUI_SRCS_CPP:.cpp=.o)) $(CIMGUI_SRCS_CPP:.cpp=.o)
 UTILS_OBJS   += $(addprefix $(BUILD_DIR)/,$(UTILS_SRCS_C:.c=.o) $(UTILS_SRCS_CPP:.cpp=.o))
 MAIN_OBJS    += $(addprefix $(BUILD_DIR)/,$(MAIN_SRCS_C:.c=.o))
 
