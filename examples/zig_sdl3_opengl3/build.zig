@@ -110,11 +110,11 @@ pub fn build(b: *std.Build) void {
     }
 
     // SDL3.dll
-    if (builtin.target.os.tag == .windows) {
-        const sdl3dll = "SDL3.dll";
-        const resSDL3Dll = b.addInstallFile(.{.cwd_relative = b.fmt("{s}/{s}/{s}", .{sdl_path, "bin", sdl3dll})}, "bin/" ++ sdl3dll);
-        b.getInstallStep().dependOn(&resSDL3Dll.step);
-    }
+    //if (builtin.target.os.tag == .windows) {
+    //    const sdl3dll = "SDL3.dll";
+    //    const resSDL3Dll = b.addInstallFile(.{.cwd_relative = b.fmt("{s}/{s}/{s}", .{sdl_path, "bin", sdl3dll})}, "bin/" ++ sdl3dll);
+    //    b.getInstallStep().dependOn(&resSDL3Dll.step);
+    //}
 
     // save [Executable name].ini
     const sExeIni = b.fmt("{s}.ini", .{exe_name});

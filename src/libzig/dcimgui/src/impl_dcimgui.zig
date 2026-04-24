@@ -269,7 +269,7 @@ pub const struct_ImVector_ImU16_t = extern struct {
     Data: [*c]ImU16 = @import("std").mem.zeroes([*c]ImU16),
 };
 pub const ImVector_ImU16 = struct_ImVector_ImU16_t;
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:3726:18: warning: struct demoted to opaque type - has bitfield
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:3726:18: warning: struct demoted to opaque type - has bitfield
 pub const struct_ImFontGlyph_t = opaque {};
 pub const ImFontGlyph = struct_ImFontGlyph_t;
 pub const struct_ImVector_ImFontGlyph_t = extern struct {
@@ -278,7 +278,7 @@ pub const struct_ImVector_ImFontGlyph_t = extern struct {
     Data: ?*ImFontGlyph = @import("std").mem.zeroes(?*ImFontGlyph),
 };
 pub const ImVector_ImFontGlyph = struct_ImVector_ImFontGlyph_t;
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:3958:26: warning: struct demoted to opaque type - has bitfield
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:3958:26: warning: struct demoted to opaque type - has bitfield
 pub const struct_ImFontBaked_t = struct {};
 pub const ImFontBaked = struct_ImFontBaked_t;
 pub const ImFontFlags = c_int;
@@ -384,7 +384,7 @@ pub const struct_ImVector_stbrp_node_im_t = extern struct {
     Data: ?*stbrp_node_im = @import("std").mem.zeroes(?*stbrp_node_im),
 };
 pub const ImVector_stbrp_node_im = struct_ImVector_stbrp_node_im_t;
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:4056:18: warning: struct demoted to opaque type - has bitfield
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:4056:18: warning: struct demoted to opaque type - has bitfield
 pub const struct_ImFontAtlasRectEntry_t = opaque {};
 pub const ImFontAtlasRectEntry = struct_ImFontAtlasRectEntry_t;
 pub const struct_ImVector_ImFontAtlasRectEntry_t = extern struct {
@@ -900,7 +900,7 @@ pub const struct_ImGuiViewportP_t = extern struct {
     BuildWorkInsetMax: ImVec2 = @import("std").mem.zeroes(ImVec2),
 };
 pub const ImGuiViewportP = struct_ImGuiViewportP_t;
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:2894:30: warning: struct demoted to opaque type - has bitfield
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:2894:30: warning: struct demoted to opaque type - has bitfield
 pub const struct_ImGuiWindow_t = opaque {};
 pub const ImGuiWindow = struct_ImGuiWindow_t;
 pub const struct_ImVector_ImGuiWindowPtr_t = extern struct {
@@ -1287,7 +1287,7 @@ pub const struct_ImGuiTableTempData_t = extern struct {
 pub const ImGuiTableTempData = struct_ImGuiTableTempData_t;
 pub const ImGuiTableColumnFlags = c_int;
 pub const ImGuiTableDrawChannelIdx = ImU16;
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:3106:30: warning: struct demoted to opaque type - has bitfield
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:3106:30: warning: struct demoted to opaque type - has bitfield
 pub const struct_ImGuiTableColumn_t = opaque {};
 pub const ImGuiTableColumn = struct_ImGuiTableColumn_t;
 pub const struct_ImSpan_ImGuiTableColumn_t = extern struct {
@@ -1311,7 +1311,7 @@ pub const struct_ImSpan_ImGuiTableCellData_t = extern struct {
 };
 pub const ImSpan_ImGuiTableCellData = struct_ImSpan_ImGuiTableCellData_t;
 pub const ImBitArrayPtr = [*c]ImU32;
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:3170:32: warning: struct demoted to opaque type - has bitfield
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:3170:32: warning: struct demoted to opaque type - has bitfield
 pub const struct_ImGuiTable_t = opaque {};
 pub const ImGuiTable = struct_ImGuiTable_t;
 pub const struct_ImVector_ImGuiTableTempData_t = extern struct {
@@ -1438,7 +1438,7 @@ pub const struct_ImVector_ImGuiShrinkWidthItem_t = extern struct {
     Data: [*c]ImGuiShrinkWidthItem = @import("std").mem.zeroes([*c]ImGuiShrinkWidthItem),
 };
 pub const ImVector_ImGuiShrinkWidthItem = struct_ImVector_ImGuiShrinkWidthItem_t;
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:1881:19: warning: struct demoted to opaque type - has bitfield
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:1881:19: warning: struct demoted to opaque type - has bitfield
 pub const struct_ImGuiBoxSelectState_t = struct {};
 pub const ImGuiBoxSelectState = struct_ImGuiBoxSelectState_t;
 pub const struct_ImGuiMultiSelectIO_t = extern struct {
@@ -1602,7 +1602,7 @@ pub const struct_ImGuiDockContext_t = extern struct {
     WantFullRebuild: bool = @import("std").mem.zeroes(bool),
 };
 pub const ImGuiDockContext = struct_ImGuiDockContext_t;
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:2025:29: warning: struct demoted to opaque type - has bitfield
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:2025:29: warning: struct demoted to opaque type - has bitfield
 pub const struct_ImGuiDockNode_t = opaque {};
 pub const ImGuiDockNode = struct_ImGuiDockNode_t;
 pub const struct_ImGuiSettingsHandler_t = extern struct {
@@ -37301,7 +37301,7 @@ pub const struct_ImVector_const_charPtr_t = extern struct {
     Data: [*c][*c]const u8 = @import("std").mem.zeroes([*c][*c]const u8),
 };
 pub const ImVector_const_charPtr = struct_ImVector_const_charPtr_t;
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:3295:25: warning: struct demoted to opaque type - has bitfield
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:3295:25: warning: struct demoted to opaque type - has bitfield
 pub const struct_ImGuiTableColumnSettings_t = opaque {};
 pub const ImGuiTableColumnSettings = struct_ImGuiTableColumnSettings_t;
 pub const struct_ImBitVector_t = extern struct {
@@ -37347,7 +37347,7 @@ pub const struct_ImGuiMenuColumns_t = extern struct {
     Widths: [4]ImU16 = @import("std").mem.zeroes([4]ImU16),
 };
 pub const ImGuiMenuColumns = struct_ImGuiMenuColumns_t;
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:841:19: warning: struct demoted to opaque type - has bitfield
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:841:19: warning: struct demoted to opaque type - has bitfield
 pub const struct_ImGuiStyleVarInfo_t = opaque {};
 pub const ImGuiStyleVarInfo = struct_ImGuiStyleVarInfo_t;
 pub const struct_ImGuiTableSettings_t = extern struct {
@@ -39558,10 +39558,10 @@ pub inline fn IM_ASSERT(_EXPR: anytype) @TypeOf(assert(_EXPR)) {
     return assert(_EXPR);
 }
 pub const IM_COUNTOF = @compileError("unable to translate C expr: unexpected token '*'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:107:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:107:9
 pub const IM_UNUSED = @import("std").zig.c_translation.Macros.DISCARD;
 pub const IM_STRINGIFY_HELPER = @compileError("unable to translate C expr: unexpected token '#'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:109:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:109:9
 pub inline fn IM_STRINGIFY(_EXPR: anytype) @TypeOf(IM_STRINGIFY_HELPER(_EXPR)) {
     _ = &_EXPR;
     return IM_STRINGIFY_HELPER(_EXPR);
@@ -39570,16 +39570,16 @@ pub inline fn CIMGUI_CHECKVERSION() @TypeOf(ImGui_DebugCheckVersionAndDataLayout
     return ImGui_DebugCheckVersionAndDataLayout(IMGUI_VERSION, @import("std").zig.c_translation.sizeof(ImGuiIO), @import("std").zig.c_translation.sizeof(ImGuiStyle), @import("std").zig.c_translation.sizeof(ImVec2), @import("std").zig.c_translation.sizeof(ImVec4), @import("std").zig.c_translation.sizeof(ImDrawVert), @import("std").zig.c_translation.sizeof(ImDrawIdx));
 }
 pub const IM_FMTARGS = @compileError("unable to translate macro: undefined identifier `format`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:125:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:125:9
 pub const IM_FMTLIST = @compileError("unable to translate macro: undefined identifier `format`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:126:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:126:9
 pub const IM_MSVC_RUNTIME_CHECKS_OFF = "";
 pub const IM_MSVC_RUNTIME_CHECKS_RESTORE = "";
 pub const ImTextureID_Invalid = @import("std").zig.c_translation.cast(ImTextureID, @as(c_int, 0));
 pub const IMGUI_PAYLOAD_TYPE_COLOR_3F = "_COL3F";
 pub const IMGUI_PAYLOAD_TYPE_COLOR_4F = "_COL4F";
 pub const IMGUI_DEBUG_LOG = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:2442:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui.h:2442:9
 pub inline fn CIM_ALLOC(_SIZE: anytype) @TypeOf(ImGui_MemAlloc(_SIZE)) {
     _ = &_SIZE;
     return ImGui_MemAlloc(_SIZE);
@@ -47294,37 +47294,37 @@ pub const IMGUI_ENABLE_SSE4_2_CRC = "";
 pub const IMGUI_ENABLE_STB_TRUETYPE = "";
 pub const IMGUI_PAYLOAD_TYPE_WINDOW = "_IMWINDOW";
 pub const IMGUI_DEBUG_PRINTF = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:330:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:330:9
 pub const IMGUI_DEBUG_LOG_ERROR = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:336:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:336:9
 pub const IMGUI_DEBUG_LOG_ACTIVEID = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:337:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:337:9
 pub const IMGUI_DEBUG_LOG_FOCUS = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:338:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:338:9
 pub const IMGUI_DEBUG_LOG_POPUP = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:339:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:339:9
 pub const IMGUI_DEBUG_LOG_NAV = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:340:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:340:9
 pub const IMGUI_DEBUG_LOG_SELECTION = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:341:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:341:9
 pub const IMGUI_DEBUG_LOG_CLIPPER = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:342:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:342:9
 pub const IMGUI_DEBUG_LOG_IO = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:343:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:343:9
 pub const IMGUI_DEBUG_LOG_FONT = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:344:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:344:9
 pub const IMGUI_DEBUG_LOG_INPUTROUTING = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:345:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:345:9
 pub const IMGUI_DEBUG_LOG_DOCKING = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:346:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:346:9
 pub const IMGUI_DEBUG_LOG_VIEWPORT = @compileError("unable to translate C expr: expected ')' instead got '...'");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:347:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:347:9
 pub inline fn IM_STATIC_ASSERT(_COND: anytype) @TypeOf(static_assert(_COND, "")) {
     _ = &_COND;
     return static_assert(_COND, "");
 }
 pub const IM_ASSERT_PARANOID = @compileError("unable to translate C expr: unexpected token ''");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:358:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:358:9
 pub const IM_PI = @as(f32, 3.14159265358979323846);
 pub const IM_NEWLINE = "\r\n";
 pub const IM_TABSIZE = @as(c_int, 4);
@@ -47338,7 +47338,7 @@ pub inline fn IM_F32_TO_INT8_UNBOUND(_VAL: anytype) c_int {
     return @import("std").zig.c_translation.cast(c_int, (_VAL * @as(f32, 255.0)) + (if (_VAL >= @as(c_int, 0)) @as(f32, 0.5) else -@as(f32, 0.5)));
 }
 pub const IM_F32_TO_INT8_SAT = @compileError("unable to translate macro: undefined identifier `ImSaturate`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:372:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:372:9
 pub inline fn IM_TRUNC(_VAL: anytype) f32 {
     _ = &_VAL;
     return @import("std").zig.c_translation.cast(f32, @import("std").zig.c_translation.cast(c_int, _VAL));
@@ -47351,16 +47351,16 @@ pub const IM_LIKELY = "";
 pub const IM_UNLIKELY = "";
 pub const IMGUI_CDECL = "";
 pub const IM_MSVC_WARNING_SUPPRESS = @compileError("unable to translate C expr: unexpected token ''");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:395:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:395:9
 pub const IM_DEBUG_BREAK = @compileError("unable to translate macro: undefined identifier `__builtin_debugtrap`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:405:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:405:9
 pub const IM_PRId64 = "lld";
 pub const IM_PRIu64 = "llu";
 pub const IM_PRIX64 = "llX";
 pub const ImStrlen = @compileError("unable to translate macro: undefined identifier `strlen`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:478:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:478:9
 pub const ImMemchr = @compileError("unable to translate macro: undefined identifier `memchr`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:479:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:479:9
 pub inline fn ImFabs(X: anytype) @TypeOf(fabsf(X)) {
     _ = &X;
     return fabsf(X);
@@ -47405,7 +47405,7 @@ pub inline fn IM_BITARRAY_TESTBIT(_ARRAY: anytype, _N: anytype) @TypeOf((_ARRAY[
     return (_ARRAY[@as(usize, @intCast(_N >> @as(c_int, 5)))] & (@import("std").zig.c_translation.cast(ImU32, @as(c_int, 1)) << (_N & @as(c_int, 31)))) != @as(c_int, 0);
 }
 pub const IM_BITARRAY_CLEARBIT = @compileError("unable to translate C expr: expected ')' instead got '&='");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:697:17
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:697:17
 pub inline fn IM_ROUNDUP_TO_EVEN(_V: anytype) @TypeOf(@import("std").zig.c_translation.MacroArithmetic.div(_V + @as(c_int, 1), @as(c_int, 2)) * @as(c_int, 2)) {
     _ = &_V;
     return @import("std").zig.c_translation.MacroArithmetic.div(_V + @as(c_int, 1), @as(c_int, 2)) * @as(c_int, 2);
@@ -47413,11 +47413,11 @@ pub inline fn IM_ROUNDUP_TO_EVEN(_V: anytype) @TypeOf(@import("std").zig.c_trans
 pub const IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_MIN = @as(c_int, 4);
 pub const IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_MAX = @as(c_int, 512);
 pub const IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_CALC = @compileError("unable to translate macro: undefined identifier `ImClamp`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:781:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:781:9
 pub const IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_CALC_R = @compileError("unable to translate macro: undefined identifier `ImMax`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:784:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:784:9
 pub const IM_DRAWLIST_CIRCLE_AUTO_SEGMENT_CALC_ERROR = @compileError("unable to translate macro: undefined identifier `ImMax`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:785:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:785:9
 pub const IM_DRAWLIST_ARCFAST_TABLE_SIZE = @as(c_int, 48);
 pub const IM_DRAWLIST_ARCFAST_SAMPLE_MAX = IM_DRAWLIST_ARCFAST_TABLE_SIZE;
 pub const IMSTB_TEXTEDIT_STRING = ImGuiInputTextState;
@@ -47440,9 +47440,9 @@ pub const ImGuiKey_NavKeyboardTweakFast = ImGuiMod_Shift;
 pub const ImGuiKey_NavGamepadTweakSlow = ImGuiKey_GamepadL1;
 pub const ImGuiKey_NavGamepadTweakFast = ImGuiKey_GamepadR1;
 pub const ImGuiKey_NavGamepadActivate = @compileError("unable to translate macro: undefined identifier `g`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:1506:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:1506:9
 pub const ImGuiKey_NavGamepadCancel = @compileError("unable to translate macro: undefined identifier `g`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:1507:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:1507:9
 pub const ImGuiKey_NavGamepadMenu = ImGuiKey_GamepadFaceLeft;
 pub const ImGuiKey_NavGamepadInput = ImGuiKey_GamepadFaceUp;
 pub const ImGuiKeyOwner_Any = @import("std").zig.c_translation.cast(ImGuiID, @as(c_int, 0));
@@ -47451,11 +47451,11 @@ pub const ImGuiSelectionUserData_Invalid = @import("std").zig.c_translation.cast
 pub const DOCKING_HOST_DRAW_CHANNEL_BG = @as(c_int, 0);
 pub const DOCKING_HOST_DRAW_CHANNEL_FG = @as(c_int, 1);
 pub const IM_ASSERT_USER_ERROR = @compileError("unable to translate macro: undefined identifier `ImGui`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:2233:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:2233:9
 pub const IM_ASSERT_USER_ERROR_RET = @compileError("unable to translate macro: undefined identifier `ImGui`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:2234:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:2234:9
 pub const IM_ASSERT_USER_ERROR_RETV = @compileError("unable to translate macro: undefined identifier `ImGui`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:2235:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:2235:9
 pub const IMGUI_WINDOW_HARD_MIN_SIZE = @as(f32, 4.0);
 pub const IM_COL32_DISABLE = IM_COL32(@as(c_int, 0), @as(c_int, 0), @as(c_int, 0), @as(c_int, 1));
 pub const IMGUI_TABLE_MAX_COLUMNS = @as(c_int, 512);
@@ -47471,7 +47471,7 @@ pub inline fn IMGUI_TEST_ENGINE_ITEM_ADD(_ID: anytype, _BB: anytype, _ITEM_DATA:
     return @import("std").zig.c_translation.cast(anyopaque, @as(c_int, 0));
 }
 pub const IMGUI_TEST_ENGINE_ITEM_INFO = @compileError("unable to translate macro: undefined identifier `g`");
-// C:\dear_bindings_build\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:4211:9
+// C:\imguinz2\src\libzig\dcimgui\..\..\libc\dcimgui/dcimgui_internal.h:4211:9
 pub const threadlocaleinfostruct = struct_threadlocaleinfostruct;
 pub const threadmbcinfostruct = struct_threadmbcinfostruct;
 pub const __lc_time_data = struct___lc_time_data;

@@ -25,7 +25,10 @@ pub fn build(b: *std.Build) void {
     const mod = step.addModule(mod_name);
     //mod.addImport(mod_name, mod);
 
+    // Macro
+    mod.addCMacro("CIMGUI_API", "extern \"C\"  ");
     mod.addCMacro("imguizmo_NAMESPACE", "imguizmo"); // for imguizmo
+    //
     mod.addIncludePath(b.path("src"));
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imgui"));

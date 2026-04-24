@@ -1,7 +1,7 @@
 .{
-    .name = .dear_bindings_build,
+    .name = .imguinz2,
     .version = "0.1.0",
-    .fingerprint = 0xd055b27cb9a1852c, // Changing this has security and trust implications.
+    .fingerprint = 0x7d4487dee3f8f155, // Changing this has security and trust implications.
     .minimum_zig_version = "0.15.2",
     .dependencies = .{
         .appimgui          = .{ .path = "src/libzig/appimgui" },

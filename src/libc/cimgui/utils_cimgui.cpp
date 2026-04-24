@@ -28,7 +28,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include "utils_cimgui.h"
+#include "imgui.h"
 
 CIMGUI_API ImFontConfig* ImFontConfig_ImFontConfig(void)
 {

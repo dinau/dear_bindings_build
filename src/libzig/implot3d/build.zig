@@ -32,7 +32,10 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../libc/cimplot3d"));
     mod.addIncludePath(b.path("../../libc/cimplot3d/implotd"));
     mod.addIncludePath(b.path("./src"));
+    // Macro
+    mod.addCMacro("CIMGUI_API", "extern \"C\"  ");
     mod.addCMacro("ImDrawIdx", "unsigned int");
+    //
     mod.addCSourceFiles(.{
         .files = &.{
             // ImPlot

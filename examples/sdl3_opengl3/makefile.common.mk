@@ -130,6 +130,7 @@ ifeq ($(HIDE_CONSOLE_WINDOW),true)
 	endif
 endif
 
+CXXFLAGS += -DCIMGUI_API="extern \"C\""
 CXXFLAGS += $(CFLAGS)
 CXXFLAGS += -fno-exceptions -fno-rtti -std=c++11
 LDFLAGS += -L$(DCIMGUI_ARCHIVE_DIR)

@@ -29,13 +29,13 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../libc/dcimgui"));
     mod.addIncludePath(b.path("../../libc/imgui"));
     mod.addIncludePath(b.path("../../libc/cimgui"));
+    // Macro
+    mod.addCMacro("CIMGUI_API", "extern \"C\"  ");
     //
     mod.addIncludePath(b.path("../../libc/cimCTE"));
     mod.addIncludePath(b.path("../../libc/cimCTE/ImGuiColorTextEdit"));
     mod.addIncludePath(b.path("../../libc/cimCTE/ImGuiColorTextEdit/vendor/regex/include"));
     mod.addIncludePath(b.path("./src"));
-    // macro
-    //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1");
     mod.addCSourceFiles(.{
         .files = &.{
             "../../libc/cimCTE/cimCTE.cpp",

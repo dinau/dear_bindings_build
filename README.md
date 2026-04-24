@@ -45,7 +45,7 @@ Alternatively, you can simply perform a fresh clone of the new URL:
 `https://github.com/dinau/imguinz2.git`
 
 
-### ImGuinZ2
+### ImGuinz2
 
 This project aims to simply and easily build [Dear ImGui](https://github.com/ocornut/imgui) examples with **C** and **Zig** using [Dear_Bindings](https://github.com/dearimgui/dear_bindings) as first step.
 And one can use many other libaries and examples with less external dependencies[^except_raylib].
@@ -56,6 +56,8 @@ And one can use many other libaries and examples with less external dependencies
 #### Zig fetch
 
 ---
+
+Use zig-0.15.2 or later
 
 1. Zig fetch `imguinz2`
 
@@ -176,7 +178,7 @@ Click link for live demo: [Click here](https://dinau.github.io/imguin/wasm/demo/
 | Frontends |      Backends     |
 |-----------|:-----------------:|
 | GLFW3     |      OpenGL3      |
-| SDL3.4    |  OpenGL3, SDL3GPU |
+| SDL3      |  OpenGL3, SDL3GPU |
 | Win32     | DirectX 11(D3D11) |
   
 [^except_raylib]: Except Raylib examples
@@ -189,7 +191,8 @@ Click link for live demo: [Click here](https://dinau.github.io/imguin/wasm/demo/
     - [x] zig-0.16.0  
        Windows: [zig-x86_64-windows-0.16.0.zip](https://ziglang.org/download/0.16.0/zig-x86_64-windows-0.16.0.zip)  
        Linux:   [  zig-x86_64-linux-0.16.0.tar.xz](https://ziglang.org/download/0.16.0/zig-x86_64-linux-0.16.0.tar.xz)
-    - [x] zig-0.15.2  
+    - [x] zig-0.17.0-dev.93  
+    - [x] \(zig-0.15.2\): Deprecated 
 
 - Windows11  
    - Optional: MSys2/MinGW basic commands (make, rm, cp ...)
@@ -226,7 +229,7 @@ Library name / C wrapper
 - [x] [CImGui](https://github.com/cimgui/cimgui)
 - [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
 
-Additional examples (Only zig-0.15.2)
+Additional examples 
 - [x] [Raylib](https://github.com/raysan5/raylib), [raylib-zig](https://github.com/raylib-zig/raylib-zig), [rlImGui](https://github.com/raylib-extras/rlImGui) (2025/11)
 
 #### Build and run
@@ -356,12 +359,12 @@ zig build run --release=fast                # or make run
 
 ---
 
-| Language |                                                                             GLFW | Magnifing glass | Image load /save |
-|:--------:|---------------------------------------------------------------------------------:|:---------------:|:----------------:|
-|     C    |                      [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |         Y        |
-|     C    |                      [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |         Y        |
-|    Zig   | [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load/src/main.zig) |        Y        |         Y        |
-|    Zig   |                       [zig_sdl3_sdlgup3](examples/zig_sdl3_sdlgpu3/src/main.zig) |        -        |       load       |
+| Language |                                                                                                                    GLFW | Magnifing glass | Image load /save | Note |
+|:--------:|------------------------------------------------------------------------------------------------------------------------:|:---------------:|:----------------:|------|
+|     C    |                                                             [glfw_opengl3_image_load](examples/glfw_opengl3_image_load) |        -        |         Y        |      |
+|     C    |                                                             [glfw_opengl3_image_save](examples/glfw_opengl3_image_save) |        -        |         Y        |      |
+|    Zig   |                                        [zig_glfw_opengl3_image_load](examples/zig_glfw_opengl3_image_load/src/main.zig) |        Y        |         Y        |      |
+|    Zig   | [zig_sdl3_sdlgup3](examples/zig_sdl3_sdlgpu3/src/main.zig) / [zig_sdl3_opengl3](examples/zig_sdl3_opengl3/src/main.zig) |        -        |       load       |Download [SDL3.dll](https://github.com/libsdl-org/SDL/releases) on Windows      |
 
 - [x] Image file captured will be saved in current folder.  
 - [x] Image format can be selected from `JPEG / PNG / BMP / TGA`.

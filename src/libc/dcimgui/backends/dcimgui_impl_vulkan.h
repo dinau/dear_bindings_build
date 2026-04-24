@@ -17,7 +17,6 @@ typedef struct ImVector_ImGui_ImplVulkanH_FrameSemaphores_t ImVector_ImGui_ImplV
 #ifndef ImDrawIdx
 typedef unsigned short ImDrawIdx;  // Default: 16-bit (for maximum compatibility with renderer backends)
 #endif // #ifndef ImDrawIdx
-struct ImVector_VkDynamicState_t { int Size; int Capacity; VkDynamicState* Data; };  // Instantiation of ImVector<VkDynamicState>
 // This needs to be used along with a Platform Backend (e.g. GLFW, SDL, Win32, custom..)
 
 // Implemented features:
@@ -95,6 +94,7 @@ extern "C"
 #else
 #include <vulkan/vulkan.h>
 #endif // #ifdef IMGUI_IMPL_VULKAN_USE_VOLK
+struct ImVector_VkDynamicState_t { int Size; int Capacity; VkDynamicState* Data; };  // Instantiation of ImVector<VkDynamicState>
 #if defined(VK_VERSION_1_3)|| defined(VK_KHR_dynamic_rendering)
 #define IMGUI_IMPL_VULKAN_HAS_DYNAMIC_RENDERING
 #endif // #if defined(VK_VERSION_1_3)|| defined(VK_KHR_dynamic_rendering)

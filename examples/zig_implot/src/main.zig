@@ -7,7 +7,7 @@ const ipz = @import("zimplot.zig");
 // From C standard libraries
 pub extern fn rand() c_int;
 
-const IMGUI_HAS_DOCK = false;    // Docking feature
+const IMGUI_HAS_DOCK = false; // Docking feature
 
 const MainWinWidth: i32 = 1024;
 const MainWinHeight: i32 = 900;
@@ -38,11 +38,11 @@ pub fn gui_main(window: *app.Window) !void {
     //---------------
     // main loop GUI
     //---------------
-    while (!window.shouldClose ()) {
-        window.pollEvents ();
+    while (!window.shouldClose()) {
+        window.pollEvents();
 
         // Iconify sleep
-        if( window.isIconified()){
+        if (window.isIconified()) {
             continue;
         }
 
@@ -71,6 +71,7 @@ pub fn gui_main(window: *app.Window) !void {
 //--------------
 // imPlotWindow
 //--------------
+// Using "./zimplot.zig"
 fn imPlotWindow(fshow: *bool) void {
     const numx = 20;
     const st = struct {
@@ -90,11 +91,20 @@ fn imPlotWindow(fshow: *bool) void {
     {
         _ = ig.ImGui_Begin("Plot Window", fshow, 0);
         defer ig.ImGui_End();
-        if (ip.ImPlot_BeginPlot("My Plot", .{.x = 0, .y = 0}, 0)) {
+        if (ip.ImPlot_BeginPlot("My Plot", .{ .x = 0, .y = 0 }, 0)) {
             defer ip.ImPlot_EndPlot();
             // Using "./zimplot.zig"
-            ipz.ImPlot_PlotBars("My Bar Plot", &st.bar_data, st.bar_data.len);
-            ipz.ImPlot_PlotLineXy("My Line Plot", &st.x_data, &st.y_data, st.x_data.len);
+            ipz.ImPlot_PlotBars(.{
+                .label = "My Bar Plot",
+                .values = &st.bar_data,
+                .count = st.bar_data.len,
+            });
+            ipz.ImPlot_PlotLine(.{
+                .label = "My Line Plot",
+                .xs = &st.x_data,
+                .ys = &st.y_data,
+                .count = st.x_data.len,
+            });
         }
     }
 }
@@ -102,6 +112,7 @@ fn imPlotWindow(fshow: *bool) void {
 //---------------
 // imPlotWindow2
 //---------------
+// Not using "./zimplot.zig"
 fn imPlotWindow2(fshow: *bool) void {
     const numx = 20;
     const st = struct {
@@ -123,22 +134,14 @@ fn imPlotWindow2(fshow: *bool) void {
         defer ig.ImGui_End();
         if (ip.ImPlot_BeginPlot("My Plot", .{ .x = 0, .y = 0 }, 0)) {
             defer ip.ImPlot_EndPlot();
-            // Not using "./zimplot.zig"
-            ip.ImPlot_PlotBars_S32PtrInt("My Bar Plot"
-                                    ,&st.bar_data
-                                    ,st.bar_data.len
-                                    ,0.67 // bar_size
-                                    ,0.0  // shift
-                                    ,0    // ImPlotFlags
-                                    ,0    // offset
-                                    ,@sizeOf(ig.ImS32)); // stride
-            ip.ImPlot_PlotLine_S32PtrS32Ptr("My LiSe Plot"
-                                    ,&st.x_data
-                                    ,&st.y_data
-                                    ,st.x_data.len
-                                    ,0    // ImPlotFlags
-                                    ,0    // offset
-                                    ,@sizeOf(ig.ImS32)); // stride
+            ip.ImPlot_PlotBars_S32PtrInt("My Bar Plot", &st.bar_data, st.bar_data.len, 0.67 // bar_size
+                , 0.0 // shift
+                , 0 // ImPlotFlags
+                , 0 // offset
+                , @sizeOf(ig.ImS32)); // stride
+            ip.ImPlot_PlotLine_S32PtrS32Ptr("My LiSe Plot", &st.x_data, &st.y_data, st.x_data.len, 0 // ImPlotFlags
+                , 0 // offset
+                , @sizeOf(ig.ImS32)); // stride
         }
     }
 }
@@ -147,7 +150,7 @@ fn imPlotWindow2(fshow: *bool) void {
 // main()
 //--------
 pub fn main() !void {
-    var window = try app.Window.createImGui(MainWinWidth, MainWinHeight, "ImGui window in Zig lang.");
+    var window = try app.Window.createImGui(MainWinWidth, MainWinHeight, "ImGui window in Zig");
     defer window.destroyImGui();
 
     //_ = app.setTheme(app.Theme.light); // Theme: dark, classic, light, microsoft

@@ -27,7 +27,7 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("../../libc/CImGuiFileDialog/libs/ImGuiFileDialog"));
     mod.addIncludePath(b.path("../../libc/fonticon"));
     // macro
-    //mod.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "1");
+    mod.addCMacro("CIMGUI_API", "extern \"C\"  ");
     // for fileopendialog
     mod.addCMacro("CUSTOM_IMGUIFILEDIALOG_CONFIG", "\"customIconFont.h\"");
     mod.addCSourceFiles(.{

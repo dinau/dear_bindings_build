@@ -77245,6 +77245,49 @@
             }
         },
         {
+            "name": "ImGui_GetInputTextState",
+            "original_fully_qualified_name": "ImGui::GetInputTextState",
+            "return_type": {
+                "declaration": "ImGuiInputTextState*",
+                "description": {
+                    "kind": "Pointer",
+                    "inner_type": {
+                        "kind": "User",
+                        "name": "ImGuiInputTextState"
+                    }
+                }
+            },
+            "arguments": [
+                {
+                    "name": "id",
+                    "type": {
+                        "declaration": "ImGuiID",
+                        "description": {
+                            "kind": "User",
+                            "name": "ImGuiID"
+                        }
+                    },
+                    "is_array": false,
+                    "is_varargs": false,
+                    "is_instance_pointer": false
+                }
+            ],
+            "is_default_argument_helper": false,
+            "is_manual_helper": false,
+            "is_imstr_helper": false,
+            "has_imstr_helper": false,
+            "is_unformatted_helper": false,
+            "is_static": false,
+            "comments": {
+                "attached": "// Get input text state if active"
+            },
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui_internal.h",
+                "line": 3991
+            }
+        },
+        {
             "name": "ImGui_SetNextItemRefVal",
             "original_fully_qualified_name": "ImGui::SetNextItemRefVal",
             "return_type": {
@@ -80168,6 +80211,46 @@
             "source_location": {
                 "filename": "imgui_internal.h",
                 "line": 4053
+            }
+        },
+        {
+            "name": "ImGui_DebugNodeInputTextState",
+            "original_fully_qualified_name": "ImGui::DebugNodeInputTextState",
+            "return_type": {
+                "declaration": "void",
+                "description": {
+                    "kind": "Builtin",
+                    "builtin_type": "void"
+                }
+            },
+            "arguments": [
+                {
+                    "name": "state",
+                    "type": {
+                        "declaration": "ImGuiInputTextState*",
+                        "description": {
+                            "kind": "Pointer",
+                            "inner_type": {
+                                "kind": "User",
+                                "name": "ImGuiInputTextState"
+                            }
+                        }
+                    },
+                    "is_array": false,
+                    "is_varargs": false,
+                    "is_instance_pointer": false
+                }
+            ],
+            "is_default_argument_helper": false,
+            "is_manual_helper": false,
+            "is_imstr_helper": false,
+            "has_imstr_helper": false,
+            "is_unformatted_helper": false,
+            "is_static": false,
+            "is_internal": false,
+            "source_location": {
+                "filename": "imgui_internal.h",
+                "line": 4054
             }
         },
         {
