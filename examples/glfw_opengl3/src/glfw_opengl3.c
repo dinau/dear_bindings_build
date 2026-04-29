@@ -1,8 +1,8 @@
 #include <stdio.h>
+#include <string.h>
 #include <GLFW/glfw3.h>
 
 #include "appimgui.h"
-#include <string.h>
 
 int main(void) {
   Window* win = createImGui_c(1024, 900, "ImGui window");

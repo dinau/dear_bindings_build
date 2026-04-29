@@ -2,7 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Caution: Due to certain reasons, this repository will be renamed to imguinz2 in a few days.](#caution-due-to-certain-reasons-this-repository-will-be-renamed-to-imguinz2-in-a-few-days)
-  - [ImGuinZ2](#imguinz2)
+  - [ImGuinz2](#imguinz2)
     - [Zig fetch](#zig-fetch)
     - [Try Wasm demo in your browser](#try-wasm-demo-in-your-browser)
     - [Frontends and Backends](#frontends-and-backends)
@@ -24,6 +24,7 @@
       - [zig_implot / zig_implot3d](#zig_implot--zig_implot3d)
       - [Image load / save (OpenGL, SDL3, SDL3GPU)](#image-load--save-opengl-sdl3-sdl3gpu)
       - [zig_glfw_opengl3](#zig_glfw_opengl3)
+      - [zig_imgui_zoomable_image](#zig_imgui_zoomable_image)
     - [Hiding console window](#hiding-console-window)
     - [SDL libraries](#sdl-libraries)
     - [My tools version](#my-tools-version)
@@ -57,7 +58,7 @@ And one can use many other libaries and examples with less external dependencies
 
 ---
 
-Use zig-0.15.2 or later
+Use zig-0.16.0 or later
 
 1. Zig fetch `imguinz2`
 
@@ -191,7 +192,7 @@ Click link for live demo: [Click here](https://dinau.github.io/imguin/wasm/demo/
     - [x] zig-0.16.0  
        Windows: [zig-x86_64-windows-0.16.0.zip](https://ziglang.org/download/0.16.0/zig-x86_64-windows-0.16.0.zip)  
        Linux:   [  zig-x86_64-linux-0.16.0.tar.xz](https://ziglang.org/download/0.16.0/zig-x86_64-linux-0.16.0.tar.xz)
-    - [x] zig-0.17.0-dev.93  
+    - [x] zig-0.17.0-dev.135 
     - [x] \(zig-0.15.2\): Deprecated 
 
 - Windows11  
@@ -226,8 +227,12 @@ Library name / C wrapper
 - [x] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) (2025/08)
 - [x] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot) (2025/08)
 - [x] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d)  (2025/08)
-- [x] [CImGui](https://github.com/cimgui/cimgui)
+- [x] [imgui_zoomable_image](https://github.com/danielm5/imgui_zoomable_image) / [cimgui_zoomable_image](https://github.com/dinau/cimgui_zoomable_image) (2026/04)
 - [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
+
+https://github.com/nothings/stb
+
+https://github.com/FortAwesome/Font-Awesome
 
 Additional examples 
 - [x] [Raylib](https://github.com/raysan5/raylib), [raylib-zig](https://github.com/raylib-zig/raylib-zig), [rlImGui](https://github.com/raylib-extras/rlImGui) (2025/11)
@@ -384,6 +389,15 @@ zig build run --release=fast                # or make run
 
 
 ![alt](img/glfw_opengl3.png) ![alt](img/glfw_opengl3_jp.png)
+
+##### zig_imgui_zoomable_image
+
+---
+
+Try Wasm live demo in your browser  
+Click link for live demo: [Click here](https://dinau.github.io/cimgui_zoomable_image/wasm/)  
+
+![alt](https://github.com/dinau/cimgui_zoomable_image/raw/main/img/snapshot.png)
 
 #### Hiding console window
 

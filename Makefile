@@ -11,6 +11,7 @@ EXAMPLE_DIRS_ZIG =\
 							examples/zig_imcolortextedit         \
 							examples/zig_imfileopendialog        \
 							examples/zig_imguizmo                \
+							examples/zig_imgui_zoomable_image   \
 							examples/zig_imknobs                 \
 							examples/zig_imnodes                 \
 							examples/zig_implot                  \

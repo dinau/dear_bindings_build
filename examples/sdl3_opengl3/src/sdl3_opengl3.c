@@ -9,7 +9,6 @@
 
 #include "setupFonts.h"
 
-#define nullptr NULL
 
 const int MainWinWidth = 1024;
 const int MainWinHeight = 800;
@@ -37,7 +36,7 @@ int main(int argc, char *argv[]) {
   SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
   SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN);
   SDL_Window* window = SDL_CreateWindow("Dear ImGui SDL3+OpenGL3 example", MainWinWidth, MainWinHeight, window_flags);
-  if (window == nullptr) {
+  if (window == NULL) {
     printf("Error: SDL_CreateWindow(): %s\n", SDL_GetError());
     return -1;
   }

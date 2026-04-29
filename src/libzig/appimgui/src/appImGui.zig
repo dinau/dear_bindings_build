@@ -52,6 +52,11 @@ pub const TIni = struct {
 pub const Window = struct {
     const Self = @This();
     const IMGUI_HAS_DOCK = false; // Docking feature
+    pub const eventLoad = enum {
+        low,
+        standard,
+    };
+    eventLoadVar: eventLoad,
     handle: ?*glfw.GLFWwindow,
     showWindowDelay: i32, // TODO: Avoid flickering of window at startup
     ini: TIni,
@@ -118,6 +123,7 @@ pub const Window = struct {
         try loadIni(&win);
         std.debug.print("w = {d}, h = {d} \n", .{ win.ini.window.viewportWidth, win.ini.window.viewportHeight });
         glfw.glfwSetWindowSize(win.handle, win.ini.window.viewportWidth, win.ini.window.viewportHeight);
+        win.eventLoadVar = eventLoad.low;
         win.showWindowDelay = 1;
         win.clearColor = [_]f32{ win.ini.window.colBGx, win.ini.window.colBGy, win.ini.window.colBGz, 1.0 };
 
@@ -267,10 +273,25 @@ pub const Window = struct {
     //------------
     // pollEvents
     //------------
-    pub fn pollEvents(win: *Window) void {
-        _ = win;
+    pub fn pollEvents(win: Window) void {
+        switch (win.eventLoadVar) {
+            // https://www.glfw.org/docs/3.3/group__window.html#ga605a178db92f1a7f1a925563ef3ea2cf
+            Window.eventLoad.low => {
+                glfw.glfwWaitEventsTimeout(1.0 / 60.0);
+            },
+            // https://www.glfw.org/docs/3.3/group__window.html#ga37bd57223967b4211d60ca1a0bf3c832
+            Window.eventLoad.standard => {
         glfw.glfwPollEvents();
+            }, // Depends on glfw.glfwSwapInterval(1); // Enable VSync --- Lower CPU load
+        }
     }
+    pub fn eventLoadLow(win: *Window) void {
+        win.eventLoadVar = Window.eventLoad.low;
+    }
+    pub fn eventLoadStandard(win: *Window) void {
+        win.eventLoadVar = Window.eventLoad.standard;
+    }
+
     //------------------
     // Show info window
     //------------------

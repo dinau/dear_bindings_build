@@ -2,6 +2,7 @@
 .gitx/
 src/libc/imgui/examples/
 imgui_impl_null.*
+examples/zig_webgl_wasm/
 example_null/
 examples/sdl3_opengl3/SDL3.dll
 zig-pkg/

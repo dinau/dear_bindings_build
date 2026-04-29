@@ -1,17 +1,11 @@
 #include <stdio.h>
-
-#include <GLFW/glfw3.h>
-#include "dcimgui.h"
-#include "dcimgui_impl_glfw.h"
-#include "dcimgui_impl_opengl3.h"
-
-#include "setupFonts.h"
-#include "loadicon.h"
-#include <stdio.h>
+#include <string.h>
 #include <GLFW/glfw3.h>
 
 #include "appimgui.h"
-#include <string.h>
+#include "setupFonts.h"
+#include "loadicon.h"
+
 
 int main(void) {
   Window* win = createImGui_c(1024, 900, "ImGui window");

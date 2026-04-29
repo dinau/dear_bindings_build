@@ -6,6 +6,7 @@ DIRS = \
 	imcolortextedit \
 	imfileopendialog \
 	imguizmo\
+	imguizoomableimage \
 	imknobs\
 	imnodes\
 	implot\

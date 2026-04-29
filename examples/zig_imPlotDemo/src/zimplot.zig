@@ -107,6 +107,28 @@ fn convToUSType(comptime T: type) []const u8 {
     };
 }
 
+//--------------
+// argNameCheck
+//--------------
+fn argNameCheck(comptime T: type, comptime allowed: anytype) void {
+    const fields = @typeInfo(T).@"struct".fields;
+    inline for (fields) |field| {
+        // コンパイル時に true か false かを確定させる
+        const is_ok = comptime blk: {
+            for (allowed) |allowed_name| {
+                if (std.mem.eql(u8, field.name, allowed_name)) {
+                    break :blk true;
+                }
+            }
+            break :blk false;
+        };
+
+        if (!is_ok) {
+            @compileError("Invalid field: " ++ "\""  ++ field.name ++ "\"");
+        }
+    }
+}
+
 //-----------------
 // ImPlot_PlotLine
 //-----------------
@@ -134,6 +156,7 @@ pub fn ImPlot_PlotLine(args: anytype) void {
 
     // --- Branching Logic ---
     if (@hasField(T, "xs") and @hasField(T, "ys")) {
+        argNameCheck(T, .{ "label", "xs", "ys", "count", "flags", "offset", "stride" });
         const typ = @TypeOf(args.xs[0]);
         switch (typ) {
             f32, f64, i8, u8, i16, u16, i32, u32, i64, u64, c_int => |t| {
@@ -144,6 +167,7 @@ pub fn ImPlot_PlotLine(args: anytype) void {
             else => @compileError("Unsupported type for ImPlot_PlotLine (X-Y): Type: " ++ @typeName(typ)),
         }
     } else if (@hasField(T, "values")) {
+        argNameCheck(T, .{ "label", "values", "count", "xscale", "xstart", "flags", "offset", "stride" });
         const typ = @TypeOf(args.values[0]);
         switch (typ) {
             f32, f64, i8, u8, i16, u16, i32, u32, i64, u64, c_int => |t| {
@@ -174,10 +198,7 @@ pub fn ImPlot_PlotScatter(args: anytype) void {
         const typ = @TypeOf(args.xs[0]);
         const stride = if (@hasField(T, "stride")) args.stride else @as(c_int, @intCast(@sizeOf(typ)));
         switch (typ) {
-            f32 => ip.ImPlot_PlotScatter_FloatPtrFloatPtr(label, args.xs, args.ys, count, flags, offset, stride),
-            f64 => ip.ImPlot_PlotScatter_doublePtrdoublePtr(label, args.xs, args.ys, count, flags, offset, stride),
-            // ... Branch for other types via switch (omitted)
-            i8, u8, i16, u16, i32, u32, i64, u64, c_int => |t| {
+            f32, f64, i8, u8, i16, u16, i32, u32, i64, u64, c_int => |t| {
                 // In actual implementation, this expands like a macro
                 const p = comptime convToUSType(t);
                 const func = @field(ip, "ImPlot_PlotScatter_" ++ p ++ "Ptr" ++ p ++ "Ptr");

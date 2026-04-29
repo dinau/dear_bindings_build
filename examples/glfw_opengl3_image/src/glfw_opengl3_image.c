@@ -1,7 +1,6 @@
 #include <stdio.h>
-
-#include "appimgui.h"
 #include <GLFW/glfw3.h>
+#include "appimgui.h"
 #include "loadImage.h"
 #include "saveImage.h"
 
