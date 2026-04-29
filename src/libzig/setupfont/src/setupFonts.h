@@ -1,7 +1,11 @@
 #pragma once
-#include <stdbool.h>
 
-#include "dcimgui.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 ImFont* setupFonts(void);
-bool existFile(const char* path);
+
+#ifdef __cplusplus
+}
+#endif
