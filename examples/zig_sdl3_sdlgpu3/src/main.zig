@@ -155,7 +155,7 @@ pub fn main() !void {
             _ = ig.ImGui_Checkbox("Another Window", &showAnotherWindow);
 
             _ = ig.ImGui_SliderFloat("Float", &fval, 0.0, 1.0);
-            _ = ig.ImGui_ColorEdit3("Clear color", &clearColor, 0);
+            _ = ig.ImGui_ColorEdit3("Background color", &clearColor, 0);
 
             if (ig.ImGui_Button("Button")) counter += 1;
             ig.ImGui_SameLine();

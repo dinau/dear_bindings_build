@@ -159,7 +159,7 @@ int main(int argc, char **argv) {
       ImGui_Checkbox("Another Window", &show_another_window);
 
       ImGui_SliderFloatEx("float", &f, 0.0f, 1.0f, "%.3f", 0);
-      ImGui_ColorEdit3("clear color", (float *)&clear_color, 0);
+      ImGui_ColorEdit3("Background color", (float *)&clear_color, 0);
 
       if (ImGui_Button("Button")) {
         counter++;

@@ -56,8 +56,6 @@ pub fn build(b: *std.Build) void {
             "../../libc/imgui/imgui_draw.cpp",
             "../../libc/imgui/imgui_tables.cpp",
             "../../libc/imgui/imgui_widgets.cpp",
-            // cimgui
-            "../../libc/cimgui/utils_cimgui.cpp",
         },
         .flags = &.{
             "-O2",

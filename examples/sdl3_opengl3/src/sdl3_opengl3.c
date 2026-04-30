@@ -7,6 +7,7 @@
 #include "dcimgui_impl_sdl3.h"
 #include "dcimgui_impl_opengl3.h"
 
+
 #include "setupFonts.h"
 
 
@@ -113,7 +114,7 @@ int main(int argc, char *argv[]) {
           ImGui_Checkbox("Another window", &showAnotherWindow);
 
           ImGui_SliderFloatEx("Float", &fval, 0.0f, 1.0f, "%.3f", 0);
-          ImGui_ColorEdit3("clear color", (float *)&clearColor, 0);
+          ImGui_ColorEdit3("Background color", (float *)&clearColor, 0);
 
           if (ImGui_Button("Button")) counter++;
           ImGui_SameLine();

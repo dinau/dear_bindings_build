@@ -209,30 +209,28 @@ Click link for live demo: [Click here](https://dinau.github.io/imguin/wasm/demo/
    ```
    
    - SDL3  
-      [install SDL3 manually](https://github.com/dinau/sdl3_nim#for-linux-os)
+      [Install SDL3 library](https://github.com/dinau/sdl3_nim#for-linux-os)
 
 #### Available libraries list at this moment
 
 ---
 
-Library name / C wrapper
-
-- [x] [ImGui](https://github.com/ocornut/imgui) / [Dear_Bindings](https://github.com/dearimgui/dear_bindings)
-- [x] [ImGui-Knobs](https://github.com/altschuler/imgui-knobs) / [CImGui-Knobs](libs/cimgui-knobs) (2025/07)
-- [x] [ImGuiFileDialog](https://github.com/aiekick/ImGuiFileDialog) / [CImGuiFileDialog](https://github.com/dinau/CImGuiFileDialog) (2025/07)
-- [x] [ImGui_Toggle](https://github.com/cmdwtf/imgui_toggle) / [CimGui_Toggle](https://github.com/dinau/cimgui_toggle) (2025/07)
-- [x] [ImSpinner](https://github.com/dalerank/imspinner) / [CImSpinner](https://github.com/dinau/cimspinner) (2025/07)
-- [x] [ImGuiColorTextEdit](https://github.com/santaclose/ImGuiColorTextEdit) / [cimCTE](https://github.com/cimgui/cimCTE) (2025/08)
-- [x] [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo) / [CImGuizmo](https://github.com/cimgui/cimguizmo) (2025/08)
-- [x] [ImNodes](https://github.com/Nelarius/imnodes) / [CImNodes](https://github.com/cimgui/cimnodes) (2025/08)
-- [x] [ImPlot](https://github.com/epezent/implot) / [CImPlot](https://github.com/cimgui/cimplot) (2025/08)
-- [x] [ImPlot3d](https://github.com/brenocq/implot3d) / [CImPlot3d](https://github.com/cimgui/cimplot3d)  (2025/08)
-- [x] [imgui_zoomable_image](https://github.com/danielm5/imgui_zoomable_image) / [cimgui_zoomable_image](https://github.com/dinau/cimgui_zoomable_image) (2026/04)
-- [ ] [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown) (2025/09 WIP) 
-
-https://github.com/nothings/stb
-
-https://github.com/FortAwesome/Font-Awesome
+|     | Library                                                                  | C Wrapper                                                               | Date    |
+|:---:|:-------------------------------------------------------------------------|-------------------------------------------------------------------------|:-------:|
+| YES | [Dear ImGui](https://github.com/ocornut/imgui)                           | [Dear_Bindings](https://github.com/dearimgui/dear_bindings)             | 2024/06 |
+| YES | [ImGui-Knobs](https://github.com/altschuler/imgui-knobs)                 | [CImGui-Knobs](libs/cimgui-knobs)                                       | 2025/07 |
+| YES | [ImGuiFileDialog](https://github.com/aiekick/ImGuiFileDialog)            | [CImGuiFileDialog](https://github.com/dinau/CImGuiFileDialog)           | 2025/07 |
+| YES | [ImGui_Toggle](https://github.com/cmdwtf/imgui_toggle)                   | [CimGui_Toggle](https://github.com/dinau/cimgui_toggle)                 | 2025/07 |
+| YES | [ImSpinner](https://github.com/dalerank/imspinner)                       | [CImSpinner](https://github.com/dinau/cimspinner)                       | 2025/07 |
+| YES | [ImGuiColorTextEdit](https://github.com/santaclose/ImGuiColorTextEdit)   | [cimCTE](https://github.com/cimgui/cimCTE)                              | 2025/08 |
+| YES | [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo)                  | [CImGuizmo](https://github.com/cimgui/cimguizmo)                        | 2025/08 |
+| YES | [ImNodes](https://github.com/Nelarius/imnodes)                           | [CImNodes](https://github.com/cimgui/cimnodes)                          | 2025/08 |
+| YES | [ImPlot](https://github.com/epezent/implot)                              | [CImPlot](https://github.com/cimgui/cimplot)                            | 2025/08 |
+| YES | [ImPlot3d](https://github.com/brenocq/implot3d)                          | [CImPlot3d](https://github.com/cimgui/cimplot3d)                        | 2025/08 |
+| YES | [imgui_zoomable_image](https://github.com/danielm5/imgui_zoomable_image) | [cimgui_zoomable_image](https://github.com/dinau/cimgui_zoomable_image) | 2026/04 |
+| WIP | [ImGui_Markdown](https://github.com/enkisoftware/imgui_markdown)         | [CImGui_MarkDown](https://github.com/dinau/cimgui_markdown)             | -       |
+| YES | [STB](https://github.com/nothings/stb)                                   | -                                                                       |         |
+| YES | [Font-Awesome](https://github.com/FortAwesome/Font-Awesome)              | -                                                                       |         |
 
 Additional examples 
 - [x] [Raylib](https://github.com/raysan5/raylib), [raylib-zig](https://github.com/raylib-zig/raylib-zig), [rlImGui](https://github.com/raylib-extras/rlImGui) (2025/11)
@@ -244,7 +242,7 @@ Additional examples
 ```sh
 git clone https://github.com/dinau/imguinz2
 
-cd imguinz2/examples/glfw_opengl3           # for example
+cd imguinz2/examples/zig_glfw_opengl3       # for example
 zig build run --release=fast                # or make run
 ```
 

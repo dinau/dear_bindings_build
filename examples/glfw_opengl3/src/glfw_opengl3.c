@@ -42,7 +42,7 @@ int main(void) {
       ImGui_Text("Input result:"); ImGui_SameLine(); ImGui_Text("%s", sBuf);
 
       ImGui_SliderFloatEx("Float", &fval, 0.0f, 1.0f, "%.3f", 0);
-      ImGui_ColorEdit3("Clear color", (float *)&clearColor, 0);
+      ImGui_ColorEdit3("Background color", (float *)&clearColor, 0);
 
       if (ImGui_Button("Button")) counter++;
       ImGui_SameLine();
